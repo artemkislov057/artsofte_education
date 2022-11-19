@@ -1,11 +1,13 @@
 ﻿namespace Education.WebApi;
 
+public sealed class ConnectionStrings
+{
+    public string EducationDb { get; set; } = null!;
+}
+
 public class AppSettings
 {
     public string? AppName { get; set; }
-    public Dictionary<string, string>? ConnectionStrings { get; set; }
+    public ConnectionStrings ConnectionStrings { get; set; } = new();
     public string[] CorsOrigins { get; set; } = Array.Empty<string>();
-
-    public string? GetConnectionString(string name)
-        => ConnectionStrings?[name];
 }

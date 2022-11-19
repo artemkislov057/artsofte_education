@@ -1,9 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 using Education.DataBase;
 using Education.DataBase.Entities;
+using Education.Extensions.LightInject;
 using LightInject;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,8 +21,8 @@ public sealed class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        var dbConnection = appSettings.GetConnectionString("EducationDb");
-        services.AddDbContext<EducationDbContext>(options => options.UseSqlServer(dbConnection));
+        services.AddDbContext<EducationDbContext>(options =>
+            options.UseSqlServer(appSettings.ConnectionStrings.EducationDb));
         services.AddIdentity<User, IdentityRole<Guid>>(configure =>
             {
                 configure.Password.RequiredLength = 1;
@@ -93,12 +93,13 @@ public sealed class Startup
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                 options.RoutePrefix = "swagger";
             });
-            app.UseCors(builder => builder
-                .WithOrigins(appSettings.CorsOrigins)
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowCredentials());
         }
+
+        app.UseCors(builder => builder
+            .WithOrigins(appSettings.CorsOrigins)
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials());
 
         app.UseHttpsRedirection();
 
@@ -112,12 +113,6 @@ public sealed class Startup
 
     public void ConfigureContainer(IServiceContainer container)
     {
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies()
-            .Where(assembly => assembly.FullName?.StartsWith("Education") == true);
-        foreach (var assembly in assemblies)
-        {
-            container.RegisterAssembly(assembly, () => new PerRequestLifeTime(),
-                (serviceType, implementationType) => serviceType.IsInterface);
-        }
+        container.RegisterClassToInterface("Education");
     }
 }

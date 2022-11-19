@@ -21,6 +21,9 @@ public sealed class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        var dbContext = new EducationDbContext(new DbContextOptionsBuilder<EducationDbContext>()
+            .UseSqlServer(appSettings.ConnectionStrings.EducationDb).Options);
+        dbContext.Database.Migrate();
         services.AddDbContext<EducationDbContext>(options =>
             options.UseSqlServer(appSettings.ConnectionStrings.EducationDb));
         services.AddIdentity<User, IdentityRole<Guid>>(configure =>

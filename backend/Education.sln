@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Education.DataBase", "Educa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Education.Extensions", "Education.Extensions\Education.Extensions.csproj", "{3A323F84-61A6-4F2E-99AF-DAAD306088DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Education.WebApi.Common", "Education.WebApi.Common\Education.WebApi.Common.csproj", "{111FECCA-A192-46CA-A877-5F671D681D20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{3A323F84-61A6-4F2E-99AF-DAAD306088DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A323F84-61A6-4F2E-99AF-DAAD306088DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A323F84-61A6-4F2E-99AF-DAAD306088DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{111FECCA-A192-46CA-A877-5F671D681D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{111FECCA-A192-46CA-A877-5F671D681D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{111FECCA-A192-46CA-A877-5F671D681D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{111FECCA-A192-46CA-A877-5F671D681D20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

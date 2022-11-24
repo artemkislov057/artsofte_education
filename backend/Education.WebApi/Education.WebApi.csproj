@@ -9,15 +9,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="LightInject" Version="6.5.2" />
-      <PackageReference Include="LightInject.Microsoft.AspNetCore.Hosting" Version="2.3.5" />
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Education.DataBase\Education.DataBase.csproj" />
-      <ProjectReference Include="..\Education.Extensions\Education.Extensions.csproj" />
-      <ProjectReference Include="..\Education.Model\Education.Model.csproj" />
+        <ProjectReference Include="..\Education.Model\Education.Model.csproj"/>
+        <ProjectReference Include="..\Education.WebApi.Common\Education.WebApi.Common.csproj"/>
     </ItemGroup>
 
 </Project>

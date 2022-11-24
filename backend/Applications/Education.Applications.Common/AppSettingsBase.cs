@@ -1,4 +1,4 @@
-﻿namespace Education.WebApi.Common;
+﻿namespace Education.Applications.Common;
 
 public class ConnectionStringsBase
 {

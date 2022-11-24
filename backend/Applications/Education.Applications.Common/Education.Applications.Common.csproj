@@ -15,8 +15,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Education.DataBase\Education.DataBase.csproj" />
-        <ProjectReference Include="..\Education.Extensions\Education.Extensions.csproj" />
+      <ProjectReference Include="..\..\Education.DataBase\Education.DataBase.csproj" />
+      <ProjectReference Include="..\..\Education.Extensions\Education.Extensions.csproj" />
     </ItemGroup>
 
 </Project>

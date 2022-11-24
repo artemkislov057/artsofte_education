@@ -3,7 +3,7 @@ using LightInject.Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Education.WebApi.Common;
+namespace Education.Applications.Common;
 
 public static class EntryPointBase<TStartup> where TStartup : StartupBase
 {

@@ -9,8 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Education.Model\Education.Model.csproj"/>
-        <ProjectReference Include="..\Education.WebApi.Common\Education.WebApi.Common.csproj"/>
+      <ProjectReference Include="..\..\Education.Applications.Common\Education.Applications.Common.csproj" />
     </ItemGroup>
 
 </Project>

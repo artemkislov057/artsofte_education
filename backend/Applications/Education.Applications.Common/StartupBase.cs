@@ -14,7 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Education.WebApi.Common;
+namespace Education.Applications.Common;
 
 public abstract class StartupBase
 {

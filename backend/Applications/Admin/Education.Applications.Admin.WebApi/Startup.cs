@@ -1,9 +1,8 @@
 ﻿using System.Reflection;
-using StartupBase = Education.WebApi.Common.StartupBase;
 
-namespace Education.WebApi;
+namespace Education.Applications.Admin.WebApi;
 
-public sealed class Startup : StartupBase
+public sealed class Startup : Common.StartupBase
 {
     public Startup(IConfiguration configuration)
         : base(configuration)
@@ -11,7 +10,6 @@ public sealed class Startup : StartupBase
     }
 
     protected override Assembly ExecutingAssembly => Assembly.GetExecutingAssembly();
-
     public override void ConfigureAdditional(IApplicationBuilder app, IWebHostEnvironment env)
     {
     }

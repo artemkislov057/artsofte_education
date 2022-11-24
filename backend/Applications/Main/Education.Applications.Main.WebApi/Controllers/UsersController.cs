@@ -1,7 +1,7 @@
-﻿using Education.Model.Services;
+﻿using Education.Applications.Main.Model.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Education.WebApi.Controllers;
+namespace Education.Applications.Main.WebApi.Controllers;
 
 [ApiController]
 [Route("api/users")]

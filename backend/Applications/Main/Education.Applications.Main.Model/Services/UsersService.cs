@@ -1,6 +1,6 @@
 ﻿using Education.DataBase.Repositories;
 
-namespace Education.Model.Services;
+namespace Education.Applications.Main.Model.Services;
 
 public interface IUsersService
 {

@@ -1,7 +1,7 @@
 using System.Reflection;
-using Education.WebApi.Common;
+using Education.Applications.Common;
 
-namespace Education.WebApi;
+namespace Education.Applications.Admin.WebApi;
 
 public static class Program
 {

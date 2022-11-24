@@ -1,4 +1,5 @@
-﻿using Education.Applications.Main.Model.Services;
+﻿using Education.Applications.Main.WebApi.Dto.Users;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Education.Applications.Main.WebApi.Controllers;
@@ -7,17 +8,36 @@ namespace Education.Applications.Main.WebApi.Controllers;
 [Route("api/users")]
 public class UsersController : ControllerBase
 {
-    private readonly IUsersService usersService;
+    private readonly UserManager<IdentityUser<Guid>> userManager;
+    private readonly SignInManager<IdentityUser<Guid>> signInManager;
 
-    public UsersController(IUsersService usersService)
+    public UsersController(UserManager<IdentityUser<Guid>> userManager,
+        SignInManager<IdentityUser<Guid>> signInManager)
     {
-        this.usersService = usersService;
+        this.userManager = userManager;
+        this.signInManager = signInManager;
     }
 
-    [HttpGet]
-    [Route("{id:guid}")]
-    public async Task<IActionResult> GetUser(Guid id)
+    [HttpPost]
+    public async Task<ActionResult> PostUser([FromBody] PostUserDto user)
     {
-        return Ok(await usersService.Get(id));
+        var result = await userManager.CreateAsync(new IdentityUser<Guid>(user.Name), user.Password);
+        if (!result.Succeeded) return BadRequest();
+
+        await signInManager.PasswordSignInAsync(user.Name, user.Password, false, false);
+        return Ok();
+    }
+
+    [HttpPost]
+    [Route("login")]
+    public async Task<ActionResult> Login([FromBody] PostUserDto user)
+    {
+        var result = await signInManager.PasswordSignInAsync(user.Name, user.Password, false, false);
+        if (result.Succeeded)
+        {
+            return Ok();
+        }
+
+        return BadRequest();
     }
 }

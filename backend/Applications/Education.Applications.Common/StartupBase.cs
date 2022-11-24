@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Text.Json.Serialization;
 using Education.DataBase;
-using Education.DataBase.Entities;
 using Education.Extensions.LightInject;
 using LightInject;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -34,7 +33,7 @@ public abstract class StartupBase
         dbContext.Database.Migrate();
         services.AddDbContext<EducationDbContext>(options =>
             options.UseSqlServer(appSettings.ConnectionStrings.EducationDb));
-        services.AddIdentity<User, IdentityRole<Guid>>(configure =>
+        services.AddIdentity<IdentityUser<Guid>, IdentityRole<Guid>>(configure =>
             {
                 configure.Password.RequiredLength = 1;
                 configure.Password.RequireNonAlphanumeric = false;

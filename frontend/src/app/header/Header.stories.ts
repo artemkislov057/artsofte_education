@@ -5,7 +5,7 @@ import type { Story, Meta } from '@storybook/angular';
 
 
 export default {
-  title: 'Example/Header',
+  title: 'Components/Header',
   component: HeaderComponent,
   decorators: [
     moduleMetadata({

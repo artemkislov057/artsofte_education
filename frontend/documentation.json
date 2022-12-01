@@ -49,7 +49,7 @@
         },
         {
             "name": "CourseComponent",
-            "id": "component-CourseComponent-1867c032872416b80364b63685f626e508397c4ec6c4b6285352fc781c313cbd7199d13cc58a944c750ff25404c33cd0f1d5928765508ccfac486238d2b9a927",
+            "id": "component-CourseComponent-16e437a2d10bc42396a61151085cfb59581819de277ecbc20b06f2bbd4b8e914316ef159d24bfac28ae2ae828030962445dc790779feb794a119588f1e6c70ac",
             "file": "src/app/coursesList/components/course/course.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -87,11 +87,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-course',\n  templateUrl: './course.component.html',\n  styleUrls: ['./course.component.scss']\n})\nexport class CourseComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-course',\r\n  templateUrl: './course.component.html',\r\n  styleUrls: ['./course.component.scss']\r\n})\r\nexport class CourseComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
+                    "data": ".main {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 10px;\r\n}\r\n\r\n.items {\r\n    display: flex;\r\n    width: 90%;\r\n    flex-direction: column;\r\n    align-self: flex-end;\r\n    gap: 22px;\r\n}",
                     "styleUrl": "./course.component.scss"
                 }
             ],
@@ -107,11 +107,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<app-header-course></app-header-course>\n<app-item-course></app-item-course>\n"
+            "templateData": "<div class=\"main\">\r\n    <app-header-course></app-header-course>\r\n    <div class=\"items\">\r\n        <app-item-course></app-item-course>\r\n        <app-item-course></app-item-course>\r\n        <app-item-course></app-item-course>\r\n        <app-item-course></app-item-course>\r\n    </div>\r\n</div>\r\n"
         },
         {
             "name": "CourseslistComponent",
-            "id": "component-CourseslistComponent-25228de313b7370d345a66c63e1a8f35d849839409e552908e34d5f1a2cc4378c018b86770a8b15f07c9331f9fbf9292f8341b58a61e9b591be2e7b4e941c39b",
+            "id": "component-CourseslistComponent-fc6b3a8d8f1a3b7634159fece4f90b0a37a65aa82fc279a9c043ecf176319ed0bfd5b9380710c754cf01de29c3cde6cff6010377af1d7bb8765de47e33885d50",
             "file": "src/app/coursesList/courseslist.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -149,11 +149,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-courseslist',\n  templateUrl: './courseslist.component.html',\n  styleUrls: ['./courseslist.component.scss']\n})\nexport class CourseslistComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-courseslist',\r\n  templateUrl: './courseslist.component.html',\r\n  styleUrls: ['./courseslist.component.scss']\r\n})\r\nexport class CourseslistComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
+                    "data": ".main {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 21px;\r\n}",
                     "styleUrl": "./courseslist.component.scss"
                 }
             ],
@@ -169,7 +169,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<app-course></app-course>"
+            "templateData": "<div class=\"main\">\r\n    <app-course></app-course>\r\n    <app-course></app-course>\r\n    <app-course></app-course>\r\n</div>\r\n"
         },
         {
             "name": "HeaderComponent",
@@ -235,7 +235,7 @@
         },
         {
             "name": "HeaderCourseComponent",
-            "id": "component-HeaderCourseComponent-527e4109db692ef98ab29bc22caeb626bb9e4749d6d9609fae207accfaf96901a76c60627c3f2b9906b4337ab62b4f49d27e457fddb89ba0c3917d3fb1b924bb",
+            "id": "component-HeaderCourseComponent-67efec15022a64295de0be5c2449c96596681575abff84d6b417b5a609a4f5fd6c5850b5e8343ed3218704b5ba9cd6c404e0232a7e4a8d56b2b37f44f396b2ee",
             "file": "src/app/coursesList/components/course/components/header-course/header-course.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -273,7 +273,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-header-course',\n  templateUrl: './header-course.component.html',\n  styleUrls: ['./header-course.component.scss']\n})\nexport class HeaderCourseComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-header-course',\r\n  templateUrl: './header-course.component.html',\r\n  styleUrls: ['./header-course.component.scss']\r\n})\r\nexport class HeaderCourseComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -293,11 +293,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"main\">\n    <div class=\"titleContainer\">\n        <div class=\"title\">Основы JS</div>\n        <div class=\"editIcon\"></div>\n    </div>\n    <div class=\"removeIcon\"></div>\n</div>\n"
+            "templateData": "<div class=\"main\">\r\n    <div class=\"titleContainer\">\r\n        <div class=\"title\">Основы JS</div>\r\n        <div class=\"editIcon\"></div>\r\n    </div>\r\n    <div class=\"removeIcon\"></div>\r\n</div>\r\n"
         },
         {
             "name": "ItemCourseComponent",
-            "id": "component-ItemCourseComponent-de93a532a1ac0727cd6e17b6d4f81441d7581241bec4e1e5724e9d42d3f557493bb00738bbed36f200084e9e1c021435b4fbd880fb5af84bac7237746cd7040e",
+            "id": "component-ItemCourseComponent-6a2a672014d16b989436d94766b622a43d067659aff25cdaecd6ab6af3e7c193039832c6fa4d153c739045f25c77a6f887498f74de67ad474a3d346e556a8d8f",
             "file": "src/app/coursesList/components/course/components/item-course/item-course.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -335,11 +335,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-item-course',\n  templateUrl: './item-course.component.html',\n  styleUrls: ['./item-course.component.scss']\n})\nexport class ItemCourseComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-item-course',\r\n  templateUrl: './item-course.component.html',\r\n  styleUrls: ['./item-course.component.scss']\r\n})\r\nexport class ItemCourseComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    display: flex;\r\n    height: 42px;\r\n    border-bottom: 1px solid rgba(62, 62, 62, .5);\r\n}",
+                    "data": ".main {\r\n    display: flex;\r\n    padding-bottom: 20px;\r\n    border-bottom: 1px solid rgba(62, 62, 62, .5);\r\n}\r\n\r\n.title {\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n    color: #5F5F5F;\r\n}",
                     "styleUrl": "./item-course.component.scss"
                 }
             ],
@@ -355,7 +355,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"main\">\n    <div class=\"title\">Введение</div>\n</div>\n"
+            "templateData": "<div class=\"main\">\r\n    <div class=\"title\">Введение</div>\r\n</div>\r\n"
         }
     ],
     "modules": [
@@ -568,6 +568,16 @@
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
             {
+                "name": "Course",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/coursesList/components/course/course.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "CoursesList",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -660,6 +670,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/coursesList/components/course/course.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<CourseComponent>",
+                "defaultValue": "(args: CourseComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/coursesList/components/course/components/item-course/item-course.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -700,6 +720,28 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "literal type"
+                }
+            ],
+            "src/app/coursesList/components/course/course.stories.ts": [
+                {
+                    "name": "Course",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/coursesList/components/course/course.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/coursesList/components/course/course.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<CourseComponent>",
+                    "defaultValue": "(args: CourseComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/app/coursesList/coursesList.stories.ts": [
@@ -911,6 +953,26 @@
                 "name": "CourseComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/coursesList/components/course/course.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Course",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/coursesList/components/course/course.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

@@ -4,8 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { CourseslistComponent } from './coursesList/courseslist.component';
 import { CourseslistModule } from './coursesList/courseslist.module';
+import { CourseMenuModule } from './course-menu/course-menu.module';
+import { ModuleItemComponent } from './course-menu/components/module-item/module-item.component';
 
 @NgModule({
   declarations: [
@@ -16,9 +17,10 @@ import { CourseslistModule } from './coursesList/courseslist.module';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CourseslistModule
+    CourseslistModule,
+    CourseMenuModule
   ],
   providers: [],
-  bootstrap: [AppComponent, HeaderComponent]
+  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule]
 })
 export class AppModule { }

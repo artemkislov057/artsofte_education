@@ -1,0 +1,52 @@
+.main {
+    display: flex;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    gap: 12px;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: -1px -1px 15px rgba(69, 69, 69, 0.07), 5px 8px 10px rgba(69, 69, 69, 0.07);
+    border-radius: 10px;
+}
+
+.squareButton,
+.addNewLessonButton {
+    border: none;
+    cursor: pointer;
+}
+
+.squareButton:hover,
+.addNewLessonButton:hover {
+    opacity: .7;
+}
+
+.squareButton {
+    width: 35px;
+    height: 35px;
+    background: url('icons/addIcon.svg') 50% 50% no-repeat;
+    background-size: 16px 16px;
+    background-color: rgba(46, 98, 217, 1);
+    border-radius: 3px;
+}
+
+.addNewLessonButton {
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    gap: 10px;
+    background: #FF841F;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.015em;
+}
+
+.addIcon {
+    width: 22px;
+    height: 25px;
+    background: url('icons/addIcon.svg') 50% 50% no-repeat;
+    background-size: 16px 16px;
+}

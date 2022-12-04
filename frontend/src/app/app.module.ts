@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CourseslistModule } from './coursesList/courseslist.module';
 import { CourseMenuModule } from './course-menu/course-menu.module';
-import { ModuleItemComponent } from './course-menu/components/module-item/module-item.component';
+import { CreateContainerComponent } from './create-container/create-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    CreateContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,6 +22,6 @@ import { ModuleItemComponent } from './course-menu/components/module-item/module
     CourseMenuModule
   ],
   providers: [],
-  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule]
+  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],
 })
 export class AppModule { }

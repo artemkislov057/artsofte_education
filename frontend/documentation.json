@@ -45,7 +45,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"main\">\r\n    <app-header></app-header>\r\n    <router-outlet></router-outlet>\r\n    <app-create-container [typeContainerName]=\"'курса'\"></app-create-container>\r\n</div>"
+            "templateData": "<div class=\"main\">\r\n    <app-header></app-header>\r\n    <router-outlet></router-outlet>\r\n</div>"
         },
         {
             "name": "CourseComponent",
@@ -235,7 +235,7 @@
         },
         {
             "name": "CreateContainerComponent",
-            "id": "component-CreateContainerComponent-f4f5016dab8634ddc8ff62204f6077cbe6bf812b8a2eccc9551c62c29ef42a9b73df92b4186c7cf2e998ad7774a2b8559f5e169584563c1442d8410fee946212",
+            "id": "component-CreateContainerComponent-d9d944bb3cb51ae04dca2dca16d182d5f34d38dc7c2ad564347d1688f699b31e6136980e23fdfb5cae2d7b2584dbaf15aaffd14a96fa4cdb5b69819ebc68f486",
             "file": "src/app/create-container/create-container.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -283,7 +283,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-create-container',\n  templateUrl: './create-container.component.html',\n  styleUrls: ['./create-container.component.scss']\n})\nexport class CreateContainerComponent implements OnInit {\n  @Input() typeContainerName: 'курса' | 'модуля' = 'курса' // 'курса' || 'модуля'\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-create-container',\r\n  templateUrl: './create-container.component.html',\r\n  styleUrls: ['./create-container.component.scss']\r\n})\r\nexport class CreateContainerComponent implements OnInit {\r\n  @Input() typeContainerName: 'курса' | 'модуля' = 'курса' // 'курса' || 'модуля'\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -303,7 +303,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"main\">\n    <div class=\"title\">Создание нового {{typeContainerName}}</div>\n    <div class=\"nameContainer\">\n        <div class=\"nameTitle\">Введите название {{typeContainerName}}</div>\n        <input class=\"nameItem\"/>\n    </div>\n    <div class=\"buttons\">\n        <button class=\"cancelButton\">Отменить</button>\n        <button class=\"createButton\">Создать {{typeContainerName === 'курса' ? 'курс' : 'модуль'}}</button>\n    </div>\n</div>"
+            "templateData": "<div class=\"main\">\r\n    <div class=\"title\">Создание нового {{typeContainerName}}</div>\r\n    <div class=\"nameContainer\">\r\n        <div class=\"nameTitle\">Введите название {{typeContainerName}}</div>\r\n        <input class=\"nameItem\"/>\r\n    </div>\r\n    <div class=\"buttons\">\r\n        <button class=\"cancelButton\">Отменить</button>\r\n        <button class=\"createButton\">Создать {{typeContainerName === 'курса' ? 'курс' : 'модуль'}}</button>\r\n    </div>\r\n</div>"
         },
         {
             "name": "HeaderComponent",
@@ -552,18 +552,80 @@
                 "OnInit"
             ],
             "templateData": "<div class=\"main\">\r\n    <div class=\"title\">Название нового модуля</div>\r\n    <div class=\"editIcon\"></div>\r\n</div>"
+        },
+        {
+            "name": "TopToolarContainerComponent",
+            "id": "component-TopToolarContainerComponent-9ce116ab097e88faa0e38bc751d6a6348f2db705331e861d68555a8a5f3af138598ccaa5c9b4662ac235fb50d5f8e318ee986cbd2f5e0636bc9c75a1622e64a2",
+            "file": "src/app/top-toolar-container/top-toolar-container.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-top-toolar-container",
+            "styleUrls": [
+                "./top-toolar-container.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./top-toolar-container.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-top-toolar-container',\r\n  templateUrl: './top-toolar-container.component.html',\r\n  styleUrls: ['./top-toolar-container.component.scss']\r\n})\r\nexport class TopToolarContainerComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    padding: 12px 16px;\r\n    gap: 12px;\r\n    align-items: center;\r\n    background: #FFFFFF;\r\n    box-shadow: -1px -1px 15px rgba(69, 69, 69, 0.07), 5px 8px 10px rgba(69, 69, 69, 0.07);\r\n    border-radius: 10px;\r\n}\r\n\r\n.squareButton,\r\n.addNewLessonButton {\r\n    border: none;\r\n    cursor: pointer;\r\n}\r\n\r\n.squareButton:hover,\r\n.addNewLessonButton:hover {\r\n    opacity: .7;\r\n}\r\n\r\n.squareButton {\r\n    width: 35px;\r\n    height: 35px;\r\n    background: url('icons/addIcon.svg') 50% 50% no-repeat;\r\n    background-size: 16px 16px;\r\n    background-color: rgba(46, 98, 217, 1);\r\n    border-radius: 3px;\r\n}\r\n\r\n.addNewLessonButton {\r\n    border-radius: 3px;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 5px 10px;\r\n    box-sizing: border-box;\r\n    gap: 10px;\r\n    background: #FF841F;\r\n    color: #FFFFFF;\r\n    font-weight: 400;\r\n    font-size: 16px;\r\n    line-height: 22px;\r\n    letter-spacing: 0.015em;\r\n}\r\n\r\n.addIcon {\r\n    width: 22px;\r\n    height: 25px;\r\n    background: url('icons/addIcon.svg') 50% 50% no-repeat;\r\n    background-size: 16px 16px;\r\n}",
+                    "styleUrl": "./top-toolar-container.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\">\r\n    <button class=\"squareButton\"></button>\r\n    <button class=\"addNewLessonButton\">\r\n        <div class=\"addIcon\"></div>\r\n        <div class=\"caption\">Добавить новый урок</div>\r\n    </button>\r\n</div>\r\n"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-60e709d267bdcd85440a580a1e84737e9cda07bd3bb1351ae07acba766b865e534a32f442a40204bd418bd2f3dc4cd112c329e7e28466060ef14d26f04023cf9",
+            "id": "module-AppModule-68021f4dea32889f4b768a861b04d8fc959584a065a1d2332515217f26da867068637143dec08814a71bb0a0562521d69c5f52ea98ffb36990b5b7f768e2bf3e",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { HeaderComponent } from './header/header.component';\r\nimport { CourseslistModule } from './coursesList/courseslist.module';\r\nimport { CourseMenuModule } from './course-menu/course-menu.module';\r\nimport { CreateContainerComponent } from './create-container/create-container.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    HeaderComponent,\r\n    CreateContainerComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FormsModule,\r\n    CourseslistModule,\r\n    CourseMenuModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],\r\n})\r\nexport class AppModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { HeaderComponent } from './header/header.component';\r\nimport { CourseslistModule } from './coursesList/courseslist.module';\r\nimport { CourseMenuModule } from './course-menu/course-menu.module';\r\nimport { CreateContainerComponent } from './create-container/create-container.component';\r\nimport { TopToolarContainerComponent } from './top-toolar-container/top-toolar-container.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    HeaderComponent,\r\n    CreateContainerComponent,\r\n    TopToolarContainerComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FormsModule,\r\n    CourseslistModule,\r\n    CourseMenuModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],\r\n})\r\nexport class AppModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -580,6 +642,9 @@
                         },
                         {
                             "name": "HeaderComponent"
+                        },
+                        {
+                            "name": "TopToolarContainerComponent"
                         }
                     ]
                 },
@@ -887,21 +952,21 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.prod.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\n  production: true\n}"
-            },
-            {
-                "name": "environment",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/environments/environment.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: true\n}"
             },
             {
                 "name": "Header",
@@ -986,6 +1051,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/top-toolar-container/top-toolar-container.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TopToolarContainerComponent>",
+                "defaultValue": "(args: TopToolarContainerComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/course-menu/components/module-item/module-item.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1021,6 +1096,16 @@
                 "deprecationMessage": "",
                 "type": "Story<HeaderCourseComponent>",
                 "defaultValue": "(args: HeaderCourseComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "TopToolbar",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/top-toolar-container/top-toolar-container.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             }
         ],
         "functions": [],
@@ -1168,18 +1253,6 @@
                     "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
                 }
             ],
-            "src/environments/environment.prod.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.prod.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\n  production: true\n}"
-                }
-            ],
             "src/environments/environment.ts": [
                 {
                     "name": "environment",
@@ -1190,6 +1263,18 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
                 }
             ],
             "src/app/coursesList/components/course/components/header-course/header-course.component.stories.ts": [
@@ -1256,6 +1341,28 @@
                     "deprecationMessage": "",
                     "type": "Story<ModuleItemComponent>",
                     "defaultValue": "(args: ModuleItemComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "src/app/top-toolar-container/top-toolar-container.stories.ts": [
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/top-toolar-container/top-toolar-container.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TopToolarContainerComponent>",
+                    "defaultValue": "(args: TopToolarContainerComponent) => ({\r\n  props: args,\r\n})"
+                },
+                {
+                    "name": "TopToolbar",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/top-toolar-container/top-toolar-container.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
                 }
             ]
         },
@@ -1530,6 +1637,35 @@
                 "name": "HeaderComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/top-toolar-container/top-toolar-container.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TopToolarContainerComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/top-toolar-container/top-toolar-container.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/top-toolar-container/top-toolar-container.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TopToolbar",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

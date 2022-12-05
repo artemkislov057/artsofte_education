@@ -1,0 +1,71 @@
+.main {
+    width: 306px;
+    display: flex;
+    gap: 20px;
+    box-sizing: border-box;
+    padding: 15px 20px;
+    background: #FFFFFF;
+    box-shadow: -1px -1px 15px rgba(69, 69, 69, 0.07), 5px 8px 10px rgba(69, 69, 69, 0.07);
+    border-radius: 10px;
+    align-items: center;
+}
+
+.icon {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+}
+
+.icon.text {
+    background: url('icons/icons=text.svg') 50% 50% no-repeat;
+}
+
+.icon.video {
+    background: url('icons/icons=video.svg') 50% 50% no-repeat;
+}
+
+.icon.literature {
+    background: url('icons/icons=book.svg') 50% 50% no-repeat;
+}
+
+.icon.test {
+    background: url('icons/icons=test.svg') 50% 50% no-repeat;
+}
+
+.icon.presentation {
+    background: url('icons/icons=presentation.svg') 50% 50% no-repeat;
+}
+
+.icon.text,
+.icon.video,
+.icon.literature,
+.icon.test,
+.icon.presentation {
+    background-size: 100% 100%;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #3E3E3E;
+}
+
+.caption {
+    width: 176px;
+    height: 88px;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.015em;
+    color: #5F5F5F;
+}

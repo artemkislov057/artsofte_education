@@ -8,6 +8,7 @@ import { CourseslistModule } from './coursesList/courseslist.module';
 import { CourseMenuModule } from './course-menu/course-menu.module';
 import { CreateContainerComponent } from './create-container/create-container.component';
 import { TopToolarContainerComponent } from './top-toolar-container/top-toolar-container.component';
+import { LessonTypeComponent } from './lesson-type/lesson-type.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { TopToolarContainerComponent } from './top-toolar-container/top-toolar-c
     HeaderComponent,
     CreateContainerComponent,
     TopToolarContainerComponent,
+    LessonTypeComponent,
   ],
   imports: [
     BrowserModule,

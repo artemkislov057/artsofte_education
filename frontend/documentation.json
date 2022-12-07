@@ -492,6 +492,88 @@
             "templateData": "<div class=\"main\">\r\n    <div class=\"title\">Введение</div>\r\n</div>\r\n"
         },
         {
+            "name": "LessonTypeComponent",
+            "id": "component-LessonTypeComponent-e43522a585eed18c8200a7bb5857b7691de6aab8d2913a24a2fe7ff7339d683ae487c9439b912f1e998fe548182cd1cd11a8f3add92dfb1a257e76618ef4cc07",
+            "file": "src/app/lesson-type/lesson-type.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-lesson-type",
+            "styleUrls": [
+                "./lesson-type.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./lesson-type.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "type",
+                    "defaultValue": "'text'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "LessonType",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "typeData",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "optional": false,
+                    "description": "",
+                    "line": 38
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { LessonType } from 'typings/lessonType';\r\n\r\nconst typeData: {[key in LessonType]: {\r\n  title: string;\r\n  caption: string;\r\n}} = {\r\n  literature: {\r\n    title: 'Литература',\r\n    caption: 'Добавляйте ссылки на книги и источники  '\r\n  },\r\n  presentation: {\r\n    title: 'Презентация',\r\n    caption: 'Создавайте презентации и озвучивайте их '\r\n  },\r\n  test: {\r\n    title: 'Тест',\r\n    caption: 'Составляйте тесты для проверки знаний'\r\n  },\r\n  text: {\r\n    title: 'Текст',\r\n    caption: 'Добавляйте текст и изображения для ваших лекций'\r\n  },\r\n  video: {\r\n    title: 'Видео',\r\n    caption: 'Добавляйте уже готовые видео уроки'\r\n  },\r\n}\r\n\r\n@Component({\r\n  selector: 'app-lesson-type',\r\n  templateUrl: './lesson-type.component.html',\r\n  styleUrls: ['./lesson-type.component.scss']\r\n})\r\n\r\nexport class LessonTypeComponent implements OnInit {\r\n  @Input() type: LessonType = 'text';\r\n  typeData: { title: string; caption: string; };\r\n  constructor() {\r\n    this.typeData = typeData[this.type]\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.typeData = typeData[this.type]\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    width: 306px;\r\n    display: flex;\r\n    gap: 20px;\r\n    box-sizing: border-box;\r\n    padding: 15px 20px;\r\n    background: #FFFFFF;\r\n    box-shadow: -1px -1px 15px rgba(69, 69, 69, 0.07), 5px 8px 10px rgba(69, 69, 69, 0.07);\r\n    border-radius: 10px;\r\n    align-items: center;\r\n}\r\n\r\n.icon {\r\n    width: 70px;\r\n    height: 70px;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.icon.text {\r\n    background: url('icons/icons=text.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.video {\r\n    background: url('icons/icons=video.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.literature {\r\n    background: url('icons/icons=book.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.test {\r\n    background: url('icons/icons=test.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.presentation {\r\n    background: url('icons/icons=presentation.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.text,\r\n.icon.video,\r\n.icon.literature,\r\n.icon.test,\r\n.icon.presentation {\r\n    background-size: 100% 100%;\r\n}\r\n\r\n.text {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 5px;\r\n}\r\n\r\n.title {\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n    color: #3E3E3E;\r\n}\r\n\r\n.caption {\r\n    width: 176px;\r\n    height: 88px;\r\n    vertical-align: middle;\r\n    font-size: 14px;\r\n    line-height: 22px;\r\n    display: flex;\r\n    align-items: center;\r\n    letter-spacing: 0.015em;\r\n    color: #5F5F5F;\r\n}",
+                    "styleUrl": "./lesson-type.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 38
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\">\r\n    <div class=\"icon {{type}}\"></div>\r\n    <div class=\"text\">\r\n        <div class=\"title\">{{typeData.title}}</div>\r\n        <div class=\"caption\">{{typeData.caption}}</div>\r\n    </div>\r\n</div>"
+        },
+        {
             "name": "ModuleItemComponent",
             "id": "component-ModuleItemComponent-fe8d1ec7b571bc097778a86e2df6f135601a485a93dce7cf554e1a88c581b365e552c76827e763e6592fec67f0913f8ab8aa6263ae209a178e792a2194cc989f",
             "file": "src/app/course-menu/components/module-item/module-item.component.ts",
@@ -619,13 +701,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-68021f4dea32889f4b768a861b04d8fc959584a065a1d2332515217f26da867068637143dec08814a71bb0a0562521d69c5f52ea98ffb36990b5b7f768e2bf3e",
+            "id": "module-AppModule-fce3ea64f1f2c8f29d6f025e1d066d7925bcb9538dd8ecafcd91c7744b40460524c8ee56b9ec3c51cfeb938f12aa9cfc0bfa412616f6b9ce62e2695ca28caa99",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { HeaderComponent } from './header/header.component';\r\nimport { CourseslistModule } from './coursesList/courseslist.module';\r\nimport { CourseMenuModule } from './course-menu/course-menu.module';\r\nimport { CreateContainerComponent } from './create-container/create-container.component';\r\nimport { TopToolarContainerComponent } from './top-toolar-container/top-toolar-container.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    HeaderComponent,\r\n    CreateContainerComponent,\r\n    TopToolarContainerComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FormsModule,\r\n    CourseslistModule,\r\n    CourseMenuModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],\r\n})\r\nexport class AppModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { HeaderComponent } from './header/header.component';\r\nimport { CourseslistModule } from './coursesList/courseslist.module';\r\nimport { CourseMenuModule } from './course-menu/course-menu.module';\r\nimport { CreateContainerComponent } from './create-container/create-container.component';\r\nimport { TopToolarContainerComponent } from './top-toolar-container/top-toolar-container.component';\r\nimport { LessonTypeComponent } from './lesson-type/lesson-type.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    HeaderComponent,\r\n    CreateContainerComponent,\r\n    TopToolarContainerComponent,\r\n    LessonTypeComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FormsModule,\r\n    CourseslistModule,\r\n    CourseMenuModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],\r\n})\r\nexport class AppModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -642,6 +724,9 @@
                         },
                         {
                             "name": "HeaderComponent"
+                        },
+                        {
+                            "name": "LessonTypeComponent"
                         },
                         {
                             "name": "TopToolarContainerComponent"
@@ -952,21 +1037,21 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\n  production: false\n}"
-            },
-            {
-                "name": "environment",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/environments/environment.prod.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: true\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
             },
             {
                 "name": "Header",
@@ -983,6 +1068,56 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/coursesList/components/course/components/item-course/item-course.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LessonTypeLiterature",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/lesson-type/lesson-type.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LessonTypePresentation",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/lesson-type/lesson-type.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LessonTypeTest",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/lesson-type/lesson-type.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LessonTypeText",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/lesson-type/lesson-type.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LessonTypeVideo",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/lesson-type/lesson-type.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1051,6 +1186,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/lesson-type/lesson-type.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<LessonTypeComponent>",
+                "defaultValue": "(args: LessonTypeComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/top-toolar-container/top-toolar-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1081,21 +1226,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/coursesList/components/course/components/item-course/item-course.component.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ItemCourseComponent>",
-                "defaultValue": "(args: ItemCourseComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/coursesList/components/course/components/header-course/header-course.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<HeaderCourseComponent>",
                 "defaultValue": "(args: HeaderCourseComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/coursesList/components/course/components/item-course/item-course.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ItemCourseComponent>",
+                "defaultValue": "(args: ItemCourseComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "TopToolbar",
@@ -1106,10 +1251,32 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "typeData",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/lesson-type/lesson-type.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "literal type",
+                "defaultValue": "{\r\n  literature: {\r\n    title: 'Литература',\r\n    caption: 'Добавляйте ссылки на книги и источники  '\r\n  },\r\n  presentation: {\r\n    title: 'Презентация',\r\n    caption: 'Создавайте презентации и озвучивайте их '\r\n  },\r\n  test: {\r\n    title: 'Тест',\r\n    caption: 'Составляйте тесты для проверки знаний'\r\n  },\r\n  text: {\r\n    title: 'Текст',\r\n    caption: 'Добавляйте текст и изображения для ваших лекций'\r\n  },\r\n  video: {\r\n    title: 'Видео',\r\n    caption: 'Добавляйте уже готовые видео уроки'\r\n  },\r\n}"
             }
         ],
         "functions": [],
-        "typealiases": [],
+        "typealiases": [
+            {
+                "name": "LessonType",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"text\" | \"video\" | \"literature\" | \"test\" | \"presentation\"",
+                "file": "typings/lessonType.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 186
+            }
+        ],
         "enumerations": [],
         "groupedVariables": {
             "src/test.ts": [
@@ -1253,18 +1420,6 @@
                     "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
                 }
             ],
-            "src/environments/environment.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\n  production: false\n}"
-                }
-            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -1275,6 +1430,18 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
                 }
             ],
             "src/app/coursesList/components/course/components/header-course/header-course.component.stories.ts": [
@@ -1321,6 +1488,68 @@
                     "defaultValue": "(args: ItemCourseComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "src/app/lesson-type/lesson-type.stories.ts": [
+                {
+                    "name": "LessonTypeLiterature",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lesson-type/lesson-type.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LessonTypePresentation",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lesson-type/lesson-type.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LessonTypeTest",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lesson-type/lesson-type.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LessonTypeText",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lesson-type/lesson-type.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LessonTypeVideo",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lesson-type/lesson-type.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lesson-type/lesson-type.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<LessonTypeComponent>",
+                    "defaultValue": "(args: LessonTypeComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
             "src/app/course-menu/components/module-item/module-item.stories.ts": [
                 {
                     "name": "ModuleItem",
@@ -1364,11 +1593,37 @@
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 }
+            ],
+            "src/app/lesson-type/lesson-type.component.ts": [
+                {
+                    "name": "typeData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lesson-type/lesson-type.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "defaultValue": "{\r\n  literature: {\r\n    title: 'Литература',\r\n    caption: 'Добавляйте ссылки на книги и источники  '\r\n  },\r\n  presentation: {\r\n    title: 'Презентация',\r\n    caption: 'Создавайте презентации и озвучивайте их '\r\n  },\r\n  test: {\r\n    title: 'Тест',\r\n    caption: 'Составляйте тесты для проверки знаний'\r\n  },\r\n  text: {\r\n    title: 'Текст',\r\n    caption: 'Добавляйте текст и изображения для ваших лекций'\r\n  },\r\n  video: {\r\n    title: 'Видео',\r\n    caption: 'Добавляйте уже готовые видео уроки'\r\n  },\r\n}"
+                }
             ]
         },
         "groupedFunctions": {},
         "groupedEnumerations": {},
-        "groupedTypeAliases": {}
+        "groupedTypeAliases": {
+            "typings/lessonType.ts": [
+                {
+                    "name": "LessonType",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"text\" | \"video\" | \"literature\" | \"test\" | \"presentation\"",
+                    "file": "typings/lessonType.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 186
+                }
+            ]
+        }
     },
     "routes": {
         "name": "<root>",
@@ -1637,6 +1892,85 @@
                 "name": "HeaderComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lesson-type/lesson-type.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LessonTypeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lesson-type/lesson-type.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "typeData",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lesson-type/lesson-type.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LessonTypeLiterature",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lesson-type/lesson-type.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LessonTypePresentation",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lesson-type/lesson-type.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LessonTypeTest",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lesson-type/lesson-type.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LessonTypeText",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lesson-type/lesson-type.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LessonTypeVideo",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lesson-type/lesson-type.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

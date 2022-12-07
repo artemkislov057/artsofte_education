@@ -9,6 +9,7 @@ import { CourseMenuModule } from './course-menu/course-menu.module';
 import { CreateContainerComponent } from './create-container/create-container.component';
 import { TopToolarContainerComponent } from './top-toolar-container/top-toolar-container.component';
 import { LessonTypeComponent } from './lesson-type/lesson-type.component';
+import { CoursePreviewContainerComponent } from './course-preview-container/course-preview-container.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { LessonTypeComponent } from './lesson-type/lesson-type.component';
     CreateContainerComponent,
     TopToolarContainerComponent,
     LessonTypeComponent,
+    CoursePreviewContainerComponent,
   ],
   imports: [
     BrowserModule,

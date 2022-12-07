@@ -10,9 +10,9 @@ import { LessonNameContainerComponent } from './components/lesson-name-container
 import { HeaderComponent } from './components/header/header.component';
 import { TopToolarContainerComponent } from './components/top-toolar-container/top-toolar-container.component';
 import { CourseMenuModule } from './components/course-menu/course-menu.module';
-import { CourseslistModule } from './components/coursesList/courseslist.module';
 import { StartPageModule } from './pages/start-page/start-page.module';
 import { CreatePageModule } from './pages/modules/create-page-module/create-page-module.module';
+import { CourseContentPageModule } from './pages/course-content-page/course-content-page.module';
 
 @NgModule({
   declarations: [
@@ -27,10 +27,10 @@ import { CreatePageModule } from './pages/modules/create-page-module/create-page
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CourseslistModule,
     CourseMenuModule,
     StartPageModule,
     CreatePageModule,
+    CourseContentPageModule
   ],
   providers: [],
   bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],

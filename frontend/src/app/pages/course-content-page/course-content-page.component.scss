@@ -1,0 +1,23 @@
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 937px;
+    display: flex;
+    flex-direction: column;
+    gap: 52px;
+    box-sizing: border-box;
+    padding: 62px 0;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 39px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.01em;
+    color: #3E3E3E;
+}

@@ -11,6 +11,7 @@ import { TopToolarContainerComponent } from './top-toolar-container/top-toolar-c
 import { LessonTypeComponent } from './lesson-type/lesson-type.component';
 import { CoursePreviewContainerComponent } from './course-preview-container/course-preview-container.component';
 import { BottomEditContainerComponent } from './bottom-edit-container/bottom-edit-container.component';
+import { LessonNameContainerComponent } from './lesson-name-container/lesson-name-container.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BottomEditContainerComponent } from './bottom-edit-container/bottom-edi
     LessonTypeComponent,
     CoursePreviewContainerComponent,
     BottomEditContainerComponent,
+    LessonNameContainerComponent,
   ],
   imports: [
     BrowserModule,

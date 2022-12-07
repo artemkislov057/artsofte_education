@@ -48,9 +48,71 @@
             "templateData": "<div class=\"main\">\r\n    <app-header></app-header>\r\n    <router-outlet></router-outlet>\r\n</div>"
         },
         {
+            "name": "BottomEditContainerComponent",
+            "id": "component-BottomEditContainerComponent-ed46e49f2d34b8c080e59885ad6e238162c06c0bdeae9fdad0aecadb55632b1f56dabc04582a08680d0da48fe1e5336e5dd02ff1078e514ebbac6498103d202b",
+            "file": "src/app/components/bottom-edit-container/bottom-edit-container.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-bottom-edit-container",
+            "styleUrls": [
+                "./bottom-edit-container.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bottom-edit-container.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-bottom-edit-container',\r\n  templateUrl: './bottom-edit-container.component.html',\r\n  styleUrls: ['./bottom-edit-container.component.scss']\r\n})\r\nexport class BottomEditContainerComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    display: flex;\r\n    justify-content: flex-end;\r\n    gap: 50px;\r\n    box-sizing: border-box;\r\n    padding: 10px 40px;\r\n    background: #FFFFFF;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n.button {\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    padding: 15px 20px;\r\n    border: none;\r\n    border-radius: 10px;\r\n    justify-content: center;\r\n    align-items: center;\r\n    cursor: pointer;\r\n\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.button:hover {\r\n    opacity: .7;\r\n}\r\n\r\n.cancel {\r\n    border: 1px solid #2E62D9;\r\n    color: #2E62D9;\r\n    background-color: transparent;\r\n}\r\n\r\n.save {\r\n    background: #6BB736;\r\n    color: #FFFFFF;\r\n}",
+                    "styleUrl": "./bottom-edit-container.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\">\r\n    <button class=\"cancel button\">Отменить</button>\r\n    <button class=\"save button\">Сохранить  урок</button>\r\n</div>"
+        },
+        {
             "name": "CourseComponent",
             "id": "component-CourseComponent-16e437a2d10bc42396a61151085cfb59581819de277ecbc20b06f2bbd4b8e914316ef159d24bfac28ae2ae828030962445dc790779feb794a119588f1e6c70ac",
-            "file": "src/app/coursesList/components/course/course.component.ts",
+            "file": "src/app/components/coursesList/components/course/course.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -112,7 +174,7 @@
         {
             "name": "CourseMenuComponent",
             "id": "component-CourseMenuComponent-76154aac54c70ba1929c26ef865eff34a8d477da39bd935d9c6ec148c8b236ed3e368644f775574aa9ae1a2ae818922a81141fce7a373781fdede48b12672ce3",
-            "file": "src/app/course-menu/course-menu.component.ts",
+            "file": "src/app/components/course-menu/course-menu.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -172,9 +234,117 @@
             "templateData": "<div class=\"main\">\r\n    <div class=\"header\">\r\n        <img class=\"logoCourse\" src=\"/assets/jsIcon.svg\" alt=\"Лого курса\" />\r\n        <div class=\"titleCourse\">Курс по JavaScript</div>\r\n    </div>\r\n    <div class=\"moduleContainer\">\r\n        <div class=\"wrapper\">\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n        </div>\r\n    </div>\r\n    <button class=\"addModuleButton\">Добавить модуль</button>\r\n</div>\r\n\r\n"
         },
         {
+            "name": "CoursePreviewContainerComponent",
+            "id": "component-CoursePreviewContainerComponent-869864f9162568f182f7608852a56d62f0704bb3ce47b4686804d92643472dd937a956b62ab1256c3d6b6d012ae04338b3e29d11b8fd7de78f5965408c781859",
+            "file": "src/app/components/course-preview-container/course-preview-container.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-course-preview-container",
+            "styleUrls": [
+                "./course-preview-container.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./course-preview-container.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "backgroundColor",
+                    "defaultValue": "'#FFFFFF'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "caption",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "srcCourseImage",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "theme",
+                    "defaultValue": "'light'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "\"light\" | \"dark\"",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-course-preview-container',\r\n  templateUrl: './course-preview-container.component.html',\r\n  styleUrls: ['./course-preview-container.component.scss']\r\n})\r\nexport class CoursePreviewContainerComponent implements OnInit {\r\n  @Input() title: string = '';\r\n  @Input() caption: string = '';\r\n  @Input() srcCourseImage: string = '';\r\n  @Input() theme: 'light' | 'dark' = 'light';\r\n  @Input() backgroundColor: string = '#FFFFFF';\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    box-sizing: border-box;\r\n    padding: 19px 28px 19px 57px;\r\n    border-radius: 10px;\r\n}\r\n\r\n.text {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 37px;\r\n}\r\n\r\n.text.light {\r\n    color: #000000;\r\n}\r\n\r\n.text.dark {\r\n    color: #FFFFFF;\r\n}\r\n\r\n.title {\r\n    font-weight: 600;\r\n    font-size: 32px;\r\n    line-height: 39px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.caption {\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.icon {\r\n    width: 162px;\r\n    height: 162px;\r\n}",
+                    "styleUrl": "./course-preview-container.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 13
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\" style=\"background: {{backgroundColor}};\">\r\n    <div class=\"text {{theme}}\">\r\n        <div class=\"title\">{{title}}</div>\r\n        <div class=\"caption\">{{caption}}</div>\r\n    </div>\r\n    <img class=\"icon\" alt=\"course icon\" src={{srcCourseImage}} />\r\n</div>"
+        },
+        {
             "name": "CourseslistComponent",
             "id": "component-CourseslistComponent-fc6b3a8d8f1a3b7634159fece4f90b0a37a65aa82fc279a9c043ecf176319ed0bfd5b9380710c754cf01de29c3cde6cff6010377af1d7bb8765de47e33885d50",
-            "file": "src/app/coursesList/courseslist.component.ts",
+            "file": "src/app/components/coursesList/courseslist.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -236,7 +406,7 @@
         {
             "name": "CreateContainerComponent",
             "id": "component-CreateContainerComponent-d9d944bb3cb51ae04dca2dca16d182d5f34d38dc7c2ad564347d1688f699b31e6136980e23fdfb5cae2d7b2584dbaf15aaffd14a96fa4cdb5b69819ebc68f486",
-            "file": "src/app/create-container/create-container.component.ts",
+            "file": "src/app/components/create-container/create-container.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -308,7 +478,7 @@
         {
             "name": "HeaderComponent",
             "id": "component-HeaderComponent-66aab1b24c0d8854e1f82fba28138804b4b85580f247fc5033dd7baf800ad39c3ed2312637667e7b335e90cb144fdbd62673e2ce34182a65e43f7cecfaa900cc",
-            "file": "src/app/header/header.component.ts",
+            "file": "src/app/components/header/header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -370,7 +540,7 @@
         {
             "name": "HeaderCourseComponent",
             "id": "component-HeaderCourseComponent-67efec15022a64295de0be5c2449c96596681575abff84d6b417b5a609a4f5fd6c5850b5e8343ed3218704b5ba9cd6c404e0232a7e4a8d56b2b37f44f396b2ee",
-            "file": "src/app/coursesList/components/course/components/header-course/header-course.component.ts",
+            "file": "src/app/components/coursesList/components/course/components/header-course/header-course.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -432,7 +602,7 @@
         {
             "name": "ItemCourseComponent",
             "id": "component-ItemCourseComponent-6a2a672014d16b989436d94766b622a43d067659aff25cdaecd6ab6af3e7c193039832c6fa4d153c739045f25c77a6f887498f74de67ad474a3d346e556a8d8f",
-            "file": "src/app/coursesList/components/course/components/item-course/item-course.component.ts",
+            "file": "src/app/components/coursesList/components/course/components/item-course/item-course.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -492,9 +662,71 @@
             "templateData": "<div class=\"main\">\r\n    <div class=\"title\">Введение</div>\r\n</div>\r\n"
         },
         {
+            "name": "LessonNameContainerComponent",
+            "id": "component-LessonNameContainerComponent-df295f8422461ae020672fbcbab9a9ae111a231df7e2aecec56e25f2b3932b0ec519a54b6e033ab93a9b85ac54bec7a7f8e988f1c9eb11858928069f00c786a2",
+            "file": "src/app/components/lesson-name-container/lesson-name-container.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-lesson-name-container",
+            "styleUrls": [
+                "./lesson-name-container.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./lesson-name-container.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-lesson-name-container',\r\n  templateUrl: './lesson-name-container.component.html',\r\n  styleUrls: ['./lesson-name-container.component.scss']\r\n})\r\nexport class LessonNameContainerComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.nameInput {\r\n    width: 578px;\r\n    height: 47px;\r\n\r\n    font-weight: 600;\r\n    font-size: 22px;\r\n    line-height: 27px;\r\n    letter-spacing: 0.01em;\r\n    color: #5F5F5F;\r\n\r\n    outline: none;\r\n    border: none;\r\n    border-bottom: 1px solid #5F5F5F;\r\n}\r\n\r\n.delete {\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    padding: 10px 20px;\r\n    border: 1px solid #FA5D48;\r\n    border-radius: 10px;\r\n    justify-content: center;\r\n    align-items: center;\r\n    cursor: pointer;\r\n    background-color: transparent;\r\n\r\n    font-size: 14px;\r\n    line-height: 22px;\r\n    letter-spacing: 0.015em;\r\n    color: #FA5D48;\r\n}\r\n\r\n.delete:hover {\r\n    opacity: .7;\r\n}",
+                    "styleUrl": "./lesson-name-container.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\">\r\n    <input class=\"nameInput\" />\r\n    <button class=\"delete\">Удалить урок</button>\r\n</div>"
+        },
+        {
             "name": "LessonTypeComponent",
             "id": "component-LessonTypeComponent-e43522a585eed18c8200a7bb5857b7691de6aab8d2913a24a2fe7ff7339d683ae487c9439b912f1e998fe548182cd1cd11a8f3add92dfb1a257e76618ef4cc07",
-            "file": "src/app/lesson-type/lesson-type.component.ts",
+            "file": "src/app/components/lesson-type/lesson-type.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -576,7 +808,7 @@
         {
             "name": "ModuleItemComponent",
             "id": "component-ModuleItemComponent-fe8d1ec7b571bc097778a86e2df6f135601a485a93dce7cf554e1a88c581b365e552c76827e763e6592fec67f0913f8ab8aa6263ae209a178e792a2194cc989f",
-            "file": "src/app/course-menu/components/module-item/module-item.component.ts",
+            "file": "src/app/components/course-menu/components/module-item/module-item.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -638,7 +870,7 @@
         {
             "name": "TopToolarContainerComponent",
             "id": "component-TopToolarContainerComponent-9ce116ab097e88faa0e38bc751d6a6348f2db705331e861d68555a8a5f3af138598ccaa5c9b4662ac235fb50d5f8e318ee986cbd2f5e0636bc9c75a1622e64a2",
-            "file": "src/app/top-toolar-container/top-toolar-container.component.ts",
+            "file": "src/app/components/top-toolar-container/top-toolar-container.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -701,13 +933,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-fce3ea64f1f2c8f29d6f025e1d066d7925bcb9538dd8ecafcd91c7744b40460524c8ee56b9ec3c51cfeb938f12aa9cfc0bfa412616f6b9ce62e2695ca28caa99",
+            "id": "module-AppModule-0b3fa3c9a3ee710f9d2df16a03a7a3194a7c6850abd45cdaa0ab03448ac7e6bb176511ff094b169af0b7c63eca57ba65174b2854820ffebb6b6f1e1bc9364b0e",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { HeaderComponent } from './header/header.component';\r\nimport { CourseslistModule } from './coursesList/courseslist.module';\r\nimport { CourseMenuModule } from './course-menu/course-menu.module';\r\nimport { CreateContainerComponent } from './create-container/create-container.component';\r\nimport { TopToolarContainerComponent } from './top-toolar-container/top-toolar-container.component';\r\nimport { LessonTypeComponent } from './lesson-type/lesson-type.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    HeaderComponent,\r\n    CreateContainerComponent,\r\n    TopToolarContainerComponent,\r\n    LessonTypeComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FormsModule,\r\n    CourseslistModule,\r\n    CourseMenuModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],\r\n})\r\nexport class AppModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { CreateContainerComponent } from './components/create-container/create-container.component';\r\nimport { LessonTypeComponent } from './components/lesson-type/lesson-type.component';\r\nimport { CoursePreviewContainerComponent } from './components/course-preview-container/course-preview-container.component';\r\nimport { BottomEditContainerComponent } from './components/bottom-edit-container/bottom-edit-container.component';\r\nimport { LessonNameContainerComponent } from './components/lesson-name-container/lesson-name-container.component';\r\nimport { HeaderComponent } from './components/header/header.component';\r\nimport { TopToolarContainerComponent } from './components/top-toolar-container/top-toolar-container.component';\r\nimport { CourseMenuModule } from './components/course-menu/course-menu.module';\r\nimport { CourseslistModule } from './components/coursesList/courseslist.module';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    HeaderComponent,\r\n    CreateContainerComponent,\r\n    TopToolarContainerComponent,\r\n    LessonTypeComponent,\r\n    CoursePreviewContainerComponent,\r\n    BottomEditContainerComponent,\r\n    LessonNameContainerComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FormsModule,\r\n    CourseslistModule,\r\n    CourseMenuModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],\r\n})\r\nexport class AppModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -720,10 +952,19 @@
                             "name": "AppComponent"
                         },
                         {
+                            "name": "BottomEditContainerComponent"
+                        },
+                        {
+                            "name": "CoursePreviewContainerComponent"
+                        },
+                        {
                             "name": "CreateContainerComponent"
                         },
                         {
                             "name": "HeaderComponent"
+                        },
+                        {
+                            "name": "LessonNameContainerComponent"
                         },
                         {
                             "name": "LessonTypeComponent"
@@ -813,7 +1054,7 @@
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
-            "file": "src/app/course-menu/course-menu.module.ts",
+            "file": "src/app/components/course-menu/course-menu.module.ts",
             "methods": [],
             "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ModuleItemComponent } from './components/module-item/module-item.component';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { CourseMenuComponent } from './course-menu.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    CourseMenuComponent,\r\n    ModuleItemComponent,\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    BrowserModule\r\n  ],\r\n  exports: [CourseMenuComponent],\r\n  bootstrap: [ModuleItemComponent]\r\n})\r\nexport class CourseMenuModule { }\r\n",
             "children": [
@@ -864,7 +1105,7 @@
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
-            "file": "src/app/coursesList/components/course/course.module.ts",
+            "file": "src/app/components/coursesList/components/course/course.module.ts",
             "methods": [],
             "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { HeaderCourseComponent } from './components/header-course/header-course.component';\r\nimport { ItemCourseComponent } from './components/item-course/item-course.component';\r\nimport { CourseComponent } from './course.component';\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    CourseComponent,\r\n    ItemCourseComponent,\r\n    HeaderCourseComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n  ],\r\n  providers: [],\r\n  bootstrap: [],\r\n  exports: [CourseComponent]\r\n})\r\nexport class CourseModule { }\r\n",
             "children": [
@@ -914,7 +1155,7 @@
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
-            "file": "src/app/coursesList/courseslist.module.ts",
+            "file": "src/app/components/coursesList/courseslist.module.ts",
             "methods": [],
             "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CourseslistComponent } from './courseslist.component';\r\nimport { CourseModule } from './components/course/course.module';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    CourseslistComponent,\r\n  ],\r\n  imports: [BrowserModule, CourseModule],\r\n  providers: [],\r\n  bootstrap: [CourseslistComponent],\r\n  exports: [CourseslistComponent]\r\n})\r\nexport class CourseslistModule { }\r\n",
             "children": [
@@ -964,6 +1205,16 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "BottomEditButtons",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/bottom-edit-container/bottom-edit-container.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "context",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -977,7 +1228,7 @@
                 "name": "Course",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/coursesList/components/course/course.stories.ts",
+                "file": "src/app/components/coursesList/components/course/course.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -987,7 +1238,27 @@
                 "name": "CourseMenu",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/course-menu/course-menu.stories.ts",
+                "file": "src/app/components/course-menu/course-menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "CoursePreviewJs",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/course-preview-container/course-preview-container.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "CoursePreviewNet",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/course-preview-container/course-preview-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -997,7 +1268,7 @@
                 "name": "CoursesList",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/coursesList/coursesList.stories.ts",
+                "file": "src/app/components/coursesList/coursesList.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1007,7 +1278,7 @@
                 "name": "CreateCourseContainer",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/create-container/create-container.stories.ts",
+                "file": "src/app/components/create-container/create-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1017,7 +1288,7 @@
                 "name": "CreateModuleContainer",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/create-container/create-container.stories.ts",
+                "file": "src/app/components/create-container/create-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1027,7 +1298,7 @@
                 "name": "DefaultHeader",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/header/Header.stories.ts",
+                "file": "src/app/components/header/Header.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1057,7 +1328,7 @@
                 "name": "Header",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/coursesList/components/course/components/header-course/header-course.component.stories.ts",
+                "file": "src/app/components/coursesList/components/course/components/header-course/header-course.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1067,7 +1338,17 @@
                 "name": "ItemCourse",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/coursesList/components/course/components/item-course/item-course.component.stories.ts",
+                "file": "src/app/components/coursesList/components/course/components/item-course/item-course.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LessonNameContainer",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/lesson-name-container/lesson-name-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1077,7 +1358,7 @@
                 "name": "LessonTypeLiterature",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/lesson-type/lesson-type.stories.ts",
+                "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1087,7 +1368,7 @@
                 "name": "LessonTypePresentation",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/lesson-type/lesson-type.stories.ts",
+                "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1097,7 +1378,7 @@
                 "name": "LessonTypeTest",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/lesson-type/lesson-type.stories.ts",
+                "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1107,7 +1388,7 @@
                 "name": "LessonTypeText",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/lesson-type/lesson-type.stories.ts",
+                "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1117,7 +1398,7 @@
                 "name": "LessonTypeVideo",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/lesson-type/lesson-type.stories.ts",
+                "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1127,7 +1408,7 @@
                 "name": "ModuleItem",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/course-menu/components/module-item/module-item.stories.ts",
+                "file": "src/app/components/course-menu/components/module-item/module-item.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1146,17 +1427,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/course-menu/course-menu.stories.ts",
+                "file": "src/app/components/course-preview-container/course-preview-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<CourseMenuComponent>",
-                "defaultValue": "(args: CourseMenuComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<CoursePreviewContainerComponent>",
+                "defaultValue": "(args: CoursePreviewContainerComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/coursesList/coursesList.stories.ts",
+                "file": "src/app/components/coursesList/coursesList.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<CourseslistComponent>",
@@ -1166,7 +1447,27 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/create-container/create-container.stories.ts",
+                "file": "src/app/components/course-menu/course-menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<CourseMenuComponent>",
+                "defaultValue": "(args: CourseMenuComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/bottom-edit-container/bottom-edit-container.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<BottomEditContainerComponent>",
+                "defaultValue": "(args: BottomEditContainerComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/create-container/create-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<CreateContainerComponent>",
@@ -1176,7 +1477,7 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/header/Header.stories.ts",
+                "file": "src/app/components/header/Header.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<HeaderComponent>",
@@ -1186,17 +1487,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/lesson-type/lesson-type.stories.ts",
+                "file": "src/app/components/lesson-name-container/lesson-name-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<LessonTypeComponent>",
-                "defaultValue": "(args: LessonTypeComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<LessonNameContainerComponent>",
+                "defaultValue": "(args: LessonNameContainerComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/top-toolar-container/top-toolar-container.stories.ts",
+                "file": "src/app/components/top-toolar-container/top-toolar-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TopToolarContainerComponent>",
@@ -1206,17 +1507,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/course-menu/components/module-item/module-item.stories.ts",
+                "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<ModuleItemComponent>",
-                "defaultValue": "(args: ModuleItemComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<LessonTypeComponent>",
+                "defaultValue": "(args: LessonTypeComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/coursesList/components/course/course.stories.ts",
+                "file": "src/app/components/coursesList/components/course/course.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<CourseComponent>",
@@ -1226,27 +1527,37 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/coursesList/components/course/components/header-course/header-course.component.stories.ts",
+                "file": "src/app/components/course-menu/components/module-item/module-item.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<HeaderCourseComponent>",
-                "defaultValue": "(args: HeaderCourseComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<ModuleItemComponent>",
+                "defaultValue": "(args: ModuleItemComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/coursesList/components/course/components/item-course/item-course.component.stories.ts",
+                "file": "src/app/components/coursesList/components/course/components/item-course/item-course.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ItemCourseComponent>",
                 "defaultValue": "(args: ItemCourseComponent) => ({\r\n  props: args,\r\n})"
             },
             {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/coursesList/components/course/components/header-course/header-course.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<HeaderCourseComponent>",
+                "defaultValue": "(args: HeaderCourseComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
                 "name": "TopToolbar",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/top-toolar-container/top-toolar-container.stories.ts",
+                "file": "src/app/components/top-toolar-container/top-toolar-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1256,7 +1567,7 @@
                 "name": "typeData",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/lesson-type/lesson-type.component.ts",
+                "file": "src/app/components/lesson-type/lesson-type.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "literal type",
@@ -1279,6 +1590,28 @@
         ],
         "enumerations": [],
         "groupedVariables": {
+            "src/app/components/bottom-edit-container/bottom-edit-container.stories.ts": [
+                {
+                    "name": "BottomEditButtons",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/bottom-edit-container/bottom-edit-container.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/bottom-edit-container/bottom-edit-container.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<BottomEditContainerComponent>",
+                    "defaultValue": "(args: BottomEditContainerComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
             "src/test.ts": [
                 {
                     "name": "context",
@@ -1300,12 +1633,12 @@
                     "type": "literal type"
                 }
             ],
-            "src/app/coursesList/components/course/course.stories.ts": [
+            "src/app/components/coursesList/components/course/course.stories.ts": [
                 {
                     "name": "Course",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/coursesList/components/course/course.stories.ts",
+                    "file": "src/app/components/coursesList/components/course/course.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1315,19 +1648,19 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/coursesList/components/course/course.stories.ts",
+                    "file": "src/app/components/coursesList/components/course/course.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<CourseComponent>",
                     "defaultValue": "(args: CourseComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/app/course-menu/course-menu.stories.ts": [
+            "src/app/components/course-menu/course-menu.stories.ts": [
                 {
                     "name": "CourseMenu",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/course-menu/course-menu.stories.ts",
+                    "file": "src/app/components/course-menu/course-menu.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1337,19 +1670,29 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/course-menu/course-menu.stories.ts",
+                    "file": "src/app/components/course-menu/course-menu.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<CourseMenuComponent>",
                     "defaultValue": "(args: CourseMenuComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/app/coursesList/coursesList.stories.ts": [
+            "src/app/components/course-preview-container/course-preview-container.stories.ts": [
                 {
-                    "name": "CoursesList",
+                    "name": "CoursePreviewJs",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/coursesList/coursesList.stories.ts",
+                    "file": "src/app/components/course-preview-container/course-preview-container.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "CoursePreviewNet",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/course-preview-container/course-preview-container.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1359,19 +1702,41 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/coursesList/coursesList.stories.ts",
+                    "file": "src/app/components/course-preview-container/course-preview-container.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<CoursePreviewContainerComponent>",
+                    "defaultValue": "(args: CoursePreviewContainerComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "src/app/components/coursesList/coursesList.stories.ts": [
+                {
+                    "name": "CoursesList",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/coursesList/coursesList.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/coursesList/coursesList.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<CourseslistComponent>",
                     "defaultValue": "(args: CourseslistComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/app/create-container/create-container.stories.ts": [
+            "src/app/components/create-container/create-container.stories.ts": [
                 {
                     "name": "CreateCourseContainer",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/create-container/create-container.stories.ts",
+                    "file": "src/app/components/create-container/create-container.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1381,7 +1746,7 @@
                     "name": "CreateModuleContainer",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/create-container/create-container.stories.ts",
+                    "file": "src/app/components/create-container/create-container.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1391,19 +1756,19 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/create-container/create-container.stories.ts",
+                    "file": "src/app/components/create-container/create-container.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<CreateContainerComponent>",
                     "defaultValue": "(args: CreateContainerComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/app/header/Header.stories.ts": [
+            "src/app/components/header/Header.stories.ts": [
                 {
                     "name": "DefaultHeader",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/header/Header.stories.ts",
+                    "file": "src/app/components/header/Header.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1413,7 +1778,7 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/header/Header.stories.ts",
+                    "file": "src/app/components/header/Header.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<HeaderComponent>",
@@ -1444,12 +1809,12 @@
                     "defaultValue": "{\n  production: false\n}"
                 }
             ],
-            "src/app/coursesList/components/course/components/header-course/header-course.component.stories.ts": [
+            "src/app/components/coursesList/components/course/components/header-course/header-course.component.stories.ts": [
                 {
                     "name": "Header",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/coursesList/components/course/components/header-course/header-course.component.stories.ts",
+                    "file": "src/app/components/coursesList/components/course/components/header-course/header-course.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1459,19 +1824,19 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/coursesList/components/course/components/header-course/header-course.component.stories.ts",
+                    "file": "src/app/components/coursesList/components/course/components/header-course/header-course.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<HeaderCourseComponent>",
                     "defaultValue": "(args: HeaderCourseComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/app/coursesList/components/course/components/item-course/item-course.component.stories.ts": [
+            "src/app/components/coursesList/components/course/components/item-course/item-course.component.stories.ts": [
                 {
                     "name": "ItemCourse",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/coursesList/components/course/components/item-course/item-course.component.stories.ts",
+                    "file": "src/app/components/coursesList/components/course/components/item-course/item-course.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1481,19 +1846,41 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/coursesList/components/course/components/item-course/item-course.component.stories.ts",
+                    "file": "src/app/components/coursesList/components/course/components/item-course/item-course.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ItemCourseComponent>",
                     "defaultValue": "(args: ItemCourseComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/app/lesson-type/lesson-type.stories.ts": [
+            "src/app/components/lesson-name-container/lesson-name-container.stories.ts": [
+                {
+                    "name": "LessonNameContainer",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/lesson-name-container/lesson-name-container.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/lesson-name-container/lesson-name-container.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<LessonNameContainerComponent>",
+                    "defaultValue": "(args: LessonNameContainerComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "src/app/components/lesson-type/lesson-type.stories.ts": [
                 {
                     "name": "LessonTypeLiterature",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/lesson-type/lesson-type.stories.ts",
+                    "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1503,7 +1890,7 @@
                     "name": "LessonTypePresentation",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/lesson-type/lesson-type.stories.ts",
+                    "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1513,7 +1900,7 @@
                     "name": "LessonTypeTest",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/lesson-type/lesson-type.stories.ts",
+                    "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1523,7 +1910,7 @@
                     "name": "LessonTypeText",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/lesson-type/lesson-type.stories.ts",
+                    "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1533,7 +1920,7 @@
                     "name": "LessonTypeVideo",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/lesson-type/lesson-type.stories.ts",
+                    "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1543,19 +1930,19 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/lesson-type/lesson-type.stories.ts",
+                    "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<LessonTypeComponent>",
                     "defaultValue": "(args: LessonTypeComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/app/course-menu/components/module-item/module-item.stories.ts": [
+            "src/app/components/course-menu/components/module-item/module-item.stories.ts": [
                 {
                     "name": "ModuleItem",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/course-menu/components/module-item/module-item.stories.ts",
+                    "file": "src/app/components/course-menu/components/module-item/module-item.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1565,19 +1952,19 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/course-menu/components/module-item/module-item.stories.ts",
+                    "file": "src/app/components/course-menu/components/module-item/module-item.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ModuleItemComponent>",
                     "defaultValue": "(args: ModuleItemComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/app/top-toolar-container/top-toolar-container.stories.ts": [
+            "src/app/components/top-toolar-container/top-toolar-container.stories.ts": [
                 {
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/top-toolar-container/top-toolar-container.stories.ts",
+                    "file": "src/app/components/top-toolar-container/top-toolar-container.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<TopToolarContainerComponent>",
@@ -1587,19 +1974,19 @@
                     "name": "TopToolbar",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/top-toolar-container/top-toolar-container.stories.ts",
+                    "file": "src/app/components/top-toolar-container/top-toolar-container.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 }
             ],
-            "src/app/lesson-type/lesson-type.component.ts": [
+            "src/app/components/lesson-type/lesson-type.component.ts": [
                 {
                     "name": "typeData",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/lesson-type/lesson-type.component.ts",
+                    "file": "src/app/components/lesson-type/lesson-type.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "literal type",
@@ -1653,7 +2040,36 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/course-menu/components/module-item/module-item.component.ts",
+                "filePath": "src/app/components/bottom-edit-container/bottom-edit-container.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BottomEditContainerComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/bottom-edit-container/bottom-edit-container.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "BottomEditButtons",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/bottom-edit-container/bottom-edit-container.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/course-menu/components/module-item/module-item.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "ModuleItemComponent",
@@ -1662,7 +2078,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/course-menu/components/module-item/module-item.stories.ts",
+                "filePath": "src/app/components/course-menu/components/module-item/module-item.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1672,7 +2088,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/course-menu/components/module-item/module-item.stories.ts",
+                "filePath": "src/app/components/course-menu/components/module-item/module-item.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1682,7 +2098,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/course-menu/course-menu.component.ts",
+                "filePath": "src/app/components/course-menu/course-menu.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CourseMenuComponent",
@@ -1691,7 +2107,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/course-menu/course-menu.stories.ts",
+                "filePath": "src/app/components/course-menu/course-menu.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1701,7 +2117,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/course-menu/course-menu.stories.ts",
+                "filePath": "src/app/components/course-menu/course-menu.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1711,7 +2127,46 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/coursesList/components/course/components/header-course/header-course.component.stories.ts",
+                "filePath": "src/app/components/course-preview-container/course-preview-container.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CoursePreviewContainerComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/course-preview-container/course-preview-container.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CoursePreviewJs",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/course-preview-container/course-preview-container.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CoursePreviewNet",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/course-preview-container/course-preview-container.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/coursesList/components/course/components/header-course/header-course.component.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1721,7 +2176,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/coursesList/components/course/components/header-course/header-course.component.stories.ts",
+                "filePath": "src/app/components/coursesList/components/course/components/header-course/header-course.component.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1731,7 +2186,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/coursesList/components/course/components/header-course/header-course.component.ts",
+                "filePath": "src/app/components/coursesList/components/course/components/header-course/header-course.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "HeaderCourseComponent",
@@ -1740,7 +2195,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/coursesList/components/course/components/item-course/item-course.component.stories.ts",
+                "filePath": "src/app/components/coursesList/components/course/components/item-course/item-course.component.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1750,7 +2205,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/coursesList/components/course/components/item-course/item-course.component.stories.ts",
+                "filePath": "src/app/components/coursesList/components/course/components/item-course/item-course.component.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1760,7 +2215,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/coursesList/components/course/components/item-course/item-course.component.ts",
+                "filePath": "src/app/components/coursesList/components/course/components/item-course/item-course.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "ItemCourseComponent",
@@ -1769,7 +2224,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/coursesList/components/course/course.component.ts",
+                "filePath": "src/app/components/coursesList/components/course/course.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CourseComponent",
@@ -1778,7 +2233,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/coursesList/components/course/course.stories.ts",
+                "filePath": "src/app/components/coursesList/components/course/course.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1788,7 +2243,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/coursesList/components/course/course.stories.ts",
+                "filePath": "src/app/components/coursesList/components/course/course.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1798,7 +2253,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/coursesList/coursesList.stories.ts",
+                "filePath": "src/app/components/coursesList/coursesList.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1808,7 +2263,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/coursesList/coursesList.stories.ts",
+                "filePath": "src/app/components/coursesList/coursesList.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1818,7 +2273,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/coursesList/courseslist.component.ts",
+                "filePath": "src/app/components/coursesList/courseslist.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CourseslistComponent",
@@ -1827,7 +2282,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/create-container/create-container.component.ts",
+                "filePath": "src/app/components/create-container/create-container.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CreateContainerComponent",
@@ -1836,7 +2291,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/create-container/create-container.stories.ts",
+                "filePath": "src/app/components/create-container/create-container.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1846,7 +2301,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/create-container/create-container.stories.ts",
+                "filePath": "src/app/components/create-container/create-container.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1856,7 +2311,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/create-container/create-container.stories.ts",
+                "filePath": "src/app/components/create-container/create-container.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1866,7 +2321,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/header/Header.stories.ts",
+                "filePath": "src/app/components/header/Header.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1876,7 +2331,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/header/Header.stories.ts",
+                "filePath": "src/app/components/header/Header.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1886,7 +2341,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/header/header.component.ts",
+                "filePath": "src/app/components/header/header.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "HeaderComponent",
@@ -1895,7 +2350,36 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/lesson-type/lesson-type.component.ts",
+                "filePath": "src/app/components/lesson-name-container/lesson-name-container.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LessonNameContainerComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/lesson-name-container/lesson-name-container.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LessonNameContainer",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/lesson-name-container/lesson-name-container.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/lesson-type/lesson-type.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "LessonTypeComponent",
@@ -1904,7 +2388,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/lesson-type/lesson-type.component.ts",
+                "filePath": "src/app/components/lesson-type/lesson-type.component.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1914,7 +2398,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/lesson-type/lesson-type.stories.ts",
+                "filePath": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1924,7 +2408,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/lesson-type/lesson-type.stories.ts",
+                "filePath": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1934,7 +2418,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/lesson-type/lesson-type.stories.ts",
+                "filePath": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1944,7 +2428,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/lesson-type/lesson-type.stories.ts",
+                "filePath": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1954,7 +2438,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/lesson-type/lesson-type.stories.ts",
+                "filePath": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1964,7 +2448,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/lesson-type/lesson-type.stories.ts",
+                "filePath": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1974,7 +2458,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/top-toolar-container/top-toolar-container.component.ts",
+                "filePath": "src/app/components/top-toolar-container/top-toolar-container.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "TopToolarContainerComponent",
@@ -1983,7 +2467,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/top-toolar-container/top-toolar-container.stories.ts",
+                "filePath": "src/app/components/top-toolar-container/top-toolar-container.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1993,7 +2477,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/top-toolar-container/top-toolar-container.stories.ts",
+                "filePath": "src/app/components/top-toolar-container/top-toolar-container.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

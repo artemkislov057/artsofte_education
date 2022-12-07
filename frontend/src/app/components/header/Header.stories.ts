@@ -1,13 +1,12 @@
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from 'src/app/header/header.component'; 
 import type { Story, Meta } from '@storybook/angular';
-import { ModuleItemComponent } from './module-item.component';
+import { HeaderComponent } from './header.component';
 
 
 export default {
-  title: 'Components/CourseMenu',
-  component: ModuleItemComponent,
+  title: 'Components/Header',
+  component: HeaderComponent,
   decorators: [
     moduleMetadata({
       imports: [CommonModule],
@@ -19,12 +18,12 @@ export default {
   },
 } as Meta;
 
-const Template: Story<ModuleItemComponent> = (args: ModuleItemComponent) => ({
+const Template: Story<HeaderComponent> = (args: HeaderComponent) => ({
   props: args,
 });
 
-export const ModuleItem = Template.bind({});
-ModuleItem.args = {
+export const DefaultHeader = Template.bind({});
+DefaultHeader.args = {
   
 };
 

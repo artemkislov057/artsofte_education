@@ -23,7 +23,22 @@
 }
 
 .createButton {
+    box-sizing: border-box;
+    padding: 8px 28px;
+    border: none;
+    background: #FFFFFF;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.01em;
+    color: #5F5F5F;
+    cursor: pointer;
+}
 
+.createButton:hover {
+    opacity: .7;
 }
 
 .notification {

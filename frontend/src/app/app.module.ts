@@ -12,13 +12,12 @@ import { TopToolarContainerComponent } from './components/top-toolar-container/t
 import { CourseMenuModule } from './components/course-menu/course-menu.module';
 import { CourseslistModule } from './components/coursesList/courseslist.module';
 import { StartPageModule } from './pages/start-page/start-page.module';
-import { StartPageComponent } from './pages/start-page/start-page.component';
+import { CreatePageModule } from './pages/modules/create-page-module/create-page-module.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    CreateContainerComponent,
     TopToolarContainerComponent,
     LessonTypeComponent,
     BottomEditContainerComponent,
@@ -30,7 +29,8 @@ import { StartPageComponent } from './pages/start-page/start-page.component';
     FormsModule,
     CourseslistModule,
     CourseMenuModule,
-    StartPageModule
+    StartPageModule,
+    CreatePageModule,
   ],
   providers: [],
   bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],

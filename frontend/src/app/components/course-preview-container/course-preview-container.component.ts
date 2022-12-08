@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-course-preview-container',
@@ -12,9 +12,15 @@ export class CoursePreviewContainerComponent implements OnInit {
   @Input() theme: 'light' | 'dark' = 'light';
   @Input() backgroundColor: string = '#FFFFFF';
 
+  @Output() onClickPreview = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onClick(): void {
+    this.onClickPreview.emit();
   }
 
 }

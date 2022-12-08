@@ -8,6 +8,14 @@
     box-shadow: -1px -1px 15px rgba(69, 69, 69, 0.07), 5px 8px 10px rgba(69, 69, 69, 0.07);
     border-radius: 10px;
     align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: .1s;
+}
+
+.main:hover {
+    scale: 1.1;
+    transition: .2s;
 }
 
 .icon {

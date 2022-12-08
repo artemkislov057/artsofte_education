@@ -172,6 +172,68 @@
             "templateData": "<div class=\"main\">\r\n    <app-header-course></app-header-course>\r\n    <div class=\"items\">\r\n        <app-item-course></app-item-course>\r\n        <app-item-course></app-item-course>\r\n        <app-item-course></app-item-course>\r\n        <app-item-course></app-item-course>\r\n    </div>\r\n</div>\r\n"
         },
         {
+            "name": "CourseContentPageComponent",
+            "id": "component-CourseContentPageComponent-b10f7556688350a62538e65553464de3efa8fc08494b1575d92a74205c605d8ecbc7177b2f1a47115639cb11cc5fa8050928b64bf13c7010a64c08aec47cd436",
+            "file": "src/app/pages/course-content-page/course-content-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-course-content-page",
+            "styleUrls": [
+                "./course-content-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./course-content-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-course-content-page',\r\n  templateUrl: './course-content-page.component.html',\r\n  styleUrls: ['./course-content-page.component.scss']\r\n})\r\nexport class CourseContentPageComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.container {\r\n    width: 937px;\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 52px;\r\n    box-sizing: border-box;\r\n    padding: 62px 0;\r\n}\r\n\r\n.title {\r\n    font-weight: 600;\r\n    font-size: 32px;\r\n    line-height: 39px;\r\n    display: flex;\r\n    align-items: center;\r\n    letter-spacing: 0.01em;\r\n    color: #3E3E3E;\r\n}",
+                    "styleUrl": "./course-content-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\">\r\n    <div class=\"container\">\r\n        <div class=\"title\">Курс “JavaScript для студентов”</div>\r\n        <app-courseslist></app-courseslist>\r\n    </div>\r\n</div>"
+        },
+        {
             "name": "CourseMenuComponent",
             "id": "component-CourseMenuComponent-76154aac54c70ba1929c26ef865eff34a8d477da39bd935d9c6ec148c8b236ed3e368644f775574aa9ae1a2ae818922a81141fce7a373781fdede48b12672ce3",
             "file": "src/app/components/course-menu/course-menu.component.ts",
@@ -323,7 +385,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    box-sizing: border-box;\r\n    padding: 19px 28px 19px 57px;\r\n    border-radius: 10px;\r\n}\r\n\r\n.text {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 37px;\r\n}\r\n\r\n.text.light {\r\n    color: #000000;\r\n}\r\n\r\n.text.dark {\r\n    color: #FFFFFF;\r\n}\r\n\r\n.title {\r\n    font-weight: 600;\r\n    font-size: 32px;\r\n    line-height: 39px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.caption {\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.icon {\r\n    width: 162px;\r\n    height: 162px;\r\n}",
+                    "data": ".main {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    box-sizing: border-box;\r\n    padding: 19px 28px 19px 57px;\r\n    border-radius: 10px;\r\n    width: 940px;\r\n    cursor: pointer;\r\n}\r\n\r\n.text {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 37px;\r\n}\r\n\r\n.text.light {\r\n    color: #000000;\r\n}\r\n\r\n.text.dark {\r\n    color: #FFFFFF;\r\n}\r\n\r\n.title {\r\n    font-weight: 600;\r\n    font-size: 32px;\r\n    line-height: 39px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.caption {\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.icon {\r\n    width: 162px;\r\n    height: 162px;\r\n}",
                     "styleUrl": "./course-preview-container.component.scss"
                 }
             ],
@@ -405,7 +467,7 @@
         },
         {
             "name": "CreateContainerComponent",
-            "id": "component-CreateContainerComponent-d9d944bb3cb51ae04dca2dca16d182d5f34d38dc7c2ad564347d1688f699b31e6136980e23fdfb5cae2d7b2584dbaf15aaffd14a96fa4cdb5b69819ebc68f486",
+            "id": "component-CreateContainerComponent-2d8e3be120bdbfb56e55d3c57e68d0a032ed70204fc62a54e91127964f897e2eed2f406364e2045e91253046fb50e2700d809056847a14990b95e8f511d9efb9",
             "file": "src/app/components/create-container/create-container.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -453,11 +515,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-create-container',\r\n  templateUrl: './create-container.component.html',\r\n  styleUrls: ['./create-container.component.scss']\r\n})\r\nexport class CreateContainerComponent implements OnInit {\r\n  @Input() typeContainerName: 'курса' | 'модуля' = 'курса' // 'курса' || 'модуля'\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-create-container',\r\n  templateUrl: './create-container.component.html',\r\n  styleUrls: ['./create-container.component.scss']\r\n})\r\nexport class CreateContainerComponent implements OnInit {\r\n  @Input() typeContainerName: 'курса' | 'модуля' = 'курса'\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    display: flex;\r\n    width: 540px;\r\n    flex-direction: column;\r\n    gap: 64px;\r\n}\r\n\r\n.title {\r\n    font-weight: 600;\r\n    font-size: 32px;\r\n    line-height: 39px;\r\n    letter-spacing: 0.01em;\r\n    color: #3E3E3E;\r\n}\r\n\r\n.nameContainer {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 20px;\r\n}\r\n\r\n.nameTitle {\r\n    font-weight: 600;\r\n    font-size: 22px;\r\n    line-height: 27px;\r\n    letter-spacing: 0.01em;\r\n    color: #5F5F5F;\r\n}\r\n\r\n.nameItem {\r\n    width: 100%;\r\n    height: 45px;\r\n    border: none;\r\n    border-bottom: 1px solid #3E3E3E;\r\n    outline: none;\r\n}\r\n\r\n.buttons {\r\n    display: flex;\r\n    justify-content: space-between;\r\n}\r\n\r\n.cancelButton,\r\n.createButton {\r\n    border: none;\r\n    padding: 15px 0;\r\n    border-radius: 10px;\r\n    box-sizing: border-box;\r\n    cursor: pointer;\r\n}\r\n\r\n.cancelButton {\r\n    width: 140px;\r\n    background-color: transparent;\r\n    border: 2px solid #2E62D9;\r\n    color: #2E62D9;\r\n}\r\n\r\n.createButton {\r\n    width: 218px;\r\n    background: #FF841F;\r\n    color: #FFFFFF;\r\n}\r\n\r\n.cancelButton:hover,\r\n.createButton:hover {\r\n    opacity: .7;\r\n}",
+                    "data": ".main {\r\n    display: flex;\r\n    width: 540px;\r\n    flex-direction: column;\r\n    gap: 64px;\r\n}\r\n\r\n.title {\r\n    font-weight: 600;\r\n    font-size: 32px;\r\n    line-height: 39px;\r\n    letter-spacing: 0.01em;\r\n    color: #3E3E3E;\r\n}\r\n\r\n.nameContainer {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 20px;\r\n}\r\n\r\n.nameTitle {\r\n    font-weight: 600;\r\n    font-size: 22px;\r\n    line-height: 27px;\r\n    letter-spacing: 0.01em;\r\n    color: #5F5F5F;\r\n}\r\n\r\n.nameItem {\r\n    width: 100%;\r\n    height: 45px;\r\n    border: none;\r\n    border-bottom: 1px solid #3E3E3E;\r\n    outline: none;\r\n}\r\n\r\n.buttons {\r\n    display: flex;\r\n    justify-content: space-between;\r\n\r\n    \r\n}\r\n\r\n.cancelButton,\r\n.createButton {\r\n    border: none;\r\n    padding: 15px 0;\r\n    border-radius: 10px;\r\n    box-sizing: border-box;\r\n    cursor: pointer;\r\n\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.cancelButton {\r\n    width: 140px;\r\n    background-color: transparent;\r\n    border: 2px solid #2E62D9;\r\n    color: #2E62D9;\r\n}\r\n\r\n.createButton {\r\n    width: 218px;\r\n    background: #FF841F;\r\n    color: #FFFFFF;\r\n}\r\n\r\n.cancelButton:hover,\r\n.createButton:hover {\r\n    opacity: .7;\r\n}",
                     "styleUrl": "./create-container.component.scss"
                 }
             ],
@@ -474,6 +536,192 @@
                 "OnInit"
             ],
             "templateData": "<div class=\"main\">\r\n    <div class=\"title\">Создание нового {{typeContainerName}}</div>\r\n    <div class=\"nameContainer\">\r\n        <div class=\"nameTitle\">Введите название {{typeContainerName}}</div>\r\n        <input class=\"nameItem\"/>\r\n    </div>\r\n    <div class=\"buttons\">\r\n        <button class=\"cancelButton\">Отменить</button>\r\n        <button class=\"createButton\">Создать {{typeContainerName === 'курса' ? 'курс' : 'модуль'}}</button>\r\n    </div>\r\n</div>"
+        },
+        {
+            "name": "CreateModulePageComponent",
+            "id": "component-CreateModulePageComponent-3b216d79e3e3433a4b30e80665a239cc96c29c15950dc55b4c65dd5e849cf0620b1360e5a440422a812956824df5454f81b20595a2fc0f8ab773436a59cfa15e",
+            "file": "src/app/pages/create-module-page/create-module-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-create-module-page",
+            "styleUrls": [
+                "./create-module-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./create-module-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-create-module-page',\r\n  templateUrl: './create-module-page.component.html',\r\n  styleUrls: ['./create-module-page.component.scss']\r\n})\r\nexport class CreateModulePageComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    padding: 71px 170px;\r\n}",
+                    "styleUrl": "./create-module-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\">\r\n    <app-create-container [typeContainerName]=\"'модуля'\"></app-create-container>\r\n</div>"
+        },
+        {
+            "name": "CreatePageComponent",
+            "id": "component-CreatePageComponent-fd255bb1ec1110160dfd5c8e4db820931cf2acc81ee4211e8ee47dc23fe165b455b03d4f96bd34eee1db3c653ae55762d0d9247d21ceaa3c1ef1d1b042a75d5a",
+            "file": "src/app/pages/create-page/create-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-create-page",
+            "styleUrls": [
+                "./create-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./create-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-create-page',\r\n  templateUrl: './create-page.component.html',\r\n  styleUrls: ['./create-page.component.scss']\r\n})\r\nexport class CreatePageComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    padding: 71px 170px;\r\n}",
+                    "styleUrl": "./create-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\">\r\n    <app-create-container [typeContainerName]=\"'курса'\"></app-create-container>\r\n</div>"
+        },
+        {
+            "name": "EditCoursePageComponent",
+            "id": "component-EditCoursePageComponent-ccabe3385c990658a94c22eca1ce6ecfc9f9c977ca504afd9f7f79e4bdca2e5b6bbd2c43ddc44aa90324d0a41943509edbe7055e276b8f264983d0dd392df61c",
+            "file": "src/app/pages/edit-course-page/edit-course-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-edit-course-page",
+            "styleUrls": [
+                "./edit-course-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./edit-course-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-edit-course-page',\r\n  templateUrl: './edit-course-page.component.html',\r\n  styleUrls: ['./edit-course-page.component.scss']\r\n})\r\nexport class EditCoursePageComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    display: flex;\r\n}\r\n\r\n.content {\r\n    display: flex;\r\n    width: 100%;\r\n    flex-direction: column;\r\n    gap: 36px;\r\n    box-sizing: border-box;\r\n    padding: 16px 0;\r\n    background: #ECEEF3;\r\n    align-items: center;\r\n}\r\n\r\n.toolbar {\r\n    display: flex;\r\n    width: 100%;\r\n    justify-content: center;\r\n}\r\n\r\n.selectType {\r\n    display: flex;\r\n    width: 830px;\r\n    flex-direction: column;\r\n    gap: 35px;\r\n    box-sizing: border-box;\r\n    padding: 10px 84px;\r\n    align-items: center;\r\n}\r\n\r\n.title {\r\n    font-weight: 600;\r\n    font-size: 32px;\r\n    line-height: 39px;\r\n    text-align: center;\r\n    letter-spacing: 0.01em;\r\n    color: #3E3E3E;\r\n}\r\n\r\n.lessonsTypes {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    column-gap: 50px;\r\n    row-gap: 22px;\r\n}",
+                    "styleUrl": "./edit-course-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\">\r\n    <app-course-menu></app-course-menu>\r\n    <div class=\"content\">\r\n        <app-top-toolar-container class=\"toolbar\"></app-top-toolar-container>\r\n        <div class=\"selectType\">\r\n            <div class=\"title\">Выберите тип урока </div>\r\n            <div class=\"lessonsTypes\">\r\n                <app-lesson-type [type]=\"'text'\"></app-lesson-type>\r\n                <app-lesson-type [type]=\"'presentation'\"></app-lesson-type>\r\n                <app-lesson-type [type]=\"'video'\"></app-lesson-type>\r\n                <app-lesson-type [type]=\"'test'\"></app-lesson-type>\r\n                <app-lesson-type [type]=\"'literature'\"></app-lesson-type>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
         },
         {
             "name": "HeaderComponent",
@@ -519,7 +767,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    display: flex;\r\n    height: 57px;\r\n    box-sizing: border-box;\r\n    padding: 16px 32px 16px 48px;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    background: #2E62D9;\r\n    color: #FFFFFF;\r\n}\r\n\r\n.container {\r\n    display: flex;\r\n    gap: 48px;\r\n    align-items: center;\r\n}\r\n\r\n.logo {\r\n    width: 72px;\r\n    height: 25px;\r\n    background: url('./icons/logo.svg') 50% 50% no-repeat;\r\n    background-size: 100% 100%;\r\n}\r\n\r\n.createButton {\r\n\r\n}\r\n\r\n.notification {\r\n    width: 20px;\r\n    height: 25px;\r\n    background: url('./icons/notificationIcon.svg') 50% 50% no-repeat;\r\n    background-size: 100% 100%;\r\n}\r\n\r\n.userContainer {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 12px;\r\n}\r\n\r\n.userIcon {\r\n    width: 22px;\r\n    height: 25px;\r\n    background: url('./icons/userIcon.svg') 50% 50% no-repeat;\r\n    background-size: 100% 100%;\r\n}",
+                    "data": ".main {\r\n    display: flex;\r\n    height: 57px;\r\n    box-sizing: border-box;\r\n    padding: 16px 32px 16px 48px;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    background: #2E62D9;\r\n    color: #FFFFFF;\r\n}\r\n\r\n.container {\r\n    display: flex;\r\n    gap: 48px;\r\n    align-items: center;\r\n}\r\n\r\n.logo {\r\n    width: 72px;\r\n    height: 25px;\r\n    background: url('./icons/logo.svg') 50% 50% no-repeat;\r\n    background-size: 100% 100%;\r\n}\r\n\r\n.createButton {\r\n    box-sizing: border-box;\r\n    padding: 8px 28px;\r\n    border: none;\r\n    background: #FFFFFF;\r\n    border-radius: 10px;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    display: flex;\r\n    align-items: center;\r\n    letter-spacing: 0.01em;\r\n    color: #5F5F5F;\r\n    cursor: pointer;\r\n}\r\n\r\n.createButton:hover {\r\n    opacity: .7;\r\n}\r\n\r\n.notification {\r\n    width: 20px;\r\n    height: 25px;\r\n    background: url('./icons/notificationIcon.svg') 50% 50% no-repeat;\r\n    background-size: 100% 100%;\r\n}\r\n\r\n.userContainer {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 12px;\r\n}\r\n\r\n.userIcon {\r\n    width: 22px;\r\n    height: 25px;\r\n    background: url('./icons/userIcon.svg') 50% 50% no-repeat;\r\n    background-size: 100% 100%;\r\n}",
                     "styleUrl": "./header.component.scss"
                 }
             ],
@@ -868,6 +1116,68 @@
             "templateData": "<div class=\"main\">\r\n    <div class=\"title\">Название нового модуля</div>\r\n    <div class=\"editIcon\"></div>\r\n</div>"
         },
         {
+            "name": "StartPageComponent",
+            "id": "component-StartPageComponent-97f39b478f3143692db289482d82b7fe17e8b75c5c5b4e0f3788436dfda8e7c9a3f3b79b2ea520f3798d87e8c65e2691060c6063594ce0416b3618be50619abe",
+            "file": "src/app/pages/start-page/start-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-start-page",
+            "styleUrls": [
+                "./start-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./start-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-start-page',\r\n  templateUrl: './start-page.component.html',\r\n  styleUrls: ['./start-page.component.scss']\r\n})\r\nexport class StartPageComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    gap: 40px;\r\n    width: 100%;\r\n    box-sizing: border-box;\r\n    padding: 88px 0;\r\n}",
+                    "styleUrl": "./start-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\">\r\n    <app-course-preview-container \r\n        [title]=\"'Курс по JavaScript'\"\r\n        [caption]=\"'Курс для учеников ИРИТ-РТФ'\"\r\n        [srcCourseImage]=\"'assets/image/jsIcon.svg'\"\r\n        [theme]=\"'light'\"\r\n        [backgroundColor]=\"'#F7DF1E'\"\r\n    ></app-course-preview-container>\r\n    <app-course-preview-container \r\n        [title]=\"'Курс по .NET'\"\r\n        [caption]=\"'Курс для учеников ИРИТ-РТФ'\"\r\n        [srcCourseImage]=\"'assets/image/netIcon.svg'\"\r\n        [theme]=\"'dark'\"\r\n        [backgroundColor]=\"'#512BD4'\"\r\n    ></app-course-preview-container>\r\n</div>"
+        },
+        {
             "name": "TopToolarContainerComponent",
             "id": "component-TopToolarContainerComponent-9ce116ab097e88faa0e38bc751d6a6348f2db705331e861d68555a8a5f3af138598ccaa5c9b4662ac235fb50d5f8e318ee986cbd2f5e0636bc9c75a1622e64a2",
             "file": "src/app/components/top-toolar-container/top-toolar-container.component.ts",
@@ -911,7 +1221,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    padding: 12px 16px;\r\n    gap: 12px;\r\n    align-items: center;\r\n    background: #FFFFFF;\r\n    box-shadow: -1px -1px 15px rgba(69, 69, 69, 0.07), 5px 8px 10px rgba(69, 69, 69, 0.07);\r\n    border-radius: 10px;\r\n}\r\n\r\n.squareButton,\r\n.addNewLessonButton {\r\n    border: none;\r\n    cursor: pointer;\r\n}\r\n\r\n.squareButton:hover,\r\n.addNewLessonButton:hover {\r\n    opacity: .7;\r\n}\r\n\r\n.squareButton {\r\n    width: 35px;\r\n    height: 35px;\r\n    background: url('icons/addIcon.svg') 50% 50% no-repeat;\r\n    background-size: 16px 16px;\r\n    background-color: rgba(46, 98, 217, 1);\r\n    border-radius: 3px;\r\n}\r\n\r\n.addNewLessonButton {\r\n    border-radius: 3px;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 5px 10px;\r\n    box-sizing: border-box;\r\n    gap: 10px;\r\n    background: #FF841F;\r\n    color: #FFFFFF;\r\n    font-weight: 400;\r\n    font-size: 16px;\r\n    line-height: 22px;\r\n    letter-spacing: 0.015em;\r\n}\r\n\r\n.addIcon {\r\n    width: 22px;\r\n    height: 25px;\r\n    background: url('icons/addIcon.svg') 50% 50% no-repeat;\r\n    background-size: 16px 16px;\r\n}",
+                    "data": ".main {\r\n    display: flex;\r\n    max-width: 830px;\r\n    width: 100%;\r\n    box-sizing: border-box;\r\n    padding: 12px 16px;\r\n    gap: 12px;\r\n    align-items: center;\r\n    background: #FFFFFF;\r\n    box-shadow: -1px -1px 15px rgba(69, 69, 69, 0.07), 5px 8px 10px rgba(69, 69, 69, 0.07);\r\n    border-radius: 10px;\r\n}\r\n\r\n.squareButton,\r\n.addNewLessonButton {\r\n    border: none;\r\n    cursor: pointer;\r\n}\r\n\r\n.squareButton:hover,\r\n.addNewLessonButton:hover {\r\n    opacity: .7;\r\n}\r\n\r\n.squareButton {\r\n    width: 35px;\r\n    height: 35px;\r\n    background: url('icons/addIcon.svg') 50% 50% no-repeat;\r\n    background-size: 16px 16px;\r\n    background-color: rgba(46, 98, 217, 1);\r\n    border-radius: 3px;\r\n}\r\n\r\n.addNewLessonButton {\r\n    border-radius: 3px;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 5px 10px;\r\n    box-sizing: border-box;\r\n    gap: 10px;\r\n    background: #FF841F;\r\n    color: #FFFFFF;\r\n    font-weight: 400;\r\n    font-size: 16px;\r\n    line-height: 22px;\r\n    letter-spacing: 0.015em;\r\n}\r\n\r\n.addIcon {\r\n    width: 22px;\r\n    height: 25px;\r\n    background: url('icons/addIcon.svg') 50% 50% no-repeat;\r\n    background-size: 16px 16px;\r\n}",
                     "styleUrl": "./top-toolar-container.component.scss"
                 }
             ],
@@ -933,13 +1243,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-0b3fa3c9a3ee710f9d2df16a03a7a3194a7c6850abd45cdaa0ab03448ac7e6bb176511ff094b169af0b7c63eca57ba65174b2854820ffebb6b6f1e1bc9364b0e",
+            "id": "module-AppModule-dbe182475d2bdb925a0252632e1b644b0997f31af2b8bce24f41b3bc512836263c403493ab02c6bff8d315537e22cdd7d2b2ed6be9a51e0864f1d3d4ca88a067",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { CreateContainerComponent } from './components/create-container/create-container.component';\r\nimport { LessonTypeComponent } from './components/lesson-type/lesson-type.component';\r\nimport { CoursePreviewContainerComponent } from './components/course-preview-container/course-preview-container.component';\r\nimport { BottomEditContainerComponent } from './components/bottom-edit-container/bottom-edit-container.component';\r\nimport { LessonNameContainerComponent } from './components/lesson-name-container/lesson-name-container.component';\r\nimport { HeaderComponent } from './components/header/header.component';\r\nimport { TopToolarContainerComponent } from './components/top-toolar-container/top-toolar-container.component';\r\nimport { CourseMenuModule } from './components/course-menu/course-menu.module';\r\nimport { CourseslistModule } from './components/coursesList/courseslist.module';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    HeaderComponent,\r\n    CreateContainerComponent,\r\n    TopToolarContainerComponent,\r\n    LessonTypeComponent,\r\n    CoursePreviewContainerComponent,\r\n    BottomEditContainerComponent,\r\n    LessonNameContainerComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FormsModule,\r\n    CourseslistModule,\r\n    CourseMenuModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],\r\n})\r\nexport class AppModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { BottomEditContainerComponent } from './components/bottom-edit-container/bottom-edit-container.component';\r\nimport { LessonNameContainerComponent } from './components/lesson-name-container/lesson-name-container.component';\r\nimport { HeaderComponent } from './components/header/header.component';\r\nimport { CourseMenuModule } from './components/course-menu/course-menu.module';\r\nimport { StartPageModule } from './pages/start-page/start-page.module';\r\nimport { CreatePageModule } from './pages/modules/create-page-module/create-page-module.module';\r\nimport { CourseContentPageModule } from './pages/course-content-page/course-content-page.module';\r\nimport { EditCoursePageModule } from './pages/edit-course-page/edit-course-page.module';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    HeaderComponent,\r\n    BottomEditContainerComponent,\r\n    LessonNameContainerComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FormsModule,\r\n    CourseMenuModule,\r\n    StartPageModule,\r\n    CreatePageModule,\r\n    CourseContentPageModule,\r\n    EditCoursePageModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],\r\n})\r\nexport class AppModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -955,22 +1265,10 @@
                             "name": "BottomEditContainerComponent"
                         },
                         {
-                            "name": "CoursePreviewContainerComponent"
-                        },
-                        {
-                            "name": "CreateContainerComponent"
-                        },
-                        {
                             "name": "HeaderComponent"
                         },
                         {
                             "name": "LessonNameContainerComponent"
-                        },
-                        {
-                            "name": "LessonTypeComponent"
-                        },
-                        {
-                            "name": "TopToolarContainerComponent"
                         }
                     ]
                 },
@@ -981,10 +1279,19 @@
                             "name": "AppRoutingModule"
                         },
                         {
+                            "name": "CourseContentPageModule"
+                        },
+                        {
                             "name": "CourseMenuModule"
                         },
                         {
-                            "name": "CourseslistModule"
+                            "name": "CreatePageModule"
+                        },
+                        {
+                            "name": "EditCoursePageModule"
+                        },
+                        {
+                            "name": "StartPageModule"
                         }
                     ]
                 },
@@ -1014,13 +1321,13 @@
         },
         {
             "name": "AppRoutingModule",
-            "id": "module-AppRoutingModule-58e377e46181d469846882b0b7e8f08a5f14670c4a128d5716662c0c35587596048f204a708c4d13d477c639e0653aed0de3d757b41216afff7e0b4fc04c5f37",
+            "id": "module-AppRoutingModule-ea24ae76dd81b322fd8a275c4bc277fceb563a7329b4a8b2a217d8cfdcd3d44421b9efab191699e14ec644f4cbf0f2ba7ccd3020f412fcba2227bbee91d3b617",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app-routing.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { AppComponent } from './app.component';\r\n\r\nconst routes: Routes = [\r\n  \r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class AppRoutingModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { CourseContentPageComponent } from './pages/course-content-page/course-content-page.component';\r\nimport { CreateModulePageComponent } from './pages/create-module-page/create-module-page.component';\r\nimport { CreatePageComponent } from './pages/create-page/create-page.component';\r\nimport { EditCoursePageComponent } from './pages/edit-course-page/edit-course-page.component';\r\nimport { StartPageComponent } from './pages/start-page/start-page.component';\r\n\r\nconst routes: Routes = [\r\n  {path: '', component: StartPageComponent,},\r\n  {path: 'create-course', component: CreatePageComponent,},\r\n  {path: 'create-module', component: CreateModulePageComponent,},\r\n  {path: 'course-content', component: CourseContentPageComponent,},\r\n  {path: 'edit-course', component: EditCoursePageComponent,},\r\n];\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class AppRoutingModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -1037,6 +1344,54 @@
                 {
                     "type": "exports",
                     "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "CourseContentPageModule",
+            "id": "module-CourseContentPageModule-54af52b44312223f353d2b5dbaa4fb092b6d54fc7c1f538b330d88841cfa91744202b6cd0be8c810441dff1cb9d8a21a7c5ce72088495dda9362bd13eb60e4b1",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/pages/course-content-page/course-content-page.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { CourseslistModule } from 'src/app/components/coursesList/courseslist.module';\r\nimport { CourseContentPageComponent } from './course-content-page.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    CourseContentPageComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    CourseslistModule,\r\n  ],\r\n  exports: [CourseContentPageComponent],\r\n  providers: [],\r\n  bootstrap: [],\r\n})\r\nexport class CourseContentPageModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "CourseContentPageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "CourseslistModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "CourseContentPageComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -1194,6 +1549,160 @@
                             "name": "CourseslistComponent"
                         }
                     ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "CreatePageModule",
+            "id": "module-CreatePageModule-735d9abf40324cd15b52f3741eb5e8a886761ab5a9b926c7c7e3eedc03bff980de06ce6aa5f433c742208380419f605abf87b58e26b42d181bb491a0ab3c66e1",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/pages/modules/create-page-module/create-page-module.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { CreateContainerComponent } from 'src/app/components/create-container/create-container.component';\r\nimport { CreateModulePageComponent } from '../../create-module-page/create-module-page.component';\r\nimport { CreatePageComponent } from '../../create-page/create-page.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    CreateContainerComponent,\r\n    CreateModulePageComponent,\r\n    CreatePageComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n  ],\r\n  exports: [CreateContainerComponent, CreateModulePageComponent],\r\n  providers: [],\r\n  bootstrap: [],\r\n})\r\nexport class CreatePageModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "CreateContainerComponent"
+                        },
+                        {
+                            "name": "CreateModulePageComponent"
+                        },
+                        {
+                            "name": "CreatePageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "CreateContainerComponent"
+                        },
+                        {
+                            "name": "CreateModulePageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "EditCoursePageModule",
+            "id": "module-EditCoursePageModule-4d78b7e732c18b561c002b33b8583df67bcd7487f4cc82fdcbc9bbf708be08850ef8ba7d0997b8d1f778d11dedef56adba29cd27bd9493265621f1858941f665",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/pages/edit-course-page/edit-course-page.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { CourseMenuModule } from 'src/app/components/course-menu/course-menu.module';\r\nimport { LessonTypeComponent } from 'src/app/components/lesson-type/lesson-type.component';\r\nimport { TopToolarContainerComponent } from 'src/app/components/top-toolar-container/top-toolar-container.component';\r\nimport { EditCoursePageComponent } from './edit-course-page.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    EditCoursePageComponent,\r\n    LessonTypeComponent,\r\n    TopToolarContainerComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    CourseMenuModule\r\n  ],\r\n  exports: [EditCoursePageComponent],\r\n  providers: [],\r\n  bootstrap: [],\r\n})\r\nexport class EditCoursePageModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "EditCoursePageComponent"
+                        },
+                        {
+                            "name": "LessonTypeComponent"
+                        },
+                        {
+                            "name": "TopToolarContainerComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "CourseMenuModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "EditCoursePageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "StartPageModule",
+            "id": "module-StartPageModule-615f54a0d70c269a8b8ce7448d0febe9409c60456b26dfacb5f6e85b3a7c6a45f7ae493817f3ec3cc6eff9b80f16a84f93e68fabcdb82a8badfadf75a4691c31",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/pages/start-page/start-page.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { CoursePreviewContainerComponent } from 'src/app/components/course-preview-container/course-preview-container.component';\r\nimport { StartPageComponent } from './start-page.component';\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    StartPageComponent,\r\n    CoursePreviewContainerComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n  ],\r\n  exports: [StartPageComponent],\r\n  providers: [],\r\n  bootstrap: [],\r\n})\r\nexport class StartPageModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "CoursePreviewContainerComponent"
+                        },
+                        {
+                            "name": "StartPageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "StartPageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
                 },
                 {
                     "type": "classes",
@@ -1427,21 +1936,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/course-preview-container/course-preview-container.stories.ts",
+                "file": "src/app/components/bottom-edit-container/bottom-edit-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<CoursePreviewContainerComponent>",
-                "defaultValue": "(args: CoursePreviewContainerComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/components/coursesList/coursesList.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<CourseslistComponent>",
-                "defaultValue": "(args: CourseslistComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<BottomEditContainerComponent>",
+                "defaultValue": "(args: BottomEditContainerComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -1457,11 +1956,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/bottom-edit-container/bottom-edit-container.stories.ts",
+                "file": "src/app/components/course-preview-container/course-preview-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<BottomEditContainerComponent>",
-                "defaultValue": "(args: BottomEditContainerComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<CoursePreviewContainerComponent>",
+                "defaultValue": "(args: CoursePreviewContainerComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/coursesList/coursesList.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<CourseslistComponent>",
+                "defaultValue": "(args: CourseslistComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -1487,11 +1996,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/lesson-name-container/lesson-name-container.stories.ts",
+                "file": "src/app/components/lesson-type/lesson-type.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<LessonNameContainerComponent>",
-                "defaultValue": "(args: LessonNameContainerComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<LessonTypeComponent>",
+                "defaultValue": "(args: LessonTypeComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -1507,21 +2016,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/lesson-type/lesson-type.stories.ts",
+                "file": "src/app/components/lesson-name-container/lesson-name-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<LessonTypeComponent>",
-                "defaultValue": "(args: LessonTypeComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/components/coursesList/components/course/course.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<CourseComponent>",
-                "defaultValue": "(args: CourseComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<LessonNameContainerComponent>",
+                "defaultValue": "(args: LessonNameContainerComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -1537,11 +2036,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/coursesList/components/course/components/item-course/item-course.component.stories.ts",
+                "file": "src/app/components/coursesList/components/course/course.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<ItemCourseComponent>",
-                "defaultValue": "(args: ItemCourseComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<CourseComponent>",
+                "defaultValue": "(args: CourseComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -1552,6 +2051,16 @@
                 "deprecationMessage": "",
                 "type": "Story<HeaderCourseComponent>",
                 "defaultValue": "(args: HeaderCourseComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/coursesList/components/course/components/item-course/item-course.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ItemCourseComponent>",
+                "defaultValue": "(args: ItemCourseComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "TopToolbar",
@@ -2021,7 +2530,28 @@
                 "name": "routes",
                 "filename": "src/app/app-routing.module.ts",
                 "module": "AppRoutingModule",
-                "children": [],
+                "children": [
+                    {
+                        "path": "",
+                        "component": "StartPageComponent"
+                    },
+                    {
+                        "path": "create-course",
+                        "component": "CreatePageComponent"
+                    },
+                    {
+                        "path": "create-module",
+                        "component": "CreateModulePageComponent"
+                    },
+                    {
+                        "path": "course-content",
+                        "component": "CourseContentPageComponent"
+                    },
+                    {
+                        "path": "edit-course",
+                        "component": "EditCoursePageComponent"
+                    }
+                ],
                 "kind": "module"
             }
         ]
@@ -2484,6 +3014,51 @@
                 "name": "TopToolbar",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/course-content-page/course-content-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CourseContentPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/create-module-page/create-module-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CreateModulePageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/create-page/create-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CreatePageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/edit-course-page/edit-course-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "EditCoursePageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/start-page/start-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StartPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {

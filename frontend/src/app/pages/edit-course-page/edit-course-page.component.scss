@@ -2,6 +2,11 @@
     display: flex;
 }
 
+.menu {
+    position: fixed;
+    height: calc(100vh - 57px);
+}
+
 .content {
     display: flex;
     width: 100%;
@@ -11,6 +16,8 @@
     padding: 16px 0;
     background: #ECEEF3;
     align-items: center;
+    height: calc(100vh - 57px);
+    margin-left: 320px;
 }
 
 .toolbar {

@@ -3,9 +3,9 @@
     flex-direction: column;
     width: 320px;
     height: 100%;
-    max-height: calc(100vh - 57px);
     background: #FFFFFF;
     box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.05);
+    gap: 11px;
     
 }
 
@@ -39,11 +39,20 @@
     flex-direction: column;
     overflow-y: auto;
     box-sizing: border-box;
-    margin-top: 11px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    padding: 10px 33px 20px;
 }
 
 .addModuleButton {
-    margin: 0 33px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     height: 52px;
     background: #2E62D9;
     box-shadow: 0px 4px 10px rgba(69, 69, 69, 0.1);

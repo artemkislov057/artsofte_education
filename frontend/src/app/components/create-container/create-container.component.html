@@ -6,6 +6,6 @@
     </div>
     <div class="buttons">
         <button class="cancelButton">Отменить</button>
-        <button class="createButton">Создать {{typeContainerName === 'курса' ? 'курс' : 'модуль'}}</button>
+        <button class="createButton" (click)="create()">Создать {{typeContainerName === 'курса' ? 'курс' : 'модуль'}}</button>
     </div>
 </div>

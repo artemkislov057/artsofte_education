@@ -30,6 +30,6 @@ import { EditCoursePageModule } from './pages/edit-course-page/edit-course-page.
     EditCoursePageModule
   ],
   providers: [],
-  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

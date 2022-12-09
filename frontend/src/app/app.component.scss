@@ -1,0 +1,12 @@
+.main {
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+}

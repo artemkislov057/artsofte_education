@@ -1,0 +1,38 @@
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 12px 20px 20px 0px;
+    background: radial-gradient(110.83% 110.83% at 11.31% 77.5%, rgba(46, 98, 217, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+
+    border-bottom: 1px solid rgba(62, 62, 62, .5);
+}
+
+.titleContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: 0.01em;
+    color: #3E3E3E;
+}
+
+.editIcon {
+    width: 16px;
+    height: 16px;
+    background: url('icons/edit.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+}
+
+.removeIcon {
+    width: 16px;
+    height: 22px;
+    background: url('icons/remove.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+}

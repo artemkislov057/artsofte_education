@@ -1,0 +1,13 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.items {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    align-self: flex-end;
+    gap: 22px;
+}

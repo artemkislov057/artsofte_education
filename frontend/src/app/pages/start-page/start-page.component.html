@@ -1,0 +1,18 @@
+<div class="main">
+    <app-course-preview-container 
+        [title]="'Курс по JavaScript'"
+        [caption]="'Курс для учеников ИРИТ-РТФ'"
+        [srcCourseImage]="'assets/image/jsIcon.svg'"
+        [theme]="'light'"
+        [backgroundColor]="'#F7DF1E'"
+        (onClickPreview)="onClickCourse()"
+    ></app-course-preview-container>
+    <app-course-preview-container 
+        [title]="'Курс по .NET'"
+        [caption]="'Курс для учеников ИРИТ-РТФ'"
+        [srcCourseImage]="'assets/image/netIcon.svg'"
+        [theme]="'dark'"
+        [backgroundColor]="'#512BD4'"
+        (onClickPreview)="onClickCourse()"
+    ></app-course-preview-container>
+</div>

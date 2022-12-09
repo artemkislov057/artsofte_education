@@ -1,0 +1,35 @@
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #000000;
+}
+
+.editIcon {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    background: url('icons/edit.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+}
+
+.editIcon:hover {
+    opacity: .7;
+}
+
+.main:hover {
+    .title {
+        opacity: .7;
+    }
+}

@@ -7,6 +7,7 @@ public interface IUsersRepository
 {
     Task<string?> GetUserName(Guid id);
     Task<IdentityUser<Guid>?> GetUser(Guid id);
+    Task<IdentityUser<Guid>[]> GetUsers();
 }
 
 public class UsersRepository : IUsersRepository
@@ -23,4 +24,7 @@ public class UsersRepository : IUsersRepository
 
     public async Task<IdentityUser<Guid>?> GetUser(Guid id)
         => await context.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+    public Task<IdentityUser<Guid>[]> GetUsers()
+        => context.Users.ToArrayAsync();
 }

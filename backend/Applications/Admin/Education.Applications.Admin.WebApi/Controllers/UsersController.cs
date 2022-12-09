@@ -1,4 +1,5 @@
 ﻿using Education.Applications.Admin.WebApi.Dto.Roles;
+using Education.Applications.Admin.WebApi.Dto.Users;
 using Education.DataBase.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -46,5 +47,12 @@ public class UsersController : ControllerBase
         }
 
         return BadRequest();
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<UserDto[]>> GetUsers()
+    {
+        var users = await usersRepository.GetUsers();
+        return Ok(users.Select(u => new UserDto(u.Id, u.UserName)));
     }
 }

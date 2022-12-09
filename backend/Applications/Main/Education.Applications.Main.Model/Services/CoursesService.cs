@@ -1,6 +1,5 @@
-﻿using Education.DataBase;
-using Education.DataBase.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Education.DataBase.Entities;
+using Education.DataBase.Repositories;
 
 namespace Education.Applications.Main.Model.Services;
 
@@ -12,21 +11,16 @@ public interface ICoursesService
 
 public class CoursesService : ICoursesService
 {
-    private readonly EducationDbContext context;
+    private readonly ICoursesRepository coursesRepository;
 
-    public CoursesService(EducationDbContext context)
+    public CoursesService(ICoursesRepository coursesRepository)
     {
-        this.context = context;
+        this.coursesRepository = coursesRepository;
     }
 
     public async Task AddCourse(Course course)
-    {
-        context.Courses.Add(course);
-        await context.SaveChangesAsync();
-    }
+        => await coursesRepository.AddCourse(course);
 
     public async Task<Course[]> GetCourses()
-        => await context.Courses
-            .Include(c => c.Chapters)
-            .ToArrayAsync();
+        => await coursesRepository.GetCourses();
 }

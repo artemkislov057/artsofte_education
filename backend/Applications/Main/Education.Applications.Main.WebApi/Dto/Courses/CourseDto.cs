@@ -1,3 +1,5 @@
-﻿namespace Education.Applications.Main.WebApi.Dto.Courses;
+﻿using Education.Applications.Main.WebApi.Dto.Chapters;
 
-public record CourseDto(Guid Id, string Name, string Description, object[] Chapters);
+namespace Education.Applications.Main.WebApi.Dto.Courses;
+
+public record CourseDto(Guid Id, string Name, string Description, ChapterDto[] Chapters);

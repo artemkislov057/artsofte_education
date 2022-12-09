@@ -1,7 +1,9 @@
-﻿using Education.Applications.Main.Model.Services;
+﻿using Education.Applications.Common.Constants;
+using Education.Applications.Main.Model.Services;
 using Education.Applications.Main.WebApi.Dto.Courses;
 using Education.DataBase.Entities;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Education.Applications.Main.WebApi.Controllers;
@@ -18,6 +20,7 @@ public class CoursesController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = Roles.Admin)]
     public async Task<ActionResult<CourseDto>> AddCourse([FromBody] PostCourseDto courseDto)
     {
         var courseEntity = courseDto.Adapt<Course>();
@@ -26,6 +29,7 @@ public class CoursesController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<CourseDto[]>> GetCourses()
     {
         var courses = await coursesService.GetCourses();

@@ -13,4 +13,8 @@
       <ProjectReference Include="..\Education.Applications.Main.Model\Education.Applications.Main.Model.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Mapster" Version="7.3.0" />
+    </ItemGroup>
+
 </Project>

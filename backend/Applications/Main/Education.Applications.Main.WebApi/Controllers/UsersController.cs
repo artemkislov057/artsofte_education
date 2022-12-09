@@ -1,4 +1,5 @@
-﻿using Education.Applications.Main.WebApi.Dto.Users;
+﻿using Education.Applications.Common.Constants;
+using Education.Applications.Main.WebApi.Dto.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,12 +20,14 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> PostUser([FromBody] PostUserDto user)
+    public async Task<ActionResult> PostUser([FromBody] PostUserDto userDto)
     {
-        var result = await userManager.CreateAsync(new IdentityUser<Guid>(user.Name), user.Password);
+        var user = new IdentityUser<Guid>(userDto.Name);
+        var result = await userManager.CreateAsync(user, userDto.Password);
         if (!result.Succeeded) return BadRequest();
 
-        await signInManager.PasswordSignInAsync(user.Name, user.Password, false, false);
+        await userManager.AddToRoleAsync(user, Roles.User);
+        await signInManager.PasswordSignInAsync(userDto.Name, userDto.Password, false, false);
         return Ok();
     }
 

@@ -14,6 +14,7 @@ import EditorJS from '@editorjs/editorjs';
 })
 export class TextEditorComponent implements OnInit {
   @Input() title: string = '';
+  @Input() unicId: string = '';
 
   editor: any;
   
@@ -22,7 +23,7 @@ export class TextEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.editor = new EditorJS({
-      holder: 'editor-js',
+      holder: `editor-js ${this.unicId}`,
       tools: {
         header: {
           class: Header,

@@ -27,7 +27,7 @@ public class UsersController : ControllerBase
         if (!result.Succeeded) return BadRequest();
 
         await userManager.AddToRoleAsync(user, Roles.User);
-        await signInManager.PasswordSignInAsync(userDto.Name, userDto.Password, false, false);
+        await signInManager.PasswordSignInAsync(userDto.Name, userDto.Password, userDto.IsPersistent, false);
         return Ok();
     }
 
@@ -35,7 +35,7 @@ public class UsersController : ControllerBase
     [Route("login")]
     public async Task<ActionResult> Login([FromBody] PostUserDto user)
     {
-        var result = await signInManager.PasswordSignInAsync(user.Name, user.Password, false, false);
+        var result = await signInManager.PasswordSignInAsync(user.Name, user.Password, user.IsPersistent, false);
         if (result.Succeeded)
         {
             return Ok();

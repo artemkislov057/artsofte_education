@@ -1,0 +1,10 @@
+<div class="main">
+    <button [class.active]="isActiveRadio" class="button radio" >
+        <div class="radio-icon"></div>
+        <div class="radio-title">Один</div>
+    </button>
+    <button [class.active]="!isActiveRadio" class="button checkbox">
+        <div class="checkbox-icon"></div>
+        <div class="checkbox-title">Несколько</div>
+    </button>
+</div>

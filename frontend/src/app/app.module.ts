@@ -9,11 +9,13 @@ import { StartPageModule } from './pages/start-page/start-page.module';
 import { CreatePageModule } from './pages/modules/create-page-module/create-page-module.module';
 import { CourseContentPageModule } from './pages/course-content-page/course-content-page.module';
 import { EditCoursePageModule } from './pages/edit-course-page/edit-course-page.module';
+import { TestTypeButtonsComponent } from './components/test-type-buttons/test-type-buttons.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    TestTypeButtonsComponent,
   ],
   imports: [
     BrowserModule,

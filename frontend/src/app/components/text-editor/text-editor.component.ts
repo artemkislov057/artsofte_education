@@ -15,6 +15,7 @@ import EditorJS from '@editorjs/editorjs';
 export class TextEditorComponent implements OnInit {
   @Input() title: string = '';
   @Input() unicId: string = '';
+  @Input() initHeight: number = 300;
 
   editor: any;
   
@@ -37,7 +38,8 @@ export class TextEditorComponent implements OnInit {
           class: Marker,
           shortcut: 'CMD+SHIFT+M',
         }
-      }
+      },
+      minHeight: this.initHeight,
     })
   }
 

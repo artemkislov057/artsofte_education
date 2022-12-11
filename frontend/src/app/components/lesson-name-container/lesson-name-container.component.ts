@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./lesson-name-container.component.scss']
 })
 export class LessonNameContainerComponent implements OnInit {
-  @Input() titleName: string = '';
+  @Input() titleName: string = 'Название урока';
 
   constructor() { }
 

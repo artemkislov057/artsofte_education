@@ -8,9 +8,11 @@ import { LessonTypeComponent } from 'src/app/components/lesson-type/lesson-type.
 import { TestContainerModule } from 'src/app/components/test-container/test-container.module';
 import { TextEditorComponent } from 'src/app/components/text-editor/text-editor.component';
 import { TopToolarContainerComponent } from 'src/app/components/top-toolar-container/top-toolar-container.component';
+import { VideoContainerComponent } from 'src/app/components/video-container/video-container.component';
 import { EditAdditionalMaterialPageComponent } from '../edit-additional-material-page/edit-additional-material-page.component';
 import { EditTestLessonPageComponent } from '../edit-test-lesson-page/edit-test-lesson-page.component';
 import { EditTextLessonPageComponent } from '../edit-text-lesson-page/edit-text-lesson-page.component';
+import { EditVideoLessonPageComponent } from '../edit-video-lesson-page/edit-video-lesson-page.component';
 import { LessonTypePageComponent } from '../lesson-type-page/lesson-type-page.component';
 import { EditCoursePageRoutingModule } from './edit-course-page-routing.module';
 import { EditCoursePageComponent } from './edit-course-page.component';
@@ -28,6 +30,8 @@ import { EditCoursePageComponent } from './edit-course-page.component';
     EditTestLessonPageComponent,
     AdditionalMaterialContainerComponent,
     EditAdditionalMaterialPageComponent,
+    VideoContainerComponent,
+    EditVideoLessonPageComponent,
   ],
   imports: [
     BrowserModule,

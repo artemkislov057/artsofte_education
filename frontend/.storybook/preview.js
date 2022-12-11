@@ -11,4 +11,13 @@ export const parameters = {
     },
   },
   docs: { inlineStories: true },
+  backgrounds: {
+    default: 'default',
+    values: [
+      {
+        name: 'default',
+        value: '#ECEEF3',
+      },
+    ],
+  },
 }

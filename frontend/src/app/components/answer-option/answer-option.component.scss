@@ -1,0 +1,49 @@
+.main {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px 20px 15px;
+    border: 1px solid #5F5F5F;
+    border-radius: 10px;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.checkIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.checkIcon.radio {
+    background: url('./icons/radio.svg') 50% 50% no-repeat;
+}
+
+.checkIcon.radio,
+.checkIcon.checkbox {
+    background-size: 100% 100%;
+}
+
+.optionName {
+    width: 578px;
+    border: none;
+    border-bottom: 1px solid #5F5F5F;
+    outline: none;
+}
+
+.removeIcon {
+    width: 16px;
+    height: 22px;
+    background: url('./icons/removeIcon.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+
+    cursor: pointer;
+}
+
+.removeIcon:hover {
+    opacity: .7;
+}

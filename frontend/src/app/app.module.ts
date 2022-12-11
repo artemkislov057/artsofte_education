@@ -9,13 +9,11 @@ import { StartPageModule } from './pages/start-page/start-page.module';
 import { CreatePageModule } from './pages/modules/create-page-module/create-page-module.module';
 import { CourseContentPageModule } from './pages/course-content-page/course-content-page.module';
 import { EditCoursePageModule } from './pages/edit-course-page/edit-course-page.module';
-import { AdditionalMaterialContainerComponent } from './components/additional-material-container/additional-material-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AdditionalMaterialContainerComponent,
   ],
   imports: [
     BrowserModule,

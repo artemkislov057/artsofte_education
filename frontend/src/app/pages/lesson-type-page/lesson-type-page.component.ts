@@ -21,4 +21,8 @@ export class LessonTypePageComponent implements OnInit {
     this.router.navigateByUrl('/edit-course/edit-test-lesson');
   }
 
+  navigateToCreateAdditionalMaterialLesson(): void {
+    this.router.navigateByUrl('/edit-course/edit-add-material-lesson');
+  }
+
 }

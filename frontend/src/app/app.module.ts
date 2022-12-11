@@ -10,12 +10,14 @@ import { CreatePageModule } from './pages/modules/create-page-module/create-page
 import { CourseContentPageModule } from './pages/course-content-page/course-content-page.module';
 import { EditCoursePageModule } from './pages/edit-course-page/edit-course-page.module';
 import { TestTypeButtonsComponent } from './components/test-type-buttons/test-type-buttons.component';
+import { AnswerOptionComponent } from './components/answer-option/answer-option.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TestTypeButtonsComponent,
+    AnswerOptionComponent,
   ],
   imports: [
     BrowserModule,

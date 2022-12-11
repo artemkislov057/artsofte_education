@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditAdditionalMaterialPageComponent } from '../edit-additional-material-page/edit-additional-material-page.component';
 import { EditTestLessonPageComponent } from '../edit-test-lesson-page/edit-test-lesson-page.component';
 import { EditTextLessonPageComponent } from '../edit-text-lesson-page/edit-text-lesson-page.component';
 import { LessonTypePageComponent } from '../lesson-type-page/lesson-type-page.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
           {
             path: 'edit-test-lesson',
             component: EditTestLessonPageComponent,
+          },
+          {
+            path: 'edit-add-material-lesson',
+            component: EditAdditionalMaterialPageComponent,
           },
         ]
       },

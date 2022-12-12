@@ -29,10 +29,9 @@ public class ChaptersRepository : IChaptersRepository
 
     public async Task<int?> FindLastOrderByCourseId(Guid courseId)
     {
-        var orders = await context.Chapters
+        return await context.Chapters
             .Where(ch => ch.CourseId == courseId)
-            .GetOrders();
-        return orders.Length > 0 ? orders.Max() : null;
+            .GetMaxOrder();
     }
 
     public async Task<bool> IsExistsChapterByIdAndCourseId(Guid chapterId, Guid courseId) =>

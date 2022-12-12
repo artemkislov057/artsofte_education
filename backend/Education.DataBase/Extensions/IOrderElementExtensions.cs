@@ -16,8 +16,9 @@ public static class IOrderElementExtensions
         return source;
     }
 
-    public static async Task<int[]> GetOrders(this IQueryable<IOrderElement> source)
+    public static async Task<int?> GetMaxOrder(this IQueryable<IOrderElement> source)
     {
-        return await source.Select(w => w.Order).ToArrayAsync();
+        var orders = await source.Select(w => w.Order).ToArrayAsync();
+        return orders.Length > 0 ? orders.Max() : null;
     }
 }

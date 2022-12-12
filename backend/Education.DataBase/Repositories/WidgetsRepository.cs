@@ -25,9 +25,8 @@ public class WidgetsRepository : IWidgetsRepository
 
     public async Task<int?> FindLastWidgetIdInChapter(Guid chapterId)
     {
-        var orders = await context.Widgets
+        return await context.Widgets
             .Where(w => w.ChapterId == chapterId)
-            .GetOrders();
-        return orders.Length > 0 ? orders.Max() : null;
+            .GetMaxOrder();
     }
 }

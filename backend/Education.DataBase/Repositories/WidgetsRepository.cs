@@ -30,9 +30,7 @@ public class WidgetsRepository : IWidgetsRepository
         return await context.Widgets
             .Where(w => w.ChapterId == chapterId)
             .OrderBy(w => w.Order)
-            .Include(w => w.VideoWidget)
-            .Include(w => w.LiteratureWidget)
-            .Include(w => w.PresentationWidget)
+            .IncludeWidgetDetails()
             .ToArrayAsync();
     }
 

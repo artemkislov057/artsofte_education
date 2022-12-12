@@ -6,19 +6,9 @@ public static class WidgetExtensions
 {
     public static void SetWidgetDetails(this Widget source, WidgetDetailsBase details)
     {
-        switch (details)
-        {
-            case LiteratureWidget literatureWidget:
-                source.LiteratureWidget = literatureWidget;
-                break;
-            case PresentationWidget presentationWidget:
-                source.PresentationWidget = presentationWidget;
-                break;
-            case VideoWidget videoWidget:
-                source.VideoWidget = videoWidget;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(details));
-        }
+        source.GetType()
+            .GetProperties()
+            .Single(p => p.PropertyType == details.GetType())
+            .SetValue(source, details);
     }
 }

@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using Education.DataBase;
 using Education.Extensions.LightInject;
 using LightInject;
+using Mapster;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,6 +21,7 @@ public abstract class StartupBase
     private readonly AppSettingsBase appSettings;
     protected virtual PathString ApiBase => new("/api");
     protected abstract Assembly ExecutingAssembly { get; }
+    private const string StartProjectsName = "Education";
 
     protected StartupBase(IConfiguration configuration)
     {
@@ -91,6 +93,8 @@ public abstract class StartupBase
             configure.IncludeXmlComments(xmlPath);
         });
         services.AddCors();
+
+        ConfigureMapster();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -127,6 +131,19 @@ public abstract class StartupBase
 
     public virtual void ConfigureContainer(IServiceContainer container)
     {
-        container.RegisterClassToInterface("Education");
+        container.RegisterClassToInterface(GetAssembliesWithPrefix(StartProjectsName));
     }
+
+    private static void ConfigureMapster()
+    {
+        TypeAdapterConfig.GlobalSettings.Scan(GetAssembliesWithPrefix(StartProjectsName));
+        TypeAdapterConfig.GlobalSettings.Compile();
+    }
+
+    private static Assembly[] GetAssembliesWithPrefix(string startProjectsName) =>
+        AppDomain
+            .CurrentDomain
+            .GetAssemblies()
+            .Where(assembly => assembly.FullName?.StartsWith(startProjectsName) == true)
+            .ToArray();
 }

@@ -1,13 +1,13 @@
-﻿using LightInject;
+﻿using System.Reflection;
+using LightInject;
 
 namespace Education.Extensions.LightInject;
 
 public static class IServiceContainerExtensions
 {
-    public static IServiceContainer RegisterClassToInterface(this IServiceContainer source, string startProjectNames)
+    public static IServiceContainer RegisterClassToInterface(this IServiceContainer source,
+        IEnumerable<Assembly> assemblies)
     {
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies()
-            .Where(assembly => assembly.FullName?.StartsWith(startProjectNames) == true);
         foreach (var assembly in assemblies)
         {
             source.RegisterAssembly(assembly, () => new PerRequestLifeTime(),

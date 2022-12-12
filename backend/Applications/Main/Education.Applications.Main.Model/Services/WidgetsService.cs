@@ -35,51 +35,18 @@ public class WidgetsService : IWidgetsService
             return;
         }
 
-        var entityWidgetsDetails = widgets.Select(GetWidgetDetailsEntityFromModel).ToArray();
-        var entityWidgets = new Widget[widgets.Length];
-        for (var i = 0; i < widgets.Length; i++)
+        var entityWidgets = widgets.Select(widget =>
         {
-            var widget = new Widget
-                { Order = i, Type = entityWidgetsDetails[i].GetWidgetType(), ChapterId = chapterId };
-            widget.SetWidgetDetails(entityWidgetsDetails[i]);
-            entityWidgets[i] = widget;
-        }
+            var entityWidgetDetails = GetWidgetDetailsEntityFromModel(widget);
+            var entityWidget = new Widget { Type = entityWidgetDetails.GetWidgetType(), ChapterId = chapterId };
+            entityWidget.SetWidgetDetails(entityWidgetDetails);
+            return entityWidget;
+        }).ToArray();
 
         var lastWidgetOrder = await widgetsRepository.FindLastWidgetIdInChapter(chapterId) ?? -1;
         await widgetsRepository.AddWidgets(entityWidgets.OrderElements(lastWidgetOrder + 1));
     }
 
-    private static WidgetDetailsBase GetWidgetDetailsEntityFromModel(WidgetContent widgetContent) =>
-        widgetContent switch
-        {
-            LiteratureWidgetModel literatureWidget => new LiteratureWidget
-            {
-                LiteratureElements = literatureWidget.Elements.Select(e => new LiteratureElement
-                {
-                    Name = e.Name,
-                    Description = e.Description,
-                    CoverSrc = e.CoverSrc,
-                    PurchaseLinks = e.PurchaseLinks
-                        .Select(pl => new LiteraturePurchaseLink { Value = pl })
-                        .ToArray()
-                        .OrderElements()
-                }).ToArray().OrderElements()
-            },
-            PresentationWidgetModel presentationWidget => new PresentationWidget
-            {
-                PresentationSlides = presentationWidget.Slides
-                    .Select(s => new PresentationSlide
-                    {
-                        ImageSrc = s.ImageSrc,
-                        Description = s.Description,
-                        VoiceSrc = s.VoiceSrc
-                    }).ToArray().OrderElements()
-            },
-            VideoWidgetModel videoWidget => new VideoWidget
-            {
-                Src = videoWidget.Src,
-                VideoType = videoWidget.VideoType.Adapt<VideoType>()
-            },
-            _ => throw new ArgumentOutOfRangeException(nameof(widgetContent))
-        };
+    private static WidgetDetailsBase GetWidgetDetailsEntityFromModel(WidgetContent widgetContent)
+        => (WidgetDetailsBase)widgetContent.Adapt(widgetContent.GetType(), widgetContent.EntityType)!;
 }

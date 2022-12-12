@@ -1,10 +1,10 @@
 <div class="selectType">
     <div class="title">Выберите тип урока </div>
     <div class="lessonsTypes">
-        <app-lesson-type [type]="'text'"></app-lesson-type>
+        <app-lesson-type [type]="'text'" (onSelectLessonType)="navigateToCreateTextLesson()"></app-lesson-type>
         <app-lesson-type [type]="'presentation'"></app-lesson-type>
-        <app-lesson-type [type]="'video'"></app-lesson-type>
-        <app-lesson-type [type]="'test'"></app-lesson-type>
-        <app-lesson-type [type]="'literature'"></app-lesson-type>
+        <app-lesson-type [type]="'video'" (onSelectLessonType)="navigateToCreateVideoLesson()"></app-lesson-type>
+        <app-lesson-type [type]="'test'" (onSelectLessonType)="navigateToCreateTestLesson()"></app-lesson-type>
+        <app-lesson-type [type]="'literature'" (onSelectLessonType)="navigateToCreateAdditionalMaterialLesson()"></app-lesson-type>
     </div>
 </div>

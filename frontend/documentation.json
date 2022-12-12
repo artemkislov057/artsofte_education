@@ -9,7 +9,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-81070d53e348974144f316f597c0c31d1afa57f3624d83becbbaa7c55eb3be27bdb7e934a69cb54ef0f9ec098b7786d386d8726573eddbd287a629ec96b120e7",
+            "id": "component-AppComponent-562f6aaeedbb67401581540e731f655d30d11cd67c593c94a1f38e66c075ee537c544bcabf55153e3a7fd60dce19316690017f7e4977435767d55c57d9609e32",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -28,7 +28,28 @@
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "onClickCreateCourse",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClickHomeButton",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -36,16 +57,42 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: ['./app.component.scss']\r\n})\r\nexport class AppComponent {  }\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { Router } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: ['./app.component.scss']\r\n})\r\nexport class AppComponent {\r\n  constructor(private route: Router) {}\r\n\r\n  onClickCreateCourse(): void {\r\n    this.route.navigateByUrl('/create-course');\r\n  }\r\n\r\n  onClickHomeButton(): void {\r\n    this.route.navigateByUrl('/');\r\n  }\r\n\r\n }\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    height: 100vh;\r\n    box-sizing: border-box;\r\n    display: flex;\r\n    flex-direction: column;\r\n    position: relative;\r\n}",
+                    "data": ".main {\r\n    height: 100vh;\r\n    box-sizing: border-box;\r\n    display: flex;\r\n    flex-direction: column;\r\n    position: relative;\r\n}\r\n\r\n.header {\r\n    position: sticky;\r\n    top: 0;\r\n}",
                     "styleUrl": "./app.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"main\">\r\n    <app-header></app-header>\r\n    <router-outlet></router-outlet>\r\n</div>"
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "route",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 9,
+                "jsdoctags": [
+                    {
+                        "name": "route",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "templateData": "<div class=\"main\">\r\n    <app-header \r\n        class=\"header\" \r\n        (onClickCreateCourse)=\"onClickCreateCourse()\" \r\n        (onClickHome)=\"onClickHomeButton()\"\r\n    ></app-header>\r\n    <router-outlet></router-outlet>\r\n</div>"
         },
         {
             "name": "BottomEditContainerComponent",
@@ -91,7 +138,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    display: flex;\r\n    justify-content: flex-end;\r\n    gap: 50px;\r\n    box-sizing: border-box;\r\n    padding: 10px 40px;\r\n    background: #FFFFFF;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n.button {\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    padding: 15px 20px;\r\n    border: none;\r\n    border-radius: 10px;\r\n    justify-content: center;\r\n    align-items: center;\r\n    cursor: pointer;\r\n\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.button:hover {\r\n    opacity: .7;\r\n}\r\n\r\n.cancel {\r\n    border: 1px solid #2E62D9;\r\n    color: #2E62D9;\r\n    background-color: transparent;\r\n}\r\n\r\n.save {\r\n    background: #6BB736;\r\n    color: #FFFFFF;\r\n}",
+                    "data": ".main {\r\n    display: flex;\r\n    justify-content: flex-end;\r\n    gap: 50px;\r\n    box-sizing: border-box;\r\n    padding: 10px 40px;\r\n    background: #FFFFFF;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n.button {\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    padding: 15px 20px;\r\n    border: none;\r\n    border-radius: 10px;\r\n    justify-content: center;\r\n    align-items: center;\r\n    cursor: pointer;\r\n\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n    height: 50px;\r\n}\r\n\r\n.button:hover {\r\n    opacity: .7;\r\n}\r\n\r\n.cancel {\r\n    border: 1px solid #2E62D9;\r\n    color: #2E62D9;\r\n    background-color: transparent;\r\n}\r\n\r\n.save {\r\n    background: #6BB736;\r\n    color: #FFFFFF;\r\n}",
                     "styleUrl": "./bottom-edit-container.component.scss"
                 }
             ],
@@ -277,7 +324,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    display: flex;\r\n    flex-direction: column;\r\n    width: 320px;\r\n    height: 100%;\r\n    max-height: calc(100vh - 57px);\r\n    background: #FFFFFF;\r\n    box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.05);\r\n    \r\n}\r\n\r\n.header {\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    padding: 40px 20px;\r\n    gap: 20px;\r\n    align-items: center;\r\n    box-shadow: 0px 5px 10px rgba(69, 69, 69, 0.1);\r\n    border-radius: 0px 0px 20px 20px;\r\n}\r\n\r\n.logoCourse {\r\n    width: 60px;\r\n    height: 60px;\r\n    border-radius: 10px;\r\n}\r\n\r\n.titleCourse {\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n    color: #3E3E3E;\r\n}\r\n\r\n.moduleContainer {\r\n    position: relative;\r\n    display: flex;\r\n    flex-direction: column;\r\n    overflow-y: auto;\r\n    box-sizing: border-box;\r\n    margin-top: 11px;\r\n}\r\n\r\n.addModuleButton {\r\n    margin: 0 33px 20px;\r\n    height: 52px;\r\n    background: #2E62D9;\r\n    box-shadow: 0px 4px 10px rgba(69, 69, 69, 0.1);\r\n    border-radius: 10px;\r\n    border: none;\r\n    color: #FFFFFF;\r\n    flex-shrink: 0;\r\n    cursor: pointer;\r\n}\r\n\r\n.addModuleButton:hover {\r\n    opacity: .7;\r\n}",
+                    "data": ".main {\r\n    display: flex;\r\n    flex-direction: column;\r\n    width: 320px;\r\n    height: 100%;\r\n    background: #FFFFFF;\r\n    box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.05);\r\n    gap: 11px;\r\n    z-index: 5;\r\n}\r\n\r\n.header {\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    padding: 40px 20px;\r\n    gap: 20px;\r\n    align-items: center;\r\n    box-shadow: 0px 5px 10px rgba(69, 69, 69, 0.1);\r\n    border-radius: 0px 0px 20px 20px;\r\n}\r\n\r\n.logoCourse {\r\n    width: 60px;\r\n    height: 60px;\r\n    border-radius: 10px;\r\n}\r\n\r\n.titleCourse {\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n    color: #3E3E3E;\r\n}\r\n\r\n.moduleContainer {\r\n    position: relative;\r\n    display: flex;\r\n    flex-direction: column;\r\n    overflow-y: auto;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.button {\r\n    display: flex;\r\n    justify-content: center;\r\n    margin-top: auto;\r\n    padding: 10px 33px 20px;\r\n}\r\n\r\n.addModuleButton {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    width: 100%;\r\n    height: 52px;\r\n    background: #2E62D9;\r\n    box-shadow: 0px 4px 10px rgba(69, 69, 69, 0.1);\r\n    border-radius: 10px;\r\n    border: none;\r\n    color: #FFFFFF;\r\n    flex-shrink: 0;\r\n    cursor: pointer;\r\n}\r\n\r\n.addModuleButton:hover {\r\n    opacity: .7;\r\n}",
                     "styleUrl": "./course-menu.component.scss"
                 }
             ],
@@ -293,11 +340,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"main\">\r\n    <div class=\"header\">\r\n        <img class=\"logoCourse\" src=\"/assets/jsIcon.svg\" alt=\"Лого курса\" />\r\n        <div class=\"titleCourse\">Курс по JavaScript</div>\r\n    </div>\r\n    <div class=\"moduleContainer\">\r\n        <div class=\"wrapper\">\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n        </div>\r\n    </div>\r\n    <button class=\"addModuleButton\">Добавить модуль</button>\r\n</div>\r\n\r\n"
+            "templateData": "<div class=\"main\">\r\n    <div class=\"header\">\r\n        <img class=\"logoCourse\" src=\"/assets/jsIcon.svg\" alt=\"Лого курса\" />\r\n        <div class=\"titleCourse\">Курс по JavaScript</div>\r\n    </div>\r\n    <div class=\"moduleContainer\">\r\n        <div class=\"wrapper\">\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n            <app-module-item></app-module-item>\r\n        </div>\r\n    </div>\r\n    <div class=\"button\">\r\n        <button class=\"addModuleButton\">Добавить модуль</button>\r\n    </div>\r\n</div>\r\n\r\n"
         },
         {
             "name": "CoursePreviewContainerComponent",
-            "id": "component-CoursePreviewContainerComponent-869864f9162568f182f7608852a56d62f0704bb3ce47b4686804d92643472dd937a956b62ab1256c3d6b6d012ae04338b3e29d11b8fd7de78f5965408c781859",
+            "id": "component-CoursePreviewContainerComponent-3e789fd21255669a4c6a13384716b7f6e3e8b11a247d3034ee17711b7f840c23fb2708e33ab13084ef778d71a0196f9dcbada8a0e103f0e23028c01028ce851a",
             "file": "src/app/components/course-preview-container/course-preview-container.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -360,7 +407,16 @@
                     "decorators": []
                 }
             ],
-            "outputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "onClickPreview",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "EventEmitter"
+                }
+            ],
             "propertiesClass": [],
             "methodsClass": [
                 {
@@ -369,7 +425,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 17,
+                    "line": 19,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 22,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -381,11 +447,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-course-preview-container',\r\n  templateUrl: './course-preview-container.component.html',\r\n  styleUrls: ['./course-preview-container.component.scss']\r\n})\r\nexport class CoursePreviewContainerComponent implements OnInit {\r\n  @Input() title: string = '';\r\n  @Input() caption: string = '';\r\n  @Input() srcCourseImage: string = '';\r\n  @Input() theme: 'light' | 'dark' = 'light';\r\n  @Input() backgroundColor: string = '#FFFFFF';\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-course-preview-container',\r\n  templateUrl: './course-preview-container.component.html',\r\n  styleUrls: ['./course-preview-container.component.scss']\r\n})\r\nexport class CoursePreviewContainerComponent implements OnInit {\r\n  @Input() title: string = '';\r\n  @Input() caption: string = '';\r\n  @Input() srcCourseImage: string = '';\r\n  @Input() theme: 'light' | 'dark' = 'light';\r\n  @Input() backgroundColor: string = '#FFFFFF';\r\n\r\n  @Output() onClickPreview = new EventEmitter();\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  onClick(): void {\r\n    this.onClickPreview.emit();\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    box-sizing: border-box;\r\n    padding: 19px 28px 19px 57px;\r\n    border-radius: 10px;\r\n    width: 940px;\r\n    cursor: pointer;\r\n}\r\n\r\n.text {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 37px;\r\n}\r\n\r\n.text.light {\r\n    color: #000000;\r\n}\r\n\r\n.text.dark {\r\n    color: #FFFFFF;\r\n}\r\n\r\n.title {\r\n    font-weight: 600;\r\n    font-size: 32px;\r\n    line-height: 39px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.caption {\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.icon {\r\n    width: 162px;\r\n    height: 162px;\r\n}",
+                    "data": ".main {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    box-sizing: border-box;\r\n    padding: 19px 28px 19px 57px;\r\n    border-radius: 10px;\r\n    width: 940px;\r\n    cursor: pointer;\r\n    user-select: none;\r\n    transition: .1s;\r\n}\r\n\r\n.main:hover {\r\n    scale: 1.03;\r\n    transition: .2s;\r\n    box-shadow:  -1px -1px 15px rgba(69, 69, 69, 0.07), 5px 8px 10px rgba(69, 69, 69, 0.07);\r\n}\r\n\r\n.text {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 37px;\r\n}\r\n\r\n.text.light {\r\n    color: #000000;\r\n}\r\n\r\n.text.dark {\r\n    color: #FFFFFF;\r\n}\r\n\r\n.title {\r\n    font-weight: 600;\r\n    font-size: 32px;\r\n    line-height: 39px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.caption {\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n}\r\n\r\n.icon {\r\n    width: 162px;\r\n    height: 162px;\r\n}",
                     "styleUrl": "./course-preview-container.component.scss"
                 }
             ],
@@ -396,12 +462,12 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 13
+                "line": 15
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"main\" style=\"background: {{backgroundColor}};\">\r\n    <div class=\"text {{theme}}\">\r\n        <div class=\"title\">{{title}}</div>\r\n        <div class=\"caption\">{{caption}}</div>\r\n    </div>\r\n    <img class=\"icon\" alt=\"course icon\" src={{srcCourseImage}} />\r\n</div>"
+            "templateData": "<div class=\"main\" style=\"background: {{backgroundColor}};\" (click)=\"onClick()\">\r\n    <div class=\"text {{theme}}\">\r\n        <div class=\"title\">{{title}}</div>\r\n        <div class=\"caption\">{{caption}}</div>\r\n    </div>\r\n    <img class=\"icon\" alt=\"course icon\" src={{srcCourseImage}} />\r\n</div>"
         },
         {
             "name": "CourseslistComponent",
@@ -467,7 +533,7 @@
         },
         {
             "name": "CreateContainerComponent",
-            "id": "component-CreateContainerComponent-2d8e3be120bdbfb56e55d3c57e68d0a032ed70204fc62a54e91127964f897e2eed2f406364e2045e91253046fb50e2700d809056847a14990b95e8f511d9efb9",
+            "id": "component-CreateContainerComponent-a95c731ed3ae34fc225a2d74e100d3876de30203f4ac3c97a1e2149b479593087eea3a84840b150ae44e516880e11f677c57725eb28379f6def815f253a4b047",
             "file": "src/app/components/create-container/create-container.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -494,16 +560,35 @@
                     "decorators": []
                 }
             ],
-            "outputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "onClickCreate",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "EventEmitter"
+                }
+            ],
             "propertiesClass": [],
             "methodsClass": [
+                {
+                    "name": "create",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
                 {
                     "name": "ngOnInit",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 14,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -515,7 +600,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-create-container',\r\n  templateUrl: './create-container.component.html',\r\n  styleUrls: ['./create-container.component.scss']\r\n})\r\nexport class CreateContainerComponent implements OnInit {\r\n  @Input() typeContainerName: 'курса' | 'модуля' = 'курса'\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-create-container',\r\n  templateUrl: './create-container.component.html',\r\n  styleUrls: ['./create-container.component.scss']\r\n})\r\nexport class CreateContainerComponent implements OnInit {\r\n  @Input() typeContainerName: 'курса' | 'модуля' = 'курса';\r\n  @Output() onClickCreate = new EventEmitter();\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  create(): void {\r\n    this.onClickCreate.emit();\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -530,16 +615,16 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 9
+                "line": 10
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"main\">\r\n    <div class=\"title\">Создание нового {{typeContainerName}}</div>\r\n    <div class=\"nameContainer\">\r\n        <div class=\"nameTitle\">Введите название {{typeContainerName}}</div>\r\n        <input class=\"nameItem\"/>\r\n    </div>\r\n    <div class=\"buttons\">\r\n        <button class=\"cancelButton\">Отменить</button>\r\n        <button class=\"createButton\">Создать {{typeContainerName === 'курса' ? 'курс' : 'модуль'}}</button>\r\n    </div>\r\n</div>"
+            "templateData": "<div class=\"main\">\r\n    <div class=\"title\">Создание нового {{typeContainerName}}</div>\r\n    <div class=\"nameContainer\">\r\n        <div class=\"nameTitle\">Введите название {{typeContainerName}}</div>\r\n        <input class=\"nameItem\"/>\r\n    </div>\r\n    <div class=\"buttons\">\r\n        <button class=\"cancelButton\">Отменить</button>\r\n        <button class=\"createButton\" (click)=\"create()\">Создать {{typeContainerName === 'курса' ? 'курс' : 'модуль'}}</button>\r\n    </div>\r\n</div>"
         },
         {
             "name": "CreateModulePageComponent",
-            "id": "component-CreateModulePageComponent-3b216d79e3e3433a4b30e80665a239cc96c29c15950dc55b4c65dd5e849cf0620b1360e5a440422a812956824df5454f81b20595a2fc0f8ab773436a59cfa15e",
+            "id": "component-CreateModulePageComponent-c4c885a88c7dc18bda494ff56ebc7b82e3b9a308298d705cc8e1ac7e1b549d4303f050c0e002d9f0a57bd08dffa406a13ff4cef837b356a77b78bf7003c02dbc",
             "file": "src/app/pages/create-module-page/create-module-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -565,7 +650,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClickCreate",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -577,7 +672,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-create-module-page',\r\n  templateUrl: './create-module-page.component.html',\r\n  styleUrls: ['./create-module-page.component.scss']\r\n})\r\nexport class CreateModulePageComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { Router } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-create-module-page',\r\n  templateUrl: './create-module-page.component.html',\r\n  styleUrls: ['./create-module-page.component.scss']\r\n})\r\nexport class CreateModulePageComponent implements OnInit {\r\n\r\n  constructor(private router: Router) { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  onClickCreate(): void {\r\n    this.router.navigateByUrl('/edit-course/select-lesson-type');\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -591,17 +686,35 @@
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [],
-                "line": 8
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 9,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"main\">\r\n    <app-create-container [typeContainerName]=\"'модуля'\"></app-create-container>\r\n</div>"
+            "templateData": "<div class=\"main\">\r\n    <app-create-container [typeContainerName]=\"'модуля'\" (onClickCreate)=\"onClickCreate()\"></app-create-container>\r\n</div>"
         },
         {
             "name": "CreatePageComponent",
-            "id": "component-CreatePageComponent-fd255bb1ec1110160dfd5c8e4db820931cf2acc81ee4211e8ee47dc23fe165b455b03d4f96bd34eee1db3c653ae55762d0d9247d21ceaa3c1ef1d1b042a75d5a",
+            "id": "component-CreatePageComponent-599c469db19a7cfd4ff41d27573f13ce851a2cc5a98a611cebb69816c284750af3be6387222f20970bd01ced8fcd7ead6048c7f0f989312f13f6748ee75c3c1e",
             "file": "src/app/pages/create-page/create-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -627,7 +740,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClickCreate",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -639,7 +762,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-create-page',\r\n  templateUrl: './create-page.component.html',\r\n  styleUrls: ['./create-page.component.scss']\r\n})\r\nexport class CreatePageComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { Router } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-create-page',\r\n  templateUrl: './create-page.component.html',\r\n  styleUrls: ['./create-page.component.scss']\r\n})\r\nexport class CreatePageComponent implements OnInit {\r\n\r\n  constructor(private router: Router) { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  onClickCreate(): void {\r\n    this.router.navigateByUrl('/create-module');\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -653,13 +776,31 @@
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [],
-                "line": 8
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 9,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"main\">\r\n    <app-create-container [typeContainerName]=\"'курса'\"></app-create-container>\r\n</div>"
+            "templateData": "<div class=\"main\">\r\n    <app-create-container [typeContainerName]=\"'курса'\" (onClickCreate)=\"onClickCreate()\"></app-create-container>\r\n</div>"
         },
         {
             "name": "EditCoursePageComponent",
@@ -705,7 +846,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    display: flex;\r\n}\r\n\r\n.content {\r\n    display: flex;\r\n    width: 100%;\r\n    flex-direction: column;\r\n    gap: 36px;\r\n    box-sizing: border-box;\r\n    padding: 16px 0;\r\n    background: #ECEEF3;\r\n    align-items: center;\r\n}\r\n\r\n.toolbar {\r\n    display: flex;\r\n    width: 100%;\r\n    justify-content: center;\r\n}\r\n\r\n.selectType {\r\n    display: flex;\r\n    width: 830px;\r\n    flex-direction: column;\r\n    gap: 35px;\r\n    box-sizing: border-box;\r\n    padding: 10px 84px;\r\n    align-items: center;\r\n}\r\n\r\n.title {\r\n    font-weight: 600;\r\n    font-size: 32px;\r\n    line-height: 39px;\r\n    text-align: center;\r\n    letter-spacing: 0.01em;\r\n    color: #3E3E3E;\r\n}\r\n\r\n.lessonsTypes {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    column-gap: 50px;\r\n    row-gap: 22px;\r\n}",
+                    "data": ".main {\r\n    display: flex;\r\n}\r\n\r\n.menu {\r\n    position: fixed;\r\n    height: calc(100vh - 57px);\r\n    z-index: 5;\r\n}\r\n\r\n.content {\r\n    display: flex;\r\n    width: 100%;\r\n    flex-direction: column;\r\n    gap: 16px;\r\n    box-sizing: border-box;\r\n    padding: 16px 0;\r\n    background: #ECEEF3;\r\n    align-items: center;\r\n    height: calc(100vh - 57px);\r\n    margin-left: 320px;\r\n    overflow-y: auto;\r\n}\r\n\r\n.toolbar {\r\n    display: flex;\r\n    width: 100%;\r\n    justify-content: center;\r\n}\r\n\r\n",
                     "styleUrl": "./edit-course-page.component.scss"
                 }
             ],
@@ -721,24 +862,24 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"main\">\r\n    <app-course-menu></app-course-menu>\r\n    <div class=\"content\">\r\n        <app-top-toolar-container class=\"toolbar\"></app-top-toolar-container>\r\n        <div class=\"selectType\">\r\n            <div class=\"title\">Выберите тип урока </div>\r\n            <div class=\"lessonsTypes\">\r\n                <app-lesson-type [type]=\"'text'\"></app-lesson-type>\r\n                <app-lesson-type [type]=\"'presentation'\"></app-lesson-type>\r\n                <app-lesson-type [type]=\"'video'\"></app-lesson-type>\r\n                <app-lesson-type [type]=\"'test'\"></app-lesson-type>\r\n                <app-lesson-type [type]=\"'literature'\"></app-lesson-type>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+            "templateData": "<div class=\"main\">\r\n    <app-course-menu class=\"menu\"></app-course-menu>\r\n    <div class=\"content\">\r\n        <app-top-toolar-container class=\"toolbar\"></app-top-toolar-container>\r\n        \r\n        <router-outlet style=\"position: absolute;\"></router-outlet>\r\n    </div>\r\n</div>"
         },
         {
-            "name": "HeaderComponent",
-            "id": "component-HeaderComponent-66aab1b24c0d8854e1f82fba28138804b4b85580f247fc5033dd7baf800ad39c3ed2312637667e7b335e90cb144fdbd62673e2ce34182a65e43f7cecfaa900cc",
-            "file": "src/app/components/header/header.component.ts",
+            "name": "EditTextLessonPageComponent",
+            "id": "component-EditTextLessonPageComponent-9a2977fb10d617c1cd94515dbf70a1a974ee58d688c879dd930091878a2f5fab3c492901f655d5d4e4474b22b208759dffd9d78347796ff2eb7ef85518d6b0f8",
+            "file": "src/app/pages/edit-text-lesson-page/edit-text-lesson-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-header",
+            "selector": "app-edit-text-lesson-page",
             "styleUrls": [
-                "./header.component.scss"
+                "./edit-text-lesson-page.component.scss"
             ],
             "styles": [],
             "templateUrl": [
-                "./header.component.html"
+                "./edit-text-lesson-page.component.html"
             ],
             "viewProviders": [],
             "inputsClass": [],
@@ -763,12 +904,12 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-header',\r\n  templateUrl: './header.component.html',\r\n  styleUrls: ['./header.component.scss']\r\n})\r\nexport class HeaderComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-edit-text-lesson-page',\r\n  templateUrl: './edit-text-lesson-page.component.html',\r\n  styleUrls: ['./edit-text-lesson-page.component.scss']\r\n})\r\nexport class EditTextLessonPageComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    display: flex;\r\n    height: 57px;\r\n    box-sizing: border-box;\r\n    padding: 16px 32px 16px 48px;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    background: #2E62D9;\r\n    color: #FFFFFF;\r\n}\r\n\r\n.container {\r\n    display: flex;\r\n    gap: 48px;\r\n    align-items: center;\r\n}\r\n\r\n.logo {\r\n    width: 72px;\r\n    height: 25px;\r\n    background: url('./icons/logo.svg') 50% 50% no-repeat;\r\n    background-size: 100% 100%;\r\n}\r\n\r\n.createButton {\r\n    box-sizing: border-box;\r\n    padding: 8px 28px;\r\n    border: none;\r\n    background: #FFFFFF;\r\n    border-radius: 10px;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    display: flex;\r\n    align-items: center;\r\n    letter-spacing: 0.01em;\r\n    color: #5F5F5F;\r\n    cursor: pointer;\r\n}\r\n\r\n.createButton:hover {\r\n    opacity: .7;\r\n}\r\n\r\n.notification {\r\n    width: 20px;\r\n    height: 25px;\r\n    background: url('./icons/notificationIcon.svg') 50% 50% no-repeat;\r\n    background-size: 100% 100%;\r\n}\r\n\r\n.userContainer {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 12px;\r\n}\r\n\r\n.userIcon {\r\n    width: 22px;\r\n    height: 25px;\r\n    background: url('./icons/userIcon.svg') 50% 50% no-repeat;\r\n    background-size: 100% 100%;\r\n}",
-                    "styleUrl": "./header.component.scss"
+                    "data": ".main {\r\n    display: flex;\r\n    width: 830px;\r\n    flex-direction: column;\r\n    gap: 16px;\r\n    box-sizing: border-box;\r\n    padding-bottom: 70px;\r\n}\r\n\r\n.bottomToolbar {\r\n    position: fixed;\r\n    width: 100%;\r\n    bottom: 0;\r\n    right: 0;\r\n    z-index: 1;\r\n}",
+                    "styleUrl": "./edit-text-lesson-page.component.scss"
                 }
             ],
             "stylesData": "",
@@ -783,7 +924,106 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"main\">\r\n    <div class=\"container\">\r\n        <div class=\"logo\"></div>\r\n        <button class=\"createButton\">Создать курс</button>\r\n    </div>\r\n    <div class=\"container\">\r\n        <div class=\"notification\"></div>\r\n        <div class=\"userContainer\">\r\n            <div class=\"userIcon\"></div>\r\n            <div class=\"userName\">Login Admin</div>\r\n        </div>\r\n    </div>\r\n</div>"
+            "templateData": "<div class=\"main\">\r\n    <app-lesson-name-container></app-lesson-name-container>\r\n    <app-text-editor [unicId]=\"'text-lesson-type'\"></app-text-editor>\r\n    <app-text-editor \r\n        [title]=\"'Дополнительные материалы:'\"\r\n        [unicId]=\"'text-lesson-type-additional'\"\r\n    ></app-text-editor>\r\n    <app-bottom-edit-container class=\"bottomToolbar\"></app-bottom-edit-container>\r\n</div>\r\n"
+        },
+        {
+            "name": "HeaderComponent",
+            "id": "component-HeaderComponent-5758ad21eba4098bdddd849fe83be420a5c30f47f2068a8b7715b5bf333be746bc99e4c9e57f57d881751916a0e8f6bc4cef8099d2185120f1d1d90516490ee9",
+            "file": "src/app/components/header/header.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-header",
+            "styleUrls": [
+                "./header.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./header.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "onClickCreateCourse",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onClickHome",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "createCourse",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "toHome",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, OnInit, Output } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-header',\r\n  templateUrl: './header.component.html',\r\n  styleUrls: ['./header.component.scss']\r\n})\r\nexport class HeaderComponent implements OnInit {\r\n  @Output() onClickCreateCourse = new EventEmitter();\r\n  @Output() onClickHome = new EventEmitter();\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  createCourse(): void {\r\n    this.onClickCreateCourse.emit();\r\n  }\r\n\r\n  toHome(): void {\r\n    this.onClickHome.emit();\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    display: flex;\r\n    height: 57px;\r\n    box-sizing: border-box;\r\n    padding: 16px 32px 16px 48px;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    background: #2E62D9;\r\n    color: #FFFFFF;\r\n}\r\n\r\n.container {\r\n    display: flex;\r\n    gap: 48px;\r\n    align-items: center;\r\n}\r\n\r\n.logo {\r\n    width: 72px;\r\n    height: 25px;\r\n    background: url('./icons/logo.svg') 50% 50% no-repeat;\r\n    background-size: 100% 100%;\r\n    cursor: pointer;\r\n}\r\n\r\n.createButton {\r\n    box-sizing: border-box;\r\n    padding: 8px 28px;\r\n    border: none;\r\n    background: #FFFFFF;\r\n    border-radius: 10px;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    display: flex;\r\n    align-items: center;\r\n    letter-spacing: 0.01em;\r\n    color: #5F5F5F;\r\n    cursor: pointer;\r\n}\r\n\r\n.createButton:hover {\r\n    opacity: .7;\r\n}\r\n\r\n.notification {\r\n    width: 20px;\r\n    height: 25px;\r\n    background: url('./icons/notificationIcon.svg') 50% 50% no-repeat;\r\n    background-size: 100% 100%;\r\n}\r\n\r\n.userContainer {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 12px;\r\n}\r\n\r\n.userIcon {\r\n    width: 22px;\r\n    height: 25px;\r\n    background: url('./icons/userIcon.svg') 50% 50% no-repeat;\r\n    background-size: 100% 100%;\r\n}",
+                    "styleUrl": "./header.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 10
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\">\r\n    <div class=\"container\">\r\n        <div class=\"logo\" (click)=\"toHome()\"></div>\r\n        <button class=\"createButton\" (click)=\"createCourse()\">Создать курс</button>\r\n    </div>\r\n    <div class=\"container\">\r\n        <div class=\"notification\"></div>\r\n        <div class=\"userContainer\">\r\n            <div class=\"userIcon\"></div>\r\n            <div class=\"userName\">Login Admin</div>\r\n        </div>\r\n    </div>\r\n</div>"
         },
         {
             "name": "HeaderCourseComponent",
@@ -953,7 +1193,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.nameInput {\r\n    width: 578px;\r\n    height: 47px;\r\n\r\n    font-weight: 600;\r\n    font-size: 22px;\r\n    line-height: 27px;\r\n    letter-spacing: 0.01em;\r\n    color: #5F5F5F;\r\n\r\n    outline: none;\r\n    border: none;\r\n    border-bottom: 1px solid #5F5F5F;\r\n}\r\n\r\n.delete {\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    padding: 10px 20px;\r\n    border: 1px solid #FA5D48;\r\n    border-radius: 10px;\r\n    justify-content: center;\r\n    align-items: center;\r\n    cursor: pointer;\r\n    background-color: transparent;\r\n\r\n    font-size: 14px;\r\n    line-height: 22px;\r\n    letter-spacing: 0.015em;\r\n    color: #FA5D48;\r\n}\r\n\r\n.delete:hover {\r\n    opacity: .7;\r\n}",
+                    "data": ".main {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.nameInput {\r\n    width: 578px;\r\n    height: 47px;\r\n\r\n    font-weight: 600;\r\n    font-size: 22px;\r\n    line-height: 27px;\r\n    letter-spacing: 0.01em;\r\n    color: #5F5F5F;\r\n\r\n    outline: none;\r\n    border: none;\r\n    border-bottom: 1px solid #5F5F5F;\r\n    background-color: transparent;\r\n}\r\n\r\n.delete {\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    padding: 10px 20px;\r\n    border: 1px solid #FA5D48;\r\n    border-radius: 10px;\r\n    justify-content: center;\r\n    align-items: center;\r\n    cursor: pointer;\r\n    background-color: transparent;\r\n\r\n    font-size: 14px;\r\n    line-height: 22px;\r\n    letter-spacing: 0.015em;\r\n    color: #FA5D48;\r\n}\r\n\r\n.delete:hover {\r\n    opacity: .7;\r\n}",
                     "styleUrl": "./lesson-name-container.component.scss"
                 }
             ],
@@ -1035,7 +1275,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".main {\r\n    width: 306px;\r\n    display: flex;\r\n    gap: 20px;\r\n    box-sizing: border-box;\r\n    padding: 15px 20px;\r\n    background: #FFFFFF;\r\n    box-shadow: -1px -1px 15px rgba(69, 69, 69, 0.07), 5px 8px 10px rgba(69, 69, 69, 0.07);\r\n    border-radius: 10px;\r\n    align-items: center;\r\n}\r\n\r\n.icon {\r\n    width: 70px;\r\n    height: 70px;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.icon.text {\r\n    background: url('icons/icons=text.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.video {\r\n    background: url('icons/icons=video.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.literature {\r\n    background: url('icons/icons=book.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.test {\r\n    background: url('icons/icons=test.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.presentation {\r\n    background: url('icons/icons=presentation.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.text,\r\n.icon.video,\r\n.icon.literature,\r\n.icon.test,\r\n.icon.presentation {\r\n    background-size: 100% 100%;\r\n}\r\n\r\n.text {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 5px;\r\n}\r\n\r\n.title {\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n    color: #3E3E3E;\r\n}\r\n\r\n.caption {\r\n    width: 176px;\r\n    height: 88px;\r\n    vertical-align: middle;\r\n    font-size: 14px;\r\n    line-height: 22px;\r\n    display: flex;\r\n    align-items: center;\r\n    letter-spacing: 0.015em;\r\n    color: #5F5F5F;\r\n}",
+                    "data": ".main {\r\n    width: 306px;\r\n    display: flex;\r\n    gap: 20px;\r\n    box-sizing: border-box;\r\n    padding: 15px 20px;\r\n    background: #FFFFFF;\r\n    box-shadow: -1px -1px 15px rgba(69, 69, 69, 0.07), 5px 8px 10px rgba(69, 69, 69, 0.07);\r\n    border-radius: 10px;\r\n    align-items: center;\r\n    cursor: pointer;\r\n    user-select: none;\r\n    transition: .1s;\r\n}\r\n\r\n.main:hover {\r\n    scale: 1.1;\r\n    transition: .2s;\r\n}\r\n\r\n.icon {\r\n    width: 70px;\r\n    height: 70px;\r\n    flex-shrink: 0;\r\n}\r\n\r\n.icon.text {\r\n    background: url('icons/icons=text.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.video {\r\n    background: url('icons/icons=video.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.literature {\r\n    background: url('icons/icons=book.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.test {\r\n    background: url('icons/icons=test.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.presentation {\r\n    background: url('icons/icons=presentation.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.icon.text,\r\n.icon.video,\r\n.icon.literature,\r\n.icon.test,\r\n.icon.presentation {\r\n    background-size: 100% 100%;\r\n}\r\n\r\n.text {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 5px;\r\n}\r\n\r\n.title {\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    letter-spacing: 0.01em;\r\n    color: #3E3E3E;\r\n}\r\n\r\n.caption {\r\n    width: 176px;\r\n    height: 88px;\r\n    vertical-align: middle;\r\n    font-size: 14px;\r\n    line-height: 22px;\r\n    display: flex;\r\n    align-items: center;\r\n    letter-spacing: 0.015em;\r\n    color: #5F5F5F;\r\n}",
                     "styleUrl": "./lesson-type.component.scss"
                 }
             ],
@@ -1052,6 +1292,68 @@
                 "OnInit"
             ],
             "templateData": "<div class=\"main\">\r\n    <div class=\"icon {{type}}\"></div>\r\n    <div class=\"text\">\r\n        <div class=\"title\">{{typeData.title}}</div>\r\n        <div class=\"caption\">{{typeData.caption}}</div>\r\n    </div>\r\n</div>"
+        },
+        {
+            "name": "LessonTypePageComponent",
+            "id": "component-LessonTypePageComponent-f29075c5309cff19914917b951ce37b5e332082731ebed52750fcf0942a8abd5a1df13cff44f060b3008b9ac917aee1d0dcb5679bebc41a0a7304f50cd07b20a",
+            "file": "src/app/pages/lesson-type-page/lesson-type-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-lesson-type-page",
+            "styleUrls": [
+                "./lesson-type-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./lesson-type-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-lesson-type-page',\r\n  templateUrl: './lesson-type-page.component.html',\r\n  styleUrls: ['./lesson-type-page.component.scss']\r\n})\r\nexport class LessonTypePageComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".selectType {\r\n    display: flex;\r\n    width: 830px;\r\n    flex-direction: column;\r\n    gap: 35px;\r\n    box-sizing: border-box;\r\n    padding: 30px 84px;\r\n    align-items: center;\r\n}\r\n\r\n.title {\r\n    font-weight: 600;\r\n    font-size: 32px;\r\n    line-height: 39px;\r\n    text-align: center;\r\n    letter-spacing: 0.01em;\r\n    color: #3E3E3E;\r\n    user-select: none;\r\n}\r\n\r\n.lessonsTypes {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    column-gap: 50px;\r\n    row-gap: 22px;\r\n}",
+                    "styleUrl": "./lesson-type-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"selectType\">\r\n    <div class=\"title\">Выберите тип урока </div>\r\n    <div class=\"lessonsTypes\">\r\n        <app-lesson-type [type]=\"'text'\"></app-lesson-type>\r\n        <app-lesson-type [type]=\"'presentation'\"></app-lesson-type>\r\n        <app-lesson-type [type]=\"'video'\"></app-lesson-type>\r\n        <app-lesson-type [type]=\"'test'\"></app-lesson-type>\r\n        <app-lesson-type [type]=\"'literature'\"></app-lesson-type>\r\n    </div>\r\n</div>"
         },
         {
             "name": "ModuleItemComponent",
@@ -1117,7 +1419,7 @@
         },
         {
             "name": "StartPageComponent",
-            "id": "component-StartPageComponent-97f39b478f3143692db289482d82b7fe17e8b75c5c5b4e0f3788436dfda8e7c9a3f3b79b2ea520f3798d87e8c65e2691060c6063594ce0416b3618be50619abe",
+            "id": "component-StartPageComponent-108c442d15065c605ef0aedf5d79343e6d2f14e1595539def11b9401a27d41ffbf16d370bb00354e2208578fdc97738565534bfd39aea7018ed883c40cbb8672",
             "file": "src/app/pages/start-page/start-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1143,7 +1445,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClickCourse",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1155,7 +1467,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-start-page',\r\n  templateUrl: './start-page.component.html',\r\n  styleUrls: ['./start-page.component.scss']\r\n})\r\nexport class StartPageComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { Router } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-start-page',\r\n  templateUrl: './start-page.component.html',\r\n  styleUrls: ['./start-page.component.scss']\r\n})\r\nexport class StartPageComponent implements OnInit {\r\n\r\n  constructor(private router: Router) { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  onClickCourse(): void {\r\n    this.router.navigateByUrl('/course-content');\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1169,13 +1481,194 @@
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [],
-                "line": 8
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 9,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"main\">\r\n    <app-course-preview-container \r\n        [title]=\"'Курс по JavaScript'\"\r\n        [caption]=\"'Курс для учеников ИРИТ-РТФ'\"\r\n        [srcCourseImage]=\"'assets/image/jsIcon.svg'\"\r\n        [theme]=\"'light'\"\r\n        [backgroundColor]=\"'#F7DF1E'\"\r\n    ></app-course-preview-container>\r\n    <app-course-preview-container \r\n        [title]=\"'Курс по .NET'\"\r\n        [caption]=\"'Курс для учеников ИРИТ-РТФ'\"\r\n        [srcCourseImage]=\"'assets/image/netIcon.svg'\"\r\n        [theme]=\"'dark'\"\r\n        [backgroundColor]=\"'#512BD4'\"\r\n    ></app-course-preview-container>\r\n</div>"
+            "templateData": "<div class=\"main\">\r\n    <app-course-preview-container \r\n        [title]=\"'Курс по JavaScript'\"\r\n        [caption]=\"'Курс для учеников ИРИТ-РТФ'\"\r\n        [srcCourseImage]=\"'assets/image/jsIcon.svg'\"\r\n        [theme]=\"'light'\"\r\n        [backgroundColor]=\"'#F7DF1E'\"\r\n        (onClickPreview)=\"onClickCourse()\"\r\n    ></app-course-preview-container>\r\n    <app-course-preview-container \r\n        [title]=\"'Курс по .NET'\"\r\n        [caption]=\"'Курс для учеников ИРИТ-РТФ'\"\r\n        [srcCourseImage]=\"'assets/image/netIcon.svg'\"\r\n        [theme]=\"'dark'\"\r\n        [backgroundColor]=\"'#512BD4'\"\r\n        (onClickPreview)=\"onClickCourse()\"\r\n    ></app-course-preview-container>\r\n</div>"
+        },
+        {
+            "name": "TestTypeButtonsComponent",
+            "id": "component-TestTypeButtonsComponent-e711916c50438304ed03ddef9ec4567538aa53dc8fda60bb45ab060242d63859982a2f2a8686101009be132f3ec33938b086c908dfd85ac0bb8afff31de649e4",
+            "file": "src/app/components/test-type-buttons/test-type-buttons.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-test-type-buttons",
+            "styleUrls": [
+                "./test-type-buttons.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./test-type-buttons.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "isActiveRadio",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-test-type-buttons',\r\n  templateUrl: './test-type-buttons.component.html',\r\n  styleUrls: ['./test-type-buttons.component.scss']\r\n})\r\nexport class TestTypeButtonsComponent implements OnInit {\r\n  @Input() isActiveRadio: boolean = true;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    display: inline-flex;\r\n    background: #ECEEF3;\r\n    border-radius: 10px;\r\n    height: 38px;\r\n}\r\n\r\n.button {\r\n    display: flex;\r\n    gap: 10px;\r\n    align-items: center;\r\n    box-sizing: border-box;\r\n    padding: 8px 16px;\r\n    border: none;\r\n    background-color: transparent;\r\n    user-select: none;\r\n    cursor: pointer;\r\n\r\n    font-size: 12px;\r\n    line-height: 22px;\r\n    letter-spacing: 0.015em;\r\n    color: #3E3E3E;\r\n}\r\n\r\n\r\n.radio-icon {\r\n    background: url('./icons/radio.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.checkbox-icon {\r\n    background: url('./icons/checkbox.svg') 50% 50% no-repeat;\r\n}\r\n\r\n.radio-icon,\r\n.checkbox-icon {\r\n    width: 20px;\r\n    height: 20px;\r\n    background-size: 100% 100%;\r\n}\r\n\r\n.active {\r\n    background: #FFFFFF;\r\n    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);\r\n    border-radius: 10px;\r\n}",
+                    "styleUrl": "./test-type-buttons.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 9
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\">\r\n    <button [class.active]=\"isActiveRadio\" class=\"button radio\" >\r\n        <div class=\"radio-icon\"></div>\r\n        <div class=\"radio-title\">Один</div>\r\n    </button>\r\n    <button [class.active]=\"!isActiveRadio\" class=\"button checkbox\">\r\n        <div class=\"checkbox-icon\"></div>\r\n        <div class=\"checkbox-title\">Несколько</div>\r\n    </button>\r\n</div>"
+        },
+        {
+            "name": "TextEditorComponent",
+            "id": "component-TextEditorComponent-9ffcc301919570aafb3cd2e935e91f46b23f090c8d1c7d0893e4079b4489c9d635ec642cedb7b1629e958949897d7a655ceb1d94bd80eba392853a3ac7fe68d4",
+            "file": "src/app/components/text-editor/text-editor.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-text-editor",
+            "styleUrls": [
+                "./text-editor.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./text-editor.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "unicId",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "editor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n//@ts-ignore\r\nimport Header from '@editorjs/header';\r\n//@ts-ignore\r\nimport List from '@editorjs/list';\r\n//@ts-ignore\r\nimport Marker from '@editorjs/marker';\r\nimport EditorJS from '@editorjs/editorjs';\r\n\r\n@Component({\r\n  selector: 'app-text-editor',\r\n  templateUrl: './text-editor.component.html',\r\n  styleUrls: ['./text-editor.component.scss']\r\n})\r\nexport class TextEditorComponent implements OnInit {\r\n  @Input() title: string = '';\r\n  @Input() unicId: string = '';\r\n\r\n  editor: any;\r\n  \r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.editor = new EditorJS({\r\n      holder: `editor-js ${this.unicId}`,\r\n      tools: {\r\n        header: {\r\n          class: Header,\r\n          inlineToolbar: ['link']\r\n        },\r\n        list: {\r\n          class: List,\r\n          inlineToolbar: ['link', 'bold']\r\n        },\r\n        marker: {\r\n          class: Marker,\r\n          shortcut: 'CMD+SHIFT+M',\r\n        }\r\n      }\r\n    })\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".main {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 16px;\r\n    background: #FFFFFF;\r\n    border-radius: 10px;\r\n    box-sizing: border-box;\r\n    padding: 16px;\r\n}\r\n\r\n.title {\r\n    font-weight: 600;\r\n    font-size: 22px;\r\n    line-height: 27px;\r\n    letter-spacing: 0.01em;\r\n    color: #3E3E3E;\r\n}\r\n\r\n.editor {\r\n    width: 100%;\r\n    height: 100%;\r\n    border-radius: 10px;\r\n}",
+                    "styleUrl": "./text-editor.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 19
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"main\">\r\n    <div *ngIf=\"title\" class=\"title\">{{title}}</div>\r\n    <div id=\"editor-js {{unicId}}\" class=\"editor\"></div>\r\n</div>"
         },
         {
             "name": "TopToolarContainerComponent",
@@ -1243,13 +1736,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-dbe182475d2bdb925a0252632e1b644b0997f31af2b8bce24f41b3bc512836263c403493ab02c6bff8d315537e22cdd7d2b2ed6be9a51e0864f1d3d4ca88a067",
+            "id": "module-AppModule-b4a22ca3e4e0b0dafec75ccb74b062cd9d142996870ebdb9f1848f22f2f64f11a6906731af6855b8d6d1db1c2bed6853171c9bb84f288ecd0c882e47b124a417",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { BottomEditContainerComponent } from './components/bottom-edit-container/bottom-edit-container.component';\r\nimport { LessonNameContainerComponent } from './components/lesson-name-container/lesson-name-container.component';\r\nimport { HeaderComponent } from './components/header/header.component';\r\nimport { CourseMenuModule } from './components/course-menu/course-menu.module';\r\nimport { StartPageModule } from './pages/start-page/start-page.module';\r\nimport { CreatePageModule } from './pages/modules/create-page-module/create-page-module.module';\r\nimport { CourseContentPageModule } from './pages/course-content-page/course-content-page.module';\r\nimport { EditCoursePageModule } from './pages/edit-course-page/edit-course-page.module';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    HeaderComponent,\r\n    BottomEditContainerComponent,\r\n    LessonNameContainerComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FormsModule,\r\n    CourseMenuModule,\r\n    StartPageModule,\r\n    CreatePageModule,\r\n    CourseContentPageModule,\r\n    EditCoursePageModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent, HeaderComponent, CourseMenuModule],\r\n})\r\nexport class AppModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { HeaderComponent } from './components/header/header.component';\r\nimport { CourseMenuModule } from './components/course-menu/course-menu.module';\r\nimport { StartPageModule } from './pages/start-page/start-page.module';\r\nimport { CreatePageModule } from './pages/modules/create-page-module/create-page-module.module';\r\nimport { CourseContentPageModule } from './pages/course-content-page/course-content-page.module';\r\nimport { EditCoursePageModule } from './pages/edit-course-page/edit-course-page.module';\r\nimport { TestTypeButtonsComponent } from './components/test-type-buttons/test-type-buttons.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    HeaderComponent,\r\n    TestTypeButtonsComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FormsModule,\r\n    CourseMenuModule,\r\n    StartPageModule,\r\n    CreatePageModule,\r\n    CourseContentPageModule,\r\n    EditCoursePageModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -1262,13 +1755,10 @@
                             "name": "AppComponent"
                         },
                         {
-                            "name": "BottomEditContainerComponent"
-                        },
-                        {
                             "name": "HeaderComponent"
                         },
                         {
-                            "name": "LessonNameContainerComponent"
+                            "name": "TestTypeButtonsComponent"
                         }
                     ]
                 },
@@ -1304,12 +1794,6 @@
                     "elements": [
                         {
                             "name": "AppComponent"
-                        },
-                        {
-                            "name": "HeaderComponent"
-                        },
-                        {
-                            "name": "CourseMenuModule"
                         }
                     ]
                 },
@@ -1321,13 +1805,13 @@
         },
         {
             "name": "AppRoutingModule",
-            "id": "module-AppRoutingModule-ea24ae76dd81b322fd8a275c4bc277fceb563a7329b4a8b2a217d8cfdcd3d44421b9efab191699e14ec644f4cbf0f2ba7ccd3020f412fcba2227bbee91d3b617",
+            "id": "module-AppRoutingModule-1f01683d2130ff8735679378b4c278f60020edbe26b46314840fd69e152dd7671dc1fc9e12ffacbb17f84fdf7c487fba0da51d60dc80ff0125bc366aa8c39f2a",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app-routing.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { CourseContentPageComponent } from './pages/course-content-page/course-content-page.component';\r\nimport { CreateModulePageComponent } from './pages/create-module-page/create-module-page.component';\r\nimport { CreatePageComponent } from './pages/create-page/create-page.component';\r\nimport { EditCoursePageComponent } from './pages/edit-course-page/edit-course-page.component';\r\nimport { StartPageComponent } from './pages/start-page/start-page.component';\r\n\r\nconst routes: Routes = [\r\n  {path: '', component: StartPageComponent,},\r\n  {path: 'create-course', component: CreatePageComponent,},\r\n  {path: 'create-module', component: CreateModulePageComponent,},\r\n  {path: 'course-content', component: CourseContentPageComponent,},\r\n  {path: 'edit-course', component: EditCoursePageComponent,},\r\n];\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class AppRoutingModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { CourseContentPageComponent } from './pages/course-content-page/course-content-page.component';\r\nimport { CreateModulePageComponent } from './pages/create-module-page/create-module-page.component';\r\nimport { CreatePageComponent } from './pages/create-page/create-page.component';\r\nimport { StartPageComponent } from './pages/start-page/start-page.component';\r\n\r\nconst routes: Routes = [\r\n  {path: '', component: StartPageComponent,},\r\n  {path: 'create-course', component: CreatePageComponent,},\r\n  {path: 'create-module', component: CreateModulePageComponent,},\r\n  {path: 'course-content', component: CourseContentPageComponent,},\r\n];\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class AppRoutingModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -1611,13 +2095,13 @@
         },
         {
             "name": "EditCoursePageModule",
-            "id": "module-EditCoursePageModule-4d78b7e732c18b561c002b33b8583df67bcd7487f4cc82fdcbc9bbf708be08850ef8ba7d0997b8d1f778d11dedef56adba29cd27bd9493265621f1858941f665",
+            "id": "module-EditCoursePageModule-eb6adc87e92cbb929336019ddbdf88c2e697def4e4602233464ec6e24d6b1875231113655910edf12e74f05fc5c6d35e3d333c9dee2d2d5af173279e4ff7c01a",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/pages/edit-course-page/edit-course-page.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { CourseMenuModule } from 'src/app/components/course-menu/course-menu.module';\r\nimport { LessonTypeComponent } from 'src/app/components/lesson-type/lesson-type.component';\r\nimport { TopToolarContainerComponent } from 'src/app/components/top-toolar-container/top-toolar-container.component';\r\nimport { EditCoursePageComponent } from './edit-course-page.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    EditCoursePageComponent,\r\n    LessonTypeComponent,\r\n    TopToolarContainerComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    CourseMenuModule\r\n  ],\r\n  exports: [EditCoursePageComponent],\r\n  providers: [],\r\n  bootstrap: [],\r\n})\r\nexport class EditCoursePageModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { BottomEditContainerComponent } from 'src/app/components/bottom-edit-container/bottom-edit-container.component';\r\nimport { CourseMenuModule } from 'src/app/components/course-menu/course-menu.module';\r\nimport { LessonNameContainerComponent } from 'src/app/components/lesson-name-container/lesson-name-container.component';\r\nimport { LessonTypeComponent } from 'src/app/components/lesson-type/lesson-type.component';\r\nimport { TextEditorComponent } from 'src/app/components/text-editor/text-editor.component';\r\nimport { TopToolarContainerComponent } from 'src/app/components/top-toolar-container/top-toolar-container.component';\r\nimport { EditTextLessonPageComponent } from '../edit-text-lesson-page/edit-text-lesson-page.component';\r\nimport { LessonTypePageComponent } from '../lesson-type-page/lesson-type-page.component';\r\nimport { EditCoursePageRoutingModule } from './edit-course-page-routing.module';\r\nimport { EditCoursePageComponent } from './edit-course-page.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    EditCoursePageComponent,\r\n    LessonTypeComponent,\r\n    TopToolarContainerComponent,\r\n    LessonTypePageComponent,\r\n    EditTextLessonPageComponent,\r\n    TextEditorComponent,\r\n    LessonNameContainerComponent,\r\n    BottomEditContainerComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    EditCoursePageRoutingModule,\r\n    CourseMenuModule\r\n  ],\r\n  exports: [EditCoursePageComponent],\r\n  providers: [],\r\n  bootstrap: [EditCoursePageComponent],\r\n})\r\nexport class EditCoursePageModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -1627,10 +2111,25 @@
                     "type": "declarations",
                     "elements": [
                         {
+                            "name": "BottomEditContainerComponent"
+                        },
+                        {
                             "name": "EditCoursePageComponent"
                         },
                         {
+                            "name": "EditTextLessonPageComponent"
+                        },
+                        {
+                            "name": "LessonNameContainerComponent"
+                        },
+                        {
                             "name": "LessonTypeComponent"
+                        },
+                        {
+                            "name": "LessonTypePageComponent"
+                        },
+                        {
+                            "name": "TextEditorComponent"
                         },
                         {
                             "name": "TopToolarContainerComponent"
@@ -1642,6 +2141,9 @@
                     "elements": [
                         {
                             "name": "CourseMenuModule"
+                        },
+                        {
+                            "name": "EditCoursePageRoutingModule"
                         }
                     ]
                 },
@@ -1652,6 +2154,46 @@
                             "name": "EditCoursePageComponent"
                         }
                     ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "EditCoursePageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "EditCoursePageRoutingModule",
+            "id": "module-EditCoursePageRoutingModule-8ce3141a87f920af6e502a9c41351eb65dfa9ff8db252e7956c4c455c6c36b4336aa149492eecdd297f48bc3876b2c20a15e7786577d06a3ed5067091773bd32",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/pages/edit-course-page/edit-course-page-routing.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { EditTextLessonPageComponent } from '../edit-text-lesson-page/edit-text-lesson-page.component';\r\nimport { LessonTypePageComponent } from '../lesson-type-page/lesson-type-page.component';\r\nimport { EditCoursePageComponent } from './edit-course-page.component';\r\n\r\nconst routes: Routes = [\r\n    {\r\n        path: 'edit-course', \r\n        component: EditCoursePageComponent,\r\n        children: [\r\n          {\r\n            path: 'select-lesson-type',\r\n            component: LessonTypePageComponent,\r\n          },\r\n          {\r\n            path: 'edit-text-lesson',\r\n            component: EditTextLessonPageComponent,\r\n          }\r\n        ]\r\n      },\r\n];\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class EditCoursePageRoutingModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
                 },
                 {
                     "type": "bootstrap",
@@ -1814,6 +2356,26 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "Editor",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/text-editor/text-editor.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "EditorWithTitle",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/text-editor/text-editor.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1832,6 +2394,16 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "FewType",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/test-type-buttons/test-type-buttons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "Header",
@@ -1924,6 +2496,16 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "OneType",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/test-type-buttons/test-type-buttons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "require",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1936,21 +2518,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/bottom-edit-container/bottom-edit-container.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<BottomEditContainerComponent>",
-                "defaultValue": "(args: BottomEditContainerComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/course-menu/course-menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<CourseMenuComponent>",
                 "defaultValue": "(args: CourseMenuComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/bottom-edit-container/bottom-edit-container.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<BottomEditContainerComponent>",
+                "defaultValue": "(args: BottomEditContainerComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -1976,6 +2558,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/components/lesson-name-container/lesson-name-container.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<LessonNameContainerComponent>",
+                "defaultValue": "(args: LessonNameContainerComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/components/create-container/create-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1986,11 +2578,31 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/components/test-type-buttons/test-type-buttons.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TestTypeButtonsComponent>",
+                "defaultValue": "(args: TestTypeButtonsComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/components/header/Header.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<HeaderComponent>",
                 "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/text-editor/text-editor.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TextEditorComponent>",
+                "defaultValue": "(args: TextEditorComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -2011,16 +2623,6 @@
                 "deprecationMessage": "",
                 "type": "Story<TopToolarContainerComponent>",
                 "defaultValue": "(args: TopToolarContainerComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/components/lesson-name-container/lesson-name-container.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<LessonNameContainerComponent>",
-                "defaultValue": "(args: LessonNameContainerComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -2294,6 +2896,38 @@
                     "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
                 }
             ],
+            "src/app/components/text-editor/text-editor.stories.ts": [
+                {
+                    "name": "Editor",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/text-editor/text-editor.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "EditorWithTitle",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/text-editor/text-editor.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/text-editor/text-editor.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TextEditorComponent>",
+                    "defaultValue": "(args: TextEditorComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -2316,6 +2950,38 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/app/components/test-type-buttons/test-type-buttons.stories.ts": [
+                {
+                    "name": "FewType",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/test-type-buttons/test-type-buttons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "OneType",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/test-type-buttons/test-type-buttons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/test-type-buttons/test-type-buttons.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TestTypeButtonsComponent>",
+                    "defaultValue": "(args: TestTypeButtonsComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/app/components/coursesList/components/course/components/header-course/header-course.component.stories.ts": [
@@ -2546,10 +3212,28 @@
                     {
                         "path": "course-content",
                         "component": "CourseContentPageComponent"
-                    },
+                    }
+                ],
+                "kind": "module"
+            },
+            {
+                "name": "routes",
+                "filename": "src/app/pages/edit-course-page/edit-course-page-routing.module.ts",
+                "module": "EditCoursePageRoutingModule",
+                "children": [
                     {
                         "path": "edit-course",
-                        "component": "EditCoursePageComponent"
+                        "component": "EditCoursePageComponent",
+                        "children": [
+                            {
+                                "path": "select-lesson-type",
+                                "component": "LessonTypePageComponent"
+                            },
+                            {
+                                "path": "edit-text-lesson",
+                                "component": "EditTextLessonPageComponent"
+                            }
+                        ]
                     }
                 ],
                 "kind": "module"
@@ -2566,7 +3250,7 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -2662,7 +3346,7 @@
                 "linktype": "component",
                 "name": "CoursePreviewContainerComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -2817,7 +3501,7 @@
                 "linktype": "component",
                 "name": "CreateContainerComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
@@ -2876,7 +3560,7 @@
                 "linktype": "component",
                 "name": "HeaderComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
@@ -2988,6 +3672,84 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/components/test-type-buttons/test-type-buttons.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TestTypeButtonsComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/test-type-buttons/test-type-buttons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "FewType",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/test-type-buttons/test-type-buttons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "OneType",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/test-type-buttons/test-type-buttons.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/text-editor/text-editor.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TextEditorComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/text-editor/text-editor.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Editor",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/text-editor/text-editor.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "EditorWithTitle",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/text-editor/text-editor.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/components/top-toolar-container/top-toolar-container.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -3031,7 +3793,7 @@
                 "linktype": "component",
                 "name": "CreateModulePageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -3040,7 +3802,7 @@
                 "linktype": "component",
                 "name": "CreatePageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -3053,12 +3815,30 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/pages/edit-text-lesson-page/edit-text-lesson-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "EditTextLessonPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/lesson-type-page/lesson-type-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LessonTypePageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/pages/start-page/start-page.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "StartPageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {

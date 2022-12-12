@@ -1,0 +1,17 @@
+<div class="main">
+    <div class="header">
+        <div class="title">Варианты ответов:</div>
+        <div class="answerTypeContainer">
+            <div class="titleAnswerType">Количество правильных ответов:</div>
+            <app-test-type-buttons></app-test-type-buttons>
+        </div>
+    </div>
+    <div class="optionsContainer">
+        <div class="optionsTitle">Добавьте варианты ответа и отметьте правильный:</div>
+        <div class="options">
+            <app-answer-option [type]="'radio'"></app-answer-option>
+            <app-answer-option [type]="'radio'"></app-answer-option>
+        </div>
+    </div>
+    <button class="addOptionButton">Добавить</button>
+</div>

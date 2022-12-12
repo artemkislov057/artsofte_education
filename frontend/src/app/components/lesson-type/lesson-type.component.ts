@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LessonType } from 'typings/lessonType';
 
 const typeData: {[key in LessonType]: {
@@ -35,6 +35,8 @@ const typeData: {[key in LessonType]: {
 
 export class LessonTypeComponent implements OnInit {
   @Input() type: LessonType = 'text';
+  @Output() onSelectLessonType = new EventEmitter();
+
   typeData: { title: string; caption: string; };
   constructor() {
     this.typeData = typeData[this.type]
@@ -42,6 +44,10 @@ export class LessonTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.typeData = typeData[this.type]
+  }
+
+  onClick(): void {
+    this.onSelectLessonType.emit();
   }
 
 }

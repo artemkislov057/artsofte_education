@@ -11,4 +11,11 @@ public static class WidgetExtensions
             .Single(p => p.PropertyType == details.GetType())
             .SetValue(source, details);
     }
+
+    public static WidgetDetailsBase GetWidgetDetails(this Widget source) =>
+        source.GetType()
+            .GetProperties()
+            .Where(p => p.PropertyType.BaseType == typeof(WidgetDetailsBase))
+            .Select(p => (WidgetDetailsBase?)p.GetValue(source))
+            .Single(d => d != null)!;
 }

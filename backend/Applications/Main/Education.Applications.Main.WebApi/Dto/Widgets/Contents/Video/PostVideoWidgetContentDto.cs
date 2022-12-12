@@ -4,7 +4,9 @@ using Education.Applications.Main.WebApi.Attributes;
 namespace Education.Applications.Main.WebApi.Dto.Widgets.Contents.Video;
 
 [WidgetDtoType(WidgetTypeDto.Video)]
-public record PostVideoWidgetContentDto(VideoTypeDto VideoType, string Src) : WidgetContentBaseDto
+public class PostVideoWidgetContentDto : WidgetContentBaseDto
 {
-    public override Type ModelWidgetContentType => typeof(VideoWidgetModel);
+    public override Type GetModelWidgetContentType() => typeof(VideoWidgetModel);
+    public VideoTypeDto VideoType { get; init; }
+    public string Src { get; init; }
 }

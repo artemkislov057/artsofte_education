@@ -2,5 +2,6 @@
 
 public abstract class WidgetContent
 {
+    public int Id { get; set; }
     public abstract Type EntityType { get; }
 }

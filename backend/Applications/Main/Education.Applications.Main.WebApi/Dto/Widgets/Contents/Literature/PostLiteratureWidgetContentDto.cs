@@ -4,7 +4,8 @@ using Education.Applications.Main.WebApi.Attributes;
 namespace Education.Applications.Main.WebApi.Dto.Widgets.Contents.Literature;
 
 [WidgetDtoType(WidgetTypeDto.Literature)]
-public record PostLiteratureWidgetContentDto(LiteratureElementDto[] Elements) : WidgetContentBaseDto
+public class PostLiteratureWidgetContentDto : WidgetContentBaseDto
 {
-    public override Type ModelWidgetContentType => typeof(LiteratureWidgetModel);
+    public override Type GetModelWidgetContentType() => typeof(LiteratureWidgetModel);
+    public LiteratureElementDto[] Elements { get; set; }
 }

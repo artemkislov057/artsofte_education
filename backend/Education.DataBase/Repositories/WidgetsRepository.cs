@@ -1,4 +1,5 @@
 ﻿using Education.DataBase.Entities.Widgets;
+using Education.DataBase.Enums.Widgets;
 using Education.DataBase.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,7 @@ namespace Education.DataBase.Repositories;
 public interface IWidgetsRepository
 {
     Task AddWidgets(IEnumerable<Widget> widgets);
+    Task<Widget[]> GetWidgets(Guid chapterId);
     Task<int?> FindLastWidgetIdInChapter(Guid chapterId);
 }
 
@@ -21,6 +23,17 @@ public class WidgetsRepository : IWidgetsRepository
     {
         context.AddRange(widgets);
         await context.SaveChangesAsync();
+    }
+
+    public async Task<Widget[]> GetWidgets(Guid chapterId)
+    {
+        return await context.Widgets
+            .Where(w => w.ChapterId == chapterId)
+            .OrderBy(w => w.Order)
+            .Include(w => w.VideoWidget)
+            .Include(w => w.LiteratureWidget)
+            .Include(w => w.PresentationWidget)
+            .ToArrayAsync();
     }
 
     public async Task<int?> FindLastWidgetIdInChapter(Guid chapterId)

@@ -11,5 +11,9 @@ public class LiteratureElementModelConfig : IRegister
         config.NewConfig<LiteratureElementModel, LiteratureElement>()
             .Map(dest => dest.PurchaseLinks,
                 source => source.PurchaseLinks.Select(l => new LiteraturePurchaseLink { Value = l }));
+
+        config.NewConfig<LiteratureElement, LiteratureElementModel>()
+            .Map(dest => dest.PurchaseLinks,
+                source => source.PurchaseLinks.Select(l => l.Value));
     }
 }

@@ -22,4 +22,11 @@ public class EducationDbContext : IdentityDbContext<IdentityUser<Guid>, Identity
     public DbSet<LiteratureWidget> LiteratureWidgets { get; set; }
     public DbSet<PresentationSlide> PresentationSlides { get; set; }
     public DbSet<LiteraturePurchaseLink> LiteraturePurchaseLinks { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+    }
 }

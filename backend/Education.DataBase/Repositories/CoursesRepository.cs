@@ -6,7 +6,7 @@ namespace Education.DataBase.Repositories;
 public interface ICoursesRepository
 {
     Task AddCourse(Course course);
-    Task<Course[]> GetCourses();
+    Task<Course[]> GetCourses(bool includeChapters = true);
     Task<Course?> FindCourseById(Guid courseId, bool includeChapters = true);
 }
 
@@ -25,19 +25,19 @@ public class CoursesRepository : ICoursesRepository
         await context.SaveChangesAsync();
     }
 
-    public async Task<Course[]> GetCourses() =>
-        await context.Courses
-            .Include(c => c.Chapters!.OrderBy(ch => ch.Order))
+    public async Task<Course[]> GetCourses(bool includeChapters = true)
+        => await GetCoursesQuery(includeChapters)
             .ToArrayAsync();
 
-    public async Task<Course?> FindCourseById(Guid courseId, bool includeChapters)
+    public async Task<Course?> FindCourseById(Guid courseId, bool includeChapters = true)
+        => await GetCoursesQuery(includeChapters)
+            .SingleOrDefaultAsync(c => c.Id == courseId);
+
+    private IQueryable<Course> GetCoursesQuery(bool includeChapters)
     {
         var query = context.Courses.AsQueryable();
-        if (includeChapters)
-        {
-            query = query.Include(c => c.Chapters!.OrderBy(ch => ch.Order));
-        }
-
-        return await query.SingleOrDefaultAsync(c => c.Id == courseId);
+        return includeChapters
+            ? query.Include(c => c.Chapters!.OrderBy(ch => ch.Order))
+            : query;
     }
 }

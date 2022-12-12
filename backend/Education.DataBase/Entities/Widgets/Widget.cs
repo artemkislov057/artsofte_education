@@ -1,8 +1,9 @@
 ﻿using Education.DataBase.Enums.Widgets;
+using Education.DataBase.Interfaces;
 
 namespace Education.DataBase.Entities.Widgets;
 
-public class Widget
+public class Widget : IOrderElement
 {
     public int Id { get; set; }
     public int Order { get; set; }

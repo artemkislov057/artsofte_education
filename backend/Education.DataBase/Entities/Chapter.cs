@@ -1,8 +1,9 @@
 ﻿using Education.DataBase.Entities.Widgets;
+using Education.DataBase.Interfaces;
 
 namespace Education.DataBase.Entities;
 
-public class Chapter
+public class Chapter : IOrderElement
 {
     public Guid Id { get; set; }
     public int Order { get; set; }

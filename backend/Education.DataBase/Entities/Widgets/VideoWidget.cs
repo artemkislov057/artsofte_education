@@ -1,13 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Education.DataBase.Enums.Widgets;
+﻿using Education.DataBase.Enums.Widgets;
 
 namespace Education.DataBase.Entities.Widgets;
 
-public class VideoWidget
+public class VideoWidget : WidgetDetailsBase
 {
-    [Key] public int WidgetId { get; set; }
-    public Widget Widget { get; set; } = null!;
-
     public VideoType VideoType { get; set; }
     public string Src { get; set; } = null!;
+
+    public override WidgetType GetWidgetType()
+    {
+        return WidgetType.Video;
+    }
 }

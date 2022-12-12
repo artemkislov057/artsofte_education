@@ -1,13 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Education.DataBase.Interfaces;
 
 namespace Education.DataBase.Entities.Widgets.WidgetContent;
 
-public class LiteraturePurchaseLink
+public class LiteraturePurchaseLink : IOrderElement
 {
     public int Id { get; set; }
     public int Order { get; set; }
     public string Value { get; set; } = null!;
 
-    public int? LiteratureId { get; set; }
-    [ForeignKey(nameof(LiteratureId))] public LiteratureWidget? LiteratureWidget { get; set; }
+    public int LiteratureElementId { get; set; }
+    public LiteratureElement LiteratureElement { get; set; } = null!;
 }

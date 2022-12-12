@@ -28,7 +28,7 @@ public class ChaptersService : IChaptersService
             return;
         }
 
-        var lastOrder = await chaptersRepository.GetLastOrderByCourseId(courseId) ?? -1;
+        var lastOrder = await chaptersRepository.FindLastOrderByCourseId(courseId) ?? -1;
         chapter.Order = lastOrder + 1;
         await chaptersRepository.AddChapterToCourse(chapter, course);
     }

@@ -25,6 +25,6 @@ public class ChaptersController : ControllerBase
     {
         var chapterEntity = chapterDto.Adapt<Chapter>();
         await chaptersService.AddChapterToCourse(courseId, chapterEntity);
-        return Ok(chapterDto.Adapt<ChapterDto>());
+        return Ok(chapterEntity.Adapt<ChapterDto>());
     }
 }

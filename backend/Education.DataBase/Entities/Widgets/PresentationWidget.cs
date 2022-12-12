@@ -1,12 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Education.DataBase.Entities.Widgets.WidgetContent;
+﻿using Education.DataBase.Entities.Widgets.WidgetContent;
+using Education.DataBase.Enums.Widgets;
 
 namespace Education.DataBase.Entities.Widgets;
 
-public class PresentationWidget
+public class PresentationWidget : WidgetDetailsBase
 {
-    [Key] public int WidgetId { get; set; }
-    public Widget Widget { get; set; } = null!;
+    public ICollection<PresentationSlide> PresentationSlides { get; set; }
 
-    public ICollection<PresentationSlide>? PresentationSlides { get; set; }
+    public override WidgetType GetWidgetType()
+    {
+        return WidgetType.Presentation;
+    }
 }

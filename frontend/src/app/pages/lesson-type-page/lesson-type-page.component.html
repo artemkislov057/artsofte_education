@@ -2,7 +2,7 @@
     <div class="title">Выберите тип урока </div>
     <div class="lessonsTypes">
         <app-lesson-type [type]="'text'" (onSelectLessonType)="navigateToCreateTextLesson()"></app-lesson-type>
-        <app-lesson-type [type]="'presentation'"></app-lesson-type>
+        <app-lesson-type [type]="'presentation'" (onSelectLessonType)="navigateToCreatePresentationLesson()"></app-lesson-type>
         <app-lesson-type [type]="'video'" (onSelectLessonType)="navigateToCreateVideoLesson()"></app-lesson-type>
         <app-lesson-type [type]="'test'" (onSelectLessonType)="navigateToCreateTestLesson()"></app-lesson-type>
         <app-lesson-type [type]="'literature'" (onSelectLessonType)="navigateToCreateAdditionalMaterialLesson()"></app-lesson-type>

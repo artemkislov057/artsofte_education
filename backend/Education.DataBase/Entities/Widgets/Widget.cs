@@ -9,8 +9,8 @@ public class Widget : IOrderElement
     public int Order { get; set; }
     public WidgetType Type { get; set; }
 
-    public Guid ChapterId { get; set; }
-    public Chapter? Chapter { get; set; }
+    public Guid ModuleId { get; set; }
+    public Module? Module { get; set; }
 
     public VideoWidget? VideoWidget { get; set; }
     public PresentationWidget? PresentationWidget { get; set; }

@@ -10,25 +10,25 @@ namespace Education.Applications.Main.Model.Services;
 
 public interface IWidgetsService
 {
-    Task PostWidgets(Guid courseId, Guid chapterId, IEnumerable<WidgetContent> widgets);
-    Task<WidgetContent[]> GetWidgets(Guid courseId, Guid chapterId);
+    Task PostWidgets(Guid courseId, Guid moduleId, IEnumerable<WidgetContent> widgets);
+    Task<WidgetContent[]> GetWidgets(Guid courseId, Guid moduleId);
 }
 
 public class WidgetsService : IWidgetsService
 {
     private readonly IWidgetsRepository widgetsRepository;
-    private readonly IChaptersRepository chaptersRepository;
+    private readonly IModulesRepository modulesRepository;
     private static readonly ConcurrentDictionary<Type, Type> ModelTypesByEntity = new();
 
-    public WidgetsService(IWidgetsRepository widgetsRepository, IChaptersRepository chaptersRepository)
+    public WidgetsService(IWidgetsRepository widgetsRepository, IModulesRepository modulesRepository)
     {
         this.widgetsRepository = widgetsRepository;
-        this.chaptersRepository = chaptersRepository;
+        this.modulesRepository = modulesRepository;
     }
 
-    public async Task PostWidgets(Guid courseId, Guid chapterId, IEnumerable<WidgetContent> widgets)
+    public async Task PostWidgets(Guid courseId, Guid moduleId, IEnumerable<WidgetContent> widgets)
     {
-        if (!await chaptersRepository.IsExistsChapterByIdAndCourseId(chapterId, courseId))
+        if (!await modulesRepository.IsExistsModuleByIdAndCourseId(moduleId, courseId))
         {
             // TODO: кинуть кастомное исключение
             return;
@@ -37,24 +37,24 @@ public class WidgetsService : IWidgetsService
         var entityWidgets = widgets.Select(widget =>
         {
             var entityWidgetDetails = GetWidgetDetailsEntityFromModel(widget);
-            var entityWidget = new Widget { Type = entityWidgetDetails.GetWidgetType(), ChapterId = chapterId };
+            var entityWidget = new Widget { Type = entityWidgetDetails.GetWidgetType(), ModuleId = moduleId };
             entityWidget.SetWidgetDetails(entityWidgetDetails);
             return entityWidget;
         }).ToArray();
 
-        var lastWidgetOrder = await widgetsRepository.FindLastWidgetIdInChapter(chapterId) ?? -1;
+        var lastWidgetOrder = await widgetsRepository.FindLastWidgetIdInModule(moduleId) ?? -1;
         await widgetsRepository.AddWidgets(entityWidgets.OrderElements(lastWidgetOrder + 1));
     }
 
-    public async Task<WidgetContent[]> GetWidgets(Guid courseId, Guid chapterId)
+    public async Task<WidgetContent[]> GetWidgets(Guid courseId, Guid moduleId)
     {
-        if (!await chaptersRepository.IsExistsChapterByIdAndCourseId(chapterId, courseId))
+        if (!await modulesRepository.IsExistsModuleByIdAndCourseId(moduleId, courseId))
         {
             // TODO: кинуть кастомное исключение
             return Array.Empty<WidgetContent>();
         }
 
-        var entityWidgets = await widgetsRepository.GetWidgets(chapterId);
+        var entityWidgets = await widgetsRepository.GetWidgets(moduleId);
         var models = entityWidgets.Select(ew =>
         {
             var entityWidgetDetails = ew.GetWidgetDetails();

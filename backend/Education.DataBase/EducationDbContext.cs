@@ -15,7 +15,7 @@ public class EducationDbContext : IdentityDbContext<IdentityUser<Guid>, Identity
     }
 
     public DbSet<Course> Courses { get; set; }
-    public DbSet<Chapter> Chapters { get; set; }
+    public DbSet<Module> Modules { get; set; }
     public DbSet<Widget> Widgets { get; set; }
     public DbSet<VideoWidget> VideoWidgets { get; set; }
     public DbSet<PresentationWidget> PresentationWidgets { get; set; }

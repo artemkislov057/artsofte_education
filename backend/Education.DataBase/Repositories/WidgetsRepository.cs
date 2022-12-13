@@ -8,8 +8,8 @@ namespace Education.DataBase.Repositories;
 public interface IWidgetsRepository
 {
     Task AddWidgets(IEnumerable<Widget> widgets);
-    Task<Widget[]> GetWidgets(Guid chapterId);
-    Task<int?> FindLastWidgetIdInChapter(Guid chapterId);
+    Task<Widget[]> GetWidgets(Guid moduleId);
+    Task<int?> FindLastWidgetIdInModule(Guid moduleId);
 }
 
 public class WidgetsRepository : IWidgetsRepository
@@ -25,19 +25,19 @@ public class WidgetsRepository : IWidgetsRepository
         await context.SaveChangesAsync();
     }
 
-    public async Task<Widget[]> GetWidgets(Guid chapterId)
+    public async Task<Widget[]> GetWidgets(Guid moduleId)
     {
         return await context.Widgets
-            .Where(w => w.ChapterId == chapterId)
+            .Where(w => w.ModuleId == moduleId)
             .OrderBy(w => w.Order)
             .IncludeWidgetDetails()
             .ToArrayAsync();
     }
 
-    public async Task<int?> FindLastWidgetIdInChapter(Guid chapterId)
+    public async Task<int?> FindLastWidgetIdInModule(Guid moduleId)
     {
         return await context.Widgets
-            .Where(w => w.ChapterId == chapterId)
+            .Where(w => w.ModuleId == moduleId)
             .GetMaxOrder();
     }
 }

@@ -13,7 +13,7 @@ using Microsoft.Extensions.Options;
 namespace Education.Applications.Main.WebApi.Controllers;
 
 [ApiController]
-[Route("api/courses/{courseId:guid}/chapters/{chapterId:guid}/widgets")]
+[Route("api/courses/{courseId:guid}/modules/{moduleId:guid}/widgets")]
 public class WidgetsController : ControllerBase
 {
     private readonly IWidgetsService service;
@@ -29,7 +29,7 @@ public class WidgetsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> PostWidgetsToChapter(Guid courseId, Guid chapterId,
+    public async Task<ActionResult> PostWidgetsToModule(Guid courseId, Guid moduleId,
         [FromBody] PostWidgetDto[] widgets)
     {
         var modelWidgets = widgets.Select(widget =>
@@ -39,14 +39,14 @@ public class WidgetsController : ControllerBase
             return (WidgetContent)widgetDto.Adapt(widgetDto.GetType(), widgetDto.GetModelWidgetContentType())!;
         });
 
-        await service.PostWidgets(courseId, chapterId, modelWidgets);
+        await service.PostWidgets(courseId, moduleId, modelWidgets);
         return Ok();
     }
 
     [HttpGet]
-    public async Task<ActionResult<GetWidgetDto[]>> GetWidgetsFromChapter(Guid courseId, Guid chapterId)
+    public async Task<ActionResult<GetWidgetDto[]>> GetWidgetsFromModule(Guid courseId, Guid moduleId)
     {
-        var widgets = await service.GetWidgets(courseId, chapterId);
+        var widgets = await service.GetWidgets(courseId, moduleId);
         var result = widgets.Select(w =>
         {
             var modelType = w.GetType();

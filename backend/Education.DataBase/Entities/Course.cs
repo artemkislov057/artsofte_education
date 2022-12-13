@@ -6,5 +6,5 @@ public class Course
     public string Name { get; set; } = null!;
     public string Description { get; set; } = null!;
 
-    public ICollection<Chapter>? Chapters { get; set; }
+    public ICollection<Module>? Modules { get; set; }
 }

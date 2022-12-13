@@ -1,0 +1,89 @@
+.main {
+    display: flex;
+    height: 52px;
+    box-sizing: border-box;
+    padding: 0 16px;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #FFFFFF;
+    box-shadow: 0px 2px 10px rgba(69, 69, 69, 0.07);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.button:hover {
+    opacity: .7;
+}
+
+.uploadButton {
+    width: 30px;
+    height: 30px;
+    background: url('./icons/icons_add_photo\ 2.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+}
+
+.rightPart {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.recordButton {
+    width: 32px;
+    height: 32px;
+    background: url('./icons/icons_micro\ 1.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+}
+
+.removeButton {
+    width: 30px;
+    height: 30px;
+    background: url('./icons/icons_delete.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+}
+
+.doneButton {
+    width: 24px;
+    height: 24px;
+    background: url('./icons/icons_done\ 1.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+}
+
+.recordSetting {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.closeRecord {
+    width: 24px;
+    height: 24px;
+    background: url('./icons/icons_close\ 1.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+}
+
+.player {
+    display: flex;
+    gap: 8px;
+    box-sizing: border-box;
+    padding: 8px 16px;
+    align-items: center;
+}
+
+.playStopButton {
+    width: 52px;
+    height: 52px;
+    background: url('./icons/stop.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+}
+
+.playStopButton.play {
+    width: 52px;
+    height: 52px;
+    background: url('./icons/play.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+}

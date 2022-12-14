@@ -8,6 +8,7 @@ public class Lesson : IOrderElement
     public int Id { get; set; }
     public int Order { get; set; }
     public LessonType Type { get; set; }
+    public string? Name { get; set; }
 
     public Guid ModuleId { get; set; }
     public Module? Module { get; set; }

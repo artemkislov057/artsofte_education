@@ -36,7 +36,10 @@ public class LessonsController : ControllerBase
         {
             var lessonDto = (LessonContentBaseDto)lesson.Value.Deserialize(GetLessonContentType(lesson.Type),
                 jsonOptions.JsonSerializerOptions)!;
-            return (LessonContent)lessonDto.Adapt(lessonDto.GetType(), lessonDto.GetModelLessonContentType())!;
+            var lessonModel =
+                (LessonContent)lessonDto.Adapt(lessonDto.GetType(), lessonDto.GetModelLessonContentType())!;
+            lessonModel.Name = lesson.Name;
+            return lessonModel;
         });
 
         await service.PostLessons(courseId, moduleId, modelLessons);
@@ -52,7 +55,7 @@ public class LessonsController : ControllerBase
             var modelType = w.GetType();
             var dtoType = GetDtoTypeFromModel(modelType);
             var dto = (LessonContentBaseDto)w.Adapt(modelType, dtoType)!;
-            return new GetLessonDto(w.Id, GetLessonTypeDto(dto), dto);
+            return new GetLessonDto(w.Id, w.Name, GetLessonTypeDto(dto), dto);
         });
         return Ok(result.ToArray());
     }

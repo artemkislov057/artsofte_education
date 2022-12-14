@@ -37,7 +37,8 @@ public class LessonsService : ILessonsService
         var entityLessons = lessons.Select(lesson =>
         {
             var entityLessonDetails = GetLessonDetailsEntityFromModel(lesson);
-            var entityLesson = new Lesson { Type = entityLessonDetails.GetLessonType(), ModuleId = moduleId };
+            var entityLesson = new Lesson
+                { Name = lesson.Name, Type = entityLessonDetails.GetLessonType(), ModuleId = moduleId };
             entityLesson.SetLessonDetails(entityLessonDetails);
             return entityLesson;
         }).ToArray();
@@ -63,6 +64,7 @@ public class LessonsService : ILessonsService
             var lessonContentModel =
                 (LessonContent)entityLessonDetails.Adapt(entityLessonDetailsType, lessonContentType)!;
             lessonContentModel.Id = el.Id;
+            lessonContentModel.Name = el.Name;
             return lessonContentModel;
         });
         return models.ToArray();

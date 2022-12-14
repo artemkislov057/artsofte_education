@@ -1,0 +1,16 @@
+<div class="main">
+    <div class="uploadButton button"></div>
+    <div class="rightPart">
+        <div *ngIf="isBeforeRecord" class="recordButton button"></div>
+        <div *ngIf="isRecord || isDoneRecord" class="recordSetting">
+            <div *ngIf="isRecord" class="closeRecord button"></div>
+            <div class="player">
+                <div class="time">23:59:59</div>
+                <div class="timeLine"></div>
+                <div [class.play]="isDoneRecord" class="playStopButton button"></div>
+            </div>
+        </div>
+        <div *ngIf="isRecord" class="doneButton button"></div>
+        <div *ngIf="isDoneRecord" class="removeButton button"></div>
+    </div>
+</div>

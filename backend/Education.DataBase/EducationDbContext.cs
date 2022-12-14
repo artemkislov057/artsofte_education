@@ -1,6 +1,6 @@
 ﻿using Education.DataBase.Entities;
-using Education.DataBase.Entities.Widgets;
-using Education.DataBase.Entities.Widgets.WidgetContent;
+using Education.DataBase.Entities.Lessons;
+using Education.DataBase.Entities.Lessons.LessonContent;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +16,10 @@ public class EducationDbContext : IdentityDbContext<IdentityUser<Guid>, Identity
 
     public DbSet<Course> Courses { get; set; }
     public DbSet<Module> Modules { get; set; }
-    public DbSet<Widget> Widgets { get; set; }
-    public DbSet<VideoWidget> VideoWidgets { get; set; }
-    public DbSet<PresentationWidget> PresentationWidgets { get; set; }
-    public DbSet<LiteratureWidget> LiteratureWidgets { get; set; }
+    public DbSet<Lesson> Lessons { get; set; }
+    public DbSet<VideoLesson> VideoLessons { get; set; }
+    public DbSet<PresentationLesson> PresentationLessons { get; set; }
+    public DbSet<LiteratureLesson> LiteratureLessons { get; set; }
     public DbSet<PresentationSlide> PresentationSlides { get; set; }
     public DbSet<LiteraturePurchaseLink> LiteraturePurchaseLinks { get; set; }
 

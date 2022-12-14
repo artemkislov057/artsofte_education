@@ -1,4 +1,4 @@
-﻿using Education.DataBase.Entities.Widgets;
+﻿using Education.DataBase.Entities.Lessons;
 using Education.DataBase.Interfaces;
 
 namespace Education.DataBase.Entities;
@@ -13,5 +13,5 @@ public class Module : IOrderElement
     public Guid CourseId { get; set; }
     public Course? Course { get; set; }
 
-    public ICollection<Widget>? Widgets { get; set; }
+    public ICollection<Lesson>? Lessons { get; set; }
 }

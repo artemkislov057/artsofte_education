@@ -1,4 +1,4 @@
-﻿using Education.DataBase.Entities.Widgets.WidgetContent;
+﻿using Education.DataBase.Entities.Lessons.LessonContent;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

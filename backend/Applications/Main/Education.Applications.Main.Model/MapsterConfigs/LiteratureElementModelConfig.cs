@@ -1,5 +1,5 @@
-﻿using Education.Applications.Main.Model.Models.Widgets.Literature;
-using Education.DataBase.Entities.Widgets.WidgetContent;
+﻿using Education.Applications.Main.Model.Models.Lessons.Literature;
+using Education.DataBase.Entities.Lessons.LessonContent;
 using Mapster;
 
 namespace Education.Applications.Main.Model.MapsterConfigs;

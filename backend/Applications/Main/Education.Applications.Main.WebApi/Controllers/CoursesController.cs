@@ -1,4 +1,5 @@
-﻿using Education.Applications.Common.Constants;
+﻿using System.Net;
+using Education.Applications.Common.Constants;
 using Education.Applications.Main.Model.Services;
 using Education.Applications.Main.WebApi.Dto.Courses;
 using Education.DataBase.Entities;
@@ -19,17 +20,25 @@ public class CoursesController : ControllerBase
         this.coursesService = coursesService;
     }
 
+    /// <summary>
+    /// Добавить курс
+    /// </summary>
     [HttpPost]
     [Authorize(Roles = Roles.Admin)]
+    [ProducesResponseType((int)HttpStatusCode.Created)]
     public async Task<ActionResult<CourseDto>> AddCourse([FromBody] PostCourseDto courseDto)
     {
         var courseEntity = courseDto.Adapt<Course>();
         await coursesService.AddCourse(courseEntity);
-        return Ok(courseEntity.Adapt<CourseDto>());
+        return Created($"api/courses/{courseEntity.Id}", courseEntity.Adapt<CourseDto>());
     }
 
+    /// <summary>
+    /// Получить доступные курсы
+    /// </summary>
     [HttpGet]
     [Authorize]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult<CourseDto[]>> GetCourses()
     {
         var courses = await coursesService.GetCourses();

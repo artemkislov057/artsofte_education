@@ -1,4 +1,5 @@
-﻿using Education.Applications.Common.Constants;
+﻿using System.Net;
+using Education.Applications.Common.Constants;
 using Education.Applications.Main.WebApi.Dto.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,11 @@ public class UsersController : ControllerBase
         this.signInManager = signInManager;
     }
 
+    /// <summary>
+    /// Регистрация пользователя
+    /// </summary>
     [HttpPost]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult> PostUser([FromBody] PostUserDto userDto)
     {
         var user = new IdentityUser<Guid>(userDto.Name);
@@ -31,8 +36,12 @@ public class UsersController : ControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// Логин
+    /// </summary>
     [HttpPost]
     [Route("login")]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult> Login([FromBody] PostUserDto user)
     {
         var result = await signInManager.PasswordSignInAsync(user.Name, user.Password, user.IsPersistent, false);

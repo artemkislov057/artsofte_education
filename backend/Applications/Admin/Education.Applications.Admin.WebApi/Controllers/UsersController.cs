@@ -22,17 +22,23 @@ public class UsersController : ControllerBase
         this.usersRepository = usersRepository;
     }
 
+    /// <summary>
+    /// Получить список доступных ролей у пользователя
+    /// </summary>
     [HttpGet]
-    [Route("{user-id:guid}/roles")]
-    public async Task<ActionResult<RoleDto[]>> GetUserRoles([FromRoute(Name = "user-id")] Guid userId)
+    [Route("{userId:guid}/roles")]
+    public async Task<ActionResult<RoleDto[]>> GetUserRoles(Guid userId)
     {
         var roles = await rolesRepository.GetUserRolesByUserId(userId);
         return Ok(roles.Select(r => new RoleDto(r.Name)));
     }
 
+    /// <summary>
+    /// Добавить роль пользователю
+    /// </summary>
     [HttpPost]
-    [Route("{user-id:guid}/roles")]
-    public async Task<ActionResult> AddRoleToUser([FromRoute(Name = "user-id")] Guid userId, [FromBody] RoleDto role)
+    [Route("{userId:guid}/roles")]
+    public async Task<ActionResult> AddRoleToUser(Guid userId, [FromBody] RoleDto role)
     {
         var user = await usersRepository.GetUser(userId);
         if (user == null)
@@ -49,6 +55,9 @@ public class UsersController : ControllerBase
         return BadRequest();
     }
 
+    /// <summary>
+    /// Получить список пользователей
+    /// </summary>
     [HttpGet]
     public async Task<ActionResult<UserDto[]>> GetUsers()
     {

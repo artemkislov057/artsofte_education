@@ -20,12 +20,18 @@ public sealed class RolesController : ControllerBase
         this.rolesRepository = rolesRepository;
     }
 
+    /// <summary>
+    /// Получить доступные на сервере роли
+    /// </summary>
     [HttpGet]
     public async Task<ActionResult<RoleDto[]>> GetRoles()
     {
         return Ok(await roleManager.Roles.Select(r => new RoleDto(r.Name)).ToArrayAsync());
     }
 
+    /// <summary>
+    /// Добавить используемые на сервере роли (User, Admin)
+    /// </summary>
     [HttpPost]
     [Route("default")]
     public async Task<ActionResult> AddDefaultRoles()
@@ -35,6 +41,9 @@ public sealed class RolesController : ControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// Добавить роль (не рекомендуется использовать, лучше - api/roles/default)
+    /// </summary>
     [HttpPost]
     public async Task<ActionResult> AddRole([FromBody] RoleDto role)
     {
@@ -47,6 +56,9 @@ public sealed class RolesController : ControllerBase
         return BadRequest();
     }
 
+    /// <summary>
+    /// Удалить роль с сервера
+    /// </summary>
     [HttpDelete]
     [Route("{role-name}")]
     public async Task<ActionResult> DeleteRole([FromRoute(Name = "role-name")] string roleName)

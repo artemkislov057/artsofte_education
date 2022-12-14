@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Net;
 using System.Reflection;
 using System.Text.Json;
 using Education.Applications.Main.Model.Models.Lessons;
@@ -28,7 +29,11 @@ public class LessonsController : ControllerBase
         this.jsonOptions = jsonOptions.Value;
     }
 
+    /// <summary>
+    /// Добавить уроки в модуль
+    /// </summary>
     [HttpPost]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult> PostLessonsToModule(Guid courseId, Guid moduleId,
         [FromBody] PostLessonDto[] lessons)
     {
@@ -46,7 +51,11 @@ public class LessonsController : ControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// Получить уроки из модуля
+    /// </summary>
     [HttpGet]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult<GetLessonDto[]>> GetLessonsFromModule(Guid courseId, Guid moduleId)
     {
         var lessons = await service.GetLessons(courseId, moduleId);

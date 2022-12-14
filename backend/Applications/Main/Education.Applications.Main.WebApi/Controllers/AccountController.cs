@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,8 +17,13 @@ public class AccountController : ControllerBase
         this.userManager = userManager;
     }
 
+    /// <summary>
+    /// Получить доступные роли пользователя
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     [Route("roles")]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult<string[]>> GetAccountRoles()
     {
         var user = await userManager.GetUserAsync(User);

@@ -2,6 +2,7 @@
 using System.Net;
 using System.Reflection;
 using System.Text.Json;
+using Education.Applications.Common.Constants;
 using Education.Applications.Main.Model.Models.Lessons;
 using Education.Applications.Main.Model.Services;
 using Education.Applications.Main.WebApi.Attributes;
@@ -10,6 +11,7 @@ using Education.Applications.Main.WebApi.Dto.Lessons.Contents;
 using Education.Applications.Main.WebApi.SwaggerExamples.Request.Lessons;
 using Education.Applications.Main.WebApi.SwaggerExamples.Response.Lessons;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Filters;
@@ -36,6 +38,7 @@ public class LessonsController : ControllerBase
     /// Добавить уроки в модуль
     /// </summary>
     [HttpPost]
+    [Authorize(Roles = Roles.Admin)]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [SwaggerRequestExample(typeof(PostLessonDto), typeof(PostLessonExample))]
     public async Task<ActionResult> PostLessonsToModule(Guid courseId, Guid moduleId,
@@ -60,6 +63,7 @@ public class LessonsController : ControllerBase
     /// Получить уроки из модуля
     /// </summary>
     [HttpGet]
+    [Authorize]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(GetLessonExample))]
     public async Task<ActionResult<GetLessonDto[]>> GetLessonsFromModule(Guid courseId, Guid moduleId)

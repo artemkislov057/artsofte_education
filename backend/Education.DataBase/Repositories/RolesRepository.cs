@@ -23,6 +23,7 @@ public class RolesRepository : IRolesRepository
         var query =
             from role in context.Roles
             join userRole in context.UserRoles on role.Id equals userRole.RoleId
+            where userRole.UserId == userId
             select role;
 
         return await query.ToArrayAsync();

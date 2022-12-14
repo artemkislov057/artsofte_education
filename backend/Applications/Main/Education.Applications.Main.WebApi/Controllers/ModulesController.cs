@@ -30,6 +30,6 @@ public class ModulesController : ControllerBase
     {
         var moduleEntity = moduleDto.Adapt<Module>();
         await modulesService.AddModuleToCourse(courseId, moduleEntity);
-        return Created($"api/courses/{courseId:guid}/modules/{moduleEntity.Id}", moduleEntity.Adapt<ModuleDto>());
+        return Created($"api/courses/{courseId}/modules/{moduleEntity.Id}", moduleEntity.Adapt<ModuleDto>());
     }
 }

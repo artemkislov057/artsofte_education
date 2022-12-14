@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Education.Applications.Common;
 
@@ -91,7 +92,9 @@ public abstract class StartupBase
             var xmlFile = $"{ExecutingAssembly.GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             configure.IncludeXmlComments(xmlPath);
+            configure.ExampleFilters();
         });
+        services.AddSwaggerExamplesFromAssemblies(ExecutingAssembly);
         services.AddCors();
 
         ConfigureMapster();

@@ -7,9 +7,12 @@ using Education.Applications.Main.Model.Services;
 using Education.Applications.Main.WebApi.Attributes;
 using Education.Applications.Main.WebApi.Dto.Lessons;
 using Education.Applications.Main.WebApi.Dto.Lessons.Contents;
+using Education.Applications.Main.WebApi.SwaggerExamples.Request.Lessons;
+using Education.Applications.Main.WebApi.SwaggerExamples.Response.Lessons;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Education.Applications.Main.WebApi.Controllers;
 
@@ -34,12 +37,14 @@ public class LessonsController : ControllerBase
     /// </summary>
     [HttpPost]
     [ProducesResponseType((int)HttpStatusCode.OK)]
+    [SwaggerRequestExample(typeof(PostLessonDto), typeof(PostLessonExample))]
     public async Task<ActionResult> PostLessonsToModule(Guid courseId, Guid moduleId,
         [FromBody] PostLessonDto[] lessons)
     {
         var modelLessons = lessons.Select(lesson =>
         {
-            var lessonDto = (LessonContentBaseDto)lesson.Value.Deserialize(GetLessonContentType(lesson.Type),
+            var lessonContentJson = (JsonElement)lesson.Value;
+            var lessonDto = (LessonContentBaseDto)lessonContentJson.Deserialize(GetLessonContentType(lesson.Type),
                 jsonOptions.JsonSerializerOptions)!;
             var lessonModel =
                 (LessonContent)lessonDto.Adapt(lessonDto.GetType(), lessonDto.GetModelLessonContentType())!;
@@ -56,6 +61,7 @@ public class LessonsController : ControllerBase
     /// </summary>
     [HttpGet]
     [ProducesResponseType((int)HttpStatusCode.OK)]
+    [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(GetLessonExample))]
     public async Task<ActionResult<GetLessonDto[]>> GetLessonsFromModule(Guid courseId, Guid moduleId)
     {
         var lessons = await service.GetLessons(courseId, moduleId);

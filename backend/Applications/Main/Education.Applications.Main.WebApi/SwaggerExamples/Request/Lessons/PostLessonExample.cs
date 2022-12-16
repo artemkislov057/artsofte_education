@@ -6,13 +6,13 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace Education.Applications.Main.WebApi.SwaggerExamples.Request.Lessons;
 
-public class PostLessonExample : IMultipleExamplesProvider<PostLessonDto[]>
+public class PostLessonExample : IMultipleExamplesProvider<PostPutLessonDto[]>
 {
-    public IEnumerable<SwaggerExample<PostLessonDto[]>> GetExamples()
+    public IEnumerable<SwaggerExample<PostPutLessonDto[]>> GetExamples()
     {
         yield return SwaggerExample.Create("Video", new[]
         {
-            new PostLessonDto("Video Lesson",
+            new PostPutLessonDto("Video Lesson",
                 LessonTypeDto.Video,
                 new VideoLessonContentDto
                 {
@@ -24,7 +24,7 @@ public class PostLessonExample : IMultipleExamplesProvider<PostLessonDto[]>
 
         yield return SwaggerExample.Create("Presentation", new[]
         {
-            new PostLessonDto("Presentation Lesson",
+            new PostPutLessonDto("Presentation Lesson",
                 LessonTypeDto.Presentation,
                 new PresentationLessonContentDto
                 {
@@ -41,7 +41,7 @@ public class PostLessonExample : IMultipleExamplesProvider<PostLessonDto[]>
 
         yield return SwaggerExample.Create("Literature", new[]
         {
-            new PostLessonDto("Literature Lesson",
+            new PostPutLessonDto("Literature Lesson",
                 LessonTypeDto.Literature,
                 new LiteratureLessonContentDto
                 {

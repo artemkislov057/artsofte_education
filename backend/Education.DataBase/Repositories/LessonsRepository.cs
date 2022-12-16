@@ -7,10 +7,12 @@ namespace Education.DataBase.Repositories;
 public interface ILessonsRepository
 {
     Task AddLessons(IEnumerable<Lesson> lessons);
-    Task<Lesson[]> GetLessons(Guid moduleId);
+    Task<Lesson[]> GetLessons(Guid moduleId, bool includeDetails = true);
+    Task<Lesson?> FindLesson(int lessonId, bool includeDetails = true);
     Task<int?> FindLastLessonIdInModule(Guid moduleId);
-    Task<Lesson?> FindLesson(int lessonId);
     Task DeleteLesson(Lesson lesson);
+    Task ChangeLessonDetails(Lesson lesson, LessonDetailsBase oldLessonDetails, LessonDetailsBase newLessonDetails);
+    Task EditLessonDetails(LessonDetailsBase lessonDetails);
 }
 
 public class LessonsRepository : ILessonsRepository
@@ -26,13 +28,31 @@ public class LessonsRepository : ILessonsRepository
         await context.SaveChangesAsync();
     }
 
-    public async Task<Lesson[]> GetLessons(Guid moduleId)
+    public async Task<Lesson[]> GetLessons(Guid moduleId, bool includeDetails = true)
     {
-        return await context.Lessons
+        var query = context.Lessons
             .Where(w => w.ModuleId == moduleId)
             .OrderBy(w => w.Order)
-            .IncludeLessonDetails()
-            .ToArrayAsync();
+            .AsQueryable();
+
+        if (includeDetails)
+        {
+            query = query.IncludeLessonDetails();
+        }
+
+        return await query.ToArrayAsync();
+    }
+
+    public async Task<Lesson?> FindLesson(int lessonId, bool includeDetails = true)
+    {
+        var query = context.Lessons.AsQueryable();
+
+        if (includeDetails)
+        {
+            query = query.IncludeLessonDetails();
+        }
+
+        return await query.SingleOrDefaultAsync(l => l.Id == lessonId);
     }
 
     public async Task<int?> FindLastLessonIdInModule(Guid moduleId)
@@ -42,14 +62,29 @@ public class LessonsRepository : ILessonsRepository
             .GetMaxOrder();
     }
 
-    public async Task<Lesson?> FindLesson(int lessonId)
-    {
-        return await context.Lessons.SingleOrDefaultAsync(l => l.Id == lessonId);
-    }
-
     public async Task DeleteLesson(Lesson lesson)
     {
         context.Lessons.Remove(lesson);
+        await context.SaveChangesAsync();
+    }
+
+    public async Task ChangeLessonDetails(Lesson lesson, LessonDetailsBase oldLessonDetails,
+        LessonDetailsBase newLessonDetails)
+    {
+        if (oldLessonDetails.LessonId != lesson.Id)
+        {
+            // TODO: кинуть кастомное исключение
+            return;
+        }
+
+        newLessonDetails.LessonId = lesson.Id;
+        context.Remove(oldLessonDetails);
+        context.Add(newLessonDetails);
+        await context.SaveChangesAsync();
+    }
+
+    public async Task EditLessonDetails(LessonDetailsBase lessonDetails)
+    {
         await context.SaveChangesAsync();
     }
 }

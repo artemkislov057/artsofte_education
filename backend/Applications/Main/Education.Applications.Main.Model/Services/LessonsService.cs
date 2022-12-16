@@ -13,6 +13,7 @@ public interface ILessonsService
     Task PostLessons(Guid courseId, Guid moduleId, IEnumerable<LessonContent> lessons);
     Task<LessonContent[]> GetLessons(Guid courseId, Guid moduleId);
     Task<bool> TryDeleteLesson(Guid courseId, Guid moduleId, int lessonId);
+    Task EditLesson(Guid courseId, Guid moduleId, int lessonId, LessonContent lessonModel);
 }
 
 public class LessonsService : ILessonsService
@@ -37,7 +38,7 @@ public class LessonsService : ILessonsService
 
         var entityLessons = lessons.Select(lesson =>
         {
-            var entityLessonDetails = GetLessonDetailsEntityFromModel(lesson);
+            var entityLessonDetails = MapLessonDetailsEntityFromModel(lesson);
             var entityLesson = new Lesson
                 { Name = lesson.Name, Type = entityLessonDetails.GetLessonType(), ModuleId = moduleId };
             entityLesson.SetLessonDetails(entityLessonDetails);
@@ -79,7 +80,7 @@ public class LessonsService : ILessonsService
             return false;
         }
 
-        var lesson = await lessonsRepository.FindLesson(lessonId);
+        var lesson = await lessonsRepository.FindLesson(lessonId, false);
         if (lesson is null)
         {
             return false;
@@ -95,7 +96,43 @@ public class LessonsService : ILessonsService
         return true;
     }
 
-    private static LessonDetailsBase GetLessonDetailsEntityFromModel(LessonContent lessonContent)
+    public async Task EditLesson(Guid courseId, Guid moduleId, int lessonId, LessonContent lessonModel)
+    {
+        if (!await modulesRepository.IsExistsModuleByIdAndCourseId(moduleId, courseId))
+        {
+            // TODO: кинуть кастомное исключение
+            return;
+        }
+
+        var entityLesson = await lessonsRepository.FindLesson(lessonId);
+        if (entityLesson is null)
+        {
+            // TODO: кинуть кастомное исключение
+            return;
+        }
+
+        if (entityLesson.ModuleId != moduleId)
+        {
+            // TODO: кинуть кастомное исключение
+        }
+
+        var entityLessonDetailsFromModel = MapLessonDetailsEntityFromModel(lessonModel);
+        var currentLessonDetails = entityLesson.GetLessonDetails();
+        entityLesson.Name = lessonModel.Name;
+        if (entityLesson.Type != entityLessonDetailsFromModel.GetLessonType())
+        {
+            entityLesson.Type = entityLessonDetailsFromModel.GetLessonType();
+            await lessonsRepository.ChangeLessonDetails(entityLesson, currentLessonDetails,
+                entityLessonDetailsFromModel);
+        }
+        else
+        {
+            lessonModel.Adapt(currentLessonDetails, lessonModel.GetType(), lessonModel.EntityType);
+            await lessonsRepository.EditLessonDetails(currentLessonDetails);
+        }
+    }
+
+    private static LessonDetailsBase MapLessonDetailsEntityFromModel(LessonContent lessonContent)
         => (LessonDetailsBase)lessonContent.Adapt(lessonContent.GetType(), lessonContent.EntityType)!;
 
     private static Type GetLessonContentTypeByEntity(Type entityType)

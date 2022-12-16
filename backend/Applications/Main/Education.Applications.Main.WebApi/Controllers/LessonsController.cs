@@ -41,9 +41,9 @@ public class LessonsController : ControllerBase
     [HttpPost]
     [Authorize(Roles = Roles.Admin)]
     [SwaggerResponse((int)HttpStatusCode.OK)]
-    [SwaggerRequestExample(typeof(PostLessonDto), typeof(PostLessonExample))]
+    [SwaggerRequestExample(typeof(PostPutLessonDto), typeof(PostLessonExample))]
     public async Task<ActionResult> PostLessonsToModule(Guid courseId, Guid moduleId,
-        [FromBody] PostLessonDto[] lessons)
+        [FromBody] PostPutLessonDto[] lessons)
     {
         var modelLessons = lessons.Select(lesson =>
         {
@@ -72,6 +72,25 @@ public class LessonsController : ControllerBase
     {
         var result = await service.TryDeleteLesson(courseId, moduleId, lessonId);
         return result ? NoContent() : NotFound();
+    }
+
+    /// <summary>
+    /// Редактировать урок
+    /// </summary>
+    [HttpPut]
+    [Authorize(Roles = Roles.Admin)]
+    [Route("{lessonId:int}")]
+    [SwaggerResponse((int)HttpStatusCode.NoContent, "Урок успешно отредактирован")]
+    [SwaggerResponse((int)HttpStatusCode.NotFound, "Урок не найден")]
+    public async Task<ActionResult> EditLesson(Guid courseId, Guid moduleId, int lessonId, [FromBody] PostPutLessonDto dto)
+    {
+        var lessonContentJson = (JsonElement)dto.Value;
+        var lessonDto = (LessonContentBaseDto)lessonContentJson.Deserialize(GetLessonContentType(dto.Type),
+            jsonOptions.JsonSerializerOptions)!;
+        var lessonModel = (LessonContent)lessonDto.Adapt(lessonDto.GetType(), lessonDto.GetModelLessonContentType())!;
+        lessonModel.Name = dto.Name;
+        await service.EditLesson(courseId, moduleId, lessonId, lessonModel);
+        return NoContent();
     }
 
     /// <summary>

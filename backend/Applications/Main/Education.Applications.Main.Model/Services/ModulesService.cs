@@ -1,12 +1,16 @@
-﻿using Education.DataBase.Entities;
+﻿using Education.Applications.Main.Model.Models.Courses;
+using Education.Applications.Main.Model.Models.Modules;
+using Education.DataBase.Entities;
 using Education.DataBase.Repositories;
+using Mapster;
 
 namespace Education.Applications.Main.Model.Services;
 
 public interface IModulesService
 {
-    Task AddModuleToCourse(Guid courseId, Module module);
+    Task<ModuleModel> AddModuleToCourse(Guid courseId, AddOrEditCourseModel moduleModel);
     Task<bool> TryDeleteModule(Guid courseId, Guid moduleId);
+    Task EditModel(Guid courseId, Guid moduleId, AddOrEditModuleModel moduleModel);
 }
 
 public class ModulesService : IModulesService
@@ -20,18 +24,20 @@ public class ModulesService : IModulesService
         this.modulesRepository = modulesRepository;
     }
 
-    public async Task AddModuleToCourse(Guid courseId, Module module)
+    public async Task<ModuleModel> AddModuleToCourse(Guid courseId, AddOrEditCourseModel moduleModel)
     {
         var course = await coursesRepository.FindCourseById(courseId);
         if (course is null)
         {
             // TODO: кинуть кастомное исключение
-            return;
+            return null!;
         }
 
+        var moduleEntity = moduleModel.Adapt<Module>();
         var lastOrder = await modulesRepository.FindLastOrderByCourseId(courseId) ?? -1;
-        module.Order = lastOrder + 1;
-        await modulesRepository.AddModuleToCourse(module, course);
+        moduleEntity.Order = lastOrder + 1;
+        await modulesRepository.AddModuleToCourse(moduleEntity, course);
+        return moduleEntity.Adapt<ModuleModel>();
     }
 
     public async Task<bool> TryDeleteModule(Guid courseId, Guid moduleId)
@@ -50,5 +56,24 @@ public class ModulesService : IModulesService
 
         await modulesRepository.DeleteModule(module);
         return true;
+    }
+
+    public async Task EditModel(Guid courseId, Guid moduleId, AddOrEditModuleModel moduleModel)
+    {
+        var moduleEntity = await modulesRepository.FindModule(moduleId);
+        if (moduleEntity is null)
+        {
+            // TODO: кинуть кастомное исключение
+            return;
+        }
+
+        if (moduleEntity.CourseId != courseId)
+        {
+            // TODO: кинуть кастомное исключение
+            return;
+        }
+
+        moduleModel.Adapt(moduleEntity);
+        await modulesRepository.EditModule(moduleEntity);
     }
 }

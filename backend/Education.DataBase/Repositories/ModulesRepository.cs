@@ -11,6 +11,7 @@ public interface IModulesRepository
     Task<bool> IsExistsModuleByIdAndCourseId(Guid moduleId, Guid courseId);
     Task<Module?> FindModule(Guid moduleId);
     Task DeleteModule(Module module);
+    Task EditModule(Module module);
 }
 
 public class ModulesRepository : IModulesRepository
@@ -45,6 +46,11 @@ public class ModulesRepository : IModulesRepository
     public async Task DeleteModule(Module module)
     {
         context.Modules.Remove(module);
+        await context.SaveChangesAsync();
+    }
+
+    public async Task EditModule(Module module)
+    {
         await context.SaveChangesAsync();
     }
 }

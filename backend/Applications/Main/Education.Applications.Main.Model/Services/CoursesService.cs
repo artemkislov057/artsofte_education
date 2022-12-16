@@ -10,7 +10,7 @@ public interface ICoursesService
     Task<CourseModel> AddCourse(AddOrEditCourseModel course);
     Task<bool> TryDeleteCourse(Guid courseId);
     Task<CourseModel[]> GetCourses();
-    Task EditCourse(Guid courseId, AddOrEditCourseModel model);
+    Task EditCourse(Guid courseId, AddOrEditCourseModel courseModel);
 }
 
 public class CoursesService : ICoursesService
@@ -47,16 +47,16 @@ public class CoursesService : ICoursesService
         return coursesEntity.Adapt<CourseModel[]>();
     }
 
-    public async Task EditCourse(Guid courseId, AddOrEditCourseModel model)
+    public async Task EditCourse(Guid courseId, AddOrEditCourseModel courseModel)
     {
-        var course = await coursesRepository.FindCourseById(courseId);
-        if (course is null)
+        var courseEntity = await coursesRepository.FindCourseById(courseId);
+        if (courseEntity is null)
         {
             // TODO: кинуть исключение
             return;
         }
 
-        model.Adapt(course);
-        await coursesRepository.EditCourse(course);
+        courseModel.Adapt(courseEntity);
+        await coursesRepository.EditCourse(courseEntity);
     }
 }

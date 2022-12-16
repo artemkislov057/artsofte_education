@@ -5,4 +5,4 @@
 /// </summary>
 /// <param name="Name">Название модуля</param>
 /// <param name="Description">Описание модуля</param>
-public record PostModuleDto(string Name, string? Description);
+public record PostPutModuleDto(string Name, string? Description);

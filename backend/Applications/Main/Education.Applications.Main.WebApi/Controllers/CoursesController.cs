@@ -54,13 +54,13 @@ public class CoursesController : ControllerBase
     [HttpPut]
     [Route("{courseId:guid}")]
     [Authorize(Roles = Roles.Admin)]
-    [SwaggerResponse((int)HttpStatusCode.OK, "Курс успешно отредактирован")]
+    [SwaggerResponse((int)HttpStatusCode.NoContent, "Курс успешно отредактирован")]
     [SwaggerResponse((int)HttpStatusCode.NotFound, "Курс не найден")]
     public async Task<ActionResult> EditCourse(Guid courseId, [FromBody] PostPutCourseDto courseDto)
     {
         var model = courseDto.Adapt<AddOrEditCourseModel>();
         await coursesService.EditCourse(courseId, model);
-        return Ok();
+        return NoContent();
     }
 
     /// <summary>

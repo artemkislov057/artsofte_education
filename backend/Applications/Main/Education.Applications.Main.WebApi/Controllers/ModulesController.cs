@@ -1,8 +1,9 @@
 ﻿using System.Net;
 using Education.Applications.Common.Constants;
+using Education.Applications.Main.Model.Models.Courses;
+using Education.Applications.Main.Model.Models.Modules;
 using Education.Applications.Main.Model.Services;
 using Education.Applications.Main.WebApi.Dto.Modules;
-using Education.DataBase.Entities;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,11 +28,11 @@ public class ModulesController : ControllerBase
     [HttpPost]
     [Authorize(Roles = Roles.Admin)]
     [SwaggerResponse((int)HttpStatusCode.Created)]
-    public async Task<ActionResult> PostModule(Guid courseId, [FromBody] PostModuleDto moduleDto)
+    public async Task<ActionResult> PostModule(Guid courseId, [FromBody] PostPutModuleDto moduleDto)
     {
-        var moduleEntity = moduleDto.Adapt<Module>();
-        await modulesService.AddModuleToCourse(courseId, moduleEntity);
-        return Created($"api/courses/{courseId}/modules/{moduleEntity.Id}", moduleEntity.Adapt<ModuleDto>());
+        var moduleModel = moduleDto.Adapt<AddOrEditCourseModel>();
+        var result = await modulesService.AddModuleToCourse(courseId, moduleModel);
+        return Created($"api/courses/{courseId}/modules/{result.Id}", result.Adapt<ModuleDto>());
     }
 
     /// <summary>
@@ -46,5 +47,17 @@ public class ModulesController : ControllerBase
     {
         var result = await modulesService.TryDeleteModule(courseId, moduleId);
         return result ? NoContent() : NotFound();
+    }
+
+    [HttpPut]
+    [Route("{moduleId:guid}")]
+    [Authorize(Roles = Roles.Admin)]
+    [SwaggerResponse((int)HttpStatusCode.NoContent, "Модуль успешно отредактирован")]
+    [SwaggerResponse((int)HttpStatusCode.NotFound, "Модуль не найден")]
+    public async Task<ActionResult> EditModule(Guid courseId, Guid moduleId, [FromBody] PostPutModuleDto dto)
+    {
+        var model = dto.Adapt<AddOrEditModuleModel>();
+        await modulesService.EditModel(courseId, moduleId, model);
+        return NoContent();
     }
 }

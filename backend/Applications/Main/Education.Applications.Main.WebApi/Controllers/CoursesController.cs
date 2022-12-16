@@ -51,6 +51,9 @@ public class CoursesController : ControllerBase
         return result ? NoContent() : NotFound();
     }
 
+    /// <summary>
+    /// Редактировать курс
+    /// </summary>
     [HttpPut]
     [Route("{courseId:guid}")]
     [Authorize(Roles = Roles.Admin)]

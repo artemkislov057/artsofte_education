@@ -49,6 +49,9 @@ public class ModulesController : ControllerBase
         return result ? NoContent() : NotFound();
     }
 
+    /// <summary>
+    /// Редактировать модуль
+    /// </summary>
     [HttpPut]
     [Route("{moduleId:guid}")]
     [Authorize(Roles = Roles.Admin)]

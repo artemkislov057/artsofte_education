@@ -1,13 +1,16 @@
-﻿using Education.DataBase.Entities;
+﻿using Education.Applications.Main.Model.Models.Courses;
+using Education.DataBase.Entities;
 using Education.DataBase.Repositories;
+using Mapster;
 
 namespace Education.Applications.Main.Model.Services;
 
 public interface ICoursesService
 {
-    Task AddCourse(Course course);
+    Task<CourseModel> AddCourse(AddOrEditCourseModel course);
     Task<bool> TryDeleteCourse(Guid courseId);
-    Task<Course[]> GetCourses();
+    Task<CourseModel[]> GetCourses();
+    Task EditCourse(Guid courseId, AddOrEditCourseModel model);
 }
 
 public class CoursesService : ICoursesService
@@ -19,8 +22,12 @@ public class CoursesService : ICoursesService
         this.coursesRepository = coursesRepository;
     }
 
-    public async Task AddCourse(Course course)
-        => await coursesRepository.AddCourse(course);
+    public async Task<CourseModel> AddCourse(AddOrEditCourseModel course)
+    {
+        var entityCourse = course.Adapt<Course>();
+        await coursesRepository.AddCourse(entityCourse);
+        return entityCourse.Adapt<CourseModel>();
+    }
 
     public async Task<bool> TryDeleteCourse(Guid courseId)
     {
@@ -34,6 +41,22 @@ public class CoursesService : ICoursesService
         return true;
     }
 
-    public async Task<Course[]> GetCourses()
-        => await coursesRepository.GetCourses();
+    public async Task<CourseModel[]> GetCourses()
+    {
+        var coursesEntity = await coursesRepository.GetCourses();
+        return coursesEntity.Adapt<CourseModel[]>();
+    }
+
+    public async Task EditCourse(Guid courseId, AddOrEditCourseModel model)
+    {
+        var course = await coursesRepository.FindCourseById(courseId);
+        if (course is null)
+        {
+            // TODO: кинуть исключение
+            return;
+        }
+
+        model.Adapt(course);
+        await coursesRepository.EditCourse(course);
+    }
 }

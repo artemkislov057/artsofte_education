@@ -9,6 +9,7 @@ public interface ICoursesRepository
     Task DeleteCourse(Course course);
     Task<Course[]> GetCourses(bool includeModules = true);
     Task<Course?> FindCourseById(Guid courseId, bool includeModules = true);
+    Task EditCourse(Course course);
 }
 
 public class CoursesRepository : ICoursesRepository
@@ -39,6 +40,11 @@ public class CoursesRepository : ICoursesRepository
     public async Task<Course?> FindCourseById(Guid courseId, bool includeModules = true)
         => await GetCoursesQuery(includeModules)
             .SingleOrDefaultAsync(c => c.Id == courseId);
+
+    public async Task EditCourse(Course course)
+    {
+        await context.SaveChangesAsync();
+    }
 
     private IQueryable<Course> GetCoursesQuery(bool includeModules)
     {

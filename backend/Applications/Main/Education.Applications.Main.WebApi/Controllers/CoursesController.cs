@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using Education.Applications.Common.Constants;
+using Education.Applications.Main.Model.Models.Courses;
 using Education.Applications.Main.Model.Services;
 using Education.Applications.Main.WebApi.Dto.Courses;
-using Education.DataBase.Entities;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,11 +27,14 @@ public class CoursesController : ControllerBase
     [HttpPost]
     [Authorize(Roles = Roles.Admin)]
     [SwaggerResponse((int)HttpStatusCode.Created)]
-    public async Task<ActionResult<CourseDto>> AddCourse([FromBody] PostCourseDto courseDto)
+    public async Task<ActionResult<CourseDto>> AddCourse([FromBody] PostPutCourseDto courseDto)
     {
-        var courseEntity = courseDto.Adapt<Course>();
-        await coursesService.AddCourse(courseEntity);
-        return Created($"api/courses/{courseEntity.Id}", courseEntity.Adapt<CourseDto>());
+        var course = courseDto.Adapt<AddOrEditCourseModel>();
+        var result = await coursesService.AddCourse(course);
+        return Created(
+            $"api/courses/{result.Id}",
+            result.Adapt<CourseDto>()
+        );
     }
 
     /// <summary>
@@ -46,6 +49,18 @@ public class CoursesController : ControllerBase
     {
         var result = await coursesService.TryDeleteCourse(courseId);
         return result ? NoContent() : NotFound();
+    }
+
+    [HttpPut]
+    [Route("{courseId:guid}")]
+    [Authorize(Roles = Roles.Admin)]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Курс успешно отредактирован")]
+    [SwaggerResponse((int)HttpStatusCode.NotFound, "Курс не найден")]
+    public async Task<ActionResult> EditCourse(Guid courseId, [FromBody] PostPutCourseDto courseDto)
+    {
+        var model = courseDto.Adapt<AddOrEditCourseModel>();
+        await coursesService.EditCourse(courseId, model);
+        return Ok();
     }
 
     /// <summary>

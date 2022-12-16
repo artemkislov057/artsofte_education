@@ -5,4 +5,4 @@
 /// </summary>
 /// <param name="Name">Название курса</param>
 /// <param name="Description">Описание</param>
-public record PostCourseDto(string Name, string? Description);
+public record PostPutCourseDto(string Name, string? Description);

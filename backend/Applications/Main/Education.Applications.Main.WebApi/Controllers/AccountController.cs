@@ -30,4 +30,22 @@ public class AccountController : ControllerBase
         var roles = await userManager.GetRolesAsync(user);
         return Ok(roles);
     }
+
+    /// <summary>
+    /// Удалить аккаунт
+    /// </summary>
+    [HttpDelete]
+    [ProducesResponseType((int)HttpStatusCode.NoContent)]
+    [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    public async Task<ActionResult> DeleteAccount()
+    {
+        var user = await userManager.GetUserAsync(User);
+        if (user is null)
+        {
+            return NotFound();
+        }
+
+        var result = await userManager.DeleteAsync(user);
+        return result.Succeeded ? NoContent() : BadRequest();
+    }
 }

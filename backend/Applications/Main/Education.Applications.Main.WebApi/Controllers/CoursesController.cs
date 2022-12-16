@@ -34,6 +34,20 @@ public class CoursesController : ControllerBase
     }
 
     /// <summary>
+    /// Удалить курс
+    /// </summary>
+    [HttpDelete]
+    [Route("{courseId:guid}")]
+    [Authorize(Roles = Roles.Admin)]
+    [ProducesResponseType((int)HttpStatusCode.NoContent)]
+    [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    public async Task<ActionResult> DeleteCourse(Guid courseId)
+    {
+        var result = await coursesService.TryDeleteCourse(courseId);
+        return result ? NoContent() : NotFound();
+    }
+
+    /// <summary>
     /// Получить доступные курсы
     /// </summary>
     [HttpGet]

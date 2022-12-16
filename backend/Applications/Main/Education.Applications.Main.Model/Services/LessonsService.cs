@@ -12,6 +12,7 @@ public interface ILessonsService
 {
     Task PostLessons(Guid courseId, Guid moduleId, IEnumerable<LessonContent> lessons);
     Task<LessonContent[]> GetLessons(Guid courseId, Guid moduleId);
+    Task<bool> TryDeleteLesson(Guid courseId, Guid moduleId, int lessonId);
 }
 
 public class LessonsService : ILessonsService
@@ -68,6 +69,30 @@ public class LessonsService : ILessonsService
             return lessonContentModel;
         });
         return models.ToArray();
+    }
+
+    public async Task<bool> TryDeleteLesson(Guid courseId, Guid moduleId, int lessonId)
+    {
+        if (!await modulesRepository.IsExistsModuleByIdAndCourseId(moduleId, courseId))
+        {
+            // TODO: кинуть кастомное исключение
+            return false;
+        }
+
+        var lesson = await lessonsRepository.FindLesson(lessonId);
+        if (lesson is null)
+        {
+            return false;
+        }
+
+        if (lesson.ModuleId != moduleId)
+        {
+            // TODO: кинуть кастомное исключение
+            return false;
+        }
+
+        await lessonsRepository.DeleteLesson(lesson);
+        return true;
     }
 
     private static LessonDetailsBase GetLessonDetailsEntityFromModel(LessonContent lessonContent)

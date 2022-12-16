@@ -9,6 +9,8 @@ public interface ILessonsRepository
     Task AddLessons(IEnumerable<Lesson> lessons);
     Task<Lesson[]> GetLessons(Guid moduleId);
     Task<int?> FindLastLessonIdInModule(Guid moduleId);
+    Task<Lesson?> FindLesson(int lessonId);
+    Task DeleteLesson(Lesson lesson);
 }
 
 public class LessonsRepository : ILessonsRepository
@@ -38,5 +40,16 @@ public class LessonsRepository : ILessonsRepository
         return await context.Lessons
             .Where(w => w.ModuleId == moduleId)
             .GetMaxOrder();
+    }
+
+    public async Task<Lesson?> FindLesson(int lessonId)
+    {
+        return await context.Lessons.SingleOrDefaultAsync(l => l.Id == lessonId);
+    }
+
+    public async Task DeleteLesson(Lesson lesson)
+    {
+        context.Lessons.Remove(lesson);
+        await context.SaveChangesAsync();
     }
 }

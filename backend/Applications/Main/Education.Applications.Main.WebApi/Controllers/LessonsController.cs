@@ -60,6 +60,20 @@ public class LessonsController : ControllerBase
     }
 
     /// <summary>
+    /// Удалить урок
+    /// </summary>
+    [HttpDelete]
+    [Authorize(Roles = Roles.Admin)]
+    [Route("{lessonId:int}")]
+    [ProducesResponseType((int)HttpStatusCode.NoContent)]
+    [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    public async Task<ActionResult> DeleteLesson(Guid courseId, Guid moduleId, int lessonId)
+    {
+        var result = await service.TryDeleteLesson(courseId, moduleId, lessonId);
+        return result ? NoContent() : NotFound();
+    }
+
+    /// <summary>
     /// Получить уроки из модуля
     /// </summary>
     [HttpGet]

@@ -9,6 +9,8 @@ public interface IModulesRepository
     Task AddModuleToCourse(Module module, Course course);
     Task<int?> FindLastOrderByCourseId(Guid courseId);
     Task<bool> IsExistsModuleByIdAndCourseId(Guid moduleId, Guid courseId);
+    Task<Module?> FindModule(Guid moduleId);
+    Task DeleteModule(Module module);
 }
 
 public class ModulesRepository : IModulesRepository
@@ -36,4 +38,13 @@ public class ModulesRepository : IModulesRepository
 
     public async Task<bool> IsExistsModuleByIdAndCourseId(Guid moduleId, Guid courseId) =>
         await context.Modules.AnyAsync(ch => ch.Id == moduleId && ch.CourseId == courseId);
+
+    public async Task<Module?> FindModule(Guid moduleId) =>
+        await context.Modules.SingleOrDefaultAsync(m => m.Id == moduleId);
+
+    public async Task DeleteModule(Module module)
+    {
+        context.Modules.Remove(module);
+        await context.SaveChangesAsync();
+    }
 }

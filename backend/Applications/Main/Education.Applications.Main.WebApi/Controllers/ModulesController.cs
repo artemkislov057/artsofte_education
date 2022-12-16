@@ -32,4 +32,18 @@ public class ModulesController : ControllerBase
         await modulesService.AddModuleToCourse(courseId, moduleEntity);
         return Created($"api/courses/{courseId}/modules/{moduleEntity.Id}", moduleEntity.Adapt<ModuleDto>());
     }
+
+    /// <summary>
+    /// Удалить модуль
+    /// </summary>
+    [HttpDelete]
+    [Route("{moduleId:guid}")]
+    [Authorize(Roles = Roles.Admin)]
+    [ProducesResponseType((int)HttpStatusCode.NoContent)]
+    [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    public async Task<ActionResult> DeleteModule(Guid courseId, Guid moduleId)
+    {
+        var result = await modulesService.TryDeleteModule(courseId, moduleId);
+        return result ? NoContent() : NotFound();
+    }
 }

@@ -6,6 +6,7 @@ namespace Education.DataBase.Repositories;
 public interface ICoursesRepository
 {
     Task AddCourse(Course course);
+    Task DeleteCourse(Course course);
     Task<Course[]> GetCourses(bool includeModules = true);
     Task<Course?> FindCourseById(Guid courseId, bool includeModules = true);
 }
@@ -22,6 +23,12 @@ public class CoursesRepository : ICoursesRepository
     public async Task AddCourse(Course course)
     {
         context.Courses.Add(course);
+        await context.SaveChangesAsync();
+    }
+
+    public async Task DeleteCourse(Course course)
+    {
+        context.Courses.Remove(course);
         await context.SaveChangesAsync();
     }
 

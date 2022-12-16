@@ -6,6 +6,7 @@ namespace Education.Applications.Main.Model.Services;
 public interface IModulesService
 {
     Task AddModuleToCourse(Guid courseId, Module module);
+    Task<bool> TryDeleteModule(Guid courseId, Guid moduleId);
 }
 
 public class ModulesService : IModulesService
@@ -31,5 +32,23 @@ public class ModulesService : IModulesService
         var lastOrder = await modulesRepository.FindLastOrderByCourseId(courseId) ?? -1;
         module.Order = lastOrder + 1;
         await modulesRepository.AddModuleToCourse(module, course);
+    }
+
+    public async Task<bool> TryDeleteModule(Guid courseId, Guid moduleId)
+    {
+        var module = await modulesRepository.FindModule(moduleId);
+        if (module is null)
+        {
+            return false;
+        }
+
+        if (module.CourseId != courseId)
+        {
+            // TODO: кинуть кастомное исключение
+            return false;
+        }
+
+        await modulesRepository.DeleteModule(module);
+        return true;
     }
 }

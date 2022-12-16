@@ -6,6 +6,7 @@ using Education.DataBase.Entities;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Education.Applications.Main.WebApi.Controllers;
 
@@ -25,7 +26,7 @@ public class CoursesController : ControllerBase
     /// </summary>
     [HttpPost]
     [Authorize(Roles = Roles.Admin)]
-    [ProducesResponseType((int)HttpStatusCode.Created)]
+    [SwaggerResponse((int)HttpStatusCode.Created)]
     public async Task<ActionResult<CourseDto>> AddCourse([FromBody] PostCourseDto courseDto)
     {
         var courseEntity = courseDto.Adapt<Course>();
@@ -39,8 +40,8 @@ public class CoursesController : ControllerBase
     [HttpDelete]
     [Route("{courseId:guid}")]
     [Authorize(Roles = Roles.Admin)]
-    [ProducesResponseType((int)HttpStatusCode.NoContent)]
-    [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    [SwaggerResponse((int)HttpStatusCode.NoContent, "Курс успешно удалён")]
+    [SwaggerResponse((int)HttpStatusCode.NotFound, "Курс не найден")]
     public async Task<ActionResult> DeleteCourse(Guid courseId)
     {
         var result = await coursesService.TryDeleteCourse(courseId);
@@ -52,7 +53,7 @@ public class CoursesController : ControllerBase
     /// </summary>
     [HttpGet]
     [Authorize]
-    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [SwaggerResponse((int)HttpStatusCode.OK)]
     public async Task<ActionResult<CourseDto[]>> GetCourses()
     {
         var courses = await coursesService.GetCourses();

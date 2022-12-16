@@ -93,6 +93,7 @@ public abstract class StartupBase
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             configure.IncludeXmlComments(xmlPath);
             configure.ExampleFilters();
+            configure.EnableAnnotations();
         });
         services.AddSwaggerExamplesFromAssemblies(ExecutingAssembly);
         services.AddCors();

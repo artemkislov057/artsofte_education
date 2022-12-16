@@ -6,6 +6,7 @@ using Education.DataBase.Entities;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Education.Applications.Main.WebApi.Controllers;
 
@@ -25,7 +26,7 @@ public class ModulesController : ControllerBase
     /// </summary>
     [HttpPost]
     [Authorize(Roles = Roles.Admin)]
-    [ProducesResponseType((int)HttpStatusCode.Created)]
+    [SwaggerResponse((int)HttpStatusCode.Created)]
     public async Task<ActionResult> PostModule(Guid courseId, [FromBody] PostModuleDto moduleDto)
     {
         var moduleEntity = moduleDto.Adapt<Module>();
@@ -39,8 +40,8 @@ public class ModulesController : ControllerBase
     [HttpDelete]
     [Route("{moduleId:guid}")]
     [Authorize(Roles = Roles.Admin)]
-    [ProducesResponseType((int)HttpStatusCode.NoContent)]
-    [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    [SwaggerResponse((int)HttpStatusCode.NoContent, "Модуль успешно удалён")]
+    [SwaggerResponse((int)HttpStatusCode.NotFound, "Модуль не найден")]
     public async Task<ActionResult> DeleteModule(Guid courseId, Guid moduleId)
     {
         var result = await modulesService.TryDeleteModule(courseId, moduleId);

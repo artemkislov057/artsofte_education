@@ -3,6 +3,7 @@ using Education.Applications.Common.Constants;
 using Education.Applications.Main.WebApi.Dto.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Education.Applications.Main.WebApi.Controllers;
 
@@ -24,7 +25,7 @@ public class UsersController : ControllerBase
     /// Регистрация пользователя
     /// </summary>
     [HttpPost]
-    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [SwaggerResponse((int)HttpStatusCode.OK)]
     public async Task<ActionResult> PostUser([FromBody] PostUserDto userDto)
     {
         var user = new IdentityUser<Guid>(userDto.Name);
@@ -41,7 +42,7 @@ public class UsersController : ControllerBase
     /// </summary>
     [HttpPost]
     [Route("login")]
-    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [SwaggerResponse((int)HttpStatusCode.OK)]
     public async Task<ActionResult> Login([FromBody] PostUserDto user)
     {
         var result = await signInManager.PasswordSignInAsync(user.Name, user.Password, user.IsPersistent, false);

@@ -14,6 +14,7 @@ using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace Education.Applications.Main.WebApi.Controllers;
@@ -39,7 +40,7 @@ public class LessonsController : ControllerBase
     /// </summary>
     [HttpPost]
     [Authorize(Roles = Roles.Admin)]
-    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [SwaggerResponse((int)HttpStatusCode.OK)]
     [SwaggerRequestExample(typeof(PostLessonDto), typeof(PostLessonExample))]
     public async Task<ActionResult> PostLessonsToModule(Guid courseId, Guid moduleId,
         [FromBody] PostLessonDto[] lessons)
@@ -65,8 +66,8 @@ public class LessonsController : ControllerBase
     [HttpDelete]
     [Authorize(Roles = Roles.Admin)]
     [Route("{lessonId:int}")]
-    [ProducesResponseType((int)HttpStatusCode.NoContent)]
-    [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    [SwaggerResponse((int)HttpStatusCode.NoContent, "Урок успешно удалён")]
+    [SwaggerResponse((int)HttpStatusCode.NotFound, "Урок не найден")]
     public async Task<ActionResult> DeleteLesson(Guid courseId, Guid moduleId, int lessonId)
     {
         var result = await service.TryDeleteLesson(courseId, moduleId, lessonId);
@@ -78,7 +79,7 @@ public class LessonsController : ControllerBase
     /// </summary>
     [HttpGet]
     [Authorize]
-    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [SwaggerResponse((int)HttpStatusCode.OK)]
     [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(GetLessonExample))]
     public async Task<ActionResult<GetLessonDto[]>> GetLessonsFromModule(Guid courseId, Guid moduleId)
     {

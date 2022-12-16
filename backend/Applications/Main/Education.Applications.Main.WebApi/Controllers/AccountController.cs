@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Education.Applications.Main.WebApi.Controllers;
 
@@ -23,7 +24,7 @@ public class AccountController : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [Route("roles")]
-    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [SwaggerResponse((int)HttpStatusCode.OK)]
     public async Task<ActionResult<string[]>> GetAccountRoles()
     {
         var user = await userManager.GetUserAsync(User);
@@ -35,8 +36,8 @@ public class AccountController : ControllerBase
     /// Удалить аккаунт
     /// </summary>
     [HttpDelete]
-    [ProducesResponseType((int)HttpStatusCode.NoContent)]
-    [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    [SwaggerResponse((int)HttpStatusCode.NoContent, "Аккаунт успешно удалён")]
+    [SwaggerResponse((int)HttpStatusCode.NotFound, "Аккаунт не найден")]
     public async Task<ActionResult> DeleteAccount()
     {
         var user = await userManager.GetUserAsync(User);

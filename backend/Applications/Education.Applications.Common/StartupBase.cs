@@ -55,6 +55,7 @@ public abstract class StartupBase
             if (isDevelopment)
             {
                 configure.Cookie.SecurePolicy = CookieSecurePolicy.None;
+                configure.Cookie.SameSite = SameSiteMode.None;
             }
 
             configure.Events = new CookieAuthenticationEvents

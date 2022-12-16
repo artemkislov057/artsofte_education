@@ -48,16 +48,15 @@ public abstract class StartupBase
                 configure.Password.RequireDigit = false;
             })
             .AddEntityFrameworkStores<EducationDbContext>();
-        services.AddAuthentication()
-            .AddCookie(options =>
-            {
-                if (!isDevelopment) return;
-                options.Cookie.SameSite = SameSiteMode.None;
-                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            });
+        services.AddAuthentication();
         services.AddAuthorization();
         services.ConfigureApplicationCookie(configure =>
         {
+            if (isDevelopment)
+            {
+                configure.Cookie.SecurePolicy = CookieSecurePolicy.None;
+            }
+
             configure.Events = new CookieAuthenticationEvents
             {
                 OnRedirectToLogin = redirectContext =>

@@ -29,4 +29,10 @@ import { EditPresentationLessonPageComponent } from './pages/edit-presentation-l
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule { 
+  constructor() {
+    
+  }
+
+  
+}

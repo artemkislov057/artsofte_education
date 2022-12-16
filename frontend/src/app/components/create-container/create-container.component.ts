@@ -7,15 +7,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CreateContainerComponent implements OnInit {
   @Input() typeContainerName: 'курса' | 'модуля' = 'курса';
-  @Output() onClickCreate = new EventEmitter();
+  @Output() onClickCreate = new EventEmitter<string>();
+  inputValue = '';
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  create(): void {
-    this.onClickCreate.emit();
+  create(value: string): void {
+    this.onClickCreate.emit(value);
   }
 
 }

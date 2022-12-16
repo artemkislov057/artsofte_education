@@ -4,8 +4,8 @@ namespace Education.Applications.Main.WebApi;
 
 public sealed class Startup : Common.StartupBase
 {
-    public Startup(IConfiguration configuration)
-        : base(configuration)
+    public Startup(IConfiguration configuration, IWebHostEnvironment env)
+        : base(configuration, env)
     {
     }
 

@@ -19,18 +19,21 @@ namespace Education.Applications.Common;
 
 public abstract class StartupBase
 {
+    private readonly IWebHostEnvironment environment;
     private readonly AppSettingsBase appSettings;
     protected virtual PathString ApiBase => new("/api");
     protected abstract Assembly ExecutingAssembly { get; }
     private const string StartProjectsName = "Education";
 
-    protected StartupBase(IConfiguration configuration)
+    protected StartupBase(IConfiguration configuration, IWebHostEnvironment env)
     {
+        environment = env;
         appSettings = configuration.Get<AppSettingsBase>();
     }
 
     public void ConfigureServices(IServiceCollection services)
     {
+        var isDevelopment = environment.IsDevelopment();
         var dbContext = new EducationDbContext(new DbContextOptionsBuilder<EducationDbContext>()
             .UseSqlServer(appSettings.ConnectionStrings.EducationDb).Options);
         dbContext.Database.Migrate();
@@ -45,7 +48,13 @@ public abstract class StartupBase
                 configure.Password.RequireDigit = false;
             })
             .AddEntityFrameworkStores<EducationDbContext>();
-        services.AddAuthentication();
+        services.AddAuthentication()
+            .AddCookie(options =>
+            {
+                if (!isDevelopment) return;
+                options.Cookie.SameSite = SameSiteMode.None;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            });
         services.AddAuthorization();
         services.ConfigureApplicationCookie(configure =>
         {

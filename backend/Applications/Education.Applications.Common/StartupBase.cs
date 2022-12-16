@@ -55,8 +55,8 @@ public abstract class StartupBase
             if (isDevelopment)
             {
                 configure.Cookie.HttpOnly = true;
-                configure.Cookie.SecurePolicy = CookieSecurePolicy.None;
-                configure.Cookie.SameSite = SameSiteMode.Lax;
+                configure.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                configure.Cookie.SameSite = SameSiteMode.None;
             }
 
             configure.Events = new CookieAuthenticationEvents

@@ -1,6 +1,8 @@
-﻿namespace Education.DataBase.Entities;
+﻿using Education.DataBase.Interfaces;
 
-public class Course
+namespace Education.DataBase.Entities;
+
+public class Course : IEntity<Guid>
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = null!;

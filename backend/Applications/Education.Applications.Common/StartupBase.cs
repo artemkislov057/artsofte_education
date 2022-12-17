@@ -31,7 +31,7 @@ public abstract class StartupBase
         appSettings = configuration.Get<AppSettingsBase>();
     }
 
-    public void ConfigureServices(IServiceCollection services)
+    public virtual void ConfigureServices(IServiceCollection services)
     {
         var isDevelopment = environment.IsDevelopment();
         var dbContext = new EducationDbContext(new DbContextOptionsBuilder<EducationDbContext>()

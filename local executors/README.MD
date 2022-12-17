@@ -28,3 +28,5 @@ https://learn.microsoft.com/ru-ru/sql/database-engine/configure-windows/sql-serv
 webApi.local.run.bat нужен для локального запуска сервера со всеми нужными для фронтенда запросами
 
 adminWebApi.local.run.bat нужен для управления ролями и другими операциями с базой данных (например, там можно выдать пользователю права на админку, то есть добавлять, изменять, удалять курсы).
+
+fileLoaderApi.local.run.bat нужен для загрузки файлов на сервер

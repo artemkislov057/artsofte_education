@@ -2,6 +2,7 @@
 using LightInject.Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace Education.Applications.Common;
 
@@ -12,6 +13,14 @@ public static class EntryPointBase<TStartup> where TStartup : StartupBase
         LoadReferencesProjects(executingAssembly);
 
         WebHost.CreateDefaultBuilder<TStartup>(args)
+            .ConfigureAppConfiguration(app =>
+            {
+                const string localSettings = "localsettings.json";
+                if (File.Exists(localSettings))
+                {
+                    app.AddJsonFile(localSettings);
+                }
+            })
             .UseLightInject()
             .Build()
             .Run();

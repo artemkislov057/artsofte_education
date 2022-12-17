@@ -20,6 +20,7 @@ public class EducationDbContext : IdentityDbContext<IdentityUser<Guid>, Identity
     public DbSet<VideoLesson> VideoLessons { get; set; }
     public DbSet<PresentationLesson> PresentationLessons { get; set; }
     public DbSet<LiteratureLesson> LiteratureLessons { get; set; }
+    public DbSet<TextLesson> TextLessons { get; set; }
     public DbSet<PresentationSlide> PresentationSlides { get; set; }
     public DbSet<LiteraturePurchaseLink> LiteraturePurchaseLinks { get; set; }
     public DbSet<LoadedFile> LoadedFiles { get; set; }

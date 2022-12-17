@@ -1,6 +1,7 @@
 ﻿using Education.Applications.Main.WebApi.Dto.Lessons;
 using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Literature;
 using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Presentation;
+using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Text;
 using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Video;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -51,5 +52,13 @@ public class PutLessonExample : IMultipleExamplesProvider<PostPutLessonDto>
                     }
                 })
         );
+
+        yield return SwaggerExample.Create("Text",
+            new PostPutLessonDto("Text Lesson",
+                LessonTypeDto.Text,
+                new TextLessonContentDto
+                {
+                    Value = "Lesson about something..."
+                }));
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Education.Applications.Main.WebApi.Dto.Lessons;
 using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Literature;
 using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Presentation;
+using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Text;
 using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Video;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -52,6 +53,16 @@ public class PostLessonExample : IMultipleExamplesProvider<PostPutLessonDto[]>
                         new LiteratureElementDto("book2", "description2", "https://example.com/images/image2",
                             new[] { "https://example.com/books/2/link1", "https://example.com/books/2/link2" })
                     }
+                })
+        });
+
+        yield return SwaggerExample.Create("Text", new[]
+        {
+            new PostPutLessonDto("Text Lesson",
+                LessonTypeDto.Text,
+                new TextLessonContentDto
+                {
+                    Value = "Lesson about something..."
                 })
         });
     }

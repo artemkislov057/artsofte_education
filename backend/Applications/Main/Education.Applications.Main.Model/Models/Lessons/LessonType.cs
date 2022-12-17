@@ -2,8 +2,8 @@
 
 public enum LessonType
 {
-    Video = 0,
-    Presentation = 1,
-    // Text = 2,
-    Literature = 3
+    Video = 1,
+    Presentation = 2,
+    Literature = 3,
+    Text = 4
 }

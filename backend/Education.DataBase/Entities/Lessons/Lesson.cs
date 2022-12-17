@@ -16,4 +16,5 @@ public class Lesson : IOrderEntity<int>
     public VideoLesson? VideoLesson { get; set; }
     public PresentationLesson? PresentationLesson { get; set; }
     public LiteratureLesson? LiteratureLesson { get; set; }
+    public TextLesson? TextLesson { get; set; }
 }

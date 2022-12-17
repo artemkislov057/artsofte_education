@@ -8,20 +8,20 @@ public enum LessonTypeDto
     /// <summary>
     /// Видео
     /// </summary>
-    Video = 0,
+    Video = 1,
 
     /// <summary>
     /// Презентация
     /// </summary>
-    Presentation = 1,
-
-    /// <summary>
-    /// Текст
-    /// </summary>
-    Text = 2,
+    Presentation = 2,
 
     /// <summary>
     /// Список литературы
     /// </summary>
-    Literature = 3
+    Literature = 3,
+
+    /// <summary>
+    /// Текст
+    /// </summary>
+    Text = 4
 }

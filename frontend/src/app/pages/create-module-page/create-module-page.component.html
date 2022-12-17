@@ -1,3 +1,6 @@
 <div class="main">
-    <app-create-container [typeContainerName]="'модуля'" (onClickCreate)="onClickCreate()"></app-create-container>
+    <app-create-container 
+        [typeContainerName]="'модуля'" 
+        (onClickCreate)="onClickCreate($event)"
+    ></app-create-container>
 </div>

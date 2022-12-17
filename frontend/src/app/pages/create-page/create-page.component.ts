@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppService } from 'src/app/app.service';
 import { CourseType } from 'src/typings/api/courseType';
 
 @Component({
@@ -8,10 +9,8 @@ import { CourseType } from 'src/typings/api/courseType';
   styleUrls: ['./create-page.component.scss']
 })
 export class CreatePageComponent implements OnInit {
-  courseId: string = '';
-  moduleId: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private appService: AppService) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +28,7 @@ export class CreatePageComponent implements OnInit {
       },
     })
     const data = await response.json() as CourseType;
-    console.log(data)
+    this.appService.setCurrentCourseId(data.id);
   }
 
   async onClickCreate(name: string) {

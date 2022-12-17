@@ -2,10 +2,10 @@
     <div class="title">Создание нового {{typeContainerName}}</div>
     <div class="nameContainer">
         <div class="nameTitle">Введите название {{typeContainerName}}</div>
-        <input class="nameItem"/>
+        <input class="nameItem" [(ngModel)]="inputValue"/>
     </div>
     <div class="buttons">
         <button class="cancelButton">Отменить</button>
-        <button class="createButton" (click)="create()">Создать {{typeContainerName === 'курса' ? 'курс' : 'модуль'}}</button>
+        <button class="createButton" (click)="create(inputValue)">Создать {{typeContainerName === 'курса' ? 'курс' : 'модуль'}}</button>
     </div>
 </div>

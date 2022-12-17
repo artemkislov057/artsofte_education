@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { LessonType } from 'typings/lessonType';
+import { LessonType } from 'src/typings/lessonType';
 
 const typeData: {[key in LessonType]: {
   title: string;

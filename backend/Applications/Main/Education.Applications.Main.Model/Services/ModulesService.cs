@@ -13,6 +13,7 @@ public interface IModulesService
     Task<bool> TryDeleteModule(Guid courseId, Guid moduleId);
     Task EditModel(Guid courseId, Guid moduleId, AddOrEditModuleModel moduleModel);
     Task ChangeOrder(Guid courseId, Guid[] orderIds);
+    Task<ModuleModel[]> GetModules(Guid courseId);
 }
 
 public class ModulesService : IModulesService
@@ -84,5 +85,11 @@ public class ModulesService : IModulesService
         var modules = await modulesRepository.GetModulesFromCourse(courseId);
         modules.ChangeOrder(orderIds);
         await modulesRepository.EditModules(modules);
+    }
+
+    public async Task<ModuleModel[]> GetModules(Guid courseId)
+    {
+        var modulesEntity = await modulesRepository.GetModulesFromCourse(courseId, true);
+        return modulesEntity.Adapt<ModuleModel[]>();
     }
 }

@@ -24,7 +24,6 @@ public class AccountController : ControllerBase
     /// <summary>
     /// Получить доступные роли пользователя
     /// </summary>
-    /// <returns></returns>
     [HttpGet]
     [Route("roles")]
     [SwaggerResponse((int)HttpStatusCode.OK)]

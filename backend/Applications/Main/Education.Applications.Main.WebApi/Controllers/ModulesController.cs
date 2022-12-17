@@ -28,11 +28,24 @@ public class ModulesController : ControllerBase
     [HttpPost]
     [Authorize(Roles = Roles.Admin)]
     [SwaggerResponse((int)HttpStatusCode.Created)]
-    public async Task<ActionResult> PostModule(Guid courseId, [FromBody] PostPutModuleDto moduleDto)
+    public async Task<ActionResult<ModuleDto>> PostModule(Guid courseId, [FromBody] PostPutModuleDto moduleDto)
     {
         var moduleModel = moduleDto.Adapt<AddOrEditCourseModel>();
         var result = await modulesService.AddModuleToCourse(courseId, moduleModel);
         return Created($"api/courses/{courseId}/modules/{result.Id}", result.Adapt<ModuleDto>());
+    }
+
+    /// <summary>
+    /// Получить модули курса
+    /// </summary>
+    [HttpGet]
+    [Authorize]
+    [SwaggerResponse((int)HttpStatusCode.OK)]
+    public async Task<ActionResult<ModuleDto[]>> GetModules(Guid courseId)
+    {
+        var modules = await modulesService.GetModules(courseId);
+        var result = modules.Adapt<ModuleDto[]>();
+        return Ok(result);
     }
 
     /// <summary>

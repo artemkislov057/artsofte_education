@@ -42,13 +42,13 @@ public class UsersController : ControllerBase
     /// </summary>
     [HttpPost]
     [Route("login")]
-    [SwaggerResponse((int)HttpStatusCode.OK)]
+    [SwaggerResponse((int)HttpStatusCode.NoContent)]
     public async Task<ActionResult> Login([FromBody] PostUserDto user)
     {
         var result = await signInManager.PasswordSignInAsync(user.Name, user.Password, user.IsPersistent, false);
         if (result.Succeeded)
         {
-            return Ok();
+            return NoContent();
         }
 
         return BadRequest();

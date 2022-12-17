@@ -1,4 +1,5 @@
 ﻿using Education.DataBase.Enums.Lessons;
+using Education.DataBase.Enums.Lessons.Video;
 
 namespace Education.DataBase.Entities.Lessons;
 

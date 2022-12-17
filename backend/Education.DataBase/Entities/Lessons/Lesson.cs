@@ -17,4 +17,5 @@ public class Lesson : IOrderEntity<int>
     public PresentationLesson? PresentationLesson { get; set; }
     public LiteratureLesson? LiteratureLesson { get; set; }
     public TextLesson? TextLesson { get; set; }
+    public TestLesson? TestLesson { get; set; }
 }

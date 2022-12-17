@@ -1,4 +1,4 @@
-﻿namespace Education.DataBase.Enums.Lessons;
+﻿namespace Education.DataBase.Enums.Lessons.Video;
 
 public enum VideoType
 {

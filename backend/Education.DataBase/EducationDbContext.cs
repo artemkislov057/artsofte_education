@@ -21,8 +21,11 @@ public class EducationDbContext : IdentityDbContext<IdentityUser<Guid>, Identity
     public DbSet<PresentationLesson> PresentationLessons { get; set; }
     public DbSet<LiteratureLesson> LiteratureLessons { get; set; }
     public DbSet<TextLesson> TextLessons { get; set; }
+    public DbSet<TestLesson> TestLessons { get; set; }
     public DbSet<PresentationSlide> PresentationSlides { get; set; }
     public DbSet<LiteraturePurchaseLink> LiteraturePurchaseLinks { get; set; }
+    public DbSet<TestQuestion> TestQuestions { get; set; }
+    public DbSet<QuestionAnswerOption> QuestionAnswerOptions { get; set; }
     public DbSet<LoadedFile> LoadedFiles { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)

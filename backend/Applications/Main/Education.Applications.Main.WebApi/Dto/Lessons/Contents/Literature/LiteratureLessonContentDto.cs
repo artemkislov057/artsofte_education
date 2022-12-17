@@ -10,7 +10,7 @@ namespace Education.Applications.Main.WebApi.Dto.Lessons.Contents.Literature;
 public class LiteratureLessonContentDto : LessonContentBaseDto
 {
     public override Type GetModelLessonContentType() => typeof(LiteratureLessonModel);
-    
+
     /// <summary>
     /// Массив книг
     /// </summary>

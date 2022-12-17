@@ -23,5 +23,10 @@ public enum LessonTypeDto
     /// <summary>
     /// Текст
     /// </summary>
-    Text = 4
+    Text = 4,
+
+    /// <summary>
+    /// Тест
+    /// </summary>
+    Test = 5
 }

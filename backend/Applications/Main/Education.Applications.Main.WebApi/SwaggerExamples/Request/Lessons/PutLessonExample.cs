@@ -1,6 +1,7 @@
 ﻿using Education.Applications.Main.WebApi.Dto.Lessons;
 using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Literature;
 using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Presentation;
+using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Test;
 using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Text;
 using Education.Applications.Main.WebApi.Dto.Lessons.Contents.Video;
 using Swashbuckle.AspNetCore.Filters;
@@ -59,6 +60,37 @@ public class PutLessonExample : IMultipleExamplesProvider<PostPutLessonDto>
                 new TextLessonContentDto
                 {
                     Value = "Lesson about something..."
+                }));
+
+        yield return SwaggerExample.Create("Test",
+            new PostPutLessonDto("Test Lesson",
+                LessonTypeDto.Test,
+                new TestLessonContentDto
+                {
+                    Questions = new[]
+                    {
+                        new TestQuestionDto(
+                            "Question with one answer",
+                            QuestionTypeDto.RadioButton,
+                            new[]
+                            {
+                                new QuestionAnswerOptionDto("Incorrect answer 1", false),
+                                new QuestionAnswerOptionDto("Correct answer", true),
+                                new QuestionAnswerOptionDto("Incorrect answer 2", false)
+                            }
+                        ),
+                        new TestQuestionDto(
+                            "Multiple Choice Question",
+                            QuestionTypeDto.Checkboxes,
+                            new[]
+                            {
+                                new QuestionAnswerOptionDto("Incorrect answer 1", false),
+                                new QuestionAnswerOptionDto("Correct answer 1", true),
+                                new QuestionAnswerOptionDto("Incorrect answer 2", false),
+                                new QuestionAnswerOptionDto("Correct answer 2", true)
+                            }
+                        )
+                    }
                 }));
     }
 }

@@ -1,5 +1,9 @@
 <div class="main">
-    <app-course-menu class="menu"></app-course-menu>
+    <app-course-menu 
+        class="menu"
+        [menuItems]="menuItems"
+        (createModule)="createModule()"
+    ></app-course-menu>
     <div class="content">
         <app-top-toolar-container class="toolbar"></app-top-toolar-container>
         

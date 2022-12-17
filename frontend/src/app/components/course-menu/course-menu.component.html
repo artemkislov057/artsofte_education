@@ -4,29 +4,12 @@
         <div class="titleCourse">Курс по JavaScript</div>
     </div>
     <div class="moduleContainer">
-        <div class="wrapper">
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
-            <app-module-item></app-module-item>
+        <div class="wrapper" *ngFor="let item of menuItems">
+            <app-module-item [title]="item.name"></app-module-item>
         </div>
     </div>
     <div class="button">
-        <button class="addModuleButton">Добавить модуль</button>
+        <button class="addModuleButton" (click)="onClickCreateModule()">Добавить модуль</button>
     </div>
 </div>
 

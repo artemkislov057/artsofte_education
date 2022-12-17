@@ -114,6 +114,22 @@ public class LessonsController : ControllerBase
         return Ok(result.ToArray());
     }
 
+    /// <summary>
+    /// Изменить порядок уроков в модуле
+    /// </summary>
+    /// <param name="courseId">Идентификатор курса</param>
+    /// <param name="moduleId">Идентификатор модуля</param>
+    /// <param name="orders">Массив идентификаторов уроков в нужном порядке (обязательно должны быть все идентификаторы)</param>
+    [HttpPost]
+    [Route("change-order")]
+    [Authorize(Roles = Roles.Admin)]
+    [SwaggerResponse((int)HttpStatusCode.NoContent)]
+    public async Task<ActionResult> ChangeOrder(Guid courseId, Guid moduleId, [FromBody] int[] orders)
+    {
+        await service.ChangeOrder(courseId, moduleId, orders);
+        return NoContent();
+    }
+
     private static Type GetLessonContentType(LessonTypeDto lessonTypeDto) =>
         LessonContentDtoTypes.GetOrAdd(lessonTypeDto, typeDto => Assembly.GetExecutingAssembly().GetTypes()
             .Single(t => t.GetCustomAttribute<LessonDtoTypeAttribute>()?.LessonType == typeDto));

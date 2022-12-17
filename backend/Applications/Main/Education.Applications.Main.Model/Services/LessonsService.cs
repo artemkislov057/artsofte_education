@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
+using Education.Applications.Main.Model.Extensions;
 using Education.Applications.Main.Model.Models.Lessons;
 using Education.DataBase.Entities.Lessons;
 using Education.DataBase.Extensions;
@@ -14,6 +15,7 @@ public interface ILessonsService
     Task<LessonContent[]> GetLessons(Guid courseId, Guid moduleId);
     Task<bool> TryDeleteLesson(Guid courseId, Guid moduleId, int lessonId);
     Task EditLesson(Guid courseId, Guid moduleId, int lessonId, LessonContent lessonModel);
+    Task ChangeOrder(Guid courseId, Guid moduleId, int[] orderIds);
 }
 
 public class LessonsService : ILessonsService
@@ -130,6 +132,19 @@ public class LessonsService : ILessonsService
             lessonModel.Adapt(currentLessonDetails, lessonModel.GetType(), lessonModel.EntityType);
             await lessonsRepository.EditLessonDetails(currentLessonDetails);
         }
+    }
+
+    public async Task ChangeOrder(Guid courseId, Guid moduleId, int[] orderIds)
+    {
+        if (!await modulesRepository.IsExistsModuleByIdAndCourseId(moduleId, courseId))
+        {
+            // TODO: кинуть кастомное исключение
+            return;
+        }
+
+        var lessons = await lessonsRepository.GetLessons(moduleId);
+        lessons.ChangeOrder(orderIds);
+        await lessonsRepository.EditLessons(lessons);
     }
 
     private static LessonDetailsBase MapLessonDetailsEntityFromModel(LessonContent lessonContent)

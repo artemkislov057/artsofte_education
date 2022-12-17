@@ -16,5 +16,4 @@ export class StartPageComponent implements OnInit {
   onClickCourse(): void {
     this.router.navigateByUrl('/course-content');
   }
-
 }

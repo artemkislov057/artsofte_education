@@ -10,6 +10,7 @@ import { CreatePageModule } from './pages/modules/create-page-module/create-page
 import { CourseContentPageModule } from './pages/course-content-page/course-content-page.module';
 import { EditCoursePageModule } from './pages/edit-course-page/edit-course-page.module';
 import { EditPresentationLessonPageComponent } from './pages/edit-presentation-lesson-page/edit-presentation-lesson-page.component';
+import { AppService } from './app.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,13 @@ import { EditPresentationLessonPageComponent } from './pages/edit-presentation-l
     CourseContentPageModule,
     EditCoursePageModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule { 
+  constructor() {
+    
+  }
+
+  
+}

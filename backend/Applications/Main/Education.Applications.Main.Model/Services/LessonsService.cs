@@ -60,17 +60,7 @@ public class LessonsService : ILessonsService
         }
 
         var entityLessons = await lessonsRepository.GetLessons(moduleId);
-        var models = entityLessons.Select(el =>
-        {
-            var entityLessonDetails = el.GetLessonDetails();
-            var entityLessonDetailsType = entityLessonDetails.GetType();
-            var lessonContentType = GetLessonContentTypeByEntity(entityLessonDetailsType);
-            var lessonContentModel =
-                (LessonContent)entityLessonDetails.Adapt(entityLessonDetailsType, lessonContentType)!;
-            lessonContentModel.Id = el.Id;
-            lessonContentModel.Name = el.Name;
-            return lessonContentModel;
-        });
+        var models = entityLessons.Select(MapLessonContentFromEntity);
         return models.ToArray();
     }
 
@@ -145,6 +135,17 @@ public class LessonsService : ILessonsService
         var lessons = await lessonsRepository.GetLessons(moduleId);
         lessons.ChangeOrder(orderIds);
         await lessonsRepository.EditLessons(lessons);
+    }
+
+    public static LessonContent MapLessonContentFromEntity(Lesson entityLesson)
+    {
+        var entityLessonDetails = entityLesson.GetLessonDetails();
+        var entityLessonDetailsType = entityLessonDetails.GetType();
+        var lessonContentType = GetLessonContentTypeByEntity(entityLessonDetailsType);
+        var lessonContentModel = (LessonContent)entityLessonDetails.Adapt(entityLessonDetailsType, lessonContentType)!;
+        lessonContentModel.Id = entityLesson.Id;
+        lessonContentModel.Name = entityLesson.Name;
+        return lessonContentModel;
     }
 
     private static LessonDetailsBase MapLessonDetailsEntityFromModel(LessonContent lessonContent)

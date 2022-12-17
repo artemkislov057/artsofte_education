@@ -1,9 +1,26 @@
-﻿namespace Education.Applications.Main.WebApi.Dto.Modules;
+﻿using Education.Applications.Main.WebApi.Dto.Lessons;
+
+namespace Education.Applications.Main.WebApi.Dto.Modules;
 
 /// <summary>
 /// Модель модуля
 /// </summary>
-/// <param name="Id">Идентификатор модуля</param>
-/// <param name="Name">Название модуля</param>
-/// <param name="Description">Описание модуля</param>
-public record ModuleDto(Guid Id, string Name, string Description);
+public class ModuleDto
+{
+    /// <summary>
+    /// Идентификатор модуля
+    /// </summary>
+    public Guid Id { get; init; }
+
+    /// <summary>
+    /// Название модуля
+    /// </summary>
+    public string Name { get; init; }
+
+    /// <summary>
+    /// Описание модуля
+    /// </summary>
+    public string Description { get; init; }
+
+    public GetLessonDto[]? Lessons { get; set; }
+}

@@ -104,13 +104,7 @@ public class LessonsController : ControllerBase
     public async Task<ActionResult<GetLessonDto[]>> GetLessonsFromModule(Guid courseId, Guid moduleId)
     {
         var lessons = await service.GetLessons(courseId, moduleId);
-        var result = lessons.Select(w =>
-        {
-            var modelType = w.GetType();
-            var dtoType = GetDtoTypeFromModel(modelType);
-            var dto = (LessonContentBaseDto)w.Adapt(modelType, dtoType)!;
-            return new GetLessonDto(w.Id, w.Name, GetLessonTypeDto(dto), dto);
-        });
+        var result = lessons.Select(MapGetLessonDtoFromModel);
         return Ok(result.ToArray());
     }
 
@@ -128,6 +122,14 @@ public class LessonsController : ControllerBase
     {
         await service.ChangeOrder(courseId, moduleId, orders);
         return NoContent();
+    }
+
+    public static GetLessonDto MapGetLessonDtoFromModel(LessonContent w)
+    {
+        var modelType = w.GetType();
+        var dtoType = GetDtoTypeFromModel(modelType);
+        var dto = (LessonContentBaseDto)w.Adapt(modelType, dtoType)!;
+        return new GetLessonDto(w.Id, w.Name, GetLessonTypeDto(dto), dto);
     }
 
     private static Type GetLessonContentType(LessonTypeDto lessonTypeDto) =>

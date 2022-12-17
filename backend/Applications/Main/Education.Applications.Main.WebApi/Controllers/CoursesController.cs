@@ -77,4 +77,30 @@ public class CoursesController : ControllerBase
         var courses = await coursesService.GetCourses();
         return Ok(courses.Adapt<CourseDto[]>());
     }
+
+    /// <summary>
+    /// Получить курс по его идентификатору
+    /// </summary>
+    [HttpGet]
+    [Authorize]
+    [Route("{courseId:guid}")]
+    [SwaggerResponse((int)HttpStatusCode.OK)]
+    public async Task<ActionResult<CourseDto>> GetCourse(Guid courseId)
+    {
+        var course = await coursesService.FindCourse(courseId);
+        if (course is null)
+        {
+            return NotFound();
+        }
+
+        var result = course.Adapt<CourseDto>();
+        for (var i = 0; i < course.Modules.Length; ++i)
+        {
+            var moduleDto = result.Modules[i];
+            var moduleModel = course.Modules[i];
+            moduleDto.Lessons = moduleModel.Lessons.Select(LessonsController.MapGetLessonDtoFromModel).ToArray();
+        }
+
+        return Ok(result);
+    }
 }

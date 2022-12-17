@@ -11,6 +11,7 @@ public interface ICoursesService
     Task<bool> TryDeleteCourse(Guid courseId);
     Task<CourseModel[]> GetCourses();
     Task EditCourse(Guid courseId, AddOrEditCourseModel courseModel);
+    Task<CourseModel?> FindCourse(Guid courseId);
 }
 
 public class CoursesService : ICoursesService
@@ -58,5 +59,25 @@ public class CoursesService : ICoursesService
 
         courseModel.Adapt(courseEntity);
         await coursesRepository.EditCourse(courseEntity);
+    }
+
+    public async Task<CourseModel?> FindCourse(Guid courseId)
+    {
+        var courseEntity = await coursesRepository.FindCourse(courseId);
+        if (courseEntity is null)
+        {
+            return null;
+        }
+
+        var model = courseEntity.Adapt<CourseModel>();
+        var modulesEntityArray = courseEntity.Modules!.ToArray();
+        for (var i = 0; i < modulesEntityArray.Length; i++)
+        {
+            var moduleModel = model.Modules[i];
+            var moduleEntity = modulesEntityArray[i];
+            moduleModel.Lessons = moduleEntity.Lessons!.Select(LessonsService.MapLessonContentFromEntity).ToArray();
+        }
+
+        return model;
     }
 }

@@ -4,5 +4,5 @@ public abstract class LessonContent
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public abstract Type EntityType { get; }
+    public virtual Type EntityType { get; }
 }

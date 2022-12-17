@@ -1,4 +1,5 @@
 ﻿using Education.DataBase.Entities;
+using Education.DataBase.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Education.DataBase.Repositories;
@@ -10,6 +11,7 @@ public interface ICoursesRepository
     Task<Course[]> GetCourses(bool includeModules = true);
     Task<Course?> FindCourseById(Guid courseId, bool includeModules = true);
     Task EditCourse(Course course);
+    Task<Course?> FindCourse(Guid courseId, bool includeModulesWithLessons = true);
 }
 
 public class CoursesRepository : ICoursesRepository
@@ -44,6 +46,17 @@ public class CoursesRepository : ICoursesRepository
     public async Task EditCourse(Course course)
     {
         await context.SaveChangesAsync();
+    }
+
+    public async Task<Course?> FindCourse(Guid courseId, bool includeModulesWithLessons = true)
+    {
+        var query = context.Courses.AsQueryable();
+        if (includeModulesWithLessons)
+        {
+            query = query.IncludeModulesWithLessonDetails();
+        }
+
+        return await query.SingleOrDefaultAsync(c => c.Id == courseId);
     }
 
     private IQueryable<Course> GetCoursesQuery(bool includeModules)

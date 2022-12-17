@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppService } from 'src/app/app.service';
+import { Module } from 'src/typings/api/courseType';
 
 @Component({
   selector: 'app-create-module-page',
@@ -8,13 +10,33 @@ import { Router } from '@angular/router';
 })
 export class CreateModulePageComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private appService: AppService) {  }
 
   ngOnInit(): void {
+    
   }
 
-  onClickCreate(): void {
-    this.router.navigateByUrl('/edit-course/select-lesson-type');
+  async createModule(moduleName: string) {
+    const courseId = this.appService.getCurrentCourseId();
+    const response = await fetch(`https://localhost:5001/api/courses/${courseId}/modules`, {
+      method: "POST",
+      body: JSON.stringify({
+        "name": moduleName,
+        "description": "why?"
+      }),
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    const data = await response.json() as Module;
+    this.appService.setcurrentModuleId(data.id);
   }
 
+  async onClickCreate(name: string) {
+    if(name) {
+      await this.createModule(name);
+      this.router.navigateByUrl('/edit-course/select-lesson-type');
+    }
+  }
 }

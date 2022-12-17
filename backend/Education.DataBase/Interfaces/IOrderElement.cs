@@ -2,5 +2,5 @@
 
 public interface IOrderElement
 {
-    public int Order { get; set; }
+    int Order { get; set; }
 }

@@ -3,7 +3,7 @@ using Education.DataBase.Interfaces;
 
 namespace Education.DataBase.Entities.Lessons;
 
-public class Lesson : IOrderElement
+public class Lesson : IOrderEntity<int>
 {
     public int Id { get; set; }
     public int Order { get; set; }

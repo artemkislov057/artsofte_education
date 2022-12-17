@@ -82,6 +82,7 @@ public class LessonsController : ControllerBase
     [Route("{lessonId:int}")]
     [SwaggerResponse((int)HttpStatusCode.NoContent, "Урок успешно отредактирован")]
     [SwaggerResponse((int)HttpStatusCode.NotFound, "Урок не найден")]
+    [SwaggerRequestExample(typeof(PostPutLessonDto), typeof(PutLessonExample))]
     public async Task<ActionResult> EditLesson(Guid courseId, Guid moduleId, int lessonId, [FromBody] PostPutLessonDto dto)
     {
         var lessonContentJson = (JsonElement)dto.Value;
@@ -111,6 +112,22 @@ public class LessonsController : ControllerBase
             return new GetLessonDto(w.Id, w.Name, GetLessonTypeDto(dto), dto);
         });
         return Ok(result.ToArray());
+    }
+
+    /// <summary>
+    /// Изменить порядок уроков в модуле
+    /// </summary>
+    /// <param name="courseId">Идентификатор курса</param>
+    /// <param name="moduleId">Идентификатор модуля</param>
+    /// <param name="orders">Массив идентификаторов уроков в нужном порядке (обязательно должны быть все идентификаторы)</param>
+    [HttpPost]
+    [Route("change-order")]
+    [Authorize(Roles = Roles.Admin)]
+    [SwaggerResponse((int)HttpStatusCode.NoContent)]
+    public async Task<ActionResult> ChangeOrder(Guid courseId, Guid moduleId, [FromBody] int[] orders)
+    {
+        await service.ChangeOrder(courseId, moduleId, orders);
+        return NoContent();
     }
 
     private static Type GetLessonContentType(LessonTypeDto lessonTypeDto) =>

@@ -12,10 +12,13 @@ namespace Education.Applications.Main.WebApi.Controllers;
 public class AccountController : ControllerBase
 {
     private readonly UserManager<IdentityUser<Guid>> userManager;
+    private readonly SignInManager<IdentityUser<Guid>> signInManager;
 
-    public AccountController(UserManager<IdentityUser<Guid>> userManager)
+    public AccountController(UserManager<IdentityUser<Guid>> userManager,
+        SignInManager<IdentityUser<Guid>> signInManager)
     {
         this.userManager = userManager;
+        this.signInManager = signInManager;
     }
 
     /// <summary>
@@ -30,6 +33,18 @@ public class AccountController : ControllerBase
         var user = await userManager.GetUserAsync(User);
         var roles = await userManager.GetRolesAsync(user);
         return Ok(roles);
+    }
+
+    /// <summary>
+    /// Выйти из аккаунта (удалить куки)
+    /// </summary>
+    [HttpPost]
+    [Route("logout")]
+    [SwaggerResponse((int)HttpStatusCode.NoContent)]
+    public async Task<ActionResult> Logout()
+    {
+        await signInManager.SignOutAsync();
+        return NoContent();
     }
 
     /// <summary>

@@ -9,7 +9,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Education.Applications.Common\Education.Applications.Common.csproj" />
+        <ProjectReference Include="..\..\Education.Applications.Common\Education.Applications.Common.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.6"/>
     </ItemGroup>
 
 </Project>

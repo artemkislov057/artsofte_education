@@ -13,6 +13,7 @@ public interface ILessonsRepository
     Task DeleteLesson(Lesson lesson);
     Task ChangeLessonDetails(Lesson lesson, LessonDetailsBase oldLessonDetails, LessonDetailsBase newLessonDetails);
     Task EditLessonDetails(LessonDetailsBase lessonDetails);
+    Task EditLessons(Lesson[] lessons);
 }
 
 public class LessonsRepository : ILessonsRepository
@@ -84,6 +85,11 @@ public class LessonsRepository : ILessonsRepository
     }
 
     public async Task EditLessonDetails(LessonDetailsBase lessonDetails)
+    {
+        await context.SaveChangesAsync();
+    }
+
+    public async Task EditLessons(Lesson[] lessons)
     {
         await context.SaveChangesAsync();
     }

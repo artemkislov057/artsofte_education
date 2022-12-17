@@ -6,12 +6,14 @@ namespace Education.DataBase.Repositories;
 
 public interface IModulesRepository
 {
+    Task<Module[]> GetModulesFromCourse(Guid courseId, bool withOrdering = false);
     Task AddModuleToCourse(Module module, Course course);
     Task<int?> FindLastOrderByCourseId(Guid courseId);
     Task<bool> IsExistsModuleByIdAndCourseId(Guid moduleId, Guid courseId);
     Task<Module?> FindModule(Guid moduleId);
     Task DeleteModule(Module module);
     Task EditModule(Module module);
+    Task EditModules(Module[] modules);
 }
 
 public class ModulesRepository : IModulesRepository
@@ -21,6 +23,18 @@ public class ModulesRepository : IModulesRepository
     public ModulesRepository(EducationDbContext context)
     {
         this.context = context;
+    }
+
+    public Task<Module[]> GetModulesFromCourse(Guid courseId, bool withOrdering = false)
+    {
+        var query = context.Modules.Where(m => m.CourseId == courseId);
+
+        if (withOrdering)
+        {
+            query = query.OrderBy(m => m.Order);
+        }
+
+        return query.ToArrayAsync();
     }
 
     public async Task AddModuleToCourse(Module module, Course course)
@@ -50,6 +64,11 @@ public class ModulesRepository : IModulesRepository
     }
 
     public async Task EditModule(Module module)
+    {
+        await context.SaveChangesAsync();
+    }
+
+    public async Task EditModules(Module[] modules)
     {
         await context.SaveChangesAsync();
     }

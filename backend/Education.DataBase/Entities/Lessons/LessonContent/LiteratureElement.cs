@@ -2,7 +2,7 @@
 
 namespace Education.DataBase.Entities.Lessons.LessonContent;
 
-public class LiteratureElement : IOrderElement
+public class LiteratureElement : IOrderEntity<int>
 {
     public int Id { get; set; }
     public int Order { get; set; }

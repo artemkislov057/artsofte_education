@@ -63,4 +63,19 @@ public class ModulesController : ControllerBase
         await modulesService.EditModel(courseId, moduleId, model);
         return NoContent();
     }
+
+    /// <summary>
+    /// Изменить порядок модулей в курсе
+    /// </summary>
+    /// <param name="courseId">Идентификатор курса</param>
+    /// <param name="orders">Массив идентификаторов модулей в нужном порядке (обязательно должны быть все идентификаторы)</param>
+    [HttpPost]
+    [Route("change-order")]
+    [Authorize(Roles = Roles.Admin)]
+    [SwaggerResponse((int)HttpStatusCode.NoContent)]
+    public async Task<ActionResult> ChangeOrder(Guid courseId, [FromBody] Guid[] orders)
+    {
+        await modulesService.ChangeOrder(courseId, orders);
+        return NoContent();
+    }
 }

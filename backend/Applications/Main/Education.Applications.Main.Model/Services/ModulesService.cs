@@ -1,4 +1,5 @@
-﻿using Education.Applications.Main.Model.Models.Courses;
+﻿using Education.Applications.Main.Model.Extensions;
+using Education.Applications.Main.Model.Models.Courses;
 using Education.Applications.Main.Model.Models.Modules;
 using Education.DataBase.Entities;
 using Education.DataBase.Repositories;
@@ -11,6 +12,7 @@ public interface IModulesService
     Task<ModuleModel> AddModuleToCourse(Guid courseId, AddOrEditCourseModel moduleModel);
     Task<bool> TryDeleteModule(Guid courseId, Guid moduleId);
     Task EditModel(Guid courseId, Guid moduleId, AddOrEditModuleModel moduleModel);
+    Task ChangeOrder(Guid courseId, Guid[] orderIds);
 }
 
 public class ModulesService : IModulesService
@@ -75,5 +77,12 @@ public class ModulesService : IModulesService
 
         moduleModel.Adapt(moduleEntity);
         await modulesRepository.EditModule(moduleEntity);
+    }
+
+    public async Task ChangeOrder(Guid courseId, Guid[] orderIds)
+    {
+        var modules = await modulesRepository.GetModulesFromCourse(courseId);
+        modules.ChangeOrder(orderIds);
+        await modulesRepository.EditModules(modules);
     }
 }

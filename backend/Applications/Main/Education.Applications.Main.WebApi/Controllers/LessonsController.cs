@@ -39,8 +39,9 @@ public class LessonsController : ControllerBase
     /// Добавить уроки в модуль
     /// </summary>
     [HttpPost]
+    [Route("")]
     [Authorize(Roles = Roles.Admin)]
-    [SwaggerResponse((int)HttpStatusCode.OK)]
+    [SwaggerResponse((int)HttpStatusCode.NoContent)]
     [SwaggerRequestExample(typeof(PostPutLessonDto), typeof(PostLessonExample))]
     public async Task<ActionResult> PostLessonsToModule(Guid courseId, Guid moduleId,
         [FromBody] PostPutLessonDto[] lessons)
@@ -57,15 +58,15 @@ public class LessonsController : ControllerBase
         });
 
         await service.PostLessons(courseId, moduleId, modelLessons);
-        return Ok();
+        return NoContent();
     }
 
     /// <summary>
     /// Удалить урок
     /// </summary>
     [HttpDelete]
-    [Authorize(Roles = Roles.Admin)]
     [Route("{lessonId:int}")]
+    [Authorize(Roles = Roles.Admin)]
     [SwaggerResponse((int)HttpStatusCode.NoContent, "Урок успешно удалён")]
     [SwaggerResponse((int)HttpStatusCode.NotFound, "Урок не найден")]
     public async Task<ActionResult> DeleteLesson(Guid courseId, Guid moduleId, int lessonId)
@@ -78,12 +79,13 @@ public class LessonsController : ControllerBase
     /// Редактировать урок
     /// </summary>
     [HttpPut]
-    [Authorize(Roles = Roles.Admin)]
     [Route("{lessonId:int}")]
+    [Authorize(Roles = Roles.Admin)]
     [SwaggerResponse((int)HttpStatusCode.NoContent, "Урок успешно отредактирован")]
     [SwaggerResponse((int)HttpStatusCode.NotFound, "Урок не найден")]
     [SwaggerRequestExample(typeof(PostPutLessonDto), typeof(PutLessonExample))]
-    public async Task<ActionResult> EditLesson(Guid courseId, Guid moduleId, int lessonId, [FromBody] PostPutLessonDto dto)
+    public async Task<ActionResult> EditLesson(Guid courseId, Guid moduleId, int lessonId,
+        [FromBody] PostPutLessonDto dto)
     {
         var lessonContentJson = (JsonElement)dto.Value;
         var lessonDto = (LessonContentBaseDto)lessonContentJson.Deserialize(GetLessonContentType(dto.Type),
@@ -98,6 +100,7 @@ public class LessonsController : ControllerBase
     /// Получить уроки из модуля
     /// </summary>
     [HttpGet]
+    [Route("")]
     [Authorize]
     [SwaggerResponse((int)HttpStatusCode.OK)]
     [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(GetLessonExample))]

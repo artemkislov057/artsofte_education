@@ -26,6 +26,7 @@ public class ModulesController : ControllerBase
     /// Добавить модуль в курс
     /// </summary>
     [HttpPost]
+    [Route("")]
     [Authorize(Roles = Roles.Admin)]
     [SwaggerResponse((int)HttpStatusCode.Created)]
     public async Task<ActionResult<ModuleDto>> PostModule(Guid courseId, [FromBody] PostPutModuleDto moduleDto)
@@ -39,6 +40,7 @@ public class ModulesController : ControllerBase
     /// Получить модули курса
     /// </summary>
     [HttpGet]
+    [Route("")]
     [Authorize]
     [SwaggerResponse((int)HttpStatusCode.OK)]
     public async Task<ActionResult<ModuleDto[]>> GetModules(Guid courseId)

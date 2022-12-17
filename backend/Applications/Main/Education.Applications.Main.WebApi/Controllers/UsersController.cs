@@ -25,7 +25,8 @@ public class UsersController : ControllerBase
     /// Регистрация пользователя
     /// </summary>
     [HttpPost]
-    [SwaggerResponse((int)HttpStatusCode.OK)]
+    [Route("")]
+    [SwaggerResponse((int)HttpStatusCode.NoContent)]
     public async Task<ActionResult> PostUser([FromBody] PostUserDto userDto)
     {
         var user = new IdentityUser<Guid>(userDto.Name);
@@ -34,7 +35,7 @@ public class UsersController : ControllerBase
 
         await userManager.AddToRoleAsync(user, Roles.User);
         await signInManager.PasswordSignInAsync(userDto.Name, userDto.Password, userDto.IsPersistent, false);
-        return Ok();
+        return NoContent();
     }
 
     /// <summary>

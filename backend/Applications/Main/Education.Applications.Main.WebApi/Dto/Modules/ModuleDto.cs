@@ -22,5 +22,8 @@ public class ModuleDto
     /// </summary>
     public string Description { get; init; }
 
+    /// <summary>
+    /// Массив уроков
+    /// </summary>
     public GetLessonDto[]? Lessons { get; set; }
 }

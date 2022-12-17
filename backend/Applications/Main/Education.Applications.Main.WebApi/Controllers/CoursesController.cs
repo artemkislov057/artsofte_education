@@ -25,6 +25,7 @@ public class CoursesController : ControllerBase
     /// Добавить курс
     /// </summary>
     [HttpPost]
+    [Route("")]
     [Authorize(Roles = Roles.Admin)]
     [SwaggerResponse((int)HttpStatusCode.Created)]
     public async Task<ActionResult<CourseDto>> AddCourse([FromBody] PostPutCourseDto courseDto)
@@ -70,6 +71,7 @@ public class CoursesController : ControllerBase
     /// Получить доступные курсы
     /// </summary>
     [HttpGet]
+    [Route("")]
     [Authorize]
     [SwaggerResponse((int)HttpStatusCode.OK)]
     public async Task<ActionResult<CourseDto[]>> GetCourses()
@@ -82,8 +84,8 @@ public class CoursesController : ControllerBase
     /// Получить курс по его идентификатору
     /// </summary>
     [HttpGet]
-    [Authorize]
     [Route("{courseId:guid}")]
+    [Authorize]
     [SwaggerResponse((int)HttpStatusCode.OK)]
     public async Task<ActionResult<CourseDto>> GetCourse(Guid courseId)
     {

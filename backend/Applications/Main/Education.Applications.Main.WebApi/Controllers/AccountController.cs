@@ -50,6 +50,7 @@ public class AccountController : ControllerBase
     /// Удалить аккаунт
     /// </summary>
     [HttpDelete]
+    [Route("")]
     [SwaggerResponse((int)HttpStatusCode.NoContent, "Аккаунт успешно удалён")]
     [SwaggerResponse((int)HttpStatusCode.NotFound, "Аккаунт не найден")]
     public async Task<ActionResult> DeleteAccount()

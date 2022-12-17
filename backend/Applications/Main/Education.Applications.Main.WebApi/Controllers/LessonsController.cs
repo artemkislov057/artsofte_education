@@ -82,6 +82,7 @@ public class LessonsController : ControllerBase
     [Route("{lessonId:int}")]
     [SwaggerResponse((int)HttpStatusCode.NoContent, "Урок успешно отредактирован")]
     [SwaggerResponse((int)HttpStatusCode.NotFound, "Урок не найден")]
+    [SwaggerRequestExample(typeof(PostPutLessonDto), typeof(PutLessonExample))]
     public async Task<ActionResult> EditLesson(Guid courseId, Guid moduleId, int lessonId, [FromBody] PostPutLessonDto dto)
     {
         var lessonContentJson = (JsonElement)dto.Value;

@@ -1,10 +1,10 @@
 <div class="main">
     <div class="header">
         <img class="logoCourse" src="/assets/jsIcon.svg" alt="Лого курса" />
-        <div class="titleCourse">Курс по JavaScript</div>
+        <div class="titleCourse">{{courseInfo?.name}}</div>
     </div>
     <div class="moduleContainer">
-        <div class="wrapper" *ngFor="let item of menuItems">
+        <div class="wrapper" *ngFor="let item of courseInfo?.modules">
             <app-module-item [title]="item.name"></app-module-item>
         </div>
     </div>

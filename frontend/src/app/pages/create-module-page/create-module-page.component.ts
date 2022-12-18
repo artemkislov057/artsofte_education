@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { AppService } from 'src/app/app.service';
+import { SetModuleId } from 'src/app/store/actions/module-id.action';
 import { CourseIdSelector } from 'src/app/store/selectors/course-id.selector';
 import { AppState } from 'src/app/store/states/app.state';
 import { Module } from 'src/typings/api/courseType';
@@ -12,17 +13,30 @@ import { Module } from 'src/typings/api/courseType';
   styleUrls: ['./create-module-page.component.scss']
 })
 export class CreateModulePageComponent implements OnInit {
+  currentCourseId: string = '';
 
-  constructor(private router: Router, private appService: AppService, private _store: Store<AppState>) {  }
+  constructor(
+    private router: Router,
+    private activeRouter: ActivatedRoute,
+    private _store: Store<AppState>,
+  ) {  }
 
   ngOnInit(): void {
-    let a = this._store.pipe(select(CourseIdSelector))
-    a.subscribe(s => console.log(s))
+    this._store.pipe(select(CourseIdSelector)).subscribe(id => this.currentCourseId = id)
   }
 
   async createModule(moduleName: string) {
-    const courseId = this.appService.getCurrentCourseId();
-    const response = await fetch(`https://localhost:5001/api/courses/${courseId}/modules`, {
+    if(!this.currentCourseId) {
+      this.activeRouter.queryParamMap.subscribe((param) => {
+         const id = param.get('courseId');
+         if(id) {
+           this.currentCourseId = id;
+         } else {
+          alert('Что то пошло не так с courseId');
+         }
+      })
+    }
+    const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules`, {
       method: "POST",
       body: JSON.stringify({
         "name": moduleName,
@@ -34,13 +48,20 @@ export class CreateModulePageComponent implements OnInit {
       },
     })
     const data = await response.json() as Module;
-    this.appService.setcurrentModuleId(data.id);
+    this._store.dispatch(new SetModuleId(data.id));
+    return data.id;
   }
 
   async onClickCreate(name: string) {
     if(name) {
-      await this.createModule(name);
-      this.router.navigateByUrl('/edit-course/select-lesson-type');
+      const moduleId = await this.createModule(name);
+      // this.router.navigateByUrl('/edit-course/select-lesson-type');
+      this.router.navigate(['/edit-course/select-lesson-type'], {
+        queryParamsHandling: 'merge',
+        queryParams: {
+          moduleId: moduleId,
+        }
+      });
     }
   }
 }

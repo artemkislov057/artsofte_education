@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { AppService } from 'src/app/app.service';
 import { SetCourseId } from 'src/app/store/actions/course-id.action';
+import { CourseIdSelector } from 'src/app/store/selectors/course-id.selector';
 import { AppState } from 'src/app/store/states/app.state';
 import { CourseType } from 'src/typings/api/courseType';
 
@@ -12,8 +13,7 @@ import { CourseType } from 'src/typings/api/courseType';
   styleUrls: ['./create-page.component.scss']
 })
 export class CreatePageComponent implements OnInit {
-
-  constructor(private router: Router, private appService: AppService, private _store: Store<AppState>) { }
+  constructor(private router: Router, private _store: Store<AppState>) { }
 
   ngOnInit(): void {
   }
@@ -31,14 +31,15 @@ export class CreatePageComponent implements OnInit {
       },
     })
     const data = await response.json() as CourseType;
-    this.appService.setCurrentCourseId(data.id);
     this._store.dispatch(new SetCourseId(data.id));
+    return data.id
   }
 
   async onClickCreate(name: string) {
     if(name) {
-      await this.createCourse(name);
-      this.router.navigateByUrl('/create-module');
+      const currentCourseId = await this.createCourse(name);
+      // this.router.navigateByUrl('/create-module');
+      this.router.navigate(['/create-module'], {queryParams: {courseId: currentCourseId}});
     }
   }
 

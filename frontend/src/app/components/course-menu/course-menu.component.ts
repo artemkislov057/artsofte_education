@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Module } from 'src/typings/api/courseType';
+import { CourseType, Module } from 'src/typings/api/courseType';
 
 @Component({
   selector: 'app-course-menu',
@@ -7,7 +7,7 @@ import { Module } from 'src/typings/api/courseType';
   styleUrls: ['./course-menu.component.scss']
 })
 export class CourseMenuComponent implements OnInit {
-  @Input() menuItems: Array<Module> = [];
+  @Input() courseInfo!: CourseType;
   @Output() createModule = new EventEmitter();
 
   constructor() { }

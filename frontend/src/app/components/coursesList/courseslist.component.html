@@ -1,5 +1,7 @@
 <div class="main">
-    <app-course></app-course>
-    <app-course></app-course>
-    <app-course></app-course>
+    <app-course 
+        *ngFor="let module of modules" 
+        [currentModule]="module"
+        (click)="onClickModule(module.id)"
+    ></app-course>
 </div>

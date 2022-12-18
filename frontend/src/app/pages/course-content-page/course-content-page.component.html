@@ -1,6 +1,9 @@
 <div class="main">
     <div class="container">
-        <div class="title">Курс “JavaScript для студентов”</div>
-        <app-courseslist></app-courseslist>
+        <div class="title">{{courseInfo.name}}</div>
+        <app-courseslist 
+            [modules]="courseInfo.modules"
+            (onClickModuleOut)="onClickModule($event)"
+        ></app-courseslist>
     </div>
 </div>

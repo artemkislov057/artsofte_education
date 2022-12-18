@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { AppService } from 'src/app/app.service';
+import { CourseIdSelector } from 'src/app/store/selectors/course-id.selector';
+import { AppState } from 'src/app/store/states/app.state';
 import { Module } from 'src/typings/api/courseType';
 
 @Component({
@@ -10,10 +13,11 @@ import { Module } from 'src/typings/api/courseType';
 })
 export class CreateModulePageComponent implements OnInit {
 
-  constructor(private router: Router, private appService: AppService) {  }
+  constructor(private router: Router, private appService: AppService, private _store: Store<AppState>) {  }
 
   ngOnInit(): void {
-    
+    let a = this._store.pipe(select(CourseIdSelector))
+    a.subscribe(s => console.log(s))
   }
 
   async createModule(moduleName: string) {

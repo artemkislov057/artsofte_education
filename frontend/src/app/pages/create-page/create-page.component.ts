@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { AppService } from 'src/app/app.service';
+import { SetCourseId } from 'src/app/store/actions/course-id.action';
+import { AppState } from 'src/app/store/states/app.state';
 import { CourseType } from 'src/typings/api/courseType';
 
 @Component({
@@ -10,7 +13,7 @@ import { CourseType } from 'src/typings/api/courseType';
 })
 export class CreatePageComponent implements OnInit {
 
-  constructor(private router: Router, private appService: AppService) { }
+  constructor(private router: Router, private appService: AppService, private _store: Store<AppState>) { }
 
   ngOnInit(): void {
   }
@@ -29,6 +32,7 @@ export class CreatePageComponent implements OnInit {
     })
     const data = await response.json() as CourseType;
     this.appService.setCurrentCourseId(data.id);
+    this._store.dispatch(new SetCourseId(data.id));
   }
 
   async onClickCreate(name: string) {

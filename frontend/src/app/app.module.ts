@@ -11,6 +11,11 @@ import { CourseContentPageModule } from './pages/course-content-page/course-cont
 import { EditCoursePageModule } from './pages/edit-course-page/edit-course-page.module';
 import { EditPresentationLessonPageComponent } from './pages/edit-presentation-lesson-page/edit-presentation-lesson-page.component';
 import { AppService } from './app.service';
+import { StoreModule } from '@ngrx/store';
+import { appReducer } from './store/reducers/app.reducer';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -19,13 +24,16 @@ import { AppService } from './app.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     CourseMenuModule,
     StartPageModule,
     CreatePageModule,
     CourseContentPageModule,
-    EditCoursePageModule
+    EditCoursePageModule,
+    StoreModule.forRoot(appReducer),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+    !environment.production ? StoreDevtoolsModule.instrument(): [],
+    AppRoutingModule,
   ],
   providers: [AppService],
   bootstrap: [AppComponent],

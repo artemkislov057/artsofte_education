@@ -38,16 +38,15 @@ export class EditCoursePageComponent implements OnInit {
         alert('Что то не так с ids');
       }
    })
-   this.getModulesList();
+   this.getCourseInfo();
   }
 
-  async getModulesList() {
+  async getCourseInfo() {
     const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}`, {
       credentials: 'include',
     })
     const data = await response.json() as CourseType;
     this.courseInfo = data;
-    console.log(data)
   }
 
   createModule() {

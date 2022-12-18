@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from './store/states/app.state';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-  constructor(private route: Router) {
+  constructor(private route: Router, private _store: Store<AppState>) {
     this.login();
   }
 

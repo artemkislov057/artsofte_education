@@ -24,6 +24,8 @@ public class EducationDbContext : IdentityDbContext<IdentityUser<Guid>, Identity
     public DbSet<TestLesson> TestLessons { get; set; }
     public DbSet<PresentationSlide> PresentationSlides { get; set; }
     public DbSet<LiteraturePurchaseLink> LiteraturePurchaseLinks { get; set; }
+    public DbSet<TextBlock> TextBlocks { get; set; }
+    public DbSet<ListItem> ListItems { get; set; }
     public DbSet<TestQuestion> TestQuestions { get; set; }
     public DbSet<QuestionAnswerOption> QuestionAnswerOptions { get; set; }
     public DbSet<LoadedFile> LoadedFiles { get; set; }

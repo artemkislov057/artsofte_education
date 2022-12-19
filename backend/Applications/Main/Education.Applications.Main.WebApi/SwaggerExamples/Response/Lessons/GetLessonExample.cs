@@ -57,15 +57,15 @@ public class GetLessonExample : IMultipleExamplesProvider<GetLessonDto[]>
                 })
         });
 
-        yield return SwaggerExample.Create("Text", new[]
-        {
-            new GetLessonDto(4, "Text Lesson",
-                LessonTypeDto.Text,
-                new TextLessonContentDto
-                {
-                    Value = "Lesson about something..."
-                })
-        });
+        // yield return SwaggerExample.Create("Text", new[]
+        // {
+        //     new GetLessonDto(4, "Text Lesson",
+        //         LessonTypeDto.Text,
+        //         new TextLessonContentDto
+        //         {
+        //             Value = "Lesson about something..."
+        //         })
+        // });
 
         yield return SwaggerExample.Create("Test", new[]
         {

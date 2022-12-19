@@ -9,10 +9,9 @@ namespace Education.Applications.Main.WebApi.Dto.Lessons.Contents.Text;
 [LessonDtoType(LessonTypeDto.Text)]
 public sealed class TextLessonContentDto : LessonContentBaseDto
 {
-    /// <summary>
-    /// Текст
-    /// </summary>
-    public string Value { get; set; }
+    public long Time { get; set; }
+    public TextBlockDto[] Blocks { get; set; } = null!;
+    public string Version { get; set; } = null!;
 
     public override Type GetModelLessonContentType()
     {

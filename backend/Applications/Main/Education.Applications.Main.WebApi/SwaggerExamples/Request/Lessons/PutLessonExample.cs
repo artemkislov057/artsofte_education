@@ -54,13 +54,82 @@ public class PutLessonExample : IMultipleExamplesProvider<PostPutLessonDto>
                 })
         );
 
-        // yield return SwaggerExample.Create("Text",
-        //     new PostPutLessonDto("Text Lesson",
-        //         LessonTypeDto.Text,
-        //         new TextLessonContentDto
-        //         {
-        //             Value = "Lesson about something..."
-        //         }));
+        yield return SwaggerExample.Create("Text",
+            new PostPutLessonDto("Text Lesson",
+                LessonTypeDto.Text,
+                new TextLessonContentDto
+                {
+                    Time = 1550476186479,
+                    Version = "2.8.1",
+                    Blocks = new[]
+                    {
+                        new TextBlockDto
+                        {
+                            Id = "oUq2g_tl8y",
+                            Type = "header",
+                            Data = new TextBlockDataDto
+                            {
+                                Text = "Editor.js",
+                                Level = 2
+                            }
+                        },
+                        new TextBlockDto
+                        {
+                            Id = "zbGZFPM-iI",
+                            Type = "paragraph",
+                            Data = new TextBlockDataDto
+                            {
+                                Text =
+                                    "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration."
+                            }
+                        },
+                        new TextBlockDto
+                        {
+                            Id = "qYIGsjS5rt",
+                            Type = "header",
+                            Data = new TextBlockDataDto
+                            {
+                                Text = "Key features",
+                                Level = 3
+                            }
+                        },
+                        new TextBlockDto
+                        {
+                            Id = "XV87kJS_H1",
+                            Type = "list",
+                            Data = new TextBlockDataDto
+                            {
+                                Style = "unordered",
+                                Items = new[]
+                                {
+                                    "It is a block-styled editor",
+                                    "It returns clean data output in JSON",
+                                    "Designed to be extendable and pluggable with a simple API"
+                                }
+                            }
+                        },
+                        new TextBlockDto
+                        {
+                            Id = "AOulAjL8XM",
+                            Type = "header",
+                            Data = new TextBlockDataDto
+                            {
+                                Text = "What does it mean «block-styled editor»",
+                                Level = 3
+                            }
+                        },
+                        new TextBlockDto
+                        {
+                            Id = "cyZjplMOZ0",
+                            Type = "paragraph",
+                            Data = new TextBlockDataDto
+                            {
+                                Text =
+                                    "Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor's Core."
+                            }
+                        }
+                    }
+                }));
 
         yield return SwaggerExample.Create("Test",
             new PostPutLessonDto("Test Lesson",

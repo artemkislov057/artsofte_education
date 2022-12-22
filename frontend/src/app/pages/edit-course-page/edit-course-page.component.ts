@@ -12,7 +12,7 @@ import { CourseMenuItem } from 'src/typings/courseMenuItemType';
   styleUrls: ['./edit-course-page.component.scss']
 })
 export class EditCoursePageComponent implements OnInit {
-  courseInfo!: CourseType;
+  courseInfo: CourseType | null = null;
   currentCourseId: string = '';
   currentModuleId: string = '';
 

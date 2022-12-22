@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-bottom-edit-container',
@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bottom-edit-container.component.scss']
 })
 export class BottomEditContainerComponent implements OnInit {
+  @Output() saveLesson = new EventEmitter();
+  @Output() cancel = new EventEmitter();
+
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onClickSave() {
+    this.saveLesson.emit();
+  }
+
+  onClickCancel() {
+    this.cancel.emit();
   }
 
 }

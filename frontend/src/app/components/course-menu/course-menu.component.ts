@@ -7,7 +7,7 @@ import { CourseType, Module } from 'src/typings/api/courseType';
   styleUrls: ['./course-menu.component.scss']
 })
 export class CourseMenuComponent implements OnInit {
-  @Input() courseInfo!: CourseType;
+  @Input() courseInfo: CourseType | null = null;
   @Output() createModule = new EventEmitter();
 
   constructor() { }

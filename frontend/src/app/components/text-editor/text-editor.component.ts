@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 //@ts-ignore
 import Header from '@editorjs/header';
 //@ts-ignore
 import List from '@editorjs/list';
 //@ts-ignore
 import Marker from '@editorjs/marker';
-import EditorJS from '@editorjs/editorjs';
+import EditorJS, { OutputData } from '@editorjs/editorjs';
 
 @Component({
   selector: 'app-text-editor',
@@ -16,8 +16,11 @@ export class TextEditorComponent implements OnInit {
   @Input() title: string = '';
   @Input() unicId: string = '';
   @Input() initHeight: number = 300;
+  @Input() editData: OutputData | null = null;
+  @Output() onClickSave = new EventEmitter();
+  @Input() test = () => {};
 
-  editor: any;
+  editor: EditorJS | null = null;
   
 
   constructor() { }
@@ -41,6 +44,17 @@ export class TextEditorComponent implements OnInit {
       },
       minHeight: this.initHeight,
     })
+    if(this.editData) {
+      // this.editor.render({})
+    }
+  }
+
+  async onSave() {
+    const resultData = await this.editor?.save();
+    if(resultData) {
+      return resultData;
+    }
+    return null;    
   }
 
 }

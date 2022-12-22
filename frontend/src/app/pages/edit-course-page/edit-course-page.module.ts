@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AdditionalMaterialContainerComponent } from 'src/app/components/additional-material-container/additional-material-container.component';
 import { BottomEditContainerComponent } from 'src/app/components/bottom-edit-container/bottom-edit-container.component';
@@ -38,10 +40,12 @@ import { EditCoursePageComponent } from './edit-course-page.component';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     EditCoursePageRoutingModule,
     CourseMenuModule,
     TestContainerModule,
     PresentationContainerModule,
+    FormsModule,
   ],
   exports: [EditCoursePageComponent],
   providers: [],

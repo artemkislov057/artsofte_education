@@ -1,10 +1,16 @@
 <div class="main">
-    <app-lesson-name-container></app-lesson-name-container>
+    <app-lesson-name-container
+        [titleName]="lessonName"
+        (changeLessonName)="onChangeLessonName($event)"
+    ></app-lesson-name-container>
     <app-text-editor [unicId]="'text-lesson-type'"></app-text-editor>
     <app-text-editor 
         [title]="'Дополнительные материалы:'"
         [unicId]="'text-lesson-type-additional'"
         [initHeight]="150"
     ></app-text-editor>
-    <app-bottom-edit-container class="bottomToolbar"></app-bottom-edit-container>
+    <app-bottom-edit-container
+        class="bottomToolbar"
+        (saveLesson)="testSave()"
+    ></app-bottom-edit-container>
 </div>

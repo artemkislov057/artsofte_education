@@ -13,5 +13,5 @@ public class TextBlock : IOrderEntity<int>
     public string? DataStyle { get; set; }
     public ICollection<ListItem>? DataItems { get; set; }
 
-    public TextLesson TextLesson { get; set; } = null!;
+    public EditorJsObject EditorJsObject { get; set; } = null!;
 }

@@ -4,6 +4,7 @@ using Education.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Education.DataBase.Migrations
 {
     [DbContext(typeof(EducationDbContext))]
-    partial class EducationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221225175457_add_entity_EditorJsObject")]
+    partial class add_entity_EditorJsObject
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,9 +71,6 @@ namespace Education.DataBase.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("AdditionalTextId")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("ModuleId")
                         .HasColumnType("uniqueidentifier");
 
@@ -86,10 +85,6 @@ namespace Education.DataBase.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AdditionalTextId")
-                        .IsUnique()
-                        .HasFilter("[AdditionalTextId] IS NOT NULL");
 
                     b.HasIndex("ModuleId");
 
@@ -612,17 +607,11 @@ namespace Education.DataBase.Migrations
 
             modelBuilder.Entity("Education.DataBase.Entities.Lessons.Lesson", b =>
                 {
-                    b.HasOne("Education.DataBase.Entities.EditorJsObject", "AdditionalText")
-                        .WithOne("Lesson")
-                        .HasForeignKey("Education.DataBase.Entities.Lessons.Lesson", "AdditionalTextId");
-
                     b.HasOne("Education.DataBase.Entities.Module", "Module")
                         .WithMany("Lessons")
                         .HasForeignKey("ModuleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AdditionalText");
 
                     b.Navigation("Module");
                 });
@@ -837,8 +826,6 @@ namespace Education.DataBase.Migrations
             modelBuilder.Entity("Education.DataBase.Entities.EditorJsObject", b =>
                 {
                     b.Navigation("Blocks");
-
-                    b.Navigation("Lesson");
 
                     b.Navigation("TextLesson");
                 });

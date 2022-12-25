@@ -1,13 +1,12 @@
-﻿using Education.DataBase.Entities.Lessons.LessonContent;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using Education.DataBase.Enums.Lessons;
 
 namespace Education.DataBase.Entities.Lessons;
 
 public class TextLesson : LessonDetailsBase
 {
-    public long Time { get; set; }
-    public ICollection<TextBlock> Blocks { get; set; } = null!;
-    public string Version { get; set; } = null!;
+    public int EditorJsObjectId { get; set; }
+    [ForeignKey(nameof(EditorJsObjectId))] public EditorJsObject Value { get; set; }
 
     public override LessonType GetLessonType()
     {

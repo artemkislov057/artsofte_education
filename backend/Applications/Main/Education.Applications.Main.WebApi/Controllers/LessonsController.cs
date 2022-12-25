@@ -6,6 +6,7 @@ using Education.Applications.Common.Constants;
 using Education.Applications.Main.Model.Models.Lessons;
 using Education.Applications.Main.Model.Services;
 using Education.Applications.Main.WebApi.Attributes;
+using Education.Applications.Main.WebApi.Dto.EditorJs;
 using Education.Applications.Main.WebApi.Dto.Lessons;
 using Education.Applications.Main.WebApi.Dto.Lessons.Contents;
 using Education.Applications.Main.WebApi.SwaggerExamples.Request.Lessons;
@@ -53,7 +54,7 @@ public class LessonsController : ControllerBase
                 jsonOptions.JsonSerializerOptions)!;
             var lessonModel =
                 (LessonContent)lessonDto.Adapt(lessonDto.GetType(), lessonDto.GetModelLessonContentType())!;
-            lessonModel.Name = lesson.Name;
+            lesson.Adapt(lessonModel);
             return lessonModel;
         });
 
@@ -132,7 +133,7 @@ public class LessonsController : ControllerBase
         var modelType = w.GetType();
         var dtoType = GetDtoTypeFromModel(modelType);
         var dto = (LessonContentBaseDto)w.Adapt(modelType, dtoType)!;
-        return new GetLessonDto(w.Id, w.Name, GetLessonTypeDto(dto), dto);
+        return new GetLessonDto(w.Id, w.Name, GetLessonTypeDto(dto), dto, w.AdditionalText?.Adapt<EditorJsDto>());
     }
 
     private static Type GetLessonContentType(LessonTypeDto lessonTypeDto) =>

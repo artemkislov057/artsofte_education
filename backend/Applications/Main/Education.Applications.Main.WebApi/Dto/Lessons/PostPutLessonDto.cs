@@ -1,4 +1,6 @@
-﻿namespace Education.Applications.Main.WebApi.Dto.Lessons;
+﻿using Education.Applications.Main.WebApi.Dto.EditorJs;
+
+namespace Education.Applications.Main.WebApi.Dto.Lessons;
 
 /// <summary>
 /// Модель добавления урока
@@ -6,4 +8,4 @@
 /// <param name="Name">Название урока</param>
 /// <param name="Type">DTO, определяющее тип поля value</param>
 /// <param name="Value">Контент урока</param>
-public record PostPutLessonDto(string Name, LessonTypeDto Type, object Value);
+public record PostPutLessonDto(string Name, LessonTypeDto Type, object Value, EditorJsDto? AdditionalText);

@@ -1,4 +1,5 @@
-﻿using Education.DataBase.Enums.Lessons;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Education.DataBase.Enums.Lessons;
 using Education.DataBase.Interfaces;
 
 namespace Education.DataBase.Entities.Lessons;
@@ -12,6 +13,9 @@ public class Lesson : IOrderEntity<int>
 
     public Guid ModuleId { get; set; }
     public Module? Module { get; set; }
+
+    public int? AdditionalTextId { get; set; }
+    [ForeignKey(nameof(AdditionalTextId))] public EditorJsObject? AdditionalText { get; set; }
 
     public VideoLesson? VideoLesson { get; set; }
     public PresentationLesson? PresentationLesson { get; set; }

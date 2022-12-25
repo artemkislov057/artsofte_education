@@ -29,6 +29,7 @@ public class EducationDbContext : IdentityDbContext<IdentityUser<Guid>, Identity
     public DbSet<TestQuestion> TestQuestions { get; set; }
     public DbSet<QuestionAnswerOption> QuestionAnswerOptions { get; set; }
     public DbSet<LoadedFile> LoadedFiles { get; set; }
+    public DbSet<EditorJsObject> EditorJsObjects { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

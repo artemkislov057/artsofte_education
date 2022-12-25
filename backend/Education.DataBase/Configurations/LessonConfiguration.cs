@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Education.DataBase.Configurations;
 
-public class TextLessonConfiguration : IEntityTypeConfiguration<TextLesson>
+public class LessonConfiguration : IEntityTypeConfiguration<Lesson>
 {
-    public void Configure(EntityTypeBuilder<TextLesson> builder)
+    public void Configure(EntityTypeBuilder<Lesson> builder)
     {
-        builder.Navigation(e => e.Value).AutoInclude();
+        builder.Navigation(e => e.AdditionalText).AutoInclude();
     }
 }

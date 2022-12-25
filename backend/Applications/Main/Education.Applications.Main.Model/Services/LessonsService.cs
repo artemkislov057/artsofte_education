@@ -42,7 +42,8 @@ public class LessonsService : ILessonsService
         {
             var entityLessonDetails = MapLessonDetailsEntityFromModel(lesson);
             var entityLesson = new Lesson
-                { Name = lesson.Name, Type = entityLessonDetails.GetLessonType(), ModuleId = moduleId };
+                { Type = entityLessonDetails.GetLessonType(), ModuleId = moduleId };
+            lesson.Adapt(entityLesson);
             entityLesson.SetLessonDetails(entityLessonDetails);
             return entityLesson;
         }).ToArray();
@@ -143,8 +144,7 @@ public class LessonsService : ILessonsService
         var entityLessonDetailsType = entityLessonDetails.GetType();
         var lessonContentType = GetLessonContentTypeByEntity(entityLessonDetailsType);
         var lessonContentModel = (LessonContent)entityLessonDetails.Adapt(entityLessonDetailsType, lessonContentType)!;
-        lessonContentModel.Id = entityLesson.Id;
-        lessonContentModel.Name = entityLesson.Name;
+        entityLesson.Adapt(lessonContentModel);
         return lessonContentModel;
     }
 

@@ -1,4 +1,5 @@
-﻿using Education.Applications.Main.Model.Models.Lessons.Literature;
+﻿using System.ComponentModel.DataAnnotations;
+using Education.Applications.Main.Model.Models.Lessons.Literature;
 using Education.Applications.Main.WebApi.Attributes;
 
 namespace Education.Applications.Main.WebApi.Dto.Lessons.Contents.Literature;

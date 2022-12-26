@@ -50,7 +50,7 @@ public class LessonsController : ControllerBase
         var modelLessons = lessons.Select(lesson =>
         {
             var lessonContentJson = (JsonElement)lesson.Value;
-            var lessonDto = (LessonContentBaseDto)lessonContentJson.Deserialize(GetLessonContentType(lesson.Type),
+            var lessonDto = (LessonContentBaseDto)lessonContentJson.Deserialize(GetLessonContentType(lesson.Type!.Value),
                 jsonOptions.JsonSerializerOptions)!;
             var lessonModel =
                 (LessonContent)lessonDto.Adapt(lessonDto.GetType(), lessonDto.GetModelLessonContentType())!;
@@ -89,7 +89,7 @@ public class LessonsController : ControllerBase
         [FromBody] PostPutLessonDto dto)
     {
         var lessonContentJson = (JsonElement)dto.Value;
-        var lessonDto = (LessonContentBaseDto)lessonContentJson.Deserialize(GetLessonContentType(dto.Type),
+        var lessonDto = (LessonContentBaseDto)lessonContentJson.Deserialize(GetLessonContentType(dto.Type!.Value),
             jsonOptions.JsonSerializerOptions)!;
         var lessonModel = (LessonContent)lessonDto.Adapt(lessonDto.GetType(), lessonDto.GetModelLessonContentType())!;
         lessonModel.Name = dto.Name;

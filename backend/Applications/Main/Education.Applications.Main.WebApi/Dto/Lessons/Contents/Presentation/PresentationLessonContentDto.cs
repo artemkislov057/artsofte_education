@@ -10,9 +10,9 @@ namespace Education.Applications.Main.WebApi.Dto.Lessons.Contents.Presentation;
 public class PresentationLessonContentDto : LessonContentBaseDto
 {
     public override Type GetModelLessonContentType() => typeof(PresentationLessonModel);
-    
+
     /// <summary>
     /// Массив слайдов
     /// </summary>
-    public PresentationSlideDto[] Slides { get; set; }
+    public PresentationSlideDto[] Slides { get; set; } = null!;
 }

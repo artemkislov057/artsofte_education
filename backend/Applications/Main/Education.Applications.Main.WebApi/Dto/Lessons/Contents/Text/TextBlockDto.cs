@@ -4,5 +4,5 @@ public class TextBlockDto
 {
     public string Id { get; set; } = null!;
     public string Type { get; set; } = null!;
-    public TextBlockDataDto Data { get; set; } = new();
+    public TextBlockDataDto Data { get; set; } = null!;
 }

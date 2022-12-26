@@ -1,4 +1,6 @@
-﻿namespace Education.Applications.Main.WebApi.Dto.Lessons.Contents.Literature;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Education.Applications.Main.WebApi.Dto.Lessons.Contents.Literature;
 
 /// <summary>
 /// Модель книги из списка литературы
@@ -7,4 +9,9 @@
 /// <param name="Description">Описание книги</param>
 /// <param name="CoverSrc">Ссылка на изображение обложки</param>
 /// <param name="PurchaseLinks">Массив ссылок на покупку книги</param>
-public record LiteratureElementDto(string Name, string Description, string CoverSrc, string[] PurchaseLinks);
+public record LiteratureElementDto(
+    string Name,
+    string? Description,
+    string? CoverSrc,
+    string[] PurchaseLinks
+);

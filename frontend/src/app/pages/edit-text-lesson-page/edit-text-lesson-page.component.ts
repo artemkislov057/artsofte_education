@@ -32,7 +32,6 @@ export class EditTextLessonPageComponent implements OnInit {
 
   async onChangeUrl() {
     this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(async (e) => {
-      // this.setExistsTextData();
       if(this.currentCourseId && this.currentModuleId) {
         await this.getExistsTextData();
 
@@ -157,7 +156,8 @@ export class EditTextLessonPageComponent implements OnInit {
       if(currLesson.additionalText) {
         result.push(currLesson.additionalText);
       }
-      this.existsTextData = [...result]
+      this.existsTextData = [...result];
+      this.lessonName = currLesson.name;
       return result;
     } 
     return null;

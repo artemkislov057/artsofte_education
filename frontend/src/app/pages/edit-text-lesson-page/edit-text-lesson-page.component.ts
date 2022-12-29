@@ -18,6 +18,7 @@ export class EditTextLessonPageComponent implements OnInit {
   currentLessonId: number | null = null;
   lessonName: string | null = null;
   existsTextData: OutputData[] = [];
+  isLessonExist: boolean = false;
 
   @ViewChildren(TextEditorComponent) textEditorComponent: TextEditorComponent[] | null = null;
 
@@ -27,14 +28,12 @@ export class EditTextLessonPageComponent implements OnInit {
     private _store: Store<AppState>,
   ) { 
     this.onChangeUrl();
-    // console.log('constructor')
   }
 
   async onChangeUrl() {
     this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(async (e) => {
       if(this.currentCourseId && this.currentModuleId) {
         await this.getExistsTextData();
-
       }
     })
   }
@@ -48,7 +47,6 @@ export class EditTextLessonPageComponent implements OnInit {
   }
 
   async ngOnInit() {
-    console.log('onInit')
     console.log(this.existsTextData);
     this.activeRouter.queryParamMap.subscribe((param) => {
       const courseId = param.get('courseId');
@@ -68,8 +66,8 @@ export class EditTextLessonPageComponent implements OnInit {
       }
     });
     if(this.currentLessonId !== null) {
+      this.isLessonExist = true;
       await this.getExistsTextData();
-      console.log(this.existsTextData);
     }
   }
 
@@ -104,11 +102,43 @@ export class EditTextLessonPageComponent implements OnInit {
         }
       }
     }
-    this.createLesson(textData)
+    if(this.isLessonExist) {
+      this.saveLessonChanges(textData);
+    } else {
+      this.createLesson(textData)
+    }
+  }
+
+  async saveLessonChanges(textData: OutputData[]) {
+    const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons/${this.currentLessonId}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        "name": this.lessonName,
+        "type": "Text",
+        "value": {
+          time: textData[0].time,
+          version: textData[0].version,
+          blocks: textData[0].blocks,
+        },
+        "additionalText": {
+          time: textData[1].time,
+          version: textData[1].version,
+          blocks: textData[1].blocks,
+        }
+      }),
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    if(response.ok) {
+      console.log('lesson changes save');
+    } else {
+      console.log('lesson changes not save');
+    }
   }
 
   async createLesson(textData: OutputData[]) {
-    console.log(textData)
     const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons`, {
       method: "POST",
       body: JSON.stringify([{
@@ -150,7 +180,7 @@ export class EditTextLessonPageComponent implements OnInit {
         return null;
       }
       const result = [currLesson?.value, currLesson.additionalText as OutputData];
-      this.existsTextData = [...result] as OutputData[];
+      this.existsTextData = [...result];
       this.lessonName = currLesson.name;
       return result;
     } 

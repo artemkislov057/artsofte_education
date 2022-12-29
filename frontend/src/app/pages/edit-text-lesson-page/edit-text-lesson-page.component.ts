@@ -149,14 +149,8 @@ export class EditTextLessonPageComponent implements OnInit {
       if(!currLesson) {
         return null;
       }
-      const result: OutputData[] = [];
-      if(currLesson.value) {
-        result.push(currLesson.value)
-      }
-      if(currLesson.additionalText) {
-        result.push(currLesson.additionalText);
-      }
-      this.existsTextData = [...result];
+      const result = [currLesson?.value, currLesson.additionalText as OutputData];
+      this.existsTextData = [...result] as OutputData[];
       this.lessonName = currLesson.name;
       return result;
     } 

@@ -21,7 +21,6 @@ export class TextEditorComponent implements OnInit {
   @Input() test = () => {};
 
   editor: EditorJS | null = null;
-  
 
   constructor() { }
 
@@ -44,16 +43,9 @@ export class TextEditorComponent implements OnInit {
       },
       minHeight: this.initHeight,
     })
-
-    
-    
-    // if(this.editData && this.editor) {
-    //   this.editor.render(this.editData);
-    // }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.editData)
     if(this.editData !== null) {
       this.editor?.isReady.then(e => this.setExistsData(this.editData!))
     }
@@ -68,7 +60,6 @@ export class TextEditorComponent implements OnInit {
   }
 
   setExistsData(data: OutputData) {
-    
     if(data && this.editor !== null) {
       this.editor.render(data);
     }

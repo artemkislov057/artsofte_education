@@ -19,7 +19,7 @@
 
 .squareLesson:hover,
 .addNewLessonButton:hover {
-    opacity: .7;
+    opacity: .9;
 }
 
 .squareLesson {
@@ -27,8 +27,12 @@
     height: 35px;
     // background: url('icons/addIcon.svg') 50% 50% no-repeat;
     background-size: 16px 16px;
-    background-color: rgba(46, 98, 217, 1);
+    background-color: #ECEEF3;
     border-radius: 3px;
+}
+
+.squareLesson.active {
+    background-color: rgba(46, 98, 217, 1);
 }
 
 .addNewLessonButton {

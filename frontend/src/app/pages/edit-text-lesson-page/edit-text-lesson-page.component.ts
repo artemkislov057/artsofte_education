@@ -47,7 +47,6 @@ export class EditTextLessonPageComponent implements OnInit {
   }
 
   async ngOnInit() {
-    console.log(this.existsTextData);
     this.activeRouter.queryParamMap.subscribe((param) => {
       const courseId = param.get('courseId');
       const moduleId = param.get('moduleId');

@@ -1,5 +1,6 @@
 <div class="main">
-    <button class="squareLesson" *ngFor="let lesson of lessons" (click)="onChangeLesson(lesson.id)"></button>
+    <button [class.active]="isActiveId===lesson.id" class="squareLesson" *ngFor="let lesson of lessons"
+        (click)="onChangeLesson(lesson.id)"></button>
     <button class="addNewLessonButton">
         <div class="addIcon"></div>
         <div class="caption" (click)="onClickCreate()">Добавить новый урок</div>

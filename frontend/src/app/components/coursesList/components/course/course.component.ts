@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Module } from 'src/typings/api/courseType';
 
 @Component({
@@ -12,11 +12,20 @@ export class CourseComponent implements OnInit {
     id: '',
     lessons: [],
     name: ''
-  }
+  };
+  @Output() onClickModuleOut = new EventEmitter<string>();
+  @Output() onClickLessonOut = new EventEmitter<{moduleId: string; lessonId: number;}>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onClickModule(moduleId: string) {
+    this.onClickModuleOut.emit(moduleId);
+  }
+
+  onClickLesson(moduleId: string, lessonId: number) {
+    this.onClickLessonOut.emit({moduleId, lessonId})
+  }
 }

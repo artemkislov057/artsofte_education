@@ -1,9 +1,5 @@
 <div class="main">
-    <input
-        class="nameInput" 
-        placeholder="Название урока"
-        [(ngModel)]="titleName" 
-        #item (change)="onChangeName(item.value)"
-    />
+    <input class="nameInput" placeholder="Название урока" [(ngModel)]="titleName" #item
+        (change)="onChangeName(item.value)" />
     <button class="delete">Удалить урок</button>
 </div>

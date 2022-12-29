@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CourseType, Module } from 'src/typings/api/courseType';
+import { ModuleInfo } from 'src/typings/module';
 
 @Component({
   selector: 'app-course-menu',
@@ -9,6 +10,7 @@ import { CourseType, Module } from 'src/typings/api/courseType';
 export class CourseMenuComponent implements OnInit {
   @Input() courseInfo: CourseType | null = null;
   @Output() createModule = new EventEmitter();
+  @Output() changeModule = new EventEmitter<ModuleInfo>();
 
   constructor() { }
 
@@ -17,6 +19,10 @@ export class CourseMenuComponent implements OnInit {
 
   onClickCreateModule() {
     this.createModule.emit();
+  }
+
+  onChangeModule(moduleInfo: ModuleInfo) {
+    this.changeModule.emit(moduleInfo);
   }
 
 }

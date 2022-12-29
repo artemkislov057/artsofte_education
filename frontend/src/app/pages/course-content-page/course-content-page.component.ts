@@ -47,16 +47,38 @@ export class CourseContentPageComponent implements OnInit {
   }
 
   onClickModule(moduleId: string) {
-    this.router.navigate(['/edit-course/select-lesson-type'], {
-      queryParamsHandling: 'merge',
-      queryParams: {
-        moduleId: moduleId,
-      }
-    });
+    const moduleIndex = this.courseInfo.modules.findIndex(({id}) => id === moduleId);
+    const lessonData = this.courseInfo?.modules[moduleIndex].lessons;
+    const lessonId = lessonData[0]?.id || null
+    const type = lessonData[0]?.type || null;
+    console.log(moduleIndex, lessonId, type)
+    if(lessonId !== null && type === 'Text') {
+      this.router.navigate(['/edit-course/edit-text-lesson'], {
+        queryParams: {
+          moduleId,
+          lessonId,
+        },
+        queryParamsHandling: 'merge',
+      });
+    } else {
+      this.router.navigate(['/edit-course/select-lesson-type'], {
+        queryParams: {
+          moduleId
+        },
+        queryParamsHandling: 'merge',
+      });
+    }
   }
 
-  onClickLesson(moduleId: string, lessonId: string) {
-
+  onClickLesson({moduleId, lessonId}: {moduleId: string, lessonId: number}) {
+    // добавить обработку для перехода не только в текстовые уроки
+    this.router.navigate(['/edit-course/edit-text-lesson'], {
+      queryParams: {
+        moduleId,
+        lessonId,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 
 }

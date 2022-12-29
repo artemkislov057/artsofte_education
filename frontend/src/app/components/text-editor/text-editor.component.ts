@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 //@ts-ignore
 import Header from '@editorjs/header';
 //@ts-ignore
@@ -25,7 +25,7 @@ export class TextEditorComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.editor = new EditorJS({
       holder: `editor-js ${this.unicId}`,
       tools: {
@@ -44,8 +44,18 @@ export class TextEditorComponent implements OnInit {
       },
       minHeight: this.initHeight,
     })
-    if(this.editData) {
-      // this.editor.render({})
+
+    
+    
+    // if(this.editData && this.editor) {
+    //   this.editor.render(this.editData);
+    // }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(this.editData)
+    if(this.editData !== null) {
+      this.editor?.isReady.then(e => this.setExistsData(this.editData!))
     }
   }
 
@@ -57,4 +67,10 @@ export class TextEditorComponent implements OnInit {
     return null;    
   }
 
+  setExistsData(data: OutputData) {
+    
+    if(data && this.editor !== null) {
+      this.editor.render(data);
+    }
+  }
 }

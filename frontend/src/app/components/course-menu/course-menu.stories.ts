@@ -15,7 +15,7 @@ export default {
   ],
   parameters: {
     // More on Story layout: https://storybook.js.org/docs/angular/configure/story-layout
-    layout: 'fullscreen',
+    // layout: 'fullscreen',
   },
 } as Meta;
 
@@ -24,7 +24,20 @@ const Template: Story<CourseMenuComponent> = (args: CourseMenuComponent) => ({
 });
 
 export const CourseMenu = Template.bind({});
+
+const moduleItemMock = {
+  name: 'Название модуля',
+  description: '',
+  id: '',
+  lessons: []
+}
+
 CourseMenu.args = {
-  
+  courseInfo: {
+    id: '',
+    description: '',
+    modules: new Array(10).fill(moduleItemMock),
+    name: 'Название курса',
+  }
 };
 

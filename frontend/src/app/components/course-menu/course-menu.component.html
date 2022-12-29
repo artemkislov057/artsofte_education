@@ -4,12 +4,14 @@
         <div class="titleCourse">{{courseInfo?.name}}</div>
     </div>
     <div class="moduleContainer">
-        <div class="wrapper" *ngFor="let item of courseInfo?.modules">
-            <app-module-item [title]="item.name"></app-module-item>
+        <div class="wrapper" *ngFor="let item of courseInfo?.modules; index as i;">
+            <app-module-item [title]="item.name" (click)="onChangeModule({
+                    moduleId: item.id, 
+                    moduleIndex: i
+                })"></app-module-item>
         </div>
     </div>
     <div class="button">
         <button class="addModuleButton" (click)="onClickCreateModule()">Добавить модуль</button>
     </div>
 </div>
-

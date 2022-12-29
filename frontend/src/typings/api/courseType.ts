@@ -1,3 +1,5 @@
+import { OutputData } from "@editorjs/editorjs";
+
 export type CourseType = {
     "id": string;
     "name": string;
@@ -16,5 +18,6 @@ export type Lesson = {
     "id": number;
     "name": string;
     "type": string;
-    "value": string;
+    "value": OutputData;
+    "additionalText"?: OutputData;
 }

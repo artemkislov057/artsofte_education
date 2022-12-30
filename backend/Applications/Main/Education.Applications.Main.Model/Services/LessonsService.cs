@@ -11,7 +11,7 @@ namespace Education.Applications.Main.Model.Services;
 
 public interface ILessonsService
 {
-    Task PostLessons(Guid courseId, Guid moduleId, IEnumerable<LessonContent> lessons);
+    Task<int[]> PostLessons(Guid courseId, Guid moduleId, IEnumerable<LessonContent> lessons);
     Task<LessonContent[]> GetLessons(Guid courseId, Guid moduleId);
     Task<bool> TryDeleteLesson(Guid courseId, Guid moduleId, int lessonId);
     Task EditLesson(Guid courseId, Guid moduleId, int lessonId, LessonContent lessonModel);
@@ -30,12 +30,12 @@ public class LessonsService : ILessonsService
         this.modulesRepository = modulesRepository;
     }
 
-    public async Task PostLessons(Guid courseId, Guid moduleId, IEnumerable<LessonContent> lessons)
+    public async Task<int[]> PostLessons(Guid courseId, Guid moduleId, IEnumerable<LessonContent> lessons)
     {
         if (!await modulesRepository.IsExistsModuleByIdAndCourseId(moduleId, courseId))
         {
             // TODO: кинуть кастомное исключение
-            return;
+            return Array.Empty<int>();
         }
 
         var entityLessons = lessons.Select(lesson =>
@@ -50,6 +50,7 @@ public class LessonsService : ILessonsService
 
         var lastLessonOrder = await lessonsRepository.FindLastLessonIdInModule(moduleId) ?? -1;
         await lessonsRepository.AddLessons(entityLessons.OrderElements(lastLessonOrder + 1));
+        return entityLessons.Select(l => l.Id).ToArray();
     }
 
     public async Task<LessonContent[]> GetLessons(Guid courseId, Guid moduleId)

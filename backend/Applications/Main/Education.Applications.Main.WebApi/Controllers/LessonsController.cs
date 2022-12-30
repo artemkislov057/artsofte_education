@@ -42,7 +42,7 @@ public class LessonsController : ControllerBase
     [HttpPost]
     [Route("")]
     [Authorize(Roles = Roles.Admin)]
-    [SwaggerResponse((int)HttpStatusCode.NoContent)]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Массив из идентификаторов созданных уроков")]
     [SwaggerRequestExample(typeof(PostPutLessonDto), typeof(PostLessonExample))]
     public async Task<ActionResult> PostLessonsToModule(Guid courseId, Guid moduleId,
         [FromBody] PostPutLessonDto[] lessons)
@@ -50,7 +50,8 @@ public class LessonsController : ControllerBase
         var modelLessons = lessons.Select(lesson =>
         {
             var lessonContentJson = (JsonElement)lesson.Value;
-            var lessonDto = (LessonContentBaseDto)lessonContentJson.Deserialize(GetLessonContentType(lesson.Type!.Value),
+            var lessonDto = (LessonContentBaseDto)lessonContentJson.Deserialize(
+                GetLessonContentType(lesson.Type!.Value),
                 jsonOptions.JsonSerializerOptions)!;
             var lessonModel =
                 (LessonContent)lessonDto.Adapt(lessonDto.GetType(), lessonDto.GetModelLessonContentType())!;
@@ -58,8 +59,8 @@ public class LessonsController : ControllerBase
             return lessonModel;
         });
 
-        await service.PostLessons(courseId, moduleId, modelLessons);
-        return NoContent();
+        var postedLessonsIds = await service.PostLessons(courseId, moduleId, modelLessons);
+        return Ok(postedLessonsIds);
     }
 
     /// <summary>

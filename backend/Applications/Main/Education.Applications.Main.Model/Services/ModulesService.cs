@@ -1,4 +1,5 @@
-﻿using Education.Applications.Main.Model.Extensions;
+﻿using Education.Applications.Main.Model.Exceptions;
+using Education.Applications.Main.Model.Extensions;
 using Education.Applications.Main.Model.Models.Courses;
 using Education.Applications.Main.Model.Models.Modules;
 using Education.DataBase.Entities;
@@ -11,7 +12,7 @@ public interface IModulesService
 {
     Task<ModuleModel> AddModuleToCourse(Guid courseId, AddOrEditCourseModel moduleModel);
     Task<bool> TryDeleteModule(Guid courseId, Guid moduleId);
-    Task EditModel(Guid courseId, Guid moduleId, AddOrEditModuleModel moduleModel);
+    Task EditModule(Guid courseId, Guid moduleId, AddOrEditModuleModel moduleModel);
     Task ChangeOrder(Guid courseId, Guid[] orderIds);
     Task<ModuleModel[]> GetModules(Guid courseId);
 }
@@ -32,8 +33,7 @@ public class ModulesService : IModulesService
         var course = await coursesRepository.FindCourseById(courseId);
         if (course is null)
         {
-            // TODO: кинуть кастомное исключение
-            return null!;
+            throw new NotFoundException("курс", courseId);
         }
 
         var moduleEntity = moduleModel.Adapt<Module>();
@@ -53,27 +53,24 @@ public class ModulesService : IModulesService
 
         if (module.CourseId != courseId)
         {
-            // TODO: кинуть кастомное исключение
-            return false;
+            throw new NotMatchException("курс", courseId, "модуль", moduleId);
         }
 
         await modulesRepository.DeleteModule(module);
         return true;
     }
 
-    public async Task EditModel(Guid courseId, Guid moduleId, AddOrEditModuleModel moduleModel)
+    public async Task EditModule(Guid courseId, Guid moduleId, AddOrEditModuleModel moduleModel)
     {
         var moduleEntity = await modulesRepository.FindModule(moduleId);
         if (moduleEntity is null)
         {
-            // TODO: кинуть кастомное исключение
-            return;
+            throw new NotFoundException("модуль", moduleId);
         }
 
         if (moduleEntity.CourseId != courseId)
         {
-            // TODO: кинуть кастомное исключение
-            return;
+            throw new NotMatchException("курс", courseId, "модуль", moduleId);
         }
 
         moduleModel.Adapt(moduleEntity);

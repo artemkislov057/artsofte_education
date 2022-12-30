@@ -1,4 +1,5 @@
-﻿using Education.Applications.Main.Model.Models.Courses;
+﻿using Education.Applications.Main.Model.Exceptions;
+using Education.Applications.Main.Model.Models.Courses;
 using Education.DataBase.Entities;
 using Education.DataBase.Repositories;
 using Mapster;
@@ -53,8 +54,7 @@ public class CoursesService : ICoursesService
         var courseEntity = await coursesRepository.FindCourseById(courseId);
         if (courseEntity is null)
         {
-            // TODO: кинуть исключение
-            return;
+            throw new NotFoundException("курс", courseId);
         }
 
         courseModel.Adapt(courseEntity);

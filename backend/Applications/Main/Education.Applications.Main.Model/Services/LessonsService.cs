@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
+using Education.Applications.Main.Model.Exceptions;
 using Education.Applications.Main.Model.Extensions;
 using Education.Applications.Main.Model.Models.Lessons;
 using Education.DataBase.Entities.Lessons;
@@ -34,8 +35,7 @@ public class LessonsService : ILessonsService
     {
         if (!await modulesRepository.IsExistsModuleByIdAndCourseId(moduleId, courseId))
         {
-            // TODO: кинуть кастомное исключение
-            return Array.Empty<int>();
+            throw new NotMatchException("курс", courseId, "модуль", moduleId);
         }
 
         var entityLessons = lessons.Select(lesson =>
@@ -57,8 +57,7 @@ public class LessonsService : ILessonsService
     {
         if (!await modulesRepository.IsExistsModuleByIdAndCourseId(moduleId, courseId))
         {
-            // TODO: кинуть кастомное исключение
-            return Array.Empty<LessonContent>();
+            throw new NotMatchException("курс", courseId, "модуль", moduleId);
         }
 
         var entityLessons = await lessonsRepository.GetLessons(moduleId);
@@ -70,8 +69,7 @@ public class LessonsService : ILessonsService
     {
         if (!await modulesRepository.IsExistsModuleByIdAndCourseId(moduleId, courseId))
         {
-            // TODO: кинуть кастомное исключение
-            return false;
+            throw new NotMatchException("курс", courseId, "модуль", moduleId);
         }
 
         var lesson = await lessonsRepository.FindLesson(lessonId, false);
@@ -82,8 +80,7 @@ public class LessonsService : ILessonsService
 
         if (lesson.ModuleId != moduleId)
         {
-            // TODO: кинуть кастомное исключение
-            return false;
+            throw new NotMatchException("модуль", moduleId, "урок", lessonId);
         }
 
         await lessonsRepository.DeleteLesson(lesson);
@@ -94,20 +91,18 @@ public class LessonsService : ILessonsService
     {
         if (!await modulesRepository.IsExistsModuleByIdAndCourseId(moduleId, courseId))
         {
-            // TODO: кинуть кастомное исключение
-            return;
+            throw new NotMatchException("курс", courseId, "модуль", moduleId);
         }
 
         var entityLesson = await lessonsRepository.FindLesson(lessonId);
         if (entityLesson is null)
         {
-            // TODO: кинуть кастомное исключение
-            return;
+            throw new NotFoundException("урок", lessonId);
         }
 
         if (entityLesson.ModuleId != moduleId)
         {
-            // TODO: кинуть кастомное исключение
+            throw new NotMatchException("модуль", moduleId, "урок", lessonId);
         }
 
         var entityLessonDetailsFromModel = MapLessonDetailsEntityFromModel(lessonModel);
@@ -130,8 +125,7 @@ public class LessonsService : ILessonsService
     {
         if (!await modulesRepository.IsExistsModuleByIdAndCourseId(moduleId, courseId))
         {
-            // TODO: кинуть кастомное исключение
-            return;
+            throw new NotMatchException("курс", courseId, "модуль", moduleId);
         }
 
         var lessons = await lessonsRepository.GetLessons(moduleId);

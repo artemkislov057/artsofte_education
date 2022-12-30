@@ -1,4 +1,5 @@
-﻿using Education.DataBase.Interfaces;
+﻿using Education.Applications.Main.Model.Exceptions;
+using Education.DataBase.Interfaces;
 
 namespace Education.Applications.Main.Model.Extensions;
 
@@ -14,8 +15,8 @@ public static class IOrderElementExtensions
 
         if (source.Length != orderIds.Length)
         {
-            // TODO: кинуть кастомное исключение
-            return;
+            throw new OrderingException(
+                $"Переданный массив идентификаторов имеет некорректную длину (Длина переданного массива: {orderIds.Length}, должна быть: {source.Length})");
         }
 
         var orderByIdDictionary = new Dictionary<T, int>();
@@ -23,8 +24,8 @@ public static class IOrderElementExtensions
         {
             if (!availableIds.Contains(orderIds[i]) || orderByIdDictionary.ContainsKey(orderIds[i]))
             {
-                // TODO: кинуть кастомное исключение
-                return;
+                throw new OrderingException(
+                    $"Переданный массив идентификаторов содержит некорректный идентификатор {orderIds[i]}");
             }
 
             orderByIdDictionary[orderIds[i]] = i;

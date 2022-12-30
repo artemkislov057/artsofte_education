@@ -1,4 +1,5 @@
 ﻿using Education.DataBase.Entities.Lessons;
+using Education.DataBase.Exceptions;
 using Education.DataBase.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -74,8 +75,7 @@ public class LessonsRepository : ILessonsRepository
     {
         if (oldLessonDetails.LessonId != lesson.Id)
         {
-            // TODO: кинуть кастомное исключение
-            return;
+            throw new NotMatchException("урок", lesson.Id, "lesson details", oldLessonDetails.LessonId);
         }
 
         newLessonDetails.LessonId = lesson.Id;

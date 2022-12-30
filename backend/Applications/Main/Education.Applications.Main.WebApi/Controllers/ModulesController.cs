@@ -75,7 +75,7 @@ public class ModulesController : ControllerBase
     public async Task<ActionResult> EditModule(Guid courseId, Guid moduleId, [FromBody] PostPutModuleDto dto)
     {
         var model = dto.Adapt<AddOrEditModuleModel>();
-        await modulesService.EditModel(courseId, moduleId, model);
+        await modulesService.EditModule(courseId, moduleId, model);
         return NoContent();
     }
 

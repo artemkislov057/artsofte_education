@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { OutputData } from '@editorjs/editorjs';
 import { Store } from '@ngrx/store';
+import { filter } from 'rxjs';
 import { TextEditorComponent } from 'src/app/components/text-editor/text-editor.component';
 import { AppState } from 'src/app/store/states/app.state';
+import { Lesson } from 'src/typings/api/courseType';
 
 @Component({
   selector: 'app-edit-text-lesson-page',
@@ -13,7 +15,10 @@ import { AppState } from 'src/app/store/states/app.state';
 export class EditTextLessonPageComponent implements OnInit {
   currentCourseId: string | null = null;
   currentModuleId: string | null = null;
+  currentLessonId: number | null = null;
   lessonName: string | null = null;
+  existsTextData: OutputData[] = [];
+  isLessonExist: boolean = false;
 
   @ViewChildren(TextEditorComponent) textEditorComponent: TextEditorComponent[] | null = null;
 
@@ -21,22 +26,65 @@ export class EditTextLessonPageComponent implements OnInit {
     private router: Router,
     private activeRouter: ActivatedRoute,
     private _store: Store<AppState>,
-  ) { }
+  ) { 
+    this.onChangeUrl();
+  }
 
-  ngOnInit(): void {
+  async onChangeUrl() {
+    this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(async (e) => {
+      if(this.currentCourseId && this.currentModuleId) {
+        await this.getExistsTextData();
+      }
+    })
+  }
+
+  ngOnDestroy() {
+
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // console.log('aaas')
+  }
+
+  async ngOnInit() {
     this.activeRouter.queryParamMap.subscribe((param) => {
       const courseId = param.get('courseId');
       const moduleId = param.get('moduleId');
+      const lessonId = param.get('lessonId');
       if(courseId) {
         this.currentCourseId = courseId;
       } 
       if(moduleId) {
         this.currentModuleId = moduleId;
       }
+      if(lessonId) {
+        this.currentLessonId = +lessonId;
+      }
       if(!courseId && !moduleId) {
         alert('Что то не так с ids');
       }
-    })
+    });
+    if(this.currentLessonId !== null) {
+      this.isLessonExist = true;
+      await this.getExistsTextData();
+    }
+  }
+
+  ngAfterViewInit(): void {
+    // console.log('onViewInit', this.textEditorComponent)
+    // this.setExistsTextData();
+  }
+
+  async setExistsTextData() {
+    if(this.currentLessonId !== null) {
+      const textData = await this.getExistsTextData();
+      if(textData) {
+        this.existsTextData = textData;
+        // this.textEditorComponent?.map((component, i) => {
+        //   // component.setExistsData(textData[i])
+        // })
+      }
+    }
   }
 
   onChangeLessonName(name: string) {
@@ -53,11 +101,43 @@ export class EditTextLessonPageComponent implements OnInit {
         }
       }
     }
-    this.createLesson(textData)
+    if(this.isLessonExist) {
+      this.saveLessonChanges(textData);
+    } else {
+      this.createLesson(textData)
+    }
+  }
+
+  async saveLessonChanges(textData: OutputData[]) {
+    const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons/${this.currentLessonId}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        "name": this.lessonName,
+        "type": "Text",
+        "value": {
+          time: textData[0].time,
+          version: textData[0].version,
+          blocks: textData[0].blocks,
+        },
+        "additionalText": {
+          time: textData[1].time,
+          version: textData[1].version,
+          blocks: textData[1].blocks,
+        }
+      }),
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    if(response.ok) {
+      console.log('lesson changes save');
+    } else {
+      console.log('lesson changes not save');
+    }
   }
 
   async createLesson(textData: OutputData[]) {
-    console.log(textData)
     const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons`, {
       method: "POST",
       body: JSON.stringify([{
@@ -65,10 +145,15 @@ export class EditTextLessonPageComponent implements OnInit {
         "type": "Text",
         "description": 'why?',
         "value": {
-            time: textData[0].time,
-            version: textData[0].version,
-            blocks: textData[0].blocks,
-          }
+          time: textData[0].time,
+          version: textData[0].version,
+          blocks: textData[0].blocks,
+        },
+        "additionalText": {
+          time: textData[1].time,
+          version: textData[1].version,
+          blocks: textData[1].blocks,
+        }
         }
       ]),
       credentials: 'include',
@@ -81,5 +166,23 @@ export class EditTextLessonPageComponent implements OnInit {
     } else {
       console.log('lesson not created');
     }
+  }
+
+  async getExistsTextData() {
+    const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons`, {
+      credentials: 'include',
+    });
+    const lessons = await response.json() as Lesson[];
+    if(this.currentLessonId !== null) {
+      const currLesson = lessons.filter(({ id }) => id === this.currentLessonId)[0];
+      if(!currLesson) {
+        return null;
+      }
+      const result = [currLesson?.value, currLesson.additionalText as OutputData];
+      this.existsTextData = [...result];
+      this.lessonName = currLesson.name;
+      return result;
+    } 
+    return null;
   }
 }

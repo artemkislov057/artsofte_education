@@ -5,6 +5,7 @@ import { AppService } from 'src/app/app.service';
 import { AppState } from 'src/app/store/states/app.state';
 import { CourseType, Module } from 'src/typings/api/courseType';
 import { CourseMenuItem } from 'src/typings/courseMenuItemType';
+import { ModuleInfo } from 'src/typings/module';
 
 @Component({
   selector: 'app-edit-course-page',
@@ -15,6 +16,8 @@ export class EditCoursePageComponent implements OnInit {
   courseInfo: CourseType | null = null;
   currentCourseId: string = '';
   currentModuleId: string = '';
+  currentLessonId: number | null = null;
+  currentModuleIndex: number | null = null;
 
   constructor(
     private router: Router,
@@ -47,10 +50,59 @@ export class EditCoursePageComponent implements OnInit {
     })
     const data = await response.json() as CourseType;
     this.courseInfo = data;
+    if(this.currentModuleId) {
+      this.setCurrentOpenModule();
+    }
   }
 
   createModule() {
-    // this.router.navigateByUrl('/create-module');
     this.router.navigate(['/create-module'], {queryParams: {courseId: this.currentCourseId}});
+  }
+
+  setCurrentOpenModule() {
+    if(this.courseInfo) {
+      this.currentModuleIndex = this.courseInfo?.modules.findIndex((module) => module.id === this.currentModuleId)
+    }
+  }
+
+  createLesson() {
+    this.router.navigate(['/edit-course/select-lesson-type'], {
+      queryParamsHandling: 'merge',
+      queryParams: {
+        lessonId: null
+      }
+    });
+  }
+
+  async onClickModule({ moduleId, moduleIndex }: ModuleInfo) {
+    await this.getCourseInfo();
+    this.currentModuleId = moduleId;
+    this.currentModuleIndex = moduleIndex;
+    const lesson = this.courseInfo?.modules[moduleIndex].lessons[0]?.id || null;
+    if(lesson !== null) {
+      this.router.navigate(['/edit-course/edit-text-lesson'], {
+        queryParams: {
+          moduleId: this.currentModuleId,
+          lessonId: lesson,
+        },
+        queryParamsHandling: 'merge',
+      });
+    } else {
+      this.router.navigate(['/edit-course/select-lesson-type'], {
+        queryParams: {
+          moduleId: this.currentModuleId,
+          lessonId: lesson,
+        },
+        queryParamsHandling: 'merge',
+      });
+    }
+    
+  }
+
+  async onClickLesson(lessonId: number) {
+    await this.router.navigate(['/edit-course/edit-text-lesson'], {
+      queryParamsHandling: 'merge',
+      queryParams: {lessonId},
+    });
   }
 }

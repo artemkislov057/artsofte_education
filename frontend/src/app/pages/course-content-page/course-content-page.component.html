@@ -1,9 +1,7 @@
 <div class="main">
     <div class="container">
         <div class="title">{{courseInfo.name}}</div>
-        <app-courseslist 
-            [modules]="courseInfo.modules"
-            (onClickModuleOut)="onClickModule($event)"
-        ></app-courseslist>
+        <app-courseslist [modules]="courseInfo.modules" (onClickModuleOut)="onClickModule($event)"
+            (onClickLessonOut)="onClickLesson($event)"></app-courseslist>
     </div>
 </div>

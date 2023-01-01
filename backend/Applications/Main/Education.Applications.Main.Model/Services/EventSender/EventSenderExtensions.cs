@@ -4,11 +4,11 @@ namespace Education.Applications.Main.Model.Services.EventSender;
 
 public static class EventSenderExtensions
 {
-    public static void Send(this IEnumerable<EventSender> eventSenders, IEvent @event)
+    public static async Task Send(this IEnumerable<EventSender> eventSenders, IEvent @event)
     {
         foreach (var eventSender in eventSenders)
         {
-            eventSender.Send(@event);
+            await eventSender.Send(@event);
         }
     }
 }

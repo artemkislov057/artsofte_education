@@ -4,10 +4,10 @@ namespace Education.Applications.Main.Model.Services.EventSender;
 
 public abstract class EventSender
 {
-    public bool Send(IEvent @event)
+    public async Task Send(IEvent @event)
     {
-        return Send(@event.GetMessage());
+        await Send(@event.GetMessage());
     }
 
-    protected abstract bool Send(string message);
+    protected abstract Task Send(string message);
 }

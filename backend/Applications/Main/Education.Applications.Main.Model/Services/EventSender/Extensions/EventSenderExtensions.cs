@@ -1,6 +1,6 @@
 ﻿using Education.Applications.Main.Model.Services.EventSender.Events;
 
-namespace Education.Applications.Main.Model.Services.EventSender;
+namespace Education.Applications.Main.Model.Services.EventSender.Extensions;
 
 public static class EventSenderExtensions
 {

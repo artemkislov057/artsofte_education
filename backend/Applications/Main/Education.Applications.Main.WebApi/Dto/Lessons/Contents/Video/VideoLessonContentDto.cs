@@ -19,5 +19,5 @@ public class VideoLessonContentDto : LessonContentBaseDto
     /// <summary>
     /// Ссылка на видео
     /// </summary>
-    public string Src { get; init; }
+    public string? Src { get; init; }
 }

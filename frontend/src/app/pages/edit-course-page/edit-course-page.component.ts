@@ -137,7 +137,13 @@ export class EditCoursePageComponent implements OnInit {
         case "Text":
           return '/edit-course/edit-text-lesson';
         case "Video":
-          return '/edit-course/edit-video-lesson'
+          return '/edit-course/edit-video-lesson';
+        case "Test":
+          return '/edit-course/edit-test-lesson';
+        case "Literature":
+          return '/edit-add-material-lesson';
+        case "Presentation":
+          return '/edit-presentation-lesson';
       }
     }
     return null;

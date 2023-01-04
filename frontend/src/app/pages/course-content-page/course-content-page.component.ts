@@ -52,8 +52,9 @@ export class CourseContentPageComponent implements OnInit {
     const lessonId = lessonData[0]?.id || null
     const type = lessonData[0]?.type || null;
     console.log(moduleIndex, lessonId, type)
-    if(lessonId !== null && type === 'Text') {
-      this.router.navigate(['/edit-course/edit-text-lesson'], {
+    if(lessonId !== null) {
+      const editUrlPage = this.getLessonTypeUrl(moduleIndex, lessonId)
+      this.router.navigate([editUrlPage], {
         queryParams: {
           moduleId,
           lessonId,
@@ -70,15 +71,36 @@ export class CourseContentPageComponent implements OnInit {
     }
   }
 
-  onClickLesson({moduleId, lessonId}: {moduleId: string, lessonId: number}) {
-    // добавить обработку для перехода не только в текстовые уроки
-    this.router.navigate(['/edit-course/edit-text-lesson'], {
-      queryParams: {
-        moduleId,
-        lessonId,
-      },
-      queryParamsHandling: 'merge',
-    });
+  async onClickLesson({moduleId, lessonId}: {moduleId: string, lessonId: number}) {
+    const moduleIndex = this.courseInfo.modules.findIndex(({id}) => id === moduleId);
+    const editPageUrl = this.getLessonTypeUrl(moduleIndex, lessonId);
+    if(editPageUrl) {
+      await this.router.navigate([editPageUrl], {
+        queryParamsHandling: 'merge',
+        queryParams: {
+          moduleId,
+          lessonId,
+        },
+      });
+    }
   }
 
+  getLessonTypeUrl(moduleIndex: number, lessonId: number) {
+    const currentLesson = this.courseInfo?.modules[moduleIndex].lessons.find(e => e.id === lessonId);
+    if(currentLesson) {
+      switch(currentLesson.type) {
+        case "Text":
+          return '/edit-course/edit-text-lesson';
+        case "Video":
+          return '/edit-course/edit-video-lesson';
+        case "Test":
+          return '/edit-course/edit-test-lesson';
+        case "Literature":
+          return '/edit-add-material-lesson';
+        case "Presentation":
+          return '/edit-presentation-lesson';
+      }
+    }
+    return null;
+  }
 }

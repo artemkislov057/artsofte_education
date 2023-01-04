@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
 import { Lesson } from 'src/typings/api/courseType';
 
 @Component({
@@ -15,13 +15,20 @@ export class TopToolarContainerComponent implements OnInit {
   constructor() { }
 
   ngOnChanges(changes: any) {
-    if(this.lessons[0]?.id as number) {
+    const lessons = changes.lessons;
+    if(lessons.previousValue.length !== lessons.currentValue.length) {
       this.isActiveId = this.lessons[0]?.id;
+    }
+    if(lessons.previousValue.length && lessons.currentValue.length) {
+      const prev = lessons.previousValue;
+      const curr = lessons.currentValue;
+      if(prev[0]?.id === curr[0]?.id && prev.length + 1 === curr.length) {
+        this.isActiveId = this.lessons[this.lessons.length - 1]?.id;
+      }
     }
   }
 
   ngOnInit(): void {
-    console.log(this.lessons)
   }
 
   onChangeLesson(lessonId: number) {

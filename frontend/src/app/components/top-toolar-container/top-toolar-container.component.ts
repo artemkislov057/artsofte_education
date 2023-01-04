@@ -36,6 +36,7 @@ export class TopToolarContainerComponent implements OnInit {
     if(prev.length + 1 === curr.length){
       console.log('добавился новый урок в модуль')
       this.isActiveId = this.lessons[this.lessons.length - 1].id;
+      return;
     }
   }
 

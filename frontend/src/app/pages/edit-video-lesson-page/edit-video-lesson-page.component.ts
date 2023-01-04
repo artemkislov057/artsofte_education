@@ -97,7 +97,7 @@ export class EditVideoLessonPageComponent implements OnInit {
       if(videoValue.videoType === "YouTube") {
         this.hrefYoutubeVideo = videoValue.src;
       } else {
-        this.hrefVideo = videoValue.src;
+        this.hrefVideo = await this.getVideoFileFromServer(videoValue.src);
       }
     } 
   }
@@ -116,13 +116,14 @@ export class EditVideoLessonPageComponent implements OnInit {
       if(this.hrefYoutubeVideo) {
         this.saveLessonChangesWithVideoHref(textData, this.hrefYoutubeVideo);
       } else {
-
+        // сделать редактирование загружаемого видео
       }
     } else {
       if(this.hrefYoutubeVideo) {
-        this.createLessonWithVideoHref(textData, this.hrefYoutubeVideo);
-      } else {
-
+        this.createVideoLesson(textData, this.hrefYoutubeVideo, 'YouTube');
+      } else if(this.videoFile) {
+        const href = await this.sendVideoFileOnServer(this.videoFile);
+        this.createVideoLesson(textData, href, 'Internal');
       }
     }
   }
@@ -151,7 +152,7 @@ export class EditVideoLessonPageComponent implements OnInit {
     }
   }
 
-  async createLessonWithVideoHref(textData: OutputData | null, href: string) {
+  async createVideoLesson(textData: OutputData | null, href: string, type: 'YouTube' | 'Internal') {
     const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons`, {
       method: "POST",
       body: JSON.stringify([{
@@ -159,7 +160,7 @@ export class EditVideoLessonPageComponent implements OnInit {
         "type": "Video",
         "description": 'why?',
         "value": {
-          "videoType": "YouTube",
+          "videoType": type,
           "src": href,
         },
         "additionalText": textData,
@@ -182,5 +183,30 @@ export class EditVideoLessonPageComponent implements OnInit {
     } else {
       console.log('lesson with video href not created');
     }
+  }
+
+  async sendVideoFileOnServer(file: File): Promise<string> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await fetch(`https://localhost:7144/Video`, {
+      method: "POST",
+      body: formData,
+      credentials: 'include',
+    })
+    const { path } = await response.json() as {
+      "path": string;
+    };
+    return path;
+  }
+
+  async getVideoFileFromServer(path: string) {
+    const response = await fetch(`https://localhost:7144/${path}`, {
+      credentials: 'include',
+    });
+    const data = await response.blob();
+    const video = new File([data], 'video', { type: 'video/mp4' });
+    const videoUrl = URL.createObjectURL(video)
+    return videoUrl;
   }
 }

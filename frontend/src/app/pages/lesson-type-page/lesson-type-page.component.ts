@@ -48,7 +48,7 @@ export class LessonTypePageComponent implements OnInit {
   }
 
   navigateToCreateVideoLesson(): void {
-    this.router.navigateByUrl('/edit-course/edit-video-lesson');
+    this.router.navigate(['/edit-course/edit-video-lesson'], {queryParamsHandling: 'preserve'});
   }
 
   navigateToCreatePresentationLesson(): void {

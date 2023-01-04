@@ -18,6 +18,11 @@ export type Lesson = {
     "id": number;
     "name": string;
     "type": string;
-    "value": OutputData;
+    "value": OutputData | VideoValue;
     "additionalText"?: OutputData;
+}
+
+export type VideoValue = {
+    "videoType": string;
+    "src": string;
 }

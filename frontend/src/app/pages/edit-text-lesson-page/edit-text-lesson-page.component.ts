@@ -38,14 +38,6 @@ export class EditTextLessonPageComponent implements OnInit {
     })
   }
 
-  ngOnDestroy() {
-
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    // console.log('aaas')
-  }
-
   async ngOnInit() {
     this.activeRouter.queryParamMap.subscribe((param) => {
       const courseId = param.get('courseId');
@@ -73,18 +65,6 @@ export class EditTextLessonPageComponent implements OnInit {
   ngAfterViewInit(): void {
     // console.log('onViewInit', this.textEditorComponent)
     // this.setExistsTextData();
-  }
-
-  async setExistsTextData() {
-    if(this.currentLessonId !== null) {
-      const textData = await this.getExistsTextData();
-      if(textData) {
-        this.existsTextData = textData;
-        // this.textEditorComponent?.map((component, i) => {
-        //   // component.setExistsData(textData[i])
-        // })
-      }
-    }
   }
 
   onChangeLessonName(name: string) {
@@ -161,8 +141,18 @@ export class EditTextLessonPageComponent implements OnInit {
         'Content-Type': 'application/json'
       },
     })
+    const lessonsIds = await response.json() as number[];
+    console.log(lessonsIds)
     if(response.ok) {
+      this.router.navigate([], {
+        queryParams: {
+          moduleId: this.currentModuleId,
+          lessonId: lessonsIds[0],
+        },
+        queryParamsHandling: 'merge',
+      })
       console.log('lesson created');
+      
     } else {
       console.log('lesson not created');
     }
@@ -178,7 +168,7 @@ export class EditTextLessonPageComponent implements OnInit {
       if(!currLesson) {
         return null;
       }
-      const result = [currLesson?.value, currLesson.additionalText as OutputData];
+      const result = [currLesson?.value, currLesson.additionalText as OutputData] as OutputData[];
       this.existsTextData = [...result];
       this.lessonName = currLesson.name;
       return result;

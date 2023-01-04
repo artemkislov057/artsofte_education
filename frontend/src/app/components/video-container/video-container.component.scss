@@ -6,6 +6,14 @@
     background: #FFFFFF;
     border-radius: 10px;
     gap: 24px;
+    position: relative;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: 24px;
 }
 
 .inputContainer {
@@ -41,4 +49,26 @@
     border: none;
     border-bottom: 1px solid #000000;
     outline: none;
+}
+
+.videoPlayer {
+    width: 714px;
+    height: 412px;
+    display: flex;
+    align-self: center;
+}
+
+.deleteButton {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    background: url('icons/icons_close.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    opacity: .8;
 }

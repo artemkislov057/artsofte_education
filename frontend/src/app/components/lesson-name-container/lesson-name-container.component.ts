@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./lesson-name-container.component.scss']
 })
 export class LessonNameContainerComponent implements OnInit {
-  @Input() titleName: string | null = 'Название урока';
+  @Input() titleName: string | null = null;
   @Output() changeLessonName = new EventEmitter<string>();
 
   constructor() { }

@@ -47,11 +47,16 @@ export class TextEditorComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if(this.editData !== null) {
-      this.editor?.isReady.then(e => this.setExistsData(this.editData!))
+      this.editor?.isReady.then(e => {
+        if(this.editData !== null) {
+          this.setExistsData(this.editData)
+        }
+      })
     }
   }
 
   async onSave() {
+    await this.editor?.isReady
     const resultData = await this.editor?.save();
     if(resultData) {
       return resultData;

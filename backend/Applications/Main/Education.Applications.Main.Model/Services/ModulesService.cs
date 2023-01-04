@@ -2,6 +2,8 @@
 using Education.Applications.Main.Model.Extensions;
 using Education.Applications.Main.Model.Models.Courses;
 using Education.Applications.Main.Model.Models.Modules;
+using Education.Applications.Main.Model.Services.EventSender.Events.Module;
+using Education.Applications.Main.Model.Services.EventSender.Extensions;
 using Education.DataBase.Entities;
 using Education.DataBase.Repositories;
 using Mapster;
@@ -21,11 +23,15 @@ public class ModulesService : IModulesService
 {
     private readonly ICoursesRepository coursesRepository;
     private readonly IModulesRepository modulesRepository;
+    private readonly IEnumerable<EventSender.EventSender> eventSenders;
 
-    public ModulesService(ICoursesRepository coursesRepository, IModulesRepository modulesRepository)
+    public ModulesService(ICoursesRepository coursesRepository,
+        IModulesRepository modulesRepository,
+        IEnumerable<EventSender.EventSender>? eventSenders = null)
     {
         this.coursesRepository = coursesRepository;
         this.modulesRepository = modulesRepository;
+        this.eventSenders = eventSenders ?? Enumerable.Empty<EventSender.EventSender>();
     }
 
     public async Task<ModuleModel> AddModuleToCourse(Guid courseId, AddOrEditCourseModel moduleModel)
@@ -40,7 +46,9 @@ public class ModulesService : IModulesService
         var lastOrder = await modulesRepository.FindLastOrderByCourseId(courseId) ?? -1;
         moduleEntity.Order = lastOrder + 1;
         await modulesRepository.AddModuleToCourse(moduleEntity, course);
-        return moduleEntity.Adapt<ModuleModel>();
+        var moduleResult = moduleEntity.Adapt<ModuleModel>();
+        await eventSenders.Send(new ModuleAddEvent(course.Name, moduleResult));
+        return moduleResult;
     }
 
     public async Task<bool> TryDeleteModule(Guid courseId, Guid moduleId)
@@ -57,6 +65,8 @@ public class ModulesService : IModulesService
         }
 
         await modulesRepository.DeleteModule(module);
+        var course = await coursesRepository.FindCourse(courseId);
+        await eventSenders.Send(new ModuleDeleteEvent(course!.Name, module.Name));
         return true;
     }
 
@@ -75,6 +85,8 @@ public class ModulesService : IModulesService
 
         moduleModel.Adapt(moduleEntity);
         await modulesRepository.EditModule(moduleEntity);
+        var course = await coursesRepository.FindCourse(courseId);
+        await eventSenders.Send(new ModuleEditEvent(course!.Name, moduleEntity.Adapt<ModuleModel>()));
     }
 
     public async Task ChangeOrder(Guid courseId, Guid[] orderIds)
@@ -82,6 +94,16 @@ public class ModulesService : IModulesService
         var modules = await modulesRepository.GetModulesFromCourse(courseId);
         modules.ChangeOrder(orderIds);
         await modulesRepository.EditModules(modules);
+        var course = await coursesRepository.FindCourse(courseId);
+        await eventSenders.Send(
+            new ModulesOrderEditEvent(
+                course!.Name,
+                modules
+                    .OrderBy(m => m.Order)
+                    .Select(m => m.Name)
+                    .ToArray()
+            )
+        );
     }
 
     public async Task<ModuleModel[]> GetModules(Guid courseId)

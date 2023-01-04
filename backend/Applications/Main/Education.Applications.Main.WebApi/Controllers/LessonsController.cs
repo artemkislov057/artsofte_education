@@ -57,7 +57,7 @@ public class LessonsController : ControllerBase
                 (LessonContent)lessonDto.Adapt(lessonDto.GetType(), lessonDto.GetModelLessonContentType())!;
             lesson.Adapt(lessonModel);
             return lessonModel;
-        });
+        }).ToArray();
 
         var postedLessonsIds = await service.PostLessons(courseId, moduleId, modelLessons);
         return Ok(postedLessonsIds);

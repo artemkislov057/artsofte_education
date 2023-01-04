@@ -3,6 +3,8 @@ using System.Reflection;
 using Education.Applications.Main.Model.Exceptions;
 using Education.Applications.Main.Model.Extensions;
 using Education.Applications.Main.Model.Models.Lessons;
+using Education.Applications.Main.Model.Services.EventSender.Events.Lesson;
+using Education.Applications.Main.Model.Services.EventSender.Extensions;
 using Education.DataBase.Entities.Lessons;
 using Education.DataBase.Extensions;
 using Education.DataBase.Repositories;
@@ -12,7 +14,7 @@ namespace Education.Applications.Main.Model.Services;
 
 public interface ILessonsService
 {
-    Task<int[]> PostLessons(Guid courseId, Guid moduleId, IEnumerable<LessonContent> lessons);
+    Task<int[]> PostLessons(Guid courseId, Guid moduleId, LessonContent[] lessons);
     Task<LessonContent[]> GetLessons(Guid courseId, Guid moduleId);
     Task<bool> TryDeleteLesson(Guid courseId, Guid moduleId, int lessonId);
     Task EditLesson(Guid courseId, Guid moduleId, int lessonId, LessonContent lessonModel);
@@ -23,15 +25,22 @@ public class LessonsService : ILessonsService
 {
     private readonly ILessonsRepository lessonsRepository;
     private readonly IModulesRepository modulesRepository;
+    private readonly ICoursesRepository coursesRepository;
+    private readonly IEnumerable<EventSender.EventSender> eventSenders;
     private static readonly ConcurrentDictionary<Type, Type> ModelTypesByEntity = new();
 
-    public LessonsService(ILessonsRepository lessonsRepository, IModulesRepository modulesRepository)
+    public LessonsService(ILessonsRepository lessonsRepository,
+        IModulesRepository modulesRepository,
+        ICoursesRepository coursesRepository,
+        IEnumerable<EventSender.EventSender>? eventSenders)
     {
         this.lessonsRepository = lessonsRepository;
         this.modulesRepository = modulesRepository;
+        this.coursesRepository = coursesRepository;
+        this.eventSenders = eventSenders ?? Enumerable.Empty<EventSender.EventSender>();
     }
 
-    public async Task<int[]> PostLessons(Guid courseId, Guid moduleId, IEnumerable<LessonContent> lessons)
+    public async Task<int[]> PostLessons(Guid courseId, Guid moduleId, LessonContent[] lessons)
     {
         if (!await modulesRepository.IsExistsModuleByIdAndCourseId(moduleId, courseId))
         {
@@ -50,6 +59,10 @@ public class LessonsService : ILessonsService
 
         var lastLessonOrder = await lessonsRepository.FindLastLessonIdInModule(moduleId) ?? -1;
         await lessonsRepository.AddLessons(entityLessons.OrderElements(lastLessonOrder + 1));
+        var course = await coursesRepository.FindCourse(courseId, false);
+        var module = await modulesRepository.FindModule(moduleId);
+        await eventSenders.Send(new LessonAddEvent(course!.Name, module!.Name,
+            entityLessons.Select(MapLessonContentFromEntity).ToArray()));
         return entityLessons.Select(l => l.Id).ToArray();
     }
 
@@ -84,6 +97,9 @@ public class LessonsService : ILessonsService
         }
 
         await lessonsRepository.DeleteLesson(lesson);
+        var course = await coursesRepository.FindCourse(courseId, false);
+        var module = await modulesRepository.FindModule(moduleId);
+        await eventSenders.Send(new LessonDeleteEvent(course!.Name, module!.Name, lesson.Name));
         return true;
     }
 
@@ -119,6 +135,11 @@ public class LessonsService : ILessonsService
             lessonModel.Adapt(currentLessonDetails, lessonModel.GetType(), lessonModel.EntityType);
             await lessonsRepository.EditLessonDetails(currentLessonDetails);
         }
+
+        var course = await coursesRepository.FindCourse(courseId, false);
+        var module = await modulesRepository.FindModule(moduleId);
+        lessonModel.Id = lessonId;
+        await eventSenders.Send(new LessonEditEvent(course!.Name, module!.Name, lessonModel));
     }
 
     public async Task ChangeOrder(Guid courseId, Guid moduleId, int[] orderIds)
@@ -131,6 +152,16 @@ public class LessonsService : ILessonsService
         var lessons = await lessonsRepository.GetLessons(moduleId);
         lessons.ChangeOrder(orderIds);
         await lessonsRepository.EditLessons(lessons);
+        var course = await coursesRepository.FindCourse(courseId, false);
+        var module = await modulesRepository.FindModule(moduleId);
+        await eventSenders.Send(new LessonsOrderEditEvent(
+            course!.Name,
+            module!.Name,
+            lessons
+                .OrderBy(l => l.Order)
+                .Select(l => l.Name)
+                .ToArray()
+        ));
     }
 
     public static LessonContent MapLessonContentFromEntity(Lesson entityLesson)

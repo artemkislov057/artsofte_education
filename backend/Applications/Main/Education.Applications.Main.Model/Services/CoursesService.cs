@@ -1,5 +1,9 @@
 ﻿using Education.Applications.Main.Model.Exceptions;
 using Education.Applications.Main.Model.Models.Courses;
+using Education.Applications.Main.Model.Services.EventSender;
+using Education.Applications.Main.Model.Services.EventSender.Events;
+using Education.Applications.Main.Model.Services.EventSender.Events.Course;
+using Education.Applications.Main.Model.Services.EventSender.Extensions;
 using Education.DataBase.Entities;
 using Education.DataBase.Repositories;
 using Mapster;
@@ -18,17 +22,22 @@ public interface ICoursesService
 public class CoursesService : ICoursesService
 {
     private readonly ICoursesRepository coursesRepository;
+    private readonly IEnumerable<EventSender.EventSender> eventSenders;
 
-    public CoursesService(ICoursesRepository coursesRepository)
+    public CoursesService(ICoursesRepository coursesRepository,
+        IEnumerable<EventSender.EventSender>? eventSenders = null)
     {
         this.coursesRepository = coursesRepository;
+        this.eventSenders = eventSenders ?? Enumerable.Empty<EventSender.EventSender>();
     }
 
     public async Task<CourseModel> AddCourse(AddOrEditCourseModel course)
     {
         var entityCourse = course.Adapt<Course>();
         await coursesRepository.AddCourse(entityCourse);
-        return entityCourse.Adapt<CourseModel>();
+        var courseResult = entityCourse.Adapt<CourseModel>();
+        await eventSenders.Send(new CourseAddEvent(courseResult));
+        return courseResult;
     }
 
     public async Task<bool> TryDeleteCourse(Guid courseId)
@@ -40,6 +49,7 @@ public class CoursesService : ICoursesService
         }
 
         await coursesRepository.DeleteCourse(course);
+        await eventSenders.Send(new CourseDeleteEvent(courseId, course.Name));
         return true;
     }
 
@@ -59,6 +69,7 @@ public class CoursesService : ICoursesService
 
         courseModel.Adapt(courseEntity);
         await coursesRepository.EditCourse(courseEntity);
+        await eventSenders.Send(new CourseEditEvent(courseModel.Adapt<CourseModel>()));
     }
 
     public async Task<CourseModel?> FindCourse(Guid courseId)

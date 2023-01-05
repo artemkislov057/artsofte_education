@@ -8,7 +8,7 @@
             <app-module-item [title]="item.name" (click)="onChangeModule({
                     moduleId: item.id, 
                     moduleIndex: i
-                })"></app-module-item>
+                })" [isActive]="activeModuleIndex === i"></app-module-item>
         </div>
     </div>
     <div class="button">

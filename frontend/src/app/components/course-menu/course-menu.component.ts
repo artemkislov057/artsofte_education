@@ -11,6 +11,7 @@ export class CourseMenuComponent implements OnInit {
   @Input() courseInfo: CourseType | null = null;
   @Output() createModule = new EventEmitter();
   @Output() changeModule = new EventEmitter<ModuleInfo>();
+  activeModuleIndex: number = 0;
 
   constructor() { }
 
@@ -22,6 +23,7 @@ export class CourseMenuComponent implements OnInit {
   }
 
   onChangeModule(moduleInfo: ModuleInfo) {
+    this.activeModuleIndex = moduleInfo.moduleIndex;
     this.changeModule.emit(moduleInfo);
   }
 

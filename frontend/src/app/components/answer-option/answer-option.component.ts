@@ -16,6 +16,7 @@ export class AnswerOptionComponent implements OnInit {
   @Input() id: number = -1;
   @Input() isDisabled: boolean = false;
   @Input() placeholder: string = 'Введите вариант ответа...';
+  @Input() isSingle: boolean = true;
   @Output() selectCorrectOption = new EventEmitter<boolean>();
   @Output() changeValueOption = new EventEmitter<string>();
   @Output() deleteAnswerOption = new EventEmitter();

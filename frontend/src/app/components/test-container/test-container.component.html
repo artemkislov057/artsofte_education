@@ -14,7 +14,7 @@
                 <app-answer-option [type]="typeAnswers" [optionData]="option" [id]="i"
                     [questionIndex]="questionIndex || -1" (selectCorrectOption)="onSelectCorrectOption(i, $event)"
                     (changeValueOption)="onChangeValueInputOption(i, $event)"
-                    (deleteAnswerOption)="onDeleteAnswerOption(i)">
+                    (deleteAnswerOption)="onDeleteAnswerOption(i)" [isSingle]="options.length === 1">
                 </app-answer-option>
             </div>
             <app-answer-option [type]="typeAnswers" [isDisabled]="true" [placeholder]="'Добавить вариант ответа'"

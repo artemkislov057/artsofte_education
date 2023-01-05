@@ -5,7 +5,8 @@
         <div class="emptyTitle">Вы не добавили ни одного вопроса</div>
         <button class="addOptionButton" (click)="onClickAddQuestion()">Добавить вопрос</button>
     </div>
-    <div *ngFor="let item of questions; index as i">
+    <div class="testsContainer" *ngFor="let item of questions; index as i">
+        <div class="removeTestContainer" (click)="onDeleteQuest(i)"></div>
         <app-text-editor [title]="'Вопрос #'+(i+1)+':'" [unicId]="'test-lesson-type-task'+i" [initHeight]="50"
             [isSingleComponent]="true">
         </app-text-editor>

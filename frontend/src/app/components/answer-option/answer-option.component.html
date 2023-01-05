@@ -1,4 +1,4 @@
-<div class="main">
+<div [class.disabled]="isDisabled" class="main">
     <div class="left">
         <!-- <div class="checkIcon" [class.radio]="type==='radio'" [class.checkbox]="type==='checkbox'"></div> -->
         <input [id]="'optionInput' + id" class="optionInput" [name]="questionIndex" type={{type}}
@@ -8,5 +8,5 @@
                 [(ngModel)]="optionData.value" (change)="onChangeValueOption()" [value]="optionData.value" />
         </label>
     </div>
-    <div class="removeIcon"></div>
+    <div *ngIf="!isDisabled" class="removeIcon"></div>
 </div>

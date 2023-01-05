@@ -113,6 +113,11 @@ export class EditTestLessonPageComponent implements OnInit {
     this.lessonName = name;
   }
 
+  onDeleteQuest(questionIndex: number) {
+    this.questions.splice(questionIndex, 1);
+    console.log(this.questions)
+  }
+
   async saveChanges() {
     if(this.textEditorComponent) {
       let index = 0;
@@ -124,7 +129,6 @@ export class EditTestLessonPageComponent implements OnInit {
         index++;
       }
     }
-
     //
   }
 

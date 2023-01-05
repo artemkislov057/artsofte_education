@@ -115,7 +115,10 @@ export class EditTestLessonPageComponent implements OnInit {
 
   onDeleteQuest(questionIndex: number) {
     this.questions.splice(questionIndex, 1);
-    console.log(this.questions)
+  }
+
+  onDeleteAnswerOption({ questionIndex, optionIndex }: {questionIndex: number, optionIndex: number }) {
+    this.questions[questionIndex].answerOptions.splice(optionIndex, 1);
   }
 
   async saveChanges() {

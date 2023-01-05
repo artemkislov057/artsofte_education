@@ -13,7 +13,8 @@
         <app-test-container [typeAnswers]="item.questionType" [options]="item.answerOptions" [questionIndex]="i"
             (changeQuestionType)="onChangeQuestionType($event)" (addAnswerOption)="onAddAnswerOption($event)"
             (selectCorrectOption)="onSelectCorrectOption($event)"
-            (changeInputValueOption)="onChangeValueInputOption($event)">
+            (changeInputValueOption)="onChangeValueInputOption($event)"
+            (deleteAnswerOption)="onDeleteAnswerOption($event)">
         </app-test-container>
     </div>
     <button *ngIf="questions.length" class="addOptionButton" (click)="onClickAddQuestion()">Добавить вопрос</button>

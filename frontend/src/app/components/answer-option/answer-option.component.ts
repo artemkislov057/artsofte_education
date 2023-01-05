@@ -18,6 +18,7 @@ export class AnswerOptionComponent implements OnInit {
   @Input() placeholder: string = 'Введите вариант ответа...';
   @Output() selectCorrectOption = new EventEmitter<boolean>();
   @Output() changeValueOption = new EventEmitter<string>();
+  @Output() deleteAnswerOption = new EventEmitter();
 
   constructor() { }
 
@@ -30,6 +31,10 @@ export class AnswerOptionComponent implements OnInit {
 
   onChangeValueOption() {
     this.changeValueOption.emit(this.optionData.value);
+  }
+
+  onDeleteOption() {
+    this.deleteAnswerOption.emit();
   }
 
 }

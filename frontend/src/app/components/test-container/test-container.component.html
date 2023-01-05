@@ -13,7 +13,8 @@
             <div class="options" *ngFor="let option of options; index as i">
                 <app-answer-option [type]="typeAnswers" [optionData]="option" [id]="i"
                     [questionIndex]="questionIndex || -1" (selectCorrectOption)="onSelectCorrectOption(i, $event)"
-                    (changeValueOption)="onChangeValueInputOption(i, $event)">
+                    (changeValueOption)="onChangeValueInputOption(i, $event)"
+                    (deleteAnswerOption)="onDeleteAnswerOption(i)">
                 </app-answer-option>
             </div>
             <app-answer-option [type]="typeAnswers" [isDisabled]="true" [placeholder]="'Добавить вариант ответа'"

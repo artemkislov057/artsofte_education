@@ -12,8 +12,10 @@ export class TestContainerComponent implements OnInit {
   @Input() options: AnswerOption[] = [];
   @Output() changeQuestionType = new EventEmitter<{questionIndex: number, questionType: QuestionType}>();
   @Output() addAnswerOption = new EventEmitter<number>();
-  @Output() selectCorrectOption = new EventEmitter<{questionIndex: number, optionIndex: number, isChecked: boolean}>();
-  @Output() changeInputValueOption = new EventEmitter<{questionIndex: number, optionIndex: number, value: string}>();
+  @Output() selectCorrectOption = new EventEmitter<{ questionIndex: number, optionIndex: number, isChecked: boolean }>();
+  @Output() changeInputValueOption = new EventEmitter<{ questionIndex: number, optionIndex: number, value: string }>();
+  @Output() deleteAnswerOption = new EventEmitter<{ questionIndex: number, optionIndex: number }>();
+
 
   constructor() { }
 
@@ -51,6 +53,15 @@ export class TestContainerComponent implements OnInit {
         optionIndex,
         questionIndex: this.questionIndex,
         value,
+      })
+    }
+  }
+
+  onDeleteAnswerOption(optionIndex: number) {
+    if(this.questionIndex !== null) {
+      this.deleteAnswerOption.emit({
+        optionIndex,
+        questionIndex: this.questionIndex,
       })
     }
   }

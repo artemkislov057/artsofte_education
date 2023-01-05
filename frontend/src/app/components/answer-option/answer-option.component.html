@@ -8,5 +8,5 @@
                 [(ngModel)]="optionData.value" (change)="onChangeValueOption()" [value]="optionData.value" />
         </label>
     </div>
-    <div *ngIf="!isDisabled" class="removeIcon"></div>
+    <div *ngIf="!isDisabled" class="removeIcon" (click)="onDeleteOption()"></div>
 </div>

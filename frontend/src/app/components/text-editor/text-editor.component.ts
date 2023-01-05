@@ -17,6 +17,7 @@ export class TextEditorComponent implements OnInit {
   @Input() unicId: string = '';
   @Input() initHeight: number = 300;
   @Input() editData: OutputData | null = null;
+  @Input() isSingleComponent: boolean = false;
   @Output() onClickSave = new EventEmitter();
   @Input() test = () => {};
 

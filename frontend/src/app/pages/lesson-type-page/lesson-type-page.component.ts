@@ -40,7 +40,7 @@ export class LessonTypePageComponent implements OnInit {
   }
 
   navigateToCreateTestLesson(): void {
-    this.router.navigateByUrl('/edit-course/edit-test-lesson');
+    this.router.navigate(['/edit-course/edit-test-lesson'], {queryParamsHandling: 'preserve'});
   }
 
   navigateToCreateAdditionalMaterialLesson(): void {

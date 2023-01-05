@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { QuestionType } from 'src/typings/test';
 
 @Component({
   selector: 'app-test-type-buttons',
@@ -7,10 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TestTypeButtonsComponent implements OnInit {
   @Input() isActiveRadio: boolean = true;
+  @Output() changeQuestionType = new EventEmitter<QuestionType>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onChangeQuestionType(questionType: QuestionType) {
+    this.changeQuestionType.emit(questionType);
   }
 
 }

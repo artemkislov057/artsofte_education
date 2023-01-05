@@ -28,11 +28,24 @@
     background-size: 100% 100%;
 }
 
-.optionName {
+.optionInput {
+    width: 19px;
+    height: 19px;
+    margin: 0;
+    filter: grayscale(1);
+}
+
+.optionValueInput {
     width: 578px;
     border: none;
     border-bottom: 1px solid #5F5F5F;
     outline: none;
+
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: 0.015em;
+    color: #5F5F5F;
 }
 
 .removeIcon {

@@ -1,17 +1,25 @@
 <div class="main">
-    <div class="header">
-        <div class="title">Варианты ответов:</div>
-        <div class="answerTypeContainer">
-            <div class="titleAnswerType">Количество правильных ответов:</div>
-            <app-test-type-buttons></app-test-type-buttons>
+    <div class="content">
+        <div class="header">
+            <div class="title">Варианты ответов:</div>
+            <div class="answerTypeContainer">
+                <div class="titleAnswerType">Количество правильных ответов:</div>
+                <app-test-type-buttons [isActiveRadio]="typeAnswers==='radio'"
+                    (changeQuestionType)="onChangeQustionType($event)"></app-test-type-buttons>
+            </div>
+        </div>
+        <div class="optionsContainer">
+            <div class="optionsTitle">Добавьте варианты ответа и отметьте правильный:</div>
+            <div class="options" *ngFor="let option of options; index as i">
+                <app-answer-option [type]="typeAnswers" [optionData]="option" [id]="i"
+                    [questionIndex]="questionIndex || -1" (selectCorrectOption)="onSelectCorrectOption(i, $event)"
+                    (changeValueOption)="onChangeValueInputOption(i, $event)"
+                    (deleteAnswerOption)="onDeleteAnswerOption(i)" [isSingle]="options.length === 1">
+                </app-answer-option>
+            </div>
+            <app-answer-option [type]="typeAnswers" [isDisabled]="true" [placeholder]="'Добавить вариант ответа'"
+                (click)="onAddAnswerOption()"></app-answer-option>
         </div>
     </div>
-    <div class="optionsContainer">
-        <div class="optionsTitle">Добавьте варианты ответа и отметьте правильный:</div>
-        <div class="options">
-            <app-answer-option [type]="'radio'"></app-answer-option>
-            <app-answer-option [type]="'radio'"></app-answer-option>
-        </div>
-    </div>
-    <button class="addOptionButton">Добавить</button>
+
 </div>

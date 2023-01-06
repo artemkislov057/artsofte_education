@@ -4,6 +4,7 @@ using Education.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Education.DataBase.Migrations
 {
     [DbContext(typeof(EducationDbContext))]
-    partial class EducationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230104085904_make_description_nullable")]
+    partial class make_description_nullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,11 +244,12 @@ namespace Education.DataBase.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("EditorJsId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Order")
                         .HasColumnType("int");
+
+                    b.Property<string>("Question")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("QuestionType")
                         .HasColumnType("int");
@@ -255,9 +258,6 @@ namespace Education.DataBase.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EditorJsId")
-                        .IsUnique();
 
                     b.HasIndex("TestId");
 
@@ -354,6 +354,7 @@ namespace Education.DataBase.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Src")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("VideoType")
@@ -683,19 +684,11 @@ namespace Education.DataBase.Migrations
 
             modelBuilder.Entity("Education.DataBase.Entities.Lessons.LessonContent.TestQuestion", b =>
                 {
-                    b.HasOne("Education.DataBase.Entities.EditorJsObject", "Question")
-                        .WithOne()
-                        .HasForeignKey("Education.DataBase.Entities.Lessons.LessonContent.TestQuestion", "EditorJsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Education.DataBase.Entities.Lessons.TestLesson", "TestLesson")
                         .WithMany("Questions")
                         .HasForeignKey("TestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Question");
 
                     b.Navigation("TestLesson");
                 });

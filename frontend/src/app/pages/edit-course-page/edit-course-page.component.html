@@ -1,10 +1,11 @@
 <div class="main">
     <app-course-menu class="menu" [courseInfo]="courseInfo" (createModule)="createModule()"
-        (changeModule)="onClickModule($event)"></app-course-menu>
+        (changeModule)="onClickModule($event)" [activeModuleIndex]="currentModuleIndex || 0"></app-course-menu>
     <div class="content">
         <app-top-toolar-container class="toolbar"
-            [lessons]="courseInfo && currentModuleIndex !== null ? courseInfo.modules[currentModuleIndex].lessons : []"
-            (onClickLesson)="onClickLesson($event)" (onClickCreateLesson)="createLesson()">
+            [lessons]="courseInfo && currentModuleIndex !== null && courseInfo.modules[currentModuleIndex].lessons.length ? courseInfo.modules[currentModuleIndex].lessons : null"
+            (onClickLesson)="onClickLesson($event)" (onClickCreateLesson)="createLesson()" [moduleId]="currentModuleId"
+            [activeLessonId]="currentLessonId">
         </app-top-toolar-container>
 
         <router-outlet style="position: absolute;"></router-outlet>

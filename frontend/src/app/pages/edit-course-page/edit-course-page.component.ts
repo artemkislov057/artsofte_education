@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { filter } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { AppState } from 'src/app/store/states/app.state';
 import { CourseType, Module } from 'src/typings/api/courseType';
@@ -24,10 +25,25 @@ export class EditCoursePageComponent implements OnInit {
     private activeRouter: ActivatedRoute,
     private _store: Store<AppState>,
   ) { 
-    
+    this.onChangeUrl();
   }
 
-  ngOnInit(): void {
+  async onChangeUrl() {
+    this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(async (e) => {
+      const event = e as NavigationEnd;
+      const params = event.url.split('&');
+      const lessonIdString = params.find((param) => param.includes('lessonId'));
+      if(lessonIdString) {
+        this.getCourseInfo();
+        this.currentLessonId = +lessonIdString.split('=')[1];
+        this.onClickLesson(this.currentLessonId);
+      }
+      if(this.currentCourseId && this.currentModuleId) {
+      }
+    })
+  }
+
+  async ngOnInit(): Promise<void> {
     this.activeRouter.queryParamMap.subscribe((param) => {
       const courseId = param.get('courseId');
       const moduleId = param.get('moduleId');
@@ -41,7 +57,10 @@ export class EditCoursePageComponent implements OnInit {
         alert('Что то не так с ids');
       }
    })
-   this.getCourseInfo();
+   await this.getCourseInfo();
+    if(this.currentModuleId) {
+      this.setCurrentOpenModule();
+    }
   }
 
   async getCourseInfo() {
@@ -50,9 +69,6 @@ export class EditCoursePageComponent implements OnInit {
     })
     const data = await response.json() as CourseType;
     this.courseInfo = data;
-    if(this.currentModuleId) {
-      this.setCurrentOpenModule();
-    }
   }
 
   createModule() {
@@ -76,14 +92,16 @@ export class EditCoursePageComponent implements OnInit {
 
   async onClickModule({ moduleId, moduleIndex }: ModuleInfo) {
     await this.getCourseInfo();
+    this.setCurrentOpenModule();
     this.currentModuleId = moduleId;
     this.currentModuleIndex = moduleIndex;
-    const lesson = this.courseInfo?.modules[moduleIndex].lessons[0]?.id || null;
-    if(lesson !== null) {
-      this.router.navigate(['/edit-course/edit-text-lesson'], {
+    const lessonId = this.courseInfo?.modules[moduleIndex].lessons[0]?.id || null;
+    if(lessonId !== null) {
+      const editUrlPage = this.getLessonTypeUrl(moduleIndex, lessonId)
+      this.router.navigate([editUrlPage], {
         queryParams: {
           moduleId: this.currentModuleId,
-          lessonId: lesson,
+          lessonId: lessonId,
         },
         queryParamsHandling: 'merge',
       });
@@ -91,7 +109,7 @@ export class EditCoursePageComponent implements OnInit {
       this.router.navigate(['/edit-course/select-lesson-type'], {
         queryParams: {
           moduleId: this.currentModuleId,
-          lessonId: lesson,
+          lessonId: lessonId,
         },
         queryParamsHandling: 'merge',
       });
@@ -100,9 +118,35 @@ export class EditCoursePageComponent implements OnInit {
   }
 
   async onClickLesson(lessonId: number) {
-    await this.router.navigate(['/edit-course/edit-text-lesson'], {
-      queryParamsHandling: 'merge',
-      queryParams: {lessonId},
-    });
+    if(this.currentModuleIndex === null) {
+      return;
+    }
+    this.currentLessonId = lessonId;
+    const editPageUrl = this.getLessonTypeUrl(this.currentModuleIndex, lessonId);
+    if(editPageUrl) {
+      await this.router.navigate([editPageUrl], {
+        queryParamsHandling: 'merge',
+        queryParams: {lessonId},
+      });
+    }
+  }
+
+  getLessonTypeUrl(moduleIndex: number, lessonId: number) {
+    const currentLesson = this.courseInfo?.modules[this.currentModuleIndex!].lessons.find(e => e.id === lessonId);
+    if(currentLesson) {
+      switch(currentLesson.type) {
+        case "Text":
+          return '/edit-course/edit-text-lesson';
+        case "Video":
+          return '/edit-course/edit-video-lesson';
+        case "Test":
+          return '/edit-course/edit-test-lesson';
+        case "Literature":
+          return '/edit-add-material-lesson';
+        case "Presentation":
+          return '/edit-presentation-lesson';
+      }
+    }
+    return null;
   }
 }

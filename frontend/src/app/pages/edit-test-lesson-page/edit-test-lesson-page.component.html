@@ -1,10 +1,22 @@
 <div class="main">
-    <app-lesson-name-container></app-lesson-name-container>
-    <app-text-editor 
-        [title]="'Условие задачи:'"
-        [unicId]="'test-lesson-type-task'"
-        [initHeight]="50"
-    ></app-text-editor>
-    <app-test-container></app-test-container>
-    <app-bottom-edit-container class="bottomToolbar"></app-bottom-edit-container>
+    <app-lesson-name-container [titleName]="lessonName" (changeLessonName)="onChangeLessonName($event)">
+    </app-lesson-name-container>
+    <div class=" emptyContainer" *ngIf="!questions.length">
+        <div class="emptyTitle">Вы не добавили ни одного вопроса</div>
+        <button class="addOptionButton" (click)="onClickAddQuestion()">Добавить вопрос</button>
+    </div>
+    <div class="testsContainer" *ngFor="let item of questions; index as i">
+        <div class="removeTestContainer" (click)="onDeleteQuest(i)"></div>
+        <app-text-editor [title]="'Вопрос #'+(i+1)+':'" [unicId]="'test-lesson-type-task'+i" [initHeight]="50"
+            [isSingleComponent]="true">
+        </app-text-editor>
+        <app-test-container [typeAnswers]="item.questionType" [options]="item.answerOptions" [questionIndex]="i"
+            (changeQuestionType)="onChangeQuestionType($event)" (addAnswerOption)="onAddAnswerOption($event)"
+            (selectCorrectOption)="onSelectCorrectOption($event)"
+            (changeInputValueOption)="onChangeValueInputOption($event)"
+            (deleteAnswerOption)="onDeleteAnswerOption($event)">
+        </app-test-container>
+    </div>
+    <button *ngIf="questions.length" class="addOptionButton" (click)="onClickAddQuestion()">Добавить вопрос</button>
+    <app-bottom-edit-container class="bottomToolbar" (click)="saveChanges()"></app-bottom-edit-container>
 </div>

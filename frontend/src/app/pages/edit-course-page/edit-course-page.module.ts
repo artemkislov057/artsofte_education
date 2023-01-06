@@ -40,12 +40,12 @@ import { EditCoursePageComponent } from './edit-course-page.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     CommonModule,
     EditCoursePageRoutingModule,
     CourseMenuModule,
     TestContainerModule,
     PresentationContainerModule,
-    FormsModule,
   ],
   exports: [EditCoursePageComponent],
   providers: [],

@@ -40,7 +40,7 @@ export class LessonTypePageComponent implements OnInit {
   }
 
   navigateToCreateTestLesson(): void {
-    this.router.navigateByUrl('/edit-course/edit-test-lesson');
+    this.router.navigate(['/edit-course/edit-test-lesson'], {queryParamsHandling: 'preserve'});
   }
 
   navigateToCreateAdditionalMaterialLesson(): void {
@@ -48,7 +48,7 @@ export class LessonTypePageComponent implements OnInit {
   }
 
   navigateToCreateVideoLesson(): void {
-    this.router.navigateByUrl('/edit-course/edit-video-lesson');
+    this.router.navigate(['/edit-course/edit-video-lesson'], {queryParamsHandling: 'preserve'});
   }
 
   navigateToCreatePresentationLesson(): void {

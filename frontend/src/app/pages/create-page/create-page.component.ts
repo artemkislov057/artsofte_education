@@ -23,7 +23,7 @@ export class CreatePageComponent implements OnInit {
       method: "POST",
       body: JSON.stringify({
         "name": courseName,
-        "description": "why?"
+        "description": "Курс для учеников ИРИТ-РТФ"
       }),
       credentials: 'include',
       headers: {

@@ -36,14 +36,15 @@
 }
 
 .addNewLessonButton {
-    border-radius: 3px;
     display: flex;
     align-items: center;
     padding: 5px 10px;
     box-sizing: border-box;
     gap: 10px;
-    background: #FF841F;
-    color: #FFFFFF;
+    background: #FFFFFF;
+    border: 1px solid #FF841F;
+    border-radius: 3px;
+    color: #FF841F;
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
@@ -51,8 +52,31 @@
 }
 
 .addIcon {
-    width: 22px;
-    height: 25px;
-    background: url('icons/addIcon.svg') 50% 50% no-repeat;
-    background-size: 16px 16px;
+    width: 24px;
+    height: 24px;
+    background: url('icons/icons_add1.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+}
+
+.addNewLessonButton.short {
+    padding: 0;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 25px;
+    color: #FF841F;
+}
+
+.addNewLessonButton.short::after {
+    content: "+";
+    margin-left: 1px;
+}
+
+.addNewLessonButton.short .caption,
+.addNewLessonButton.short .addIcon {
+    display: none;
 }

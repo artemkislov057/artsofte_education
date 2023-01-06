@@ -8,6 +8,11 @@
     border-radius: 10px;
 }
 
+.main.disabled {
+    border: 1px solid #D5D5D5;
+    cursor: pointer;
+}
+
 .left {
     display: flex;
     align-items: center;
@@ -28,17 +33,37 @@
     background-size: 100% 100%;
 }
 
-.optionName {
+.optionInput {
+    width: 19px;
+    height: 19px;
+    margin: 0;
+    filter: grayscale(1);
+}
+
+.optionValueInput {
     width: 578px;
     border: none;
     border-bottom: 1px solid #5F5F5F;
+    background-color: #FFFFFF;
     outline: none;
+
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: 0.015em;
+    color: #5F5F5F;
+}
+
+.main.disabled .optionValueInput {
+    border-bottom: 1px solid #D5D5D5;
+    color: #D5D5D5;
+    cursor: pointer;
 }
 
 .removeIcon {
-    width: 16px;
-    height: 22px;
-    background: url('./icons/removeIcon.svg') 50% 50% no-repeat;
+    width: 24px;
+    height: 24px;
+    background: url('./icons/icons_close.svg') 50% 50% no-repeat;
     background-size: 100% 100%;
 
     cursor: pointer;

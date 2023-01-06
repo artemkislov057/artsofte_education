@@ -9,6 +9,7 @@ import { ModuleInfo } from 'src/typings/module';
 })
 export class CourseMenuComponent implements OnInit {
   @Input() courseInfo: CourseType | null = null;
+  @Input() activeModuleIndex: number = 0;
   @Output() createModule = new EventEmitter();
   @Output() changeModule = new EventEmitter<ModuleInfo>();
 

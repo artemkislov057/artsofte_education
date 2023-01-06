@@ -9,5 +9,9 @@ public class TestQuestionConfiguration : IEntityTypeConfiguration<TestQuestion>
     public void Configure(EntityTypeBuilder<TestQuestion> builder)
     {
         builder.Navigation(e => e.AnswerOptions).AutoInclude();
+        builder
+            .HasOne(e => e.Question)
+            .WithOne();
+        builder.Navigation(e => e.Question).AutoInclude();
     }
 }

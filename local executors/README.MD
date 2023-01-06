@@ -46,9 +46,15 @@ fileLoaderApi.local.run.bat нужен для загрузки файлов на
 
 	3.3. Добавляем настройки:
 
+
 "TelegramSettings": {
+
       "Token": "%BotToken%",
+
       "ChatId": %ChatId%
+
 }
+
 Token - токен телеграм-бота
+
 ChatId - идентификатор телеграм-канала

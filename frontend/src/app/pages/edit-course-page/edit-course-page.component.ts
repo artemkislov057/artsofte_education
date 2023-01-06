@@ -35,7 +35,7 @@ export class EditCoursePageComponent implements OnInit {
       const lessonIdString = params.find((param) => param.includes('lessonId'));
       if(lessonIdString) {
         this.getCourseInfo();
-        this.currentLessonId = +lessonIdString.split('=')[2];
+        this.currentLessonId = +lessonIdString.split('=')[1];
         this.onClickLesson(this.currentLessonId);
       }
       if(this.currentCourseId && this.currentModuleId) {
@@ -121,6 +121,7 @@ export class EditCoursePageComponent implements OnInit {
     if(this.currentModuleIndex === null) {
       return;
     }
+    this.currentLessonId = lessonId;
     const editPageUrl = this.getLessonTypeUrl(this.currentModuleIndex, lessonId);
     if(editPageUrl) {
       await this.router.navigate([editPageUrl], {

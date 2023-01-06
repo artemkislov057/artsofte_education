@@ -7,6 +7,7 @@
 }
 
 .content {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,7 +16,39 @@
     height: 100%;
 }
 
+.deleteCover {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    background: url('icons/icons_close.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+.deleteCover:hover {
+    opacity: .8;
+}
+
+.content.withCover {
+    gap: 16px;
+}
+
+.cover {
+    width: 144px;
+    height: 215px;
+    object-fit: cover;
+}
+
+.coverInput {
+    display: none;
+}
+
 .addImageButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 323px;
     height: 50px;
     background: #FF841F;
@@ -72,23 +105,57 @@
     transform: rotate(180deg);
 }
 
-.items {
+.wrapper {
     display: flex;
     width: 100%;
     height: 100%;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 0;
+}
+
+.wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.items {
+    
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 16px;
+    // overflow-y: hidden;
+    // overflow-x: auto;
 }
 
 .item {
+    position: relative;
+    flex-shrink: 0;
     display: flex;
     width: 140px;
     height: 100px;
     justify-content: center;
     align-items: center;
+    background-color: #ECEEF3;
+    cursor: pointer;
+    transition: .3s;
 }
 
 .item.add {
     background: url('./icons/add.svg') 50% 50% no-repeat;
     background-size: 20px 20px;
     background-color: #ECEEF3;
-    cursor: pointer;
+}
+
+.item.preview {
+    max-width: 50%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.item.active {
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+    transition: .3s;
 }

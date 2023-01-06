@@ -1,13 +1,25 @@
 <div class="main">
-    <div class="content">
-        <button class="addImageButton">Загрузить обложку книги</button>
-        <input type="url" placeholder="Вставить ссылку на книгу" class="inputUrl" />
+    <div [class.withCover]="books[currentBookIndex]?.coverSrc" class="content">
+        <div *ngIf="books[currentBookIndex]?.coverSrc" class="deleteCover" (click)="onDeleteCover()"></div>
+        <img *ngIf="books[currentBookIndex]?.coverSrc" class="cover"
+            [src]="getSafeUrl(books[currentBookIndex].coverSrc)" alt="Ваша обложка" />
+        <input type="file" class="coverInput" id="coverInput" #event (change)="onUploadCover(event.files)" />
+        <label for="coverInput" *ngIf="!books[currentBookIndex]?.coverSrc" class="addImageButton">Загрузить обложку
+            книги</label>
+        <input type="url" placeholder="Вставить ссылку на книгу" class="inputUrl" [(ngModel)]="currentHref" #event
+            (change)="onChangeHref(event.value)" [value]="currentHref" />
     </div>
     <div class="toolbar">
-        <button class="navigateButton prev"></button>
-        <div class="items">
-            <div class="item add"></div>
+        <button class="navigateButton prev" (click)="onClickScrollButton('left')"></button>
+        <div class="wrapper">
+            <div class="items">
+                <div [class.active]="currentBookIndex===i" class="item" *ngFor="let item of books; index as i"
+                    (click)="onChangeCurrent(i)">
+                    <img [src]="getSafeUrl(item.coverSrc)" class="item preview" alt="Ваша обложка">
+                </div>
+                <div class="item add" (click)="onAddBook()"></div>
+            </div>
         </div>
-        <button class="navigateButton next"></button>
+        <button class="navigateButton next" (click)="onClickScrollButton('right')"></button>
     </div>
 </div>

@@ -7,6 +7,17 @@ import List from '@editorjs/list';
 import Marker from '@editorjs/marker';
 import EditorJS, { OutputData } from '@editorjs/editorjs';
 
+const init: OutputData = {
+  time: (new Date()).getTime(),
+  version: '2.25.0',
+  blocks: [{
+	type: 'paragraph',
+	data: {
+	  text: '<a></a>'
+	}
+  }]
+}
+
 @Component({
   selector: 'app-text-editor',
   templateUrl: './text-editor.component.html',
@@ -16,7 +27,7 @@ export class TextEditorComponent implements OnInit {
   @Input() title: string = '';
   @Input() unicId: string = '';
   @Input() initHeight: number = 300;
-  @Input() editData: OutputData | null = null;
+  @Input() editData: OutputData | null = init;
   @Input() isSingleComponent: boolean = false;
   @Output() onClickSave = new EventEmitter();
   @Input() test = () => {};
@@ -43,18 +54,24 @@ export class TextEditorComponent implements OnInit {
         }
       },
       minHeight: this.initHeight,
+    });
+    this.editor.isReady.then((e) => {
+      console.log('ready')
+      if(this.editData !== null) {
+        this.setExistsData(this.editData)
+      }
     })
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if(this.editData !== null) {
-      this.editor?.isReady.then(e => {
-        if(this.editData !== null) {
-          this.setExistsData(this.editData)
-        }
-      })
-    }
-  }
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if(this.editData !== null) {
+  //     this.editor?.isReady.then(e => {
+  //       if(this.editData !== null) {
+  //         this.setExistsData(this.editData)
+  //       }
+  //     })
+  //   }
+  // }
 
   async onSave() {
     await this.editor?.isReady
@@ -66,8 +83,10 @@ export class TextEditorComponent implements OnInit {
   }
 
   setExistsData(data: OutputData) {
-    if(data && this.editor !== null) {
-      this.editor.render(data);
-    }
+    this.editor?.isReady.then((e) => {
+      if(data && this.editor) {
+        this.editor.render(data);
+      }
+    })
   }
 }

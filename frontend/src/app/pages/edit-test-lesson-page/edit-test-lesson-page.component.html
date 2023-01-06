@@ -7,8 +7,8 @@
     </div>
     <div class="testsContainer" *ngFor="let item of questions; index as i">
         <div class="removeTestContainer" (click)="onDeleteQuest(i)"></div>
-        <app-text-editor [title]="'Вопрос #'+(i+1)+':'" [unicId]="'test-lesson-type-task'+i" [initHeight]="50"
-            [isSingleComponent]="true">
+        <app-text-editor [title]="'Вопрос #'+(i+1)+':'" [unicId]="'test-lesson-type-task'+i.toString()"
+            [initHeight]="50" [isSingleComponent]="true" [editData]="item.question">
         </app-text-editor>
         <app-test-container [typeAnswers]="item.questionType" [options]="item.answerOptions" [questionIndex]="i"
             (changeQuestionType)="onChangeQuestionType($event)" (addAnswerOption)="onAddAnswerOption($event)"

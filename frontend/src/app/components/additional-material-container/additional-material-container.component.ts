@@ -22,7 +22,6 @@ export class AdditionalMaterialContainerComponent implements OnInit {
     ) { }
 
   ngOnChanges() {
-    console.log(this.books)
     this.currentHref = this.books[this.currentBookIndex]?.purchaseLinks[0] || '';
   }
 

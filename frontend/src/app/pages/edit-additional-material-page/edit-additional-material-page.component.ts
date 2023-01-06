@@ -148,7 +148,6 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
   }
 
   async getLessonData() {
-    console.log('get')
     const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons`, {
       credentials: 'include',
     });

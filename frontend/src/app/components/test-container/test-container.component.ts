@@ -8,7 +8,7 @@ import { AnswerOption, QuestionType } from 'src/typings/test';
 })
 export class TestContainerComponent implements OnInit {
   @Input() questionIndex: number | null = null;
-  @Input() typeAnswers: QuestionType = 'radio';
+  @Input() typeAnswers: QuestionType = 'RadioButton';
   @Input() options: AnswerOption[] = [];
   @Output() changeQuestionType = new EventEmitter<{questionIndex: number, questionType: QuestionType}>();
   @Output() addAnswerOption = new EventEmitter<number>();

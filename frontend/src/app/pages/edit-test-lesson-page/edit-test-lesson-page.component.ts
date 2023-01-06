@@ -5,10 +5,11 @@ import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { TextEditorComponent } from 'src/app/components/text-editor/text-editor.component';
 import { AppState } from 'src/app/store/states/app.state';
+import { Lesson, TestValue } from 'src/typings/api/courseType';
 import { AnswerOption, QuestionType, TestQuestion } from 'src/typings/test';
 
 const emptyOption: AnswerOption = {
-  isCorrect: false,
+  isCorrectAnswer: false,
   value: ''
 }
 
@@ -38,7 +39,7 @@ export class EditTestLessonPageComponent implements OnInit {
   async onChangeUrl() {
     this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(async (e) => {
       if(this.currentCourseId && this.currentModuleId) {
-        // await this.getAndSetExistsData();
+        await this.getTestLessonData();
       }
     })
   }
@@ -63,14 +64,14 @@ export class EditTestLessonPageComponent implements OnInit {
     });
     if(this.currentLessonId !== null) {
       this.isLessonExist = true;
-      // await this.getExistsTextData();
+      await this.getTestLessonData();
     }
   }
 
   onClickAddQuestion() {
     this.questions.push({
       answerOptions: [{
-        isCorrect: false,
+        isCorrectAnswer: false,
         value: ''
       }],
       question: {
@@ -78,7 +79,7 @@ export class EditTestLessonPageComponent implements OnInit {
         time: 0,
         version: ''
       },
-      questionType: 'radio'
+      questionType: 'RadioButton'
     });
   }
 
@@ -92,16 +93,16 @@ export class EditTestLessonPageComponent implements OnInit {
 
   onSelectCorrectOption({ questionIndex, optionIndex, isChecked }: { questionIndex: number, optionIndex: number, isChecked: boolean }) {
     const questionType = this.questions[questionIndex].questionType;
-    if(questionType === 'radio') {
+    if(questionType === 'RadioButton') {
       this.questions[questionIndex].answerOptions.forEach((element, index) => {
         if(index !== optionIndex) {
-          element.isCorrect = false;
+          element.isCorrectAnswer = false;
         } else {
-          element.isCorrect = true;
+          element.isCorrectAnswer = true;
         }
       });  
     } else {
-      this.questions[questionIndex].answerOptions[optionIndex].isCorrect = isChecked;
+      this.questions[questionIndex].answerOptions[optionIndex].isCorrectAnswer = isChecked;
     }
   }
 
@@ -132,22 +133,80 @@ export class EditTestLessonPageComponent implements OnInit {
         index++;
       }
     }
-    //
+
+    if(this.isLessonExist) {
+      await this.saveChangesTestLesson()
+    } else {
+      await this.createTestLesson();
+    }
   }
 
   async createTestLesson() {
-
+    const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons`, {
+      method: "POST",
+      body: JSON.stringify([{
+        "name": this.lessonName,
+        "type": "Test",
+        "value": {
+          questions: this.questions
+        }
+      }]),
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    const lessonsIds = await response.json() as number[];
+    if(response.ok) {
+      this.router.navigate([], {
+        queryParams: {
+          moduleId: this.currentModuleId,
+          lessonId: lessonsIds[0],
+        },
+        queryParamsHandling: 'merge',
+      })
+      console.log('lesson test created');
+    } else {
+      console.log('lesson test not created');
+    }
   }
 
   async saveChangesTestLesson() {
-
+    const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons/${this.currentLessonId}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        "name": this.lessonName,
+        "type": "Test",
+        "value": {
+          questions: this.questions
+        }
+      }),
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    if(response.ok) {
+      console.log('lesson test save changes');
+    } else {
+      console.log('lesson test not save changes');
+    }
   }
 
   async getTestLessonData() {
-
-  }
-
-  async setTestLessonData() {
-
+    const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons`, {
+      credentials: 'include',
+    });
+    const lessons = await response.json() as Lesson[];
+    if(this.currentLessonId !== null) {
+      const currLesson = lessons.filter(({ id }) => id === this.currentLessonId)[0];
+      if(!currLesson) {
+        return;
+      }
+      this.lessonName = currLesson.name;
+      const testValue = currLesson.value as TestValue;
+      this.questions = [...testValue.questions];
+      console.log(this.questions)
+    } 
   }
 }

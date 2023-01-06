@@ -8,7 +8,7 @@ export type TestQuestion = {
 
 export type AnswerOption = {
     value: string;
-    isCorrect: boolean;
+    isCorrectAnswer: boolean;
 }
 
-export type QuestionType = 'radio' | 'checkbox';
+export type QuestionType = 'RadioButton' | 'Checkboxes';

@@ -8,9 +8,9 @@ import { AnswerOption, QuestionType } from 'src/typings/test';
 })
 export class AnswerOptionComponent implements OnInit {
   @Input() questionIndex: number = -1;
-  @Input() type: QuestionType = 'radio';
+  @Input() type: QuestionType = 'RadioButton';
   @Input() optionData: AnswerOption = {
-    isCorrect: false,
+    isCorrectAnswer: false,
     value: '',
   };
   @Input() id: number = -1;

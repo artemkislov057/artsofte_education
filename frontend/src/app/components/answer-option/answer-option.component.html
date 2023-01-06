@@ -1,8 +1,9 @@
 <div [class.disabled]="isDisabled" class="main">
     <div class="left">
         <!-- <div class="checkIcon" [class.radio]="type==='radio'" [class.checkbox]="type==='checkbox'"></div> -->
-        <input [id]="'optionInput' + id" class="optionInput" [name]="questionIndex" type={{type}}
-            [disabled]="isDisabled" #event (change)="onSelectCorrectOption(event)" />
+        <input [id]="'optionInput' + id" class="optionInput" [name]="questionIndex"
+            [type]="type === 'RadioButton' ? 'radio' : 'checkbox'" [disabled]="isDisabled" #event
+            (change)="onSelectCorrectOption(event)" [checked]="optionData.isCorrectAnswer" />
         <label for="optionInput + {{id}}">
             <input type="text" class="optionValueInput" [disabled]="isDisabled" [placeholder]="placeholder"
                 [(ngModel)]="optionData.value" (change)="onChangeValueOption()" [value]="optionData.value" />

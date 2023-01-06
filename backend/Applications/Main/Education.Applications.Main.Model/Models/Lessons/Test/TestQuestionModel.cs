@@ -10,6 +10,6 @@ public class TestQuestionModel : IDisplayValue
 
     public string GetDisplaySting()
     {
-        return Question;
+        return Question.GetDisplaySting();
     }
 }

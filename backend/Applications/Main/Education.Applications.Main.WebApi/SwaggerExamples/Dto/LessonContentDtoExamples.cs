@@ -116,7 +116,18 @@ public static class LessonContentDtoExamples
         Questions = new[]
         {
             new TestQuestionDto(
-                "Question with one answer",
+                new EditorJsDto(
+                    1550476186479,
+                    new[]
+                    {
+                        new TextBlockDto
+                        {
+                            Id = "hjIhabNj228", Type = "paragraph",
+                            Data = new TextBlockDataDto { Text = "Question with one answer" }
+                        }
+                    },
+                    "2.8.1"
+                ),
                 QuestionTypeDto.RadioButton,
                 new[]
                 {
@@ -126,7 +137,18 @@ public static class LessonContentDtoExamples
                 }
             ),
             new TestQuestionDto(
-                "Multiple Choice Question",
+                new EditorJsDto(
+                    1550476186479,
+                    new[]
+                    {
+                        new TextBlockDto
+                        {
+                            Id = "hjIhabNj1337", Type = "paragraph",
+                            Data = new TextBlockDataDto { Text = "Multiple Choice Question" }
+                        }
+                    },
+                    "2.8.1"
+                ),
                 QuestionTypeDto.Checkboxes,
                 new[]
                 {

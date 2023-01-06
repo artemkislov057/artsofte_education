@@ -1,5 +1,9 @@
 <div class="main">
-    <app-lesson-name-container [titleName]="'Дополнительная литература'"></app-lesson-name-container>
-    <app-additional-material-container></app-additional-material-container>
-    <app-bottom-edit-container class="bottomToolbar"></app-bottom-edit-container>
+    <app-lesson-name-container [titleName]="lessonName" (changeLessonName)="onChangeLessonName($event)">
+    </app-lesson-name-container>
+    <app-additional-material-container (changeCurrentBook)="onChangeCurrentBook($event)"
+        (uploadCover)="onUploadCover($event)" (addBook)="onAddEmptyBook()" [books]="books"
+        [currentBookIndex]="curentBookIndex" (changeHref)="onChangeHref($event)" (deleteCover)="onDeleteCover()">
+    </app-additional-material-container>
+    <app-bottom-edit-container class="bottomToolbar" (saveLesson)="onSaveChanges()"></app-bottom-edit-container>
 </div>

@@ -142,9 +142,9 @@ export class EditCoursePageComponent implements OnInit {
         case "Test":
           return '/edit-course/edit-test-lesson';
         case "Literature":
-          return '/edit-add-material-lesson';
+          return '/edit-course/edit-add-material-lesson';
         case "Presentation":
-          return '/edit-presentation-lesson';
+          return '/edit-course/edit-presentation-lesson';
       }
     }
     return null;

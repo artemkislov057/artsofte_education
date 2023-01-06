@@ -3,7 +3,7 @@
         (changeModule)="onClickModule($event)" [activeModuleIndex]="currentModuleIndex || 0"></app-course-menu>
     <div class="content">
         <app-top-toolar-container class="toolbar"
-            [lessons]="courseInfo && currentModuleIndex !== null && courseInfo.modules[currentModuleIndex].lessons.length ? courseInfo.modules[currentModuleIndex].lessons : null"
+            [lessons]="courseInfo !== null && currentModuleIndex !== null && courseInfo.modules[currentModuleIndex]?.lessons?.length ? courseInfo.modules[currentModuleIndex].lessons : null"
             (onClickLesson)="onClickLesson($event)" (onClickCreateLesson)="createLesson()" [moduleId]="currentModuleId"
             [activeLessonId]="currentLessonId">
         </app-top-toolar-container>

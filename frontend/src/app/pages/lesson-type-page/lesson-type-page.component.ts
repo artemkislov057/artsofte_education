@@ -36,19 +36,19 @@ export class LessonTypePageComponent implements OnInit {
 
 
   navigateToCreateTextLesson(): void {
-    this.router.navigate(['/edit-course/edit-text-lesson'], {queryParamsHandling: 'preserve'});
+    this.router.navigate(['/edit-course/edit-text-lesson'], { queryParamsHandling: 'preserve' });
   }
 
   navigateToCreateTestLesson(): void {
-    this.router.navigate(['/edit-course/edit-test-lesson'], {queryParamsHandling: 'preserve'});
+    this.router.navigate(['/edit-course/edit-test-lesson'], { queryParamsHandling: 'preserve' });
   }
 
   navigateToCreateAdditionalMaterialLesson(): void {
-    this.router.navigateByUrl('/edit-course/edit-add-material-lesson');
+    this.router.navigate(['/edit-course/edit-add-material-lesson'], { queryParamsHandling: 'preserve' } );
   }
 
   navigateToCreateVideoLesson(): void {
-    this.router.navigate(['/edit-course/edit-video-lesson'], {queryParamsHandling: 'preserve'});
+    this.router.navigate(['/edit-course/edit-video-lesson'], { queryParamsHandling: 'preserve' });
   }
 
   navigateToCreatePresentationLesson(): void {

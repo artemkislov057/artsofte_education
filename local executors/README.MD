@@ -31,13 +31,21 @@ adminWebApi.local.run.bat нужен для управления ролями и
 
 fileLoaderApi.local.run.bat нужен для загрузки файлов на сервер
 
+
 Подключение телеграм-бота.
+
 1. Создаём телеграм-бота (https://core.telegram.org/bots#how-do-i-create-a-bot)
+
 2. Создаём телеграм-канал, добавляем туда созданного бота и делаем его администратором канала.
+
 3. Далее в конфигурацию ASP.NET приложения необходимо добавить настройки нашего бота
+
 	3.1. Идём в папку backend\Applications\Main\Education.Applications.Main.WebApi
+
 	3.2. Если хотим запускать бэкенд локально, добавляем файл localsettings.json; если деплоим, то appsettings.Production.json
+
 	3.3. Добавляем настройки:
+
 "TelegramSettings": {
       "Token": "%BotToken%",
       "ChatId": %ChatId%

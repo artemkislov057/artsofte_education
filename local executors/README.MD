@@ -48,11 +48,9 @@ fileLoaderApi.local.run.bat нужен для загрузки файлов на
 
 
 "TelegramSettings": {
-
       "Token": "%BotToken%",
 
       "ChatId": %ChatId%
-
 }
 
 Token - токен телеграм-бота

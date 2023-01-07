@@ -13,12 +13,12 @@ public static class LessonExtensions
             .SetValue(source, details);
     }
 
-    public static LessonDetailsBase GetLessonDetails(this Lesson source) =>
+    public static LessonDetailsBase? GetLessonDetails(this Lesson source) =>
         source.GetType()
             .GetProperties()
             .Where(p => p.PropertyType.BaseType == typeof(LessonDetailsBase))
             .Select(p => (LessonDetailsBase?)p.GetValue(source))
-            .Single(d => d != null)!;
+            .SingleOrDefault(d => d != null);
 
     public static IQueryable<Lesson> IncludeLessonDetails(this IQueryable<Lesson> source) =>
         typeof(Lesson).GetProperties()

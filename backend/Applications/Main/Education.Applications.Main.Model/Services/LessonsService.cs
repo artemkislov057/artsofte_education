@@ -138,6 +138,11 @@ public class LessonsService : ILessonsService
     public static LessonContent MapLessonContentFromEntity(Lesson entityLesson)
     {
         var entityLessonDetails = entityLesson.GetLessonDetails();
+        if (entityLessonDetails is null)
+        {
+            return entityLesson.Adapt<LessonContentEmpty>();
+        }
+
         var entityLessonDetailsType = entityLessonDetails.GetType();
         var lessonContentType = GetLessonContentTypeByEntity(entityLessonDetailsType);
         var lessonContentModel = (LessonContent)entityLessonDetails.Adapt(entityLessonDetailsType, lessonContentType)!;

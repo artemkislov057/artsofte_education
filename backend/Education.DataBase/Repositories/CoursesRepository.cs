@@ -53,7 +53,8 @@ public class CoursesRepository : ICoursesRepository
         var query = context.Courses.AsQueryable();
         if (includeModulesWithLessons)
         {
-            query = query.IncludeModulesWithLessonDetails();
+            query = query.Include(c => c.Modules)!
+                .ThenInclude(m => m.Lessons);
         }
 
         return await query.SingleOrDefaultAsync(c => c.Id == courseId);

@@ -3,6 +3,7 @@ using Education.Applications.Common.Constants;
 using Education.Applications.Main.Model.Models.Courses;
 using Education.Applications.Main.Model.Services;
 using Education.Applications.Main.WebApi.Dto.Courses;
+using Education.Applications.Main.WebApi.Dto.Lessons;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -100,7 +101,7 @@ public class CoursesController : ControllerBase
         {
             var moduleDto = result.Modules[i];
             var moduleModel = course.Modules[i];
-            moduleDto.Lessons = moduleModel.Lessons.Select(LessonsController.MapGetLessonDtoFromModel).ToArray();
+            moduleDto.Lessons = moduleModel.Lessons.Adapt<GetLessonDto[]>();
         }
 
         return Ok(result);

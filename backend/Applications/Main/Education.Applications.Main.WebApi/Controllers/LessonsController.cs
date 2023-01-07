@@ -93,7 +93,7 @@ public class LessonsController : ControllerBase
         var lessonDto = (LessonContentBaseDto)lessonContentJson.Deserialize(GetLessonContentType(dto.Type!.Value),
             jsonOptions.JsonSerializerOptions)!;
         var lessonModel = (LessonContent)lessonDto.Adapt(lessonDto.GetType(), lessonDto.GetModelLessonContentType())!;
-        lessonModel.Name = dto.Name;
+        dto.Adapt(lessonModel);
         await service.EditLesson(courseId, moduleId, lessonId, lessonModel);
         return NoContent();
     }

@@ -3,6 +3,7 @@ using System.Reflection;
 using Education.Applications.Main.Model.Exceptions;
 using Education.Applications.Main.Model.Extensions;
 using Education.Applications.Main.Model.Models.Lessons;
+using Education.DataBase.Entities;
 using Education.DataBase.Entities.Lessons;
 using Education.DataBase.Extensions;
 using Education.DataBase.Repositories;
@@ -108,6 +109,7 @@ public class LessonsService : ILessonsService
         var entityLessonDetailsFromModel = MapLessonDetailsEntityFromModel(lessonModel);
         var currentLessonDetails = entityLesson.GetLessonDetails();
         entityLesson.Name = lessonModel.Name;
+        entityLesson.AdditionalText = lessonModel.AdditionalText?.Adapt<EditorJsObject>();
         if (entityLesson.Type != entityLessonDetailsFromModel.GetLessonType())
         {
             entityLesson.Type = entityLessonDetailsFromModel.GetLessonType();

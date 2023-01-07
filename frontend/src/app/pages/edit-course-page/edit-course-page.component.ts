@@ -126,7 +126,7 @@ export class EditCoursePageComponent implements OnInit {
     if(editPageUrl) {
       await this.router.navigate([editPageUrl], {
         queryParamsHandling: 'merge',
-        queryParams: {lessonId},
+        queryParams: { lessonId },
       });
     }
   }

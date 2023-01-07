@@ -134,6 +134,7 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
     })
     const lessonsIds = await response.json() as number[];
     if(response.ok) {
+      this.isLessonExist = true;
       this.router.navigate([], {
         queryParams: {
           moduleId: this.currentModuleId,

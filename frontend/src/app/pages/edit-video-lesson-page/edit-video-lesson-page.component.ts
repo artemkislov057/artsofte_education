@@ -89,6 +89,7 @@ export class EditVideoLessonPageComponent implements OnInit {
       }
       const result = currLesson.additionalText as OutputData;
       this.existsTextData = result;
+      console.log(this.existsTextData)
       this.lessonName = currLesson.name;
       const videoValue = currLesson.value as VideoValue;
       if(!videoValue) {
@@ -96,8 +97,13 @@ export class EditVideoLessonPageComponent implements OnInit {
       }
       if(videoValue.videoType === "YouTube") {
         this.hrefYoutubeVideo = videoValue.src;
+        this.hrefVideo = '';
+        this.videoFile = null;
       } else {
-        this.hrefVideo = await this.getVideoFileFromServer(videoValue.src);
+        this.hrefYoutubeVideo = '';
+        const { videoUrl, videoFile } = await this.getVideoFileFromServer(videoValue.src);
+        this.hrefVideo = videoUrl;
+        this.videoFile = videoFile;
       }
     } 
   }
@@ -107,6 +113,7 @@ export class EditVideoLessonPageComponent implements OnInit {
     if(this.textEditorComponent) {
         //@ts-ignore
         const data = await this.textEditorComponent.first.onSave();
+        console.log(data)
         if(data) {
           textData = data;
         }
@@ -114,9 +121,10 @@ export class EditVideoLessonPageComponent implements OnInit {
     // обработать момент, когда видео может отсылаться в виде ссылки или в виде файла
     if(this.isLessonExist) {
       if(this.hrefYoutubeVideo) {
-        this.saveLessonChangesWithVideoHref(textData, this.hrefYoutubeVideo);
-      } else {
-        // сделать редактирование загружаемого видео
+        this.saveVideoLessonChanges(textData, this.hrefYoutubeVideo, 'YouTube');
+      } else if(this.videoFile) {
+        const href = await this.sendVideoFileOnServer(this.videoFile);
+        this.saveVideoLessonChanges(textData, href, 'Internal');
       }
     } else {
       if(this.hrefYoutubeVideo) {
@@ -128,14 +136,14 @@ export class EditVideoLessonPageComponent implements OnInit {
     }
   }
 
-  async saveLessonChangesWithVideoHref(textData: OutputData | null, href: string) {
+  async saveVideoLessonChanges(textData: OutputData | null, href: string, type: 'YouTube' | 'Internal') {
     const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons/${this.currentLessonId}`, {
       method: "PUT",
       body: JSON.stringify({
         "name": this.lessonName,
-        "type": "Text",
+        "type": "Video",
         "value": {
-          "videoType": "YouTube",
+          "videoType": type,
           "src": href,
         },
         "additionalText": textData,
@@ -172,6 +180,7 @@ export class EditVideoLessonPageComponent implements OnInit {
     })
     const lessonsIds = await response.json() as number[];
     if(response.ok) {
+      this.isLessonExist = true;
       this.router.navigate([], {
         queryParams: {
           moduleId: this.currentModuleId,
@@ -207,6 +216,9 @@ export class EditVideoLessonPageComponent implements OnInit {
     const data = await response.blob();
     const video = new File([data], 'video', { type: 'video/mp4' });
     const videoUrl = URL.createObjectURL(video)
-    return videoUrl;
+    return {
+      videoUrl,
+      videoFile: video,
+    };
   }
 }

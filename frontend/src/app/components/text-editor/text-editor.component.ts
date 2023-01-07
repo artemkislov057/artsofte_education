@@ -9,11 +9,11 @@ import EditorJS, { OutputData } from '@editorjs/editorjs';
 
 const init: OutputData = {
   time: (new Date()).getTime(),
-  version: '2.25.0',
+  version: '2.26.4',
   blocks: [{
 	type: 'paragraph',
 	data: {
-	  text: '<a></a>'
+	  text: ''
 	}
   }]
 }
@@ -27,7 +27,7 @@ export class TextEditorComponent implements OnInit {
   @Input() title: string = '';
   @Input() unicId: string = '';
   @Input() initHeight: number = 300;
-  @Input() editData: OutputData | null = init;
+  @Input() editData: OutputData | null = null;
   @Input() isSingleComponent: boolean = false;
   @Output() onClickSave = new EventEmitter();
   @Input() test = () => {};
@@ -36,7 +36,8 @@ export class TextEditorComponent implements OnInit {
 
   constructor() { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    console.log('new editor')
     this.editor = new EditorJS({
       holder: `editor-js ${this.unicId}`,
       tools: {
@@ -57,21 +58,12 @@ export class TextEditorComponent implements OnInit {
     });
     this.editor.isReady.then((e) => {
       console.log('ready')
+      this.setExistsData(init)
       if(this.editData !== null) {
         this.setExistsData(this.editData)
       }
     })
   }
-
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if(this.editData !== null) {
-  //     this.editor?.isReady.then(e => {
-  //       if(this.editData !== null) {
-  //         this.setExistsData(this.editData)
-  //       }
-  //     })
-  //   }
-  // }
 
   async onSave() {
     await this.editor?.isReady

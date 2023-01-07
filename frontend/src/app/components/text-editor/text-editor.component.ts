@@ -11,10 +11,11 @@ const init: OutputData = {
   time: (new Date()).getTime(),
   version: '2.26.4',
   blocks: [{
-	type: 'paragraph',
-	data: {
-	  text: ''
-	}
+    type: 'paragraph',
+    data: {
+      text: '',
+    },
+    id: 'a'
   }]
 }
 
@@ -60,9 +61,21 @@ export class TextEditorComponent implements OnInit {
       console.log('ready')
       this.setExistsData(init)
       if(this.editData !== null) {
+        console.log('1')
         this.setExistsData(this.editData)
       }
     })
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(this.editData !== null) {
+      this.editor?.isReady.then(e => {
+        if(this.editData !== null) {
+          console.log('2')
+          this.setExistsData(this.editData)
+        }
+      })
+    }
   }
 
   async onSave() {

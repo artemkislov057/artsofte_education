@@ -52,6 +52,6 @@ export class LessonTypePageComponent implements OnInit {
   }
 
   navigateToCreatePresentationLesson(): void {
-    this.router.navigateByUrl('/edit-course/edit-presentation-lesson');
+    this.router.navigate(['/edit-course/edit-presentation-lesson'], { queryParamsHandling: 'preserve' });
   }
 }

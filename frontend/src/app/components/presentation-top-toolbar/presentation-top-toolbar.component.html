@@ -1,16 +1,20 @@
 <div class="main">
+
     <div class="uploadButton button"></div>
     <div class="rightPart">
-        <div *ngIf="isBeforeRecord" class="recordButton button"></div>
-        <div *ngIf="isRecord || isDoneRecord" class="recordSetting">
-            <div *ngIf="isRecord" class="closeRecord button"></div>
-            <div class="player">
-                <div class="time">23:59:59</div>
-                <div class="timeLine"></div>
-                <div [class.play]="isDoneRecord" class="playStopButton button"></div>
+        <div *ngIf="isBeforeRecord" class="recordButton button" (click)="onClickStartRecord()"></div>
+        <div class="recordSetting">
+            <div *ngIf="isRecord" class="closeRecord button" (click)="onClickCancel()"></div>
+            <div *ngIf="isRecord || isAfterRecord || isDoneRecord" class="player">
+                <div *ngIf="isRecord" class="time">{{currentRecordTime}}</div>
+                <!-- <div class="timeLine"></div> -->
+                <div *ngIf="isRecord" [class.play]="isDoneRecord" class="playStopButton button"
+                    (click)="onClickStopRecord()">
+                </div>
+                <audio *ngIf="isAfterRecord || isDoneRecord" [src]="audioHref" controls></audio>
             </div>
         </div>
-        <div *ngIf="isRecord" class="doneButton button"></div>
-        <div *ngIf="isDoneRecord" class="removeButton button"></div>
+        <div *ngIf="isRecord || isAfterRecord" class="doneButton button" (click)="onClickAccept()"></div>
+        <div *ngIf="isDoneRecord" class="removeButton button" (click)="onClickDelete()"></div>
     </div>
 </div>

@@ -13,7 +13,7 @@ import { BookItem, LiteratureLesson } from 'src/typings/literature';
 })
 export class EditAdditionalMaterialPageComponent implements OnInit {
   books: BookItem[] = [];
-  curentBookIndex: number = 0;
+  currentBookIndex: number = 0;
   currentCourseId: string | null = null;
   currentModuleId: string | null = null;
   currentLessonId: number | null = null;
@@ -61,7 +61,7 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
 
   onUploadCover(file: File) {
     const urlCover = URL.createObjectURL(file);
-    if(this.curentBookIndex > this.books.length || this.books.length === 0) {
+    if(this.currentBookIndex > this.books.length || this.books.length === 0) {
       this.books.push({
         coverSrc: urlCover,
         description: '',
@@ -69,12 +69,12 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
         purchaseLinks: [],
       })
     } else {
-      this.books[this.curentBookIndex].coverSrc = urlCover;
+      this.books[this.currentBookIndex].coverSrc = urlCover;
     }
   }
 
   onChangeCurrentBook(bookIndex: number) {
-    this.curentBookIndex = bookIndex;
+    this.currentBookIndex = bookIndex;
   }
 
   onAddEmptyBook() {
@@ -87,7 +87,7 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
   }
 
   onChangeHref(href: string) {
-    if(this.curentBookIndex > this.books.length || this.books.length === 0) {
+    if(this.currentBookIndex > this.books.length || this.books.length === 0) {
       this.books.push({
         coverSrc: '',
         description: '',
@@ -95,12 +95,12 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
         purchaseLinks: [href],
       })
     } else {
-      this.books[this.curentBookIndex].purchaseLinks = [href];
+      this.books[this.currentBookIndex].purchaseLinks = [href];
     }
   }
 
   onDeleteCover() {
-    this.books[this.curentBookIndex].coverSrc = '';
+    this.books[this.currentBookIndex].coverSrc = '';
   }
 
   onChangeLessonName(name: string) {

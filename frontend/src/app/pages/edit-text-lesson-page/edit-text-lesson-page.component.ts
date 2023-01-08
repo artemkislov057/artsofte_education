@@ -144,6 +144,7 @@ export class EditTextLessonPageComponent implements OnInit {
     const lessonsIds = await response.json() as number[];
     console.log(lessonsIds)
     if(response.ok) {
+      this.isLessonExist = true;
       this.router.navigate([], {
         queryParams: {
           moduleId: this.currentModuleId,

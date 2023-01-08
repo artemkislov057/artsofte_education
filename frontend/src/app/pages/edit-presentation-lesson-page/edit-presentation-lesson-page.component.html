@@ -1,5 +1,9 @@
 <div class="main">
-    <app-lesson-name-container></app-lesson-name-container>
-    <app-presentation-container></app-presentation-container>
-    <app-bottom-edit-container class="bottomToolbar"></app-bottom-edit-container>
+    <app-lesson-name-container [titleName]="lessonName" (changeLessonName)="onChangeLessonName($event)">
+    </app-lesson-name-container>
+    <app-presentation-container (changeCurrentSlide)="onChangeCurrentSlide($event)"
+        (uploadSlide)="onUploadSlide($event)" (addSlide)="onAddEmptySlide()" [slides]="slides"
+        [currentSlideIndex]="currentSlideIndex" (deleteSlideImage)="onDeleteSlideImage()"
+        (deleteSlide)="onDeleteSlide($event)" (saveVoiceChanges)="onSaveVoice($event)"></app-presentation-container>
+    <app-bottom-edit-container class="bottomToolbar" (saveLesson)="onSaveChanges()"></app-bottom-edit-container>
 </div>

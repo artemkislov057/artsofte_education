@@ -1,11 +1,15 @@
 .main {
     display: flex;
     flex-direction: column;
+    max-height: 594px;
     height: 594px;
+    box-sizing: border-box;
 
     background: #FFFFFF;
     border-radius: 10px;
+    position: relative;
 }
+
 
 .content {
     display: flex;
@@ -14,9 +18,39 @@
     justify-content: center;
     gap: 32px;
     height: 100%;
+    position: relative;
 }
 
-.button {
+.deleteSlideImage {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    background: url('icons/icons_close.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+.deleteSlideImage:hover {
+    opacity: .8;
+}
+
+.slide {
+    // width: 100%;
+    height: 396px;
+    object-fit: cover;
+}
+
+.inputPresentation {
+    display: none;
+}
+
+.button,
+.inputPresentationLabel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
     padding: 15px 25px;
     border: none;
@@ -29,7 +63,8 @@
     letter-spacing: 0.01em;
 }
 
-.button:hover {
+.button:hover,
+.inputPresentationLabel:hover {
     opacity: .7;
 }
 
@@ -38,7 +73,8 @@
     color: #FFFFFF;
 }
 
-.button.addCreated {
+.button.addCreated,
+.inputPresentationLabel {
     border: 1px solid #2E62D9;
     color: #2E62D9;
 }
@@ -59,7 +95,7 @@
     height: 28px;
     background-color: transparent;
     border: none;
-    background: url('./icons/icons_left.svg') 50% 50% no-repeat;
+    background: url('./icons/icons_left_new.svg') 50% 50% no-repeat;
     background-size: 100% 100%;
     cursor: pointer;
 }
@@ -68,23 +104,72 @@
     transform: rotate(180deg);
 }
 
-.items {
+.wrapper {
     display: flex;
     width: 100%;
     height: 100%;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 0;
+}
+
+.wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.items {
+
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 16px;
+    // overflow-y: hidden;
+    // overflow-x: auto;
 }
 
 .item {
+    position: relative;
+    flex-shrink: 0;
     display: flex;
     width: 140px;
     height: 100px;
     justify-content: center;
     align-items: center;
+    background-color: #ECEEF3;
+    cursor: pointer;
+    transition: .3s;
 }
 
 .item.add {
     background: url('./icons/add.svg') 50% 50% no-repeat;
     background-size: 20px 20px;
     background-color: #ECEEF3;
+}
+
+.item.preview {
+    max-width: 50%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.item.active {
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+    transition: .3s;
+}
+
+.deleteSlide {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    background: url('icons/icons_close.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
     cursor: pointer;
+}
+
+.deleteSlide:hover {
+    opacity: .8;
 }

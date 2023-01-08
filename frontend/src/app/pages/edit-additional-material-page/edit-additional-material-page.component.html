@@ -3,7 +3,7 @@
     </app-lesson-name-container>
     <app-additional-material-container (changeCurrentBook)="onChangeCurrentBook($event)"
         (uploadCover)="onUploadCover($event)" (addBook)="onAddEmptyBook()" [books]="books"
-        [currentBookIndex]="curentBookIndex" (changeHref)="onChangeHref($event)" (deleteCover)="onDeleteCover()">
+        [currentBookIndex]="currentBookIndex" (changeHref)="onChangeHref($event)" (deleteCover)="onDeleteCover()">
     </app-additional-material-container>
     <app-bottom-edit-container class="bottomToolbar" (saveLesson)="onSaveChanges()"></app-bottom-edit-container>
 </div>

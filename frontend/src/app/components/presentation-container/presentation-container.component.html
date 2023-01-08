@@ -1,14 +1,38 @@
 <div class="main">
-    <app-presentation-top-toolbar></app-presentation-top-toolbar>
+    <app-presentation-top-toolbar class="top-toolbar" [currInd]="currentSlideIndex"
+        [audioHrefInput]="slides[currentSlideIndex]?.voiceSrc || null"
+        (saveChange)="onSaveVoiceChange($event, currentSlideIndex)">
+    </app-presentation-top-toolbar>
     <div class="content">
-        <button class="button create">Создать новую презентацию</button>
-        <button class="button addCreated">Добавить готовую презентацию</button>
+        <!-- <button class="button create">Создать новую презентацию</button> -->
+        <div *ngIf="slides[currentSlideIndex]?.imageSrc" class="deleteSlideImage" (click)="onDeleteSlideImage()"></div>
+        <img *ngIf="slides[currentSlideIndex]?.imageSrc" class="slide"
+            [src]="getSafeUrl(slides[currentSlideIndex].imageSrc)" alt="Слайд" />
+        <div *ngIf="!slides[currentSlideIndex]?.imageSrc" class="inputPresentationContainer">
+            <input id="inputPresentation" type="file" class="inputPresentation" #event
+                (change)="onUploadSlide(event.files)" />
+            <label for="inputPresentation" class="button create">
+                <div></div> {{slides.length ? "Добавить слайд" : "Создать новую презентацию"}}
+            </label>
+        </div>
+        <div *ngIf="!slides[currentSlideIndex]?.imageSrc && slides.length === 0" class="inputPresentationContainer">
+            <input id="inputPresentation" type="file" class="inputPresentation" #event
+                (change)="uploadPresentation(event.files)" />
+            <label for="inputPresentation" class="inputPresentationLabel">Добавить готовую презентацию</label>
+        </div>
     </div>
     <div class="toolbar">
-        <button class="navigateButton prev"></button>
-        <div class="items">
-            <div class="item add"></div>
+        <button class="navigateButton prev" (click)="onClickScrollButton('left')"></button>
+        <div class="wrapper">
+            <div class="items">
+                <div [class.active]="currentSlideIndex===i" class="item" *ngFor="let slide of slides; index as i"
+                    (click)="onChangeCurrent(i)">
+                    <div class="deleteSlide" (click)="onDeleteSlide(i)"></div>
+                    <img [src]="getSafeUrl(slide.imageSrc)" class="item preview" alt="Слайд">
+                </div>
+                <div class="item add" (click)="onAddSlide()"></div>
+            </div>
         </div>
-        <button class="navigateButton next"></button>
+        <button class="navigateButton next" (click)="onClickScrollButton('right')"></button>
     </div>
 </div>

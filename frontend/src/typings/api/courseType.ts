@@ -19,7 +19,7 @@ export type Lesson = {
     "id": number;
     "name": string;
     "type": string;
-    "value": OutputData | VideoValue | TestValue;
+    "value": OutputData | VideoValue | TestValue | PresentationValue;
     "additionalText"?: OutputData;
 }
 
@@ -30,4 +30,14 @@ export type VideoValue = {
 
 export type TestValue = {
     "questions": TestQuestion[];
+}
+
+export type PresentationValue = {
+    "slides": Slide[];
+}
+
+export type Slide = {
+    "imageSrc": string;
+    "description": string;
+    "voiceSrc": string;
 }

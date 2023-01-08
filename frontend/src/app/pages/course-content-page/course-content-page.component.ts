@@ -71,9 +71,10 @@ export class CourseContentPageComponent implements OnInit {
     }
   }
 
-  async onClickLesson({moduleId, lessonId}: {moduleId: string, lessonId: number}) {
+  async onClickLesson({ moduleId, lessonId }: { moduleId: string, lessonId: number }) {
     const moduleIndex = this.courseInfo.modules.findIndex(({id}) => id === moduleId);
     const editPageUrl = this.getLessonTypeUrl(moduleIndex, lessonId);
+    console.log(moduleId, lessonId,  editPageUrl)
     if(editPageUrl) {
       await this.router.navigate([editPageUrl], {
         queryParamsHandling: 'merge',
@@ -96,9 +97,9 @@ export class CourseContentPageComponent implements OnInit {
         case "Test":
           return '/edit-course/edit-test-lesson';
         case "Literature":
-          return '/edit-add-material-lesson';
+          return '/edit-course/edit-add-material-lesson';
         case "Presentation":
-          return '/edit-presentation-lesson';
+          return '/edit-course/edit-presentation-lesson';
       }
     }
     return null;

@@ -31,7 +31,7 @@ export class TextEditorComponent implements OnInit {
   @Input() editData: OutputData | null = null;
   @Input() isSingleComponent: boolean = false;
   @Output() onClickSave = new EventEmitter();
-  @Input() test = () => {};
+  @Input() test = () => { };
 
   editor: EditorJS | null = null;
 
@@ -60,7 +60,7 @@ export class TextEditorComponent implements OnInit {
     this.editor.isReady.then((e) => {
       console.log('ready')
       this.setExistsData(init)
-      if(this.editData !== null) {
+      if (this.editData !== null) {
         console.log('1')
         this.setExistsData(this.editData)
       }
@@ -68,11 +68,13 @@ export class TextEditorComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if(this.editData !== null) {
+    if (this.editData !== null) {
       this.editor?.isReady.then(e => {
-        if(this.editData !== null) {
+        if (this.editData !== null) {
           console.log('2')
           this.setExistsData(this.editData)
+        } else {
+          this.setExistsData(init)
         }
       })
     }
@@ -81,15 +83,15 @@ export class TextEditorComponent implements OnInit {
   async onSave() {
     await this.editor?.isReady
     const resultData = await this.editor?.save();
-    if(resultData) {
+    if (resultData) {
       return resultData;
     }
-    return null;    
+    return null;
   }
 
   setExistsData(data: OutputData) {
     this.editor?.isReady.then((e) => {
-      if(data && this.editor) {
+      if (data && this.editor) {
         this.editor.render(data);
       }
     })

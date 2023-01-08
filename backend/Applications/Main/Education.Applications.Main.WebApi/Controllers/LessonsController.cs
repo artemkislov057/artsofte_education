@@ -109,7 +109,7 @@ public class LessonsController : ControllerBase
     public async Task<ActionResult<GetLessonDto[]>> GetLessonsFromModule(Guid courseId, Guid moduleId)
     {
         var lessons = await service.GetLessons(courseId, moduleId);
-        var result = lessons.Select(MapGetLessonDtoFromModel);
+        var result = lessons.Select(l => MapGetLessonDtoFromModel(l));
         return Ok(result.ToArray());
     }
 
@@ -129,12 +129,18 @@ public class LessonsController : ControllerBase
         return NoContent();
     }
 
-    public static GetLessonDto MapGetLessonDtoFromModel(LessonContent w)
+    public static GetLessonDto MapGetLessonDtoFromModel(LessonContent w, bool mapDetails = true)
     {
         var modelType = w.GetType();
         var dtoType = GetDtoTypeFromModel(modelType);
         var dto = (LessonContentBaseDto)w.Adapt(modelType, dtoType)!;
-        return new GetLessonDto(w.Id, w.Name, GetLessonTypeDto(dto), dto, w.AdditionalText?.Adapt<EditorJsDto>());
+        return new GetLessonDto(
+            w.Id,
+            w.Name,
+            GetLessonTypeDto(dto),
+            mapDetails ? dto : null,
+            w.AdditionalText?.Adapt<EditorJsDto>()
+        );
     }
 
     private static Type GetLessonContentType(LessonTypeDto lessonTypeDto) =>

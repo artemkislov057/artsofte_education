@@ -5,6 +5,7 @@ using Education.Applications.Main.Model.Extensions;
 using Education.Applications.Main.Model.Models.Lessons;
 using Education.DataBase.Entities;
 using Education.DataBase.Entities.Lessons;
+using Education.DataBase.Enums.Lessons;
 using Education.DataBase.Extensions;
 using Education.DataBase.Repositories;
 using Mapster;
@@ -24,7 +25,7 @@ public class LessonsService : ILessonsService
 {
     private readonly ILessonsRepository lessonsRepository;
     private readonly IModulesRepository modulesRepository;
-    private static readonly ConcurrentDictionary<Type, Type> ModelTypesByEntity = new();
+    private static readonly ConcurrentDictionary<LessonType, Type> ModelTypesByEntity = new();
 
     public LessonsService(ILessonsRepository lessonsRepository, IModulesRepository modulesRepository)
     {
@@ -137,14 +138,15 @@ public class LessonsService : ILessonsService
 
     public static LessonContent MapLessonContentFromEntity(Lesson entityLesson)
     {
+        var lessonContentType = GetLessonContentTypeByEntity(entityLesson.Type);
         var entityLessonDetails = entityLesson.GetLessonDetails();
         if (entityLessonDetails is null)
         {
-            return entityLesson.Adapt<LessonContentEmpty>();
+            var res = (LessonContent)Activator.CreateInstance(lessonContentType)!;
+            entityLesson.Adapt(res);
+            return res;
         }
-
         var entityLessonDetailsType = entityLessonDetails.GetType();
-        var lessonContentType = GetLessonContentTypeByEntity(entityLessonDetailsType);
         var lessonContentModel = (LessonContent)entityLessonDetails.Adapt(entityLessonDetailsType, lessonContentType)!;
         entityLesson.Adapt(lessonContentModel);
         return lessonContentModel;
@@ -153,7 +155,7 @@ public class LessonsService : ILessonsService
     private static LessonDetailsBase MapLessonDetailsEntityFromModel(LessonContent lessonContent)
         => (LessonDetailsBase)lessonContent.Adapt(lessonContent.GetType(), lessonContent.EntityType)!;
 
-    private static Type GetLessonContentTypeByEntity(Type entityType)
+    private static Type GetLessonContentTypeByEntity(LessonType entityType)
     {
         return ModelTypesByEntity.GetOrAdd(entityType, entityT =>
         {
@@ -166,8 +168,8 @@ public class LessonsService : ILessonsService
                     var constructor = dtoType.GetConstructor(Array.Empty<Type>()) ??
                                       throw new InvalidOperationException();
                     var obj = constructor.Invoke(Array.Empty<object>());
-                    var property = dtoType.GetProperty(nameof(LessonContent.EntityType))!;
-                    return (Type)property.GetValue(obj)! == entityT;
+                    var property = dtoType.GetProperty(nameof(LessonContent.LessonType))!;
+                    return (LessonType)property.GetValue(obj)! == entityT;
                 }).Single();
         });
     }

@@ -101,7 +101,7 @@ public class CoursesController : ControllerBase
         {
             var moduleDto = result.Modules[i];
             var moduleModel = course.Modules[i];
-            moduleDto.Lessons = moduleModel.Lessons.Adapt<GetLessonDto[]>();
+            moduleDto.Lessons = moduleModel.Lessons.Select(l => LessonsController.MapGetLessonDtoFromModel(l, false)).ToArray();
         }
 
         return Ok(result);

@@ -4,6 +4,7 @@
     <app-presentation-container (changeCurrentSlide)="onChangeCurrentSlide($event)"
         (uploadSlide)="onUploadSlide($event)" (addSlide)="onAddEmptySlide()" [slides]="slides"
         [currentSlideIndex]="currentSlideIndex" (deleteSlideImage)="onDeleteSlideImage()"
-        (deleteSlide)="onDeleteSlide($event)" (saveVoiceChanges)="onSaveVoice($event)"></app-presentation-container>
+        (deleteSlide)="onDeleteSlide($event)" (saveVoiceChanges)="onSaveVoice($event)"
+        (uploadPresentationFile)="onUploadPresentationFile($event)"></app-presentation-container>
     <app-bottom-edit-container class="bottomToolbar" (saveLesson)="onSaveChanges()"></app-bottom-edit-container>
 </div>

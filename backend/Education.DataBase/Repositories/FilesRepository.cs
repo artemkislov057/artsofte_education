@@ -7,6 +7,7 @@ namespace Education.DataBase.Repositories;
 public interface IFilesRepository
 {
     Task<Guid> CreateFile(FileType fileType, string extension, string contentType);
+    Task<Guid[]> CreateFiles(FileType filesType, int count, string extension, string contentType);
     Task<LoadedFile?> FindFile(Guid fileGuid);
     Task DeleteFile(LoadedFile file);
 }
@@ -26,6 +27,17 @@ public class FilesRepository : IFilesRepository
         dbContext.LoadedFiles.Add(file);
         await dbContext.SaveChangesAsync();
         return file.FileGuid;
+    }
+
+    public async Task<Guid[]> CreateFiles(FileType filesType, int count, string extension, string contentType)
+    {
+        var files = Enumerable
+            .Range(0, count)
+            .Select(_ => new LoadedFile { FileType = filesType, FileExtension = extension, ContentType = contentType })
+            .ToArray();
+        dbContext.LoadedFiles.AddRange(files);
+        await dbContext.SaveChangesAsync();
+        return files.Select(f => f.FileGuid).ToArray();
     }
 
     public async Task<LoadedFile?> FindFile(Guid fileGuid) =>

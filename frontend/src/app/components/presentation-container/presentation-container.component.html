@@ -9,16 +9,16 @@
         <img *ngIf="slides[currentSlideIndex]?.imageSrc" class="slide"
             [src]="getSafeUrl(slides[currentSlideIndex].imageSrc)" alt="Слайд" />
         <div *ngIf="!slides[currentSlideIndex]?.imageSrc" class="inputPresentationContainer">
-            <input id="inputPresentation" type="file" class="inputPresentation" #event
+            <input id="inputPresentation1" type="file" class="inputPresentation" #event
                 (change)="onUploadSlide(event.files)" />
-            <label for="inputPresentation" class="button create">
+            <label for="inputPresentation1" class="button create">
                 <div></div> {{slides.length ? "Добавить слайд" : "Создать новую презентацию"}}
             </label>
         </div>
         <div *ngIf="!slides[currentSlideIndex]?.imageSrc && slides.length === 0" class="inputPresentationContainer">
-            <input id="inputPresentation" type="file" class="inputPresentation" #event
+            <input id="inputPresentation2" type="file" class="inputPresentation" #event
                 (change)="uploadPresentation(event.files)" />
-            <label for="inputPresentation" class="inputPresentationLabel">Добавить готовую презентацию</label>
+            <label for="inputPresentation2" class="inputPresentationLabel">Добавить готовую презентацию</label>
         </div>
     </div>
     <div class="toolbar">

@@ -70,6 +70,25 @@ export class EditPresentationLessonPageComponent implements OnInit {
     }
   }
 
+  async onUploadPresentationFile(file: File) {
+    console.log('askjfhkjsdhfkjsdhf')
+    const serverImageUrls = await this.getUrlSlidesFromPresentationFile(file);
+    console.log(serverImageUrls)
+    await this.setSlidesFromPresentationFile(serverImageUrls);
+  }
+
+  async setSlidesFromPresentationFile(slideUrls: string[]) {
+    this.slides = [];
+    for (let url of slideUrls) {
+      const slideUrl = await this.getFileUrlFromServer(url);
+      this.slides.push({
+        description: '',
+        imageSrc: slideUrl,
+        voiceSrc: '',
+      })
+    }
+  }
+
   onChangeCurrentSlide(slideIndex: number) {
     this.currentSlideIndex = slideIndex;
   }
@@ -254,6 +273,20 @@ export class EditPresentationLessonPageComponent implements OnInit {
     // const image = new File([data], 'image');
     const url = URL.createObjectURL(data);
     return url;
+  }
+
+  async getUrlSlidesFromPresentationFile(file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await fetch(`https://localhost:7144/presentation`, {
+      method: "POST",
+      body: formData,
+      credentials: 'include',
+    })
+    const { paths } = await response.json() as {
+      "paths": string[];
+    };
+    return paths;
   }
 
 }

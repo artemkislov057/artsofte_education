@@ -12,6 +12,7 @@ export class PresentationContainerComponent implements OnInit {
   @Input() currentSlideIndex: number = 0;
   @Input() slides: Slide[] = [];
   @Output() uploadSlide = new EventEmitter<File>();
+  @Output() uploadPresentationFile = new EventEmitter<File>();
   @Output() changeCurrentSlide = new EventEmitter<number>();
   @Output() addSlide = new EventEmitter();
   @Output() deleteSlideImage = new EventEmitter();
@@ -24,13 +25,10 @@ export class PresentationContainerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async uploadPresentation(fileList: FileList | null) {
-    if (fileList === null) {
-      return;
+  uploadPresentation(fileList: FileList | null) {
+    if (fileList) {
+      this.uploadPresentationFile.emit(fileList[0]);
     }
-
-    const file = fileList[0];
-    const url = URL.createObjectURL(file);
   }
 
   onUploadSlide(fileList: FileList | null) {

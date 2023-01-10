@@ -37,7 +37,6 @@ export class TextEditorComponent implements OnInit {
   constructor() { }
 
   async ngOnInit() {
-    console.log('new editor')
     this.editor = new EditorJS({
       holder: `editor-js ${this.unicId}`,
       tools: {
@@ -57,7 +56,6 @@ export class TextEditorComponent implements OnInit {
       minHeight: this.initHeight,
     });
     await this.editor.isReady
-    console.log('ready')
     await this.setExistsData(init)
     if (this.editData !== null && this.editData.blocks.length) {
       await this.setExistsData(this.editData)

@@ -22,20 +22,20 @@ export class EditVideoLessonPageComponent implements OnInit {
   hrefYoutubeVideo: string | null = null;
   hrefVideo: string | null = null;
   videoFile: File | null = null;
-  
+
   @ViewChildren(TextEditorComponent) textEditorComponent: TextEditorComponent | null = null;
 
   constructor(
     private router: Router,
     private activeRouter: ActivatedRoute,
     private _store: Store<AppState>,
-  ) { 
+  ) {
     this.onChangeUrl();
   }
 
   async onChangeUrl() {
     this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(async (e) => {
-      if(this.currentCourseId && this.currentModuleId) {
+      if (this.currentCourseId && this.currentModuleId) {
         await this.getAndSetExistsData();
       }
     })
@@ -46,20 +46,20 @@ export class EditVideoLessonPageComponent implements OnInit {
       const courseId = param.get('courseId');
       const moduleId = param.get('moduleId');
       const lessonId = param.get('lessonId');
-      if(courseId) {
+      if (courseId) {
         this.currentCourseId = courseId;
-      } 
-      if(moduleId) {
+      }
+      if (moduleId) {
         this.currentModuleId = moduleId;
       }
-      if(lessonId) {
+      if (lessonId) {
         this.currentLessonId = +lessonId;
       }
-      if(!courseId && !moduleId) {
+      if (!courseId && !moduleId) {
         alert('Что то не так с ids');
       }
     });
-    if(this.currentLessonId !== null) {
+    if (this.currentLessonId !== null) {
       this.isLessonExist = true;
       await this.getAndSetExistsData();
     }
@@ -82,9 +82,9 @@ export class EditVideoLessonPageComponent implements OnInit {
       credentials: 'include',
     });
     const lessons = await response.json() as Lesson[];
-    if(this.currentLessonId !== null) {
+    if (this.currentLessonId !== null) {
       const currLesson = lessons.filter(({ id }) => id === this.currentLessonId)[0];
-      if(!currLesson) {
+      if (!currLesson) {
         return;
       }
       const result = currLesson.additionalText as OutputData;
@@ -92,10 +92,10 @@ export class EditVideoLessonPageComponent implements OnInit {
       console.log(this.existsTextData)
       this.lessonName = currLesson.name;
       const videoValue = currLesson.value as VideoValue;
-      if(!videoValue) {
+      if (!videoValue) {
         return;
       }
-      if(videoValue.videoType === "YouTube") {
+      if (videoValue.videoType === "YouTube") {
         this.hrefYoutubeVideo = videoValue.src;
         this.hrefVideo = '';
         this.videoFile = null;
@@ -105,31 +105,31 @@ export class EditVideoLessonPageComponent implements OnInit {
         this.hrefVideo = videoUrl;
         this.videoFile = videoFile;
       }
-    } 
+    }
   }
 
   async saveChanges() {
     let textData: OutputData | null = null;
-    if(this.textEditorComponent) {
-        //@ts-ignore
-        const data = await this.textEditorComponent.first.onSave();
-        console.log(data)
-        if(data) {
-          textData = data;
-        }
+    if (this.textEditorComponent) {
+      //@ts-ignore
+      const data = await this.textEditorComponent.first.onSave();
+      console.log(data)
+      if (data) {
+        textData = data;
+      }
     }
     // обработать момент, когда видео может отсылаться в виде ссылки или в виде файла
-    if(this.isLessonExist) {
-      if(this.hrefYoutubeVideo) {
+    if (this.isLessonExist) {
+      if (this.hrefYoutubeVideo) {
         this.saveVideoLessonChanges(textData, this.hrefYoutubeVideo, 'YouTube');
-      } else if(this.videoFile) {
+      } else if (this.videoFile) {
         const href = await this.sendVideoFileOnServer(this.videoFile);
         this.saveVideoLessonChanges(textData, href, 'Internal');
       }
     } else {
-      if(this.hrefYoutubeVideo) {
+      if (this.hrefYoutubeVideo) {
         this.createVideoLesson(textData, this.hrefYoutubeVideo, 'YouTube');
-      } else if(this.videoFile) {
+      } else if (this.videoFile) {
         const href = await this.sendVideoFileOnServer(this.videoFile);
         this.createVideoLesson(textData, href, 'Internal');
       }
@@ -153,7 +153,7 @@ export class EditVideoLessonPageComponent implements OnInit {
         'Content-Type': 'application/json'
       },
     })
-    if(response.ok) {
+    if (response.ok) {
       console.log('lesson with video href changes save');
     } else {
       console.log('lesson with video href changes not save');
@@ -179,7 +179,7 @@ export class EditVideoLessonPageComponent implements OnInit {
       },
     })
     const lessonsIds = await response.json() as number[];
-    if(response.ok) {
+    if (response.ok) {
       this.isLessonExist = true;
       this.router.navigate([], {
         queryParams: {
@@ -220,5 +220,29 @@ export class EditVideoLessonPageComponent implements OnInit {
       videoUrl,
       videoFile: video,
     };
+  }
+
+  async onDeleteLesson() {
+    if (this.currentCourseId && this.currentModuleId && this.currentLessonId !== null) {
+      const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons/${this.currentLessonId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+      if (response.ok) {
+        console.log('lesson delete');
+        await this.router.navigate([], {
+          queryParams: {
+            moduleId: this.currentModuleId,
+            lessonId: null,
+            isDelete: true,
+          },
+          queryParamsHandling: 'merge',
+        })
+      } else {
+        console.log('lesson not delete')
+      }
+    } else {
+      console.log('что то не так с id, урок не удален')
+    }
   }
 }

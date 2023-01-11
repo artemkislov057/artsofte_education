@@ -26,13 +26,13 @@ export class EditTextLessonPageComponent implements OnInit {
     private router: Router,
     private activeRouter: ActivatedRoute,
     private _store: Store<AppState>,
-  ) { 
+  ) {
     this.onChangeUrl();
   }
 
   async onChangeUrl() {
     this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(async (e) => {
-      if(this.currentCourseId && this.currentModuleId) {
+      if (this.currentCourseId && this.currentModuleId) {
         await this.getExistsTextData();
       }
     })
@@ -43,20 +43,20 @@ export class EditTextLessonPageComponent implements OnInit {
       const courseId = param.get('courseId');
       const moduleId = param.get('moduleId');
       const lessonId = param.get('lessonId');
-      if(courseId) {
+      if (courseId) {
         this.currentCourseId = courseId;
-      } 
-      if(moduleId) {
+      }
+      if (moduleId) {
         this.currentModuleId = moduleId;
       }
-      if(lessonId) {
+      if (lessonId) {
         this.currentLessonId = +lessonId;
       }
-      if(!courseId && !moduleId) {
+      if (!courseId && !moduleId) {
         alert('Что то не так с ids');
       }
     });
-    if(this.currentLessonId !== null) {
+    if (this.currentLessonId !== null) {
       this.isLessonExist = true;
       await this.getExistsTextData();
     }
@@ -73,15 +73,15 @@ export class EditTextLessonPageComponent implements OnInit {
 
   async testSave() {
     const textData: OutputData[] = [];
-    if(this.textEditorComponent) {
-      for(let e of this.textEditorComponent) {
+    if (this.textEditorComponent) {
+      for (let e of this.textEditorComponent) {
         const data = await e.onSave();
-        if(data) {
+        if (data) {
           textData.push(data);
         }
       }
     }
-    if(this.isLessonExist) {
+    if (this.isLessonExist) {
       this.saveLessonChanges(textData);
     } else {
       this.createLesson(textData)
@@ -110,7 +110,7 @@ export class EditTextLessonPageComponent implements OnInit {
         'Content-Type': 'application/json'
       },
     })
-    if(response.ok) {
+    if (response.ok) {
       console.log('lesson changes save');
     } else {
       console.log('lesson changes not save');
@@ -134,7 +134,7 @@ export class EditTextLessonPageComponent implements OnInit {
           version: textData[1].version,
           blocks: textData[1].blocks,
         }
-        }
+      }
       ]),
       credentials: 'include',
       headers: {
@@ -143,7 +143,7 @@ export class EditTextLessonPageComponent implements OnInit {
     })
     const lessonsIds = await response.json() as number[];
     console.log(lessonsIds)
-    if(response.ok) {
+    if (response.ok) {
       this.isLessonExist = true;
       this.router.navigate([], {
         queryParams: {
@@ -153,7 +153,7 @@ export class EditTextLessonPageComponent implements OnInit {
         queryParamsHandling: 'merge',
       })
       console.log('lesson created');
-      
+
     } else {
       console.log('lesson not created');
     }
@@ -164,16 +164,40 @@ export class EditTextLessonPageComponent implements OnInit {
       credentials: 'include',
     });
     const lessons = await response.json() as Lesson[];
-    if(this.currentLessonId !== null) {
+    if (this.currentLessonId !== null) {
       const currLesson = lessons.filter(({ id }) => id === this.currentLessonId)[0];
-      if(!currLesson) {
+      if (!currLesson) {
         return null;
       }
       const result = [currLesson?.value, currLesson.additionalText as OutputData] as OutputData[];
       this.existsTextData = [...result];
       this.lessonName = currLesson.name;
       return result;
-    } 
+    }
     return null;
+  }
+
+  async onDeleteLesson() {
+    if (this.currentCourseId && this.currentModuleId && this.currentLessonId !== null) {
+      const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons/${this.currentLessonId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+      if (response.ok) {
+        console.log('lesson delete');
+        await this.router.navigate([], {
+          queryParams: {
+            moduleId: this.currentModuleId,
+            lessonId: null,
+            isDelete: true,
+          },
+          queryParamsHandling: 'merge',
+        })
+      } else {
+        console.log('lesson not delete')
+      }
+    } else {
+      console.log('что то не так с id, урок не удален')
+    }
   }
 }

@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class LessonNameContainerComponent implements OnInit {
   @Input() titleName: string | null = null;
   @Output() changeLessonName = new EventEmitter<string>();
+  @Output() deleteLesson = new EventEmitter();
 
   constructor() { }
 
@@ -16,6 +17,10 @@ export class LessonNameContainerComponent implements OnInit {
 
   onChangeName(name: string) {
     this.changeLessonName.emit(name);
+  }
+
+  onDeleteLesson() {
+    this.deleteLesson.emit();
   }
 
 }

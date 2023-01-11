@@ -29,7 +29,7 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
 
   async onChangeUrl() {
     this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(async (e) => {
-      if(this.currentCourseId && this.currentModuleId) {
+      if (this.currentCourseId && this.currentModuleId) {
         await this.getLessonData();
       }
     })
@@ -40,20 +40,20 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
       const courseId = param.get('courseId');
       const moduleId = param.get('moduleId');
       const lessonId = param.get('lessonId');
-      if(courseId) {
+      if (courseId) {
         this.currentCourseId = courseId;
-      } 
-      if(moduleId) {
+      }
+      if (moduleId) {
         this.currentModuleId = moduleId;
       }
-      if(lessonId) {
+      if (lessonId) {
         this.currentLessonId = +lessonId;
       }
-      if(!courseId && !moduleId) {
+      if (!courseId && !moduleId) {
         alert('Что то не так с ids');
       }
     });
-    if(this.currentLessonId !== null) {
+    if (this.currentLessonId !== null) {
       this.isLessonExist = true;
       await this.getLessonData();
     }
@@ -61,7 +61,7 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
 
   onUploadCover(file: File) {
     const urlCover = URL.createObjectURL(file);
-    if(this.currentBookIndex > this.books.length || this.books.length === 0) {
+    if (this.currentBookIndex > this.books.length || this.books.length === 0) {
       this.books.push({
         coverSrc: urlCover,
         description: '',
@@ -87,7 +87,7 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
   }
 
   onChangeHref(href: string) {
-    if(this.currentBookIndex > this.books.length || this.books.length === 0) {
+    if (this.currentBookIndex > this.books.length || this.books.length === 0) {
       this.books.push({
         coverSrc: '',
         description: '',
@@ -108,7 +108,7 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
   }
 
   async onSaveChanges() {
-    if(this.isLessonExist) {
+    if (this.isLessonExist) {
       await this.saveChangesLesson();
     } else {
       await this.createLesson();
@@ -133,7 +133,7 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
       },
     })
     const lessonsIds = await response.json() as number[];
-    if(response.ok) {
+    if (response.ok) {
       this.isLessonExist = true;
       this.router.navigate([], {
         queryParams: {
@@ -153,25 +153,25 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
       credentials: 'include',
     });
     const lessons = await response.json() as Lesson[];
-    if(this.currentLessonId !== null) {
+    if (this.currentLessonId !== null) {
       //@ts-ignore
       const currLesson = lessons.filter(({ id }) => id === this.currentLessonId)[0] as LiteratureLesson;
-      if(!currLesson) {
+      if (!currLesson) {
         return;
       }
       this.lessonName = currLesson.name;
       const books = [...currLesson.value.elements];
-      if(!books) {
+      if (!books) {
         return;
       }
-      for(let book of books) {
-        if(book.coverSrc) {
+      for (let book of books) {
+        if (book.coverSrc) {
           const clientUrl = await this.getImageUrlFromServer(book.coverSrc);
           book.coverSrc = clientUrl;
         }
       }
       this.books = [...books];
-    } 
+    }
   }
 
   async saveChangesLesson() {
@@ -190,14 +190,14 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
         'Content-Type': 'application/json'
       },
     })
-    if(response.ok) {
+    if (response.ok) {
       console.log('lesson literature changes save');
       const books = [...this.books];
-      if(!books) {
+      if (!books) {
         return;
       }
-      for(let book of books) {
-        if(book.coverSrc) {
+      for (let book of books) {
+        if (book.coverSrc) {
           const clientUrl = await this.getImageUrlFromServer(book.coverSrc);
           book.coverSrc = clientUrl;
         }
@@ -210,8 +210,8 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
 
   async getTrainedBooksForSendServer(books: BookItem[]): Promise<BookItem[]> {
     const resBooks: BookItem[] = [...books];
-    for(let book of resBooks) {
-      if(book.coverSrc) {
+    for (let book of resBooks) {
+      if (book.coverSrc) {
         const path = await this.getTrainedHref(book.coverSrc);
         book.coverSrc = path.toString();
       }
@@ -243,5 +243,29 @@ export class EditAdditionalMaterialPageComponent implements OnInit {
     // const image = new File([data], 'image');
     const imageUrl = URL.createObjectURL(data);
     return imageUrl;
+  }
+
+  async onDeleteLesson() {
+    if (this.currentCourseId && this.currentModuleId && this.currentLessonId !== null) {
+      const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons/${this.currentLessonId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+      if (response.ok) {
+        console.log('lesson delete');
+        await this.router.navigate([], {
+          queryParams: {
+            moduleId: this.currentModuleId,
+            lessonId: null,
+            isDelete: true,
+          },
+          queryParamsHandling: 'merge',
+        })
+      } else {
+        console.log('lesson not delete')
+      }
+    } else {
+      console.log('что то не так с id, урок не удален')
+    }
   }
 }

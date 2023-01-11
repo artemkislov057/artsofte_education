@@ -289,4 +289,28 @@ export class EditPresentationLessonPageComponent implements OnInit {
     return paths;
   }
 
+  async onDeleteLesson() {
+    if (this.currentCourseId && this.currentModuleId && this.currentLessonId !== null) {
+      const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons/${this.currentLessonId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+      if (response.ok) {
+        console.log('lesson delete');
+        await this.router.navigate([], {
+          queryParams: {
+            moduleId: this.currentModuleId,
+            lessonId: null,
+            isDelete: true,
+          },
+          queryParamsHandling: 'merge',
+        })
+      } else {
+        console.log('lesson not delete')
+      }
+    } else {
+      console.log('что то не так с id, урок не удален')
+    }
+  }
+
 }

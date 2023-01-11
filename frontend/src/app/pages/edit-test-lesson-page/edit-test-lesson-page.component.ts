@@ -32,13 +32,13 @@ export class EditTestLessonPageComponent implements OnInit {
     private router: Router,
     private activeRouter: ActivatedRoute,
     private _store: Store<AppState>,
-  ) { 
+  ) {
     this.onChangeUrl();
   }
 
   async onChangeUrl() {
     this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(async (e) => {
-      if(this.currentCourseId && this.currentModuleId) {
+      if (this.currentCourseId && this.currentModuleId) {
         await this.getTestLessonData();
       }
     })
@@ -49,20 +49,20 @@ export class EditTestLessonPageComponent implements OnInit {
       const courseId = param.get('courseId');
       const moduleId = param.get('moduleId');
       const lessonId = param.get('lessonId');
-      if(courseId) {
+      if (courseId) {
         this.currentCourseId = courseId;
-      } 
-      if(moduleId) {
+      }
+      if (moduleId) {
         this.currentModuleId = moduleId;
       }
-      if(lessonId) {
+      if (lessonId) {
         this.currentLessonId = +lessonId;
       }
-      if(!courseId && !moduleId) {
+      if (!courseId && !moduleId) {
         alert('Что то не так с ids');
       }
     });
-    if(this.currentLessonId !== null) {
+    if (this.currentLessonId !== null) {
       this.isLessonExist = true;
       await this.getTestLessonData();
     }
@@ -93,20 +93,20 @@ export class EditTestLessonPageComponent implements OnInit {
 
   onSelectCorrectOption({ questionIndex, optionIndex, isChecked }: { questionIndex: number, optionIndex: number, isChecked: boolean }) {
     const questionType = this.questions[questionIndex].questionType;
-    if(questionType === 'RadioButton') {
+    if (questionType === 'RadioButton') {
       this.questions[questionIndex].answerOptions.forEach((element, index) => {
-        if(index !== optionIndex) {
+        if (index !== optionIndex) {
           element.isCorrectAnswer = false;
         } else {
           element.isCorrectAnswer = true;
         }
-      });  
+      });
     } else {
       this.questions[questionIndex].answerOptions[optionIndex].isCorrectAnswer = isChecked;
     }
   }
 
-  onChangeValueInputOption({ questionIndex, optionIndex, value }: {questionIndex: number, optionIndex: number, value: string}) {
+  onChangeValueInputOption({ questionIndex, optionIndex, value }: { questionIndex: number, optionIndex: number, value: string }) {
     this.questions[questionIndex].answerOptions[optionIndex].value = value;
   }
 
@@ -118,23 +118,23 @@ export class EditTestLessonPageComponent implements OnInit {
     this.questions.splice(questionIndex, 1);
   }
 
-  onDeleteAnswerOption({ questionIndex, optionIndex }: {questionIndex: number, optionIndex: number }) {
+  onDeleteAnswerOption({ questionIndex, optionIndex }: { questionIndex: number, optionIndex: number }) {
     this.questions[questionIndex].answerOptions.splice(optionIndex, 1);
   }
 
   async saveChanges() {
-    if(this.textEditorComponent) {
+    if (this.textEditorComponent) {
       let index = 0;
-      for(let e of this.textEditorComponent) {
+      for (let e of this.textEditorComponent) {
         const data = await e.onSave();
-        if(data) {
+        if (data) {
           this.questions[index].question = data;
         }
         index++;
       }
     }
 
-    if(this.isLessonExist) {
+    if (this.isLessonExist) {
       await this.saveChangesTestLesson()
     } else {
       await this.createTestLesson();
@@ -157,7 +157,7 @@ export class EditTestLessonPageComponent implements OnInit {
       },
     })
     const lessonsIds = await response.json() as number[];
-    if(response.ok) {
+    if (response.ok) {
       this.isLessonExist = true;
       this.router.navigate([], {
         queryParams: {
@@ -187,7 +187,7 @@ export class EditTestLessonPageComponent implements OnInit {
         'Content-Type': 'application/json'
       },
     })
-    if(response.ok) {
+    if (response.ok) {
       console.log('lesson test save changes');
     } else {
       console.log('lesson test not save changes');
@@ -199,15 +199,39 @@ export class EditTestLessonPageComponent implements OnInit {
       credentials: 'include',
     });
     const lessons = await response.json() as Lesson[];
-    if(this.currentLessonId !== null) {
+    if (this.currentLessonId !== null) {
       const currLesson = lessons.filter(({ id }) => id === this.currentLessonId)[0];
-      if(!currLesson) {
+      if (!currLesson) {
         return;
       }
       this.lessonName = currLesson.name;
       const testValue = currLesson.value as TestValue;
       this.questions = [...testValue.questions];
       console.log(this.questions)
-    } 
+    }
+  }
+
+  async onDeleteLesson() {
+    if (this.currentCourseId && this.currentModuleId && this.currentLessonId !== null) {
+      const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${this.currentModuleId}/lessons/${this.currentLessonId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+      if (response.ok) {
+        console.log('lesson delete');
+        await this.router.navigate([], {
+          queryParams: {
+            moduleId: this.currentModuleId,
+            lessonId: null,
+            isDelete: true,
+          },
+          queryParamsHandling: 'merge',
+        })
+      } else {
+        console.log('lesson not delete')
+      }
+    } else {
+      console.log('что то не так с id, урок не удален')
+    }
   }
 }

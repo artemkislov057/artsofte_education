@@ -1,5 +1,6 @@
 <div class="main">
-    <app-lesson-name-container [titleName]="lessonName" (changeLessonName)="onChangeLessonName($event)">
+    <app-lesson-name-container [titleName]="lessonName" (changeLessonName)="onChangeLessonName($event)"
+        (deleteLesson)="onDeleteLesson()">
     </app-lesson-name-container>
     <app-video-container [videoHref]="hrefVideo" [youtubeHref]="hrefYoutubeVideo"
         (onChangeVideoFile)="onChangeVideoFile($event)" (onChangeYoutubeHref)="onChangeYoutubeHref($event)">

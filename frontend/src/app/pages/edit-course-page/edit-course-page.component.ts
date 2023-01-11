@@ -24,7 +24,7 @@ export class EditCoursePageComponent implements OnInit {
     private router: Router,
     private activeRouter: ActivatedRoute,
     private _store: Store<AppState>,
-  ) { 
+  ) {
     this.onChangeUrl();
   }
 
@@ -33,12 +33,30 @@ export class EditCoursePageComponent implements OnInit {
       const event = e as NavigationEnd;
       const params = event.url.split('&');
       const lessonIdString = params.find((param) => param.includes('lessonId'));
-      if(lessonIdString) {
+      const moduleIddString = params.find((param) => param.includes('moduleId'));
+      const courseIdString = params.find((param) => param.includes('courseId'));
+      const isDeleteString = params.find((param) => param.includes('isDelete'));
+      if (isDeleteString) {
+        await this.getCourseInfo();
+        const less = this.courseInfo?.modules.find(({ id }) => this.currentModuleId === id)?.lessons;
+        if (less && less.length) {
+          this.currentLessonId = less[0].id;
+          this.onClickLesson(this.currentLessonId);
+        } else {
+          this.createLesson()
+        }
+        return;
+      }
+      if (lessonIdString) {
         this.getCourseInfo();
         this.currentLessonId = +lessonIdString.split('=')[1];
         this.onClickLesson(this.currentLessonId);
-      }
-      if(this.currentCourseId && this.currentModuleId) {
+      } else if (this.currentCourseId && this.currentModuleId && moduleIddString && courseIdString) {
+
+      } else {
+        this.currentCourseId = '';
+        this.currentModuleId = '';
+        this.currentLessonId = -1;
       }
     })
   }
@@ -47,18 +65,18 @@ export class EditCoursePageComponent implements OnInit {
     this.activeRouter.queryParamMap.subscribe((param) => {
       const courseId = param.get('courseId');
       const moduleId = param.get('moduleId');
-      if(courseId) {
+      if (courseId) {
         this.currentCourseId = courseId;
-      } 
-      if(moduleId) {
+      }
+      if (moduleId) {
         this.currentModuleId = moduleId;
       }
-      if(!courseId && !moduleId) {
+      if (!courseId && !moduleId) {
         alert('Что то не так с ids');
       }
-   })
-   await this.getCourseInfo();
-    if(this.currentModuleId) {
+    })
+    await this.getCourseInfo();
+    if (this.currentModuleId) {
       this.setCurrentOpenModule();
     }
   }
@@ -72,11 +90,11 @@ export class EditCoursePageComponent implements OnInit {
   }
 
   createModule() {
-    this.router.navigate(['/create-module'], {queryParams: {courseId: this.currentCourseId}});
+    this.router.navigate(['/create-module'], { queryParams: { courseId: this.currentCourseId } });
   }
 
   setCurrentOpenModule() {
-    if(this.courseInfo) {
+    if (this.courseInfo) {
       this.currentModuleIndex = this.courseInfo?.modules.findIndex((module) => module.id === this.currentModuleId)
     }
   }
@@ -85,7 +103,8 @@ export class EditCoursePageComponent implements OnInit {
     this.router.navigate(['/edit-course/select-lesson-type'], {
       queryParamsHandling: 'merge',
       queryParams: {
-        lessonId: null
+        lessonId: null,
+        isDelete: null,
       }
     });
   }
@@ -96,7 +115,7 @@ export class EditCoursePageComponent implements OnInit {
     this.currentModuleId = moduleId;
     this.currentModuleIndex = moduleIndex;
     const lessonId = this.courseInfo?.modules[moduleIndex].lessons[0]?.id || null;
-    if(lessonId !== null) {
+    if (lessonId !== null) {
       const editUrlPage = this.getLessonTypeUrl(moduleIndex, lessonId)
       this.router.navigate([editUrlPage], {
         queryParams: {
@@ -114,27 +133,30 @@ export class EditCoursePageComponent implements OnInit {
         queryParamsHandling: 'merge',
       });
     }
-    
+
   }
 
   async onClickLesson(lessonId: number) {
-    if(this.currentModuleIndex === null) {
+    if (this.currentModuleIndex === null) {
       return;
     }
     this.currentLessonId = lessonId;
     const editPageUrl = this.getLessonTypeUrl(this.currentModuleIndex, lessonId);
-    if(editPageUrl) {
+    if (editPageUrl) {
       await this.router.navigate([editPageUrl], {
         queryParamsHandling: 'merge',
-        queryParams: { lessonId },
+        queryParams: {
+          lessonId,
+          isDelete: null,
+        },
       });
     }
   }
 
   getLessonTypeUrl(moduleIndex: number, lessonId: number) {
     const currentLesson = this.courseInfo?.modules[this.currentModuleIndex!].lessons.find(e => e.id === lessonId);
-    if(currentLesson) {
-      switch(currentLesson.type) {
+    if (currentLesson) {
+      switch (currentLesson.type) {
         case "Text":
           return '/edit-course/edit-text-lesson';
         case "Video":

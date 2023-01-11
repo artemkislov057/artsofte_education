@@ -9,36 +9,36 @@ import { LessonTypePageComponent } from '../lesson-type-page/lesson-type-page.co
 import { EditCoursePageComponent } from './edit-course-page.component';
 
 const routes: Routes = [
-    {
-        path: 'edit-course', 
-        component: EditCoursePageComponent,
-        children: [
-          {
-            path: 'select-lesson-type',
-            component: LessonTypePageComponent,
-          },
-          {
-            path: 'edit-text-lesson',
-            component: EditTextLessonPageComponent,
-          },
-          {
-            path: 'edit-test-lesson',
-            component: EditTestLessonPageComponent,
-          },
-          {
-            path: 'edit-add-material-lesson',
-            component: EditAdditionalMaterialPageComponent,
-          },
-          {
-            path: 'edit-video-lesson',
-            component: EditVideoLessonPageComponent,
-          },
-          {
-            path: 'edit-presentation-lesson',
-            component: EditPresentationLessonPageComponent,
-          },
-        ]
+  {
+    path: 'edit-course',
+    component: EditCoursePageComponent,
+    children: [
+      {
+        path: 'select-lesson-type',
+        component: LessonTypePageComponent,
       },
+      {
+        path: 'edit-text-lesson',
+        component: EditTextLessonPageComponent,
+      },
+      {
+        path: 'edit-test-lesson',
+        component: EditTestLessonPageComponent,
+      },
+      {
+        path: 'edit-add-material-lesson',
+        component: EditAdditionalMaterialPageComponent,
+      },
+      {
+        path: 'edit-video-lesson',
+        component: EditVideoLessonPageComponent,
+      },
+      {
+        path: 'edit-presentation-lesson',
+        component: EditPresentationLessonPageComponent,
+      }
+    ]
+  },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

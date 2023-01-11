@@ -9,7 +9,8 @@ import { Module } from 'src/typings/api/courseType';
 export class CourseslistComponent implements OnInit {
   @Input() modules: Module[] = [];
   @Output() onClickModuleOut = new EventEmitter<string>();
-  @Output() onClickLessonOut = new EventEmitter<{moduleId: string; lessonId: number;}>();
+  @Output() onClickLessonOut = new EventEmitter<{ moduleId: string; lessonId: number; }>();
+  @Output() deleteModule = new EventEmitter<string>();
 
   constructor() { }
 
@@ -20,7 +21,11 @@ export class CourseslistComponent implements OnInit {
     this.onClickModuleOut.emit(moduleId);
   }
 
-  onClickLesson({moduleId, lessonId}: {moduleId: string, lessonId: number}) {
-    this.onClickLessonOut.emit({moduleId, lessonId})
+  onClickLesson({ moduleId, lessonId }: { moduleId: string, lessonId: number }) {
+    this.onClickLessonOut.emit({ moduleId, lessonId })
+  }
+
+  onClickDelete(moduleId: string) {
+    this.deleteModule.emit(moduleId);
   }
 }

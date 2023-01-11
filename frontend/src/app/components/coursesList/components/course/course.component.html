@@ -1,5 +1,6 @@
 <div class="main">
-    <app-header-course [title]="currentModule.name" (click)="onClickModule(currentModule.id)"></app-header-course>
+    <app-header-course [title]="currentModule.name" (clickEvent)="onClickModule(currentModule.id)"
+        (remove)="onDeleteModule()"></app-header-course>
     <div class="items">
         <app-item-course *ngFor="let value of currentModule.lessons" [title]="value.name"
             (click)="onClickLesson(currentModule.id, value.id)"></app-item-course>

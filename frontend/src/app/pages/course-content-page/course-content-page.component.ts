@@ -26,16 +26,16 @@ export class CourseContentPageComponent implements OnInit {
     private _store: Store<AppState>,
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.activeRouter.queryParamMap.subscribe((param) => {
       const courseId = param.get('courseId');
-      if(courseId) {
+      if (courseId) {
         this.currentCourseId = courseId;
       } else {
         alert('Что то не так с ids');
       }
-   })
-   this.getCourseInfo();
+    })
+    await this.getCourseInfo();
   }
 
   async getCourseInfo() {
@@ -47,12 +47,12 @@ export class CourseContentPageComponent implements OnInit {
   }
 
   onClickModule(moduleId: string) {
-    const moduleIndex = this.courseInfo.modules.findIndex(({id}) => id === moduleId);
+    const moduleIndex = this.courseInfo.modules.findIndex(({ id }) => id === moduleId);
     const lessonData = this.courseInfo?.modules[moduleIndex].lessons;
     const lessonId = lessonData[0]?.id || null
     const type = lessonData[0]?.type || null;
     console.log(moduleIndex, lessonId, type)
-    if(lessonId !== null) {
+    if (lessonId !== null) {
       const editUrlPage = this.getLessonTypeUrl(moduleIndex, lessonId)
       this.router.navigate([editUrlPage], {
         queryParams: {
@@ -72,10 +72,10 @@ export class CourseContentPageComponent implements OnInit {
   }
 
   async onClickLesson({ moduleId, lessonId }: { moduleId: string, lessonId: number }) {
-    const moduleIndex = this.courseInfo.modules.findIndex(({id}) => id === moduleId);
+    const moduleIndex = this.courseInfo.modules.findIndex(({ id }) => id === moduleId);
     const editPageUrl = this.getLessonTypeUrl(moduleIndex, lessonId);
-    console.log(moduleId, lessonId,  editPageUrl)
-    if(editPageUrl) {
+    console.log(moduleId, lessonId, editPageUrl)
+    if (editPageUrl) {
       await this.router.navigate([editPageUrl], {
         queryParamsHandling: 'merge',
         queryParams: {
@@ -86,10 +86,23 @@ export class CourseContentPageComponent implements OnInit {
     }
   }
 
+  async onDeleteModule(moduleId: string) {
+    const response = await fetch(`https://localhost:5001/api/courses/${this.currentCourseId}/modules/${moduleId}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+    if (response.ok) {
+      console.log('module deleted');
+      await this.getCourseInfo();
+    } else {
+      console.log('module not delete')
+    }
+  }
+
   getLessonTypeUrl(moduleIndex: number, lessonId: number) {
     const currentLesson = this.courseInfo?.modules[moduleIndex].lessons.find(e => e.id === lessonId);
-    if(currentLesson) {
-      switch(currentLesson.type) {
+    if (currentLesson) {
+      switch (currentLesson.type) {
         case "Text":
           return '/edit-course/edit-text-lesson';
         case "Video":

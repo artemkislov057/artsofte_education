@@ -14,7 +14,8 @@ export class CourseComponent implements OnInit {
     name: ''
   };
   @Output() onClickModuleOut = new EventEmitter<string>();
-  @Output() onClickLessonOut = new EventEmitter<{moduleId: string; lessonId: number;}>();
+  @Output() onClickLessonOut = new EventEmitter<{ moduleId: string; lessonId: number; }>();
+  @Output() deleteModule = new EventEmitter();
 
   constructor() { }
 
@@ -26,6 +27,10 @@ export class CourseComponent implements OnInit {
   }
 
   onClickLesson(moduleId: string, lessonId: number) {
-    this.onClickLessonOut.emit({moduleId, lessonId})
+    this.onClickLessonOut.emit({ moduleId, lessonId })
+  }
+
+  onDeleteModule() {
+    this.deleteModule.emit();
   }
 }

@@ -1,4 +1,4 @@
 <div class="main">
     <app-course *ngFor="let module of modules" [currentModule]="module" (onClickModuleOut)="onClickModule($event)"
-        (onClickLessonOut)="onClickLesson($event)"></app-course>
+        (onClickLessonOut)="onClickLesson($event)" (deleteModule)="onClickDelete(module.id)"></app-course>
 </div>

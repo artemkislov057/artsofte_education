@@ -38,4 +38,13 @@
     height: 22px;
     background: url('icons/remove.svg') 50% 50% no-repeat;
     background-size: 100% 100%;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.removeIcon:hover {
+    transform: scale(1.05);
+    transition: .3s;
+    box-shadow: -1px -1px 15px rgba(69, 69, 69, 0.05), 1px 3px 10px rgba(69, 69, 69, 0.05);
+
 }

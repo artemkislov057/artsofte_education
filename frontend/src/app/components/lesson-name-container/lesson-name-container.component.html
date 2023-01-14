@@ -1,5 +1,6 @@
 <div class="main">
     <input class="nameInput" placeholder="Название урока" [(ngModel)]="titleName" #item
         (change)="onChangeName(item.value)" />
-    <button class="delete" (click)="onDeleteLesson()">Удалить урок</button>
+    <button tuiButton type="button" appearance="customSecondaryDestructiveOutline" (click)="onDeleteLesson()"
+        [size]="'m'">Удалить урок</button>
 </div>

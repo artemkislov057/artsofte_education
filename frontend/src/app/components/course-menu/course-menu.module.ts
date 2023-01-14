@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ModuleItemComponent } from './components/module-item/module-item.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CourseMenuComponent } from './course-menu.component';
+import { TuiButtonModule } from '@taiga-ui/core';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { CourseMenuComponent } from './course-menu.component';
   ],
   imports: [
     CommonModule,
-    BrowserModule
+    BrowserModule,
+    TuiButtonModule
   ],
   exports: [CourseMenuComponent],
   bootstrap: [ModuleItemComponent]

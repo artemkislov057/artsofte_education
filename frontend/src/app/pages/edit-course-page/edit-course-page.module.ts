@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { TuiButtonModule } from '@taiga-ui/core';
 import { AdditionalMaterialContainerComponent } from 'src/app/components/additional-material-container/additional-material-container.component';
 import { BottomEditContainerComponent } from 'src/app/components/bottom-edit-container/bottom-edit-container.component';
 import { CourseMenuModule } from 'src/app/components/course-menu/course-menu.module';
@@ -46,6 +47,7 @@ import { EditCoursePageComponent } from './edit-course-page.component';
     CourseMenuModule,
     TestContainerModule,
     PresentationContainerModule,
+    TuiButtonModule
   ],
   exports: [EditCoursePageComponent],
   providers: [],

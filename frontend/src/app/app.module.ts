@@ -1,3 +1,6 @@
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
+import { TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER, TuiButtonModule } from "@taiga-ui/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,16 +35,21 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     EditCoursePageModule,
     StoreModule.forRoot(appReducer),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-    !environment.production ? StoreDevtoolsModule.instrument(): [],
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
     AppRoutingModule,
+    BrowserAnimationsModule,
+    TuiRootModule,
+    TuiDialogModule,
+    TuiAlertModule,
+    TuiButtonModule
   ],
-  providers: [AppService],
+  providers: [AppService, { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
   bootstrap: [AppComponent],
 })
-export class AppModule { 
+export class AppModule {
   constructor() {
-    
+
   }
 
-  
+
 }

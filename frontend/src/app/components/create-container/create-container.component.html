@@ -5,8 +5,9 @@
         <input class="nameItem" [(ngModel)]="inputValue" />
     </div>
     <div class="buttons">
-        <button class="cancelButton">Отменить</button>
-        <button class="createButton" (click)="create(inputValue)">Создать {{typeContainerName === 'курса' ? 'курс' :
+        <button tuiButton type="button" appearance="customPrimaryOutline">Отменить</button>
+        <button (click)="create(inputValue)" tuiButton type="button" appearance="customAccent">Создать
+            {{typeContainerName === 'курса' ? 'курс' :
             'модуль'}}</button>
     </div>
 </div>

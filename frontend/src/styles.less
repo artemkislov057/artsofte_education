@@ -1,0 +1,131 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat' !important;
+}
+
+@import '~@taiga-ui/core/styles/taiga-ui-local';
+
+// This goes into global, unencapsulated styles
+[tuiWrapper] {
+    font-family: 'Montserrat' !important;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+}
+
+[tuiWrapper][data-appearance='customPrimary'] {
+    background: #2E62D9;
+    color: #fff;
+
+    .wrapper-hover({
+        background: #5881E1;
+    });
+
+.wrapper-active({
+    background: #2553E1;
+});
+
+.wrapper-disabled({
+    background: #97B0EC;
+});
+}
+
+[tuiWrapper][data-appearance='customPrimaryOutline'] {
+    border: 1px solid #2E62D9;
+    color: #2E62D9;
+
+    .wrapper-hover({
+        background: #E0E7F9;
+    });
+
+.wrapper-active({
+    background: #CBD8F5;
+    border-color: #124CD1;
+    color: #124CD1;
+});
+
+.wrapper-disabled({
+    background: #B7CDFF;
+    border-color: #B7CDFF;
+    color: #B7CDFF;
+});
+}
+
+[tuiWrapper][data-appearance='customSecondary'] {
+    background: #6BB736;
+    color: #fff;
+
+    .wrapper-hover({
+        background: #89C55E
+    });
+
+.wrapper-active({
+    background: #61AE34;
+});
+
+.wrapper-disabled({
+    background: #B5DB9B;
+});
+}
+
+[tuiWrapper][data-appearance='customSecondaryDestructiveOutline'] {
+    border: 1px solid #FA5D48;
+    color: #FA5D48;
+
+    .wrapper-hover({
+        background: #FEE7E4;
+    });
+
+.wrapper-active({
+    background: #FED6D1;
+    border-color: #FF1F00;
+});
+
+.wrapper-disabled({
+    background: #FDB4AA;
+    color: #FDB4AA;
+    border-color: #FDB4AA;
+});
+}
+
+[tuiWrapper][data-appearance='customAccent'] {
+    background: #FF841F;
+    color: #fff;
+
+    .wrapper-hover({
+        background: #FF9D4C;
+    });
+
+.wrapper-active({
+    background: #FC751F;
+
+});
+
+.wrapper-disabled({
+    background: #FFC18F;
+});
+}
+
+[tuiWrapper][data-appearance='customAccentOutline'] {
+    border: 1px solid #FF841F;
+    color: #FF841F;
+
+    .wrapper-hover({
+        background: #FFF3E9;
+    });
+
+.wrapper-active({
+    background: #FFE0C7;
+    border-color: #F26D00;
+    color: #F26D00;
+});
+
+.wrapper-disabled({
+    background: #FFBF8A;
+    border-color: #FFBF8A;
+    color: #FFBF8A;
+});
+}

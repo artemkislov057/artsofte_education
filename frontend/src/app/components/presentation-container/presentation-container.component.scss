@@ -46,6 +46,10 @@
     display: none;
 }
 
+label {
+    cursor: pointer;
+}
+
 .button,
 .inputPresentationLabel {
     display: flex;

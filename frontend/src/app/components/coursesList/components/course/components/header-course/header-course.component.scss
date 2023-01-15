@@ -4,9 +4,15 @@
     align-items: center;
     box-sizing: border-box;
     padding: 12px 20px 20px 0px;
-    background: radial-gradient(110.83% 110.83% at 11.31% 77.5%, rgba(46, 98, 217, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+    // background: radial-gradient(110.83% 110.83% at 11.31% 77.5%, rgba(46, 98, 217, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
 
     border-bottom: 1px solid rgba(62, 62, 62, .5);
+    transition: .3s all;
+}
+
+.main:hover {
+    transform: scale(1.005);
+    transition: .3s all;
 }
 
 .titleContainer {

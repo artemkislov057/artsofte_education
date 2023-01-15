@@ -4,9 +4,15 @@
     align-items: center;
 }
 
-.nameInput {
+.nameInputContainer {
     width: 578px;
     height: 47px;
+
+}
+
+.nameInput {
+    // width: 578px;
+    // height: 47px;
 
     font-weight: 600;
     font-size: 22px;
@@ -14,10 +20,10 @@
     letter-spacing: 0.01em;
     color: #5F5F5F;
 
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #5F5F5F;
-    background-color: transparent;
+    // outline: none;
+    // border: none;
+    // border-bottom: 1px solid #5F5F5F;
+    // background-color: transparent;
 }
 
 .delete {

@@ -5,6 +5,7 @@ import { TuiButtonModule } from '@taiga-ui/core';
 import { CreateContainerComponent } from 'src/app/components/create-container/create-container.component';
 import { CreateModulePageComponent } from '../../create-module-page/create-module-page.component';
 import { CreatePageComponent } from '../../create-page/create-page.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CreatePageComponent } from '../../create-page/create-page.component';
   imports: [
     BrowserModule,
     FormsModule,
-    TuiButtonModule
+    TuiButtonModule,
+    MatInputModule
   ],
   exports: [CreateContainerComponent, CreateModulePageComponent],
   providers: [],

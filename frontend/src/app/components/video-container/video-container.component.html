@@ -5,8 +5,12 @@
             <input type="file" class="inputComponent" id="add-video-file" #item (change)="onUploadVideo(item.files)" />
             <label class="labelInput" for="add-video-file">Загрузить видео</label>
         </div>
-        <input class="inputHref" type="url" placeholder="Вставить ссылку на видео" #value
-            (change)="changeYoutubeHref(value.value)" />
+        <!-- <input class="inputHref" type="url" placeholder="Вставить ссылку на видео" #value
+            (change)="changeYoutubeHref(value.value)" /> -->
+        <mat-form-field class="inputHrefContainer">
+            <input class="inputHref" type="url" placeholder="Вставить ссылку на видео" matInput #value
+                (change)="changeYoutubeHref(value.value)" [value]="youtubeHref">
+        </mat-form-field>
     </div>
     <video class="videoPlayer" *ngIf="videoHref" [src]="videoHref" controls></video>
     <iframe *ngIf="youtubeHref" class="videoPlayer" [src]="youtubeHref" title="YouTube video player" frameborder="0"

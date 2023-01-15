@@ -67,12 +67,16 @@
     opacity: .7;
 }
 
-.inputUrl {
+.inputUrlContainer {
     width: 566px;
-    height: 47px;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #000000;
+}
+
+.inputUrl {
+    // width: 566px;
+    // height: 47px;
+    // outline: none;
+    // border: none;
+    // border-bottom: 1px solid #000000;
 
     font-size: 14px;
     line-height: 22px;
@@ -120,7 +124,7 @@
 }
 
 .items {
-    
+
     display: flex;
     width: 100%;
     height: 100%;

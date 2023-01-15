@@ -1,6 +1,10 @@
 <div class="main">
-    <input class="nameInput" placeholder="Название урока" [(ngModel)]="titleName" #item
-        (change)="onChangeName(item.value)" />
+    <!-- <input class="nameInput" placeholder="Название урока" [(ngModel)]="titleName" #item
+        (change)="onChangeName(item.value)" /> -->
+    <mat-form-field class="nameInputContainer">
+        <input class="nameInput" placeholder="Название урока" matInput [(ngModel)]="titleName" #item
+            (change)="onChangeName(item.value)">
+    </mat-form-field>
     <button tuiButton type="button" appearance="customSecondaryDestructiveOutline" (click)="onDeleteLesson()"
         [size]="'m'">Удалить урок</button>
 </div>

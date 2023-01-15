@@ -6,8 +6,12 @@
         <input type="file" class="coverInput" id="coverInput" #event (change)="onUploadCover(event.files)" />
         <label for="coverInput" *ngIf="!books[currentBookIndex]?.coverSrc" class="addImageButton">Загрузить обложку
             книги</label>
-        <input type="url" placeholder="Вставить ссылку на книгу" class="inputUrl" [(ngModel)]="currentHref" #event
-            (change)="onChangeHref(event.value)" [value]="currentHref" />
+        <!-- <input type="url" placeholder="Вставить ссылку на книгу" class="inputUrl" [(ngModel)]="currentHref" #event
+            (change)="onChangeHref(event.value)" [value]="currentHref" /> -->
+        <mat-form-field class="inputUrlContainer">
+            <input type="url" placeholder="Вставить ссылку на книгу" class="inputUrl" matInput [(ngModel)]="currentHref"
+                #event (change)="onChangeHref(event.value)" [value]="currentHref">
+        </mat-form-field>
     </div>
     <div class="toolbar">
         <button class="navigateButton prev" (click)="onClickScrollButton('left')"></button>

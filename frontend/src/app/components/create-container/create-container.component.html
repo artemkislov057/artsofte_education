@@ -1,9 +1,14 @@
 <div class="main">
     <div class="title">Создание нового {{typeContainerName}}</div>
-    <div class="nameContainer">
+    <!-- <div class="nameContainer">
         <div class="nameTitle">Введите название {{typeContainerName}}</div>
         <input class="nameItem" [(ngModel)]="inputValue" />
-    </div>
+    </div> -->
+    <mat-form-field class="example-full-width">
+        <!-- <mat-label>Favorite food</mat-label> -->
+        <input class="nameItem" matInput [(ngModel)]="inputValue">
+    </mat-form-field>
+
     <div class="buttons">
         <button tuiButton type="button" appearance="customPrimaryOutline">Отменить</button>
         <button (click)="create(inputValue)" tuiButton type="button" appearance="customAccent">Создать
